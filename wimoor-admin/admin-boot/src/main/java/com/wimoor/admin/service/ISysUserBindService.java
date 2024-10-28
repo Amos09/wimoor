@@ -1,14 +1,12 @@
 package com.wimoor.admin.service;
 
-import com.wimoor.admin.pojo.entity.SysUserBind;
-
-import java.util.List;
-
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.admin.pojo.entity.SysUserBind;
+import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
@@ -16,14 +14,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISysUserBindService extends IService<SysUserBind> {
 
-	String getBindId(String userid);
+    String getBindId(String userid);
 
-	Boolean save(String userid, String bindid);
+    Boolean save(String userid, String bindid);
 
-	void bindMpUser(String openid, String id);
+    void bindMpUser(String openid, String id);
 
-	List<SysUserBind> getBindListUser(String userid);
+    List<SysUserBind> getBindListUser(String userid);
 
-	List<SysUserBind> getBindList(String bindid);
+    List<SysUserBind> getBindList(String bindid);
 
 }

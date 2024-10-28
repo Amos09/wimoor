@@ -1,10 +1,8 @@
 package com.wimoor.amazon.report.mapper;
 
-import com.wimoor.amazon.report.pojo.entity.ReportRequestType;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wimoor.amazon.report.pojo.entity.ReportRequestType;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>

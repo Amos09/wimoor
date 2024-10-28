@@ -1,17 +1,15 @@
 package com.wimoor.erp.warehouse.pojo.entity;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wimoor.erp.common.pojo.entity.BaseEntity;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,17 +26,17 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_erp_warehouse_shelf")
-@ApiModel(value="WarehouseShelfVo对象", description="仓库货柜")
-public class WarehouseShelf  extends BaseEntity{
+@ApiModel(value = "WarehouseShelfVo对象", description = "仓库货柜")
+public class WarehouseShelf extends BaseEntity {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "仓库ID")
     private BigInteger addressid;
 
     @ApiModelProperty(value = "货柜名称")
     private String name;
-    
+
     @ApiModelProperty(value = "编码")
     private String number;
 
@@ -80,7 +78,7 @@ public class WarehouseShelf  extends BaseEntity{
 
     @ApiModelProperty(value = "创建人")
     private BigInteger creator;
-    
+
     @ApiModelProperty(value = "操作时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonInclude(value = JsonInclude.Include.NON_NULL)

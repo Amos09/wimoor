@@ -1,9 +1,6 @@
 package com.wimoor.amazon.product.service;
 
 
-import java.util.List;
-import java.util.Map;
-
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -15,6 +12,8 @@ import com.wimoor.amazon.product.pojo.entity.ProductInfoStatusDefine;
 import com.wimoor.amazon.product.pojo.vo.AmzProductListVo;
 import com.wimoor.amazon.product.pojo.vo.ProductInfoListVo;
 import com.wimoor.common.user.UserInfo;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -26,63 +25,65 @@ import com.wimoor.common.user.UserInfo;
  */
 public interface IProductInfoService extends IService<ProductInfo> {
 
-	public List<String> getPidListByTagList(List<String> taglist,Object shopid,Object amazonAuthId,Object groupid,Object groupList,Object marketplace,Boolean withoutTag) ;
-	
-	List<ProductInfo> selectBySku(String sku, String marketplaceid, String amazonAuthId);
+    public List<String> getPidListByTagList(List<String> taglist, Object shopid, Object amazonAuthId, Object groupid,
+            Object groupList, Object marketplace, Boolean withoutTag);
 
-	ProductInfo productOnlyone(String amazonAuthId, String sku, String marketplaceid);
+    List<ProductInfo> selectBySku(String sku, String marketplaceid, String amazonAuthId);
 
-	List<Map<String, Object>> findShopSku(String shopid, String sku);
+    ProductInfo productOnlyone(String amazonAuthId, String sku, String marketplaceid);
 
-	List<ProductInfo> selectByAsin(String amazonAuthId, String asin, String marketplaceid);
+    List<Map<String, Object>> findShopSku(String shopid, String sku);
 
-	String getMSKU(String amazonAuthId, String marketplaceid, String sku);
+    List<ProductInfo> selectByAsin(String amazonAuthId, String asin, String marketplaceid);
 
-	IPage<AmzProductListVo> getListByUser(UserInfo userinfo, ProductListQuery query, Map<String, Object> parameter);
-	
-    IPage<AmzProductListVo> getListParentByUser(UserInfo userinfo, ProductListQuery query, Map<String, Object> parameter);
-    
-	IPage<ProductInfoListVo> findByCondition(ProductListDTO dto);
- 
-	Map<String, Object> findNameAndPicture(String sku_p, String marketplaceid, String groupid);
+    String getMSKU(String amazonAuthId, String marketplaceid, String sku);
 
-	List<ProductInfoStatusDefine> getProStatusList(String shopid);
+    IPage<AmzProductListVo> getListByUser(UserInfo userinfo, ProductListQuery query, Map<String, Object> parameter);
 
-	Map<String, Object> updateProductPrice(UserInfo user, Map<String, Object> map, String ftype);
+    IPage<AmzProductListVo> getListParentByUser(UserInfo userinfo, ProductListQuery query,
+            Map<String, Object> parameter);
 
-	int updateUpdateRemark(String id, String remark, String ftype, String userid);
+    IPage<ProductInfoListVo> findByCondition(ProductListDTO dto);
 
-	Map<String, Object> saveProductPriceLocked(String pid, String userid, String price, String days);
+    Map<String, Object> findNameAndPicture(String sku_p, String marketplaceid, String groupid);
 
-	Map<String, Object> deleteProductPriceLocked(String pid, String userid);
+    List<ProductInfoStatusDefine> getProStatusList(String shopid);
 
-	List<ProductInfo> selectByMSku(String sku, String marketplaceid,String groupid ,String shopid);
+    Map<String, Object> updateProductPrice(UserInfo user, Map<String, Object> map, String ftype);
 
-	void showProfitDetial(Map<String, Object> map);
+    int updateUpdateRemark(String id, String remark, String ftype, String userid);
 
-	Map<String, Object> productSimpleInfoOnlyone(String amazonAuthId, String sku, String marketplaceid);
+    Map<String, Object> saveProductPriceLocked(String pid, String userid, String price, String days);
 
-	public String findMSKUBySKUMarket(String psku, String marketplaceid, String id);
+    Map<String, Object> deleteProductPriceLocked(String pid, String userid);
 
-	public int productDisable(UserInfo user, String id);
+    List<ProductInfo> selectByMSku(String sku, String marketplaceid, String groupid, String shopid);
 
-	public int productUnDisable(UserInfo user, String id);
+    void showProfitDetial(Map<String, Object> map);
 
-	public List<Map<String, Object>> productFollow(String followid);
+    Map<String, Object> productSimpleInfoOnlyone(String amazonAuthId, String sku, String marketplaceid);
 
-	public IPage<Map<String, Object>> getProductInfoWithFnSKU(Page<Object> page, Map<String, Object> map);
+    public String findMSKUBySKUMarket(String psku, String marketplaceid, String id);
 
-	public IPage<Map<String, Object>> getAsinList(Page<?> page, Map<String, Object> parameter);
-	
-	public void optProductPrice(Map<String, Object> map);
+    public int productDisable(UserInfo user, String id);
 
-	public List<Map<String, Object>> getInfoSimple( Map<String, Object> parameter);
+    public int productUnDisable(UserInfo user, String id);
 
-	public boolean updateProInvlidByPid(String pid);
+    public List<Map<String, Object>> productFollow(String followid);
 
-	public ProductInProfit getInPorfit(String pid);
+    public IPage<Map<String, Object>> getProductInfoWithFnSKU(Page<Object> page, Map<String, Object> map);
 
-	List<AmzProductListVo> getListDetailByUser(UserInfo userinfo, ProductListQuery query,
-			Map<String, Object> parameter);
- 
+    public IPage<Map<String, Object>> getAsinList(Page<?> page, Map<String, Object> parameter);
+
+    public void optProductPrice(Map<String, Object> map);
+
+    public List<Map<String, Object>> getInfoSimple(Map<String, Object> parameter);
+
+    public boolean updateProInvlidByPid(String pid);
+
+    public ProductInProfit getInPorfit(String pid);
+
+    List<AmzProductListVo> getListDetailByUser(UserInfo userinfo, ProductListQuery query,
+            Map<String, Object> parameter);
+
 }

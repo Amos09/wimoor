@@ -3,18 +3,16 @@ package com.wimoor.amazon.inbound.pojo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.amazon.common.pojo.entity.BaseEntity;
-
-import java.util.Date;
-import java.math.BigInteger;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigInteger;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -23,11 +21,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_inbound_fba_cycle")
-@ApiModel(value="AmzInboundFbaCycle对象", description="")
+@ApiModel(value = "AmzInboundFbaCycle对象", description = "")
 public class AmzInboundFbaCycle extends BaseEntity {
 
-    private static final long serialVersionUID=1L;
- 
+    private static final long serialVersionUID = 1L;
+
     private BigInteger shopid;
 
     private BigInteger transtype;
@@ -59,9 +57,9 @@ public class AmzInboundFbaCycle extends BaseEntity {
     private BigInteger operator;
 
     @ApiModelProperty(value = "操作人名称")
-    @TableField(exist=false)
+    @TableField(exist = false)
     private String operatorname;
-    
+
     @ApiModelProperty(value = "修改时间")
     private Date opttime;
 

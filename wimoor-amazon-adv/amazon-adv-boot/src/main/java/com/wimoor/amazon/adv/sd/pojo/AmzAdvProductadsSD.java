@@ -1,116 +1,113 @@
 package com.wimoor.amazon.adv.sd.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 @Entity
-@Table(name="t_amz_adv_productads_sd")
+@Table(name = "t_amz_adv_productads_sd")
 public class AmzAdvProductadsSD {
-	
-	@Id
-	@Column(name="adId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "adId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adid;
 
-	@Column(name="adGroupId")
+    @Column(name = "adGroupId")
     private BigInteger adgroupid;
 
-	@Column(name="campaignId")
+    @Column(name = "campaignId")
     private BigInteger campaignid;
 
-	@Column(name="profileid")
+    @Column(name = "profileid")
     private BigInteger profileid;
 
-	@Column(name="sku")
+    @Column(name = "sku")
     private String sku;
 
-	@Column(name="asin")
+    @Column(name = "asin")
     private String asin;
 
-	@Column(name="state")
+    @Column(name = "state")
     private String state;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
 
-	@Column(name="adName")
-	String adName;
-	
-	@Column(name="landingPageType")
-	String landingPageType;
-	
-	@Column(name="landingPageURL")
-	String landingPageURL;
-			
-	@Transient
-	private String servingStatus;
-	    
+    @Column(name = "adName")
+    String adName;
+
+    @Column(name = "landingPageType")
+    String landingPageType;
+
+    @Column(name = "landingPageURL")
+    String landingPageURL;
+
     @Transient
-	private Date creationDate;
-    
+    private String servingStatus;
+
     @Transient
-	private Date lastUpdatedDate;
-    
-    
-   
-	public String getAdName() {
-		return adName;
-	}
+    private Date creationDate;
 
-	public void setAdName(String adName) {
-		this.adName = adName;
-	}
+    @Transient
+    private Date lastUpdatedDate;
 
-	public String getLandingPageType() {
-		return landingPageType;
-	}
 
-	public void setLandingPageType(String landingPageType) {
-		this.landingPageType = landingPageType;
-	}
+    public String getAdName() {
+        return adName;
+    }
 
-	public String getLandingPageURL() {
-		return landingPageURL;
-	}
+    public void setAdName(String adName) {
+        this.adName = adName;
+    }
 
-	public void setLandingPageURL(String landingPageURL) {
-		this.landingPageURL = landingPageURL;
-	}
+    public String getLandingPageType() {
+        return landingPageType;
+    }
 
-	public String getServingStatus() {
-		return servingStatus;
-	}
+    public void setLandingPageType(String landingPageType) {
+        this.landingPageType = landingPageType;
+    }
 
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    public String getLandingPageURL() {
+        return landingPageURL;
+    }
 
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    public void setLandingPageURL(String landingPageURL) {
+        this.landingPageURL = landingPageURL;
+    }
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public String getServingStatus() {
+        return servingStatus;
+    }
 
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-	public BigInteger getAdid() {
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public BigInteger getAdid() {
         return adid;
     }
 

@@ -3,7 +3,6 @@ package com.wimoor.open1688.utils;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -31,7 +30,7 @@ public final class SecurityUtil {
         mac.update(data, offset, len);
         return mac.doFinal();
     }
-    
+
     public static byte[] hmacSha1(byte[][] datas, byte[] key) {
         SecretKeySpec signingKey = new SecretKeySpec(key, HMAC_SHA1);
         Mac mac = null;
@@ -64,7 +63,7 @@ public final class SecurityUtil {
             for (String data : datas) {
                 mac.update(data.getBytes(StringUtil.CHARSET_NAME_UTF8));
             }
-        } catch (UnsupportedEncodingException e) { 
+        } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e.getMessage(), e);
         }
         return mac.doFinal();
@@ -74,7 +73,7 @@ public final class SecurityUtil {
         byte[] rawHmac = hmacSha1(data, key, offset, len);
         return StringUtil.encodeHexStr(rawHmac);
     }
-    
+
     public static String hmacSha1ToHexStr(byte[] data, String key, int offset, int len) {
         try {
             return hmacSha1ToHexStr(data, key.getBytes(StringUtil.CHARSET_NAME_UTF8), offset, len);
@@ -82,7 +81,7 @@ public final class SecurityUtil {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
-    
+
     public static String hmacSha1ToHexStr(String str, String key) {
         try {
             byte[] data = str.getBytes(StringUtil.CHARSET_NAME_UTF8);

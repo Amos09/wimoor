@@ -1,205 +1,211 @@
 package com.wimoor.common.mybatis;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+import lombok.Setter;
 import org.apache.ibatis.executor.Executor;
-
 import org.apache.ibatis.mapping.BoundSql;
-
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.mapping.SqlSource;
-
-import org.apache.ibatis.plugin.*;
-
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.ResultHandler;
-
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import lombok.Setter;
-
-import java.util.*;
-import java.util.Map.Entry;
-
 /**
-* @description: 动态替换表名***
-*/
+ * @description: 动态替换表名***
+ */
 //method = "query"拦截select方法、而method = "update"则能拦截insert、update、delete的方法
 @Intercepts({
-		        @Signature(type = Executor.class, method = "query", 
-				  args = { MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class }) 
+        @Signature(type = Executor.class, method = "query",
+                args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})
 })
 @Component
 @ConfigurationProperties(prefix = "db")
-public class ReplaceTableInterceptor  implements Interceptor  {
-	@Setter
-	private List<String> otherTables;
+public class ReplaceTableInterceptor implements Interceptor {
 
-	Map<String,HashSet<String>> db_table_map=null;
-	
-	private Map<String,HashSet<String>> getMap() {
-	   if(db_table_map==null) {
-		   db_table_map=new HashMap<String,HashSet<String>>();
-		   if(otherTables!=null&&otherTables.size()>0) {
-			   for(String replaceTable:otherTables) {
-				   if(replaceTable!=null) {
-					   String[] dbtable = replaceTable.split("\\.");
-					   if(dbtable.length==2) {
-						   String db=dbtable[0];
-						   String table=dbtable[1];
-						   HashSet<String> dbtablelist = db_table_map.get(db);  
-						   if(dbtablelist==null) {
-							   dbtablelist=new HashSet<String>();
-						   }
-						   dbtablelist.add(table);
-						   db_table_map.put(db,dbtablelist);  
-					   }
-				   }
-			   }
-		   }
-	   }
-	   return db_table_map;
-	}
-	
-	@Override
-	public Object intercept(Invocation invocation) throws Throwable {
-		Object[] args = invocation.getArgs();
-		//获取MappedStatement对象
-		MappedStatement ms = (MappedStatement) args[0];
-		//获取传入sql语句的参数对象
-		Object parameterObject = args[1];
-		BoundSql boundSql = ms.getBoundSql(parameterObject);
-		//获取到拥有占位符的sql语句
-		String sql = boundSql.getSql();
+    @Setter
+    private List<String> otherTables;
+
+    Map<String, HashSet<String>> db_table_map = null;
+
+    private Map<String, HashSet<String>> getMap() {
+        if (db_table_map == null) {
+            db_table_map = new HashMap<String, HashSet<String>>();
+            if (otherTables != null && otherTables.size() > 0) {
+                for (String replaceTable : otherTables) {
+                    if (replaceTable != null) {
+                        String[] dbtable = replaceTable.split("\\.");
+                        if (dbtable.length == 2) {
+                            String db = dbtable[0];
+                            String table = dbtable[1];
+                            HashSet<String> dbtablelist = db_table_map.get(db);
+                            if (dbtablelist == null) {
+                                dbtablelist = new HashSet<String>();
+                            }
+                            dbtablelist.add(table);
+                            db_table_map.put(db, dbtablelist);
+                        }
+                    }
+                }
+            }
+        }
+        return db_table_map;
+    }
+
+    @Override
+    public Object intercept(Invocation invocation) throws Throwable {
+        Object[] args = invocation.getArgs();
+        //获取MappedStatement对象
+        MappedStatement ms = (MappedStatement) args[0];
+        //获取传入sql语句的参数对象
+        Object parameterObject = args[1];
+        BoundSql boundSql = ms.getBoundSql(parameterObject);
+        //获取到拥有占位符的sql语句
+        String sql = boundSql.getSql();
         //判断是否需要替换表名
-		Map<String, HashSet<String>> map = getMap();
-		if (map!=null&&map.size()>0&&isReplaceTableName(sql)) {
-			for(Entry<String, HashSet<String>> entry:map.entrySet()) {
-				  String db_name=entry.getKey();
-				  HashSet<String> tables = entry.getValue();
-				if(db_name!=null&&!db_name.trim().equals("")&&tables!=null&&tables.size()>0) {
-					for ( String table : tables) {
-						sql = sql.replace(table+" ", db_name+"."+table+" ");
-					}
-				}
-			}
-			 
-			BoundSql bs = new BoundSql(ms.getConfiguration(), sql, boundSql.getParameterMappings(), boundSql.getParameterObject());
-	        for (ParameterMapping mapping : boundSql.getParameterMappings()) {
-	            String prop = mapping.getProperty();
-	            if (boundSql.hasAdditionalParameter(prop)) {
-	                bs.setAdditionalParameter(prop, boundSql.getAdditionalParameter(prop));
-	            }
-	        }
-			//BoundSql bs = new BoundSql(ms.getConfiguration(), sql, boundSql.getParameterMappings(), parameterObject);
-			//重新生成一个MappedStatement对象
-			MappedStatement newMs = copyMappedStatement(ms, new BoundSqlSqlSource(bs));
-			//赋回给实际执行方法所需的参数中
-			args[0] = newMs;
-		}
-		return invocation.proceed();
-	}
+        Map<String, HashSet<String>> map = getMap();
+        if (map != null && map.size() > 0 && isReplaceTableName(sql)) {
+            for (Entry<String, HashSet<String>> entry : map.entrySet()) {
+                String db_name = entry.getKey();
+                HashSet<String> tables = entry.getValue();
+                if (db_name != null && !db_name.trim().equals("") && tables != null && tables.size() > 0) {
+                    for (String table : tables) {
+                        sql = sql.replace(table + " ", db_name + "." + table + " ");
+                    }
+                }
+            }
 
-	private boolean isReplaceTableName(String sql) {
-		// TODO Auto-generated method stub
-		Map<String, HashSet<String>> map = getMap();
-		if(map!=null&&map.size()>0) {
-			try {
-				for(Entry<String, HashSet<String>> entry:map.entrySet()) {
-					 String db_name=entry.getKey();
-					  HashSet<String> tables = entry.getValue();
-					  if(db_name!=null&&!db_name.trim().equals("")&&tables!=null&&tables.size()>0&&!sql.contains(db_name)) {
-						for ( String table : tables) {
-							if( sql.contains(table)) {
-								return true;
-							}
-						}
-					}
-				}	
-			}catch(Exception e) {
-				return false;
-			}
-			
-		}
-		return false;
-	}
+            BoundSql bs = new BoundSql(ms.getConfiguration(), sql, boundSql.getParameterMappings(),
+                    boundSql.getParameterObject());
+            for (ParameterMapping mapping : boundSql.getParameterMappings()) {
+                String prop = mapping.getProperty();
+                if (boundSql.hasAdditionalParameter(prop)) {
+                    bs.setAdditionalParameter(prop, boundSql.getAdditionalParameter(prop));
+                }
+            }
+            //BoundSql bs = new BoundSql(ms.getConfiguration(), sql, boundSql.getParameterMappings(), parameterObject);
+            //重新生成一个MappedStatement对象
+            MappedStatement newMs = copyMappedStatement(ms, new BoundSqlSqlSource(bs));
+            //赋回给实际执行方法所需的参数中
+            args[0] = newMs;
+        }
+        return invocation.proceed();
+    }
 
-	@Override
-	public Object plugin(Object target) {
-		return Plugin.wrap(target, this);
-	}
+    private boolean isReplaceTableName(String sql) {
+        // TODO Auto-generated method stub
+        Map<String, HashSet<String>> map = getMap();
+        if (map != null && map.size() > 0) {
+            try {
+                for (Entry<String, HashSet<String>> entry : map.entrySet()) {
+                    String db_name = entry.getKey();
+                    HashSet<String> tables = entry.getValue();
+                    if (db_name != null && !db_name.trim().equals("") && tables != null && tables.size() > 0
+                            && !sql.contains(db_name)) {
+                        for (String table : tables) {
+                            if (sql.contains(table)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                return false;
+            }
 
-	@Override
-	public void setProperties(Properties properties) { }
+        }
+        return false;
+    }
 
-	/***
-	 * 
-	 * 复制一个新的MappedStatement
-	 * 
-	 * @param ms
-	 * 
-	 * @param newSqlSource
-	 * 
-	 * @return
-	 * 
-	 */
+    @Override
+    public Object plugin(Object target) {
+        return Plugin.wrap(target, this);
+    }
 
-	private MappedStatement copyMappedStatement(MappedStatement ms, SqlSource newSqlSource) {
+    @Override
+    public void setProperties(Properties properties) {
+    }
 
-		MappedStatement.Builder builder = new MappedStatement.Builder(ms.getConfiguration(), ms.getId(), newSqlSource,
-				ms.getSqlCommandType());
+    /***
+     *
+     * 复制一个新的MappedStatement
+     *
+     * @param ms
+     *
+     * @param newSqlSource
+     *
+     * @return
+     *
+     */
 
-		builder.resource(ms.getResource());
+    private MappedStatement copyMappedStatement(MappedStatement ms, SqlSource newSqlSource) {
 
-		builder.fetchSize(ms.getFetchSize());
+        MappedStatement.Builder builder = new MappedStatement.Builder(ms.getConfiguration(), ms.getId(), newSqlSource,
+                ms.getSqlCommandType());
 
-		builder.statementType(ms.getStatementType());
+        builder.resource(ms.getResource());
 
-		builder.keyGenerator(ms.getKeyGenerator());
+        builder.fetchSize(ms.getFetchSize());
 
-		if (ms.getKeyProperties() != null && ms.getKeyProperties().length > 0) {
+        builder.statementType(ms.getStatementType());
 
-			builder.keyProperty(String.join(",", ms.getKeyProperties()));
+        builder.keyGenerator(ms.getKeyGenerator());
 
-		}
+        if (ms.getKeyProperties() != null && ms.getKeyProperties().length > 0) {
 
-		builder.timeout(ms.getTimeout());
+            builder.keyProperty(String.join(",", ms.getKeyProperties()));
 
-		builder.parameterMap(ms.getParameterMap());
+        }
 
-		builder.resultMaps(ms.getResultMaps());
+        builder.timeout(ms.getTimeout());
 
-		builder.resultSetType(ms.getResultSetType());
+        builder.parameterMap(ms.getParameterMap());
 
-		builder.cache(ms.getCache());
+        builder.resultMaps(ms.getResultMaps());
 
-		builder.flushCacheRequired(ms.isFlushCacheRequired());
+        builder.resultSetType(ms.getResultSetType());
 
-		builder.useCache(ms.isUseCache());
+        builder.cache(ms.getCache());
 
-		return builder.build();
+        builder.flushCacheRequired(ms.isFlushCacheRequired());
 
-	}
+        builder.useCache(ms.isUseCache());
 
-	/***
-	 * 
-	 * MappedStatement构造器接受的是SqlSource
-	 * 
-	 * 实现SqlSource接口，将BoundSql封装进去
-	 * 
-	 */
-	public static class BoundSqlSqlSource implements SqlSource {
-		private BoundSql boundSql;
+        return builder.build();
 
-		public BoundSqlSqlSource(BoundSql boundSql) {
-			this.boundSql = boundSql;
-		}
+    }
 
-		@Override
-		public BoundSql getBoundSql(Object parameterObject) {
-			return boundSql;
-		}
+    /***
+     *
+     * MappedStatement构造器接受的是SqlSource
+     *
+     * 实现SqlSource接口，将BoundSql封装进去
+     *
+     */
+    public static class BoundSqlSqlSource implements SqlSource {
 
-	}
+        private BoundSql boundSql;
+
+        public BoundSqlSqlSource(BoundSql boundSql) {
+            this.boundSql = boundSql;
+        }
+
+        @Override
+        public BoundSql getBoundSql(Object parameterObject) {
+            return boundSql;
+        }
+
+    }
 
 }

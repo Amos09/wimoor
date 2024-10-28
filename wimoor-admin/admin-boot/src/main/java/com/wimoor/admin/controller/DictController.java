@@ -1,10 +1,25 @@
 package com.wimoor.admin.controller;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wimoor.admin.pojo.entity.SysDict;
+import com.wimoor.admin.pojo.entity.SysDictItem;
+import com.wimoor.admin.service.ISysDictItemService;
+import com.wimoor.admin.service.ISysDictService;
+import com.wimoor.common.result.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,24 +29,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wimoor.admin.pojo.entity.SysDict;
-import com.wimoor.admin.pojo.entity.SysDictItem;
-import com.wimoor.admin.service.ISysDictItemService;
-import com.wimoor.admin.service.ISysDictService;
-import com.wimoor.common.result.Result;
-
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.StrUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 
 @Api(tags = "字典接口")
 @RestController
@@ -49,7 +46,7 @@ public class DictController {
             @ApiImplicitParam(name = "name", value = "字典名称", paramType = "query", dataType = "String"),
     })
     @GetMapping("/page")
-    public Result<List<SysDict>> list( Integer page,Integer limit, String name) {
+    public Result<List<SysDict>> list(Integer page, Integer limit, String name) {
         Page<SysDict> result = iSysDictService.page(new Page<>(page, limit), new LambdaQueryWrapper<SysDict>()
                 .like(StrUtil.isNotBlank(name), SysDict::getName, StrUtil.trimToNull(name))
                 .orderByDesc(SysDict::getGmtModified)
@@ -57,11 +54,11 @@ public class DictController {
         return Result.success(result.getRecords(), result.getTotal());
     }
 
-    
+
     @ApiOperation(value = "字典列表")
     @GetMapping
     public Result<List<SysDict>> list() {
-        List<SysDict> list = iSysDictService.list( new LambdaQueryWrapper<SysDict>()
+        List<SysDict> list = iSysDictService.list(new LambdaQueryWrapper<SysDict>()
                 .orderByDesc(SysDict::getGmtModified)
                 .orderByDesc(SysDict::getGmtCreate));
         return Result.success(list);
@@ -99,8 +96,9 @@ public class DictController {
             SysDict dbDict = iSysDictService.getById(id);
             // 字典code更新，同步更新字典项code
             if (!StrUtil.equals(dbDict.getCode(), dict.getCode())) {
-                iSysDictItemService.update(new LambdaUpdateWrapper<SysDictItem>().eq(SysDictItem::getDictCode, dbDict.getCode())
-                        .set(SysDictItem::getDictCode, dict.getCode()));
+                iSysDictItemService.update(
+                        new LambdaUpdateWrapper<SysDictItem>().eq(SysDictItem::getDictCode, dbDict.getCode())
+                                .set(SysDictItem::getDictCode, dict.getCode()));
             }
         }
         return Result.judge(status);
@@ -111,9 +109,11 @@ public class DictController {
     @DeleteMapping("/{ids}")
     public Result<Boolean> delete(@PathVariable String ids) {
         List<String> idList = Arrays.asList(ids.split(","));
-        List<String> codeList = iSysDictService.listByIds(idList).stream().map(item -> item.getCode()).collect(Collectors.toList());
+        List<String> codeList = iSysDictService.listByIds(idList).stream().map(item -> item.getCode())
+                .collect(Collectors.toList());
         if (CollectionUtil.isNotEmpty(codeList)) {
-            long count = iSysDictItemService.count(new LambdaQueryWrapper<SysDictItem>().in(SysDictItem::getDictCode, codeList));
+            long count = iSysDictItemService.count(
+                    new LambdaQueryWrapper<SysDictItem>().in(SysDictItem::getDictCode, codeList));
             Assert.isTrue(count == 0, "删除字典失败，请先删除关联字典数据");
         }
         boolean status = iSysDictService.removeByIds(idList);

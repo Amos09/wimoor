@@ -2,78 +2,78 @@ package com.wimoor.amazon.adv.sp.pojo;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="t_amz_adv_keywords")
+@Table(name = "t_amz_adv_keywords")
 public class AmzAdvKeywords extends AmzAdvKeywordsKey {
-	@Column(name="keywordText")
+
+    @Column(name = "keywordText")
     private String keywordtext;
 
-	@Column(name="nativeLanguageKeyword")
+    @Column(name = "nativeLanguageKeyword")
     private String nativeLanguageKeyword;
-	
-	@Column(name="matchType")
+
+    @Column(name = "matchType")
     private String matchtype;
 
-	
-	@Column(name="bid")
+
+    @Column(name = "bid")
     private BigDecimal bid;
 
-	@Column(name="state")
+    @Column(name = "state")
     private String state;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
 
     public String getKeywordtext() {
         return keywordtext;
     }
-    
-	@Transient
-	private Date creationDate;
-	
-	@Transient
-	private Date lastUpdatedDate;
-	
-	@Transient
-	private String servingStatus;
 
-	@Transient
+    @Transient
+    private Date creationDate;
+
+    @Transient
+    private Date lastUpdatedDate;
+
+    @Transient
+    private String servingStatus;
+
+    @Transient
     public Date getCreationDate() {
-		return creationDate;
-	}
+        return creationDate;
+    }
 
-	@Transient
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    @Transient
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	@Transient
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    @Transient
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
 
-	@Transient
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
+    @Transient
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
 
-	@Transient
-	public String getServingStatus() {
-		return servingStatus;
-	}
+    @Transient
+    public String getServingStatus() {
+        return servingStatus;
+    }
 
-	@Transient
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    @Transient
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
-	public void setKeywordtext(String keywordtext) {
+    public void setKeywordtext(String keywordtext) {
         this.keywordtext = keywordtext == null ? null : keywordtext.trim();
     }
 
@@ -86,14 +86,14 @@ public class AmzAdvKeywords extends AmzAdvKeywordsKey {
     }
 
     public BigDecimal getBid() {
-		return bid;
-	}
+        return bid;
+    }
 
-	public void setBid(BigDecimal bid) {
-		this.bid = bid;
-	}
+    public void setBid(BigDecimal bid) {
+        this.bid = bid;
+    }
 
-	public String getState() {
+    public String getState() {
         return state;
     }
 
@@ -109,13 +109,13 @@ public class AmzAdvKeywords extends AmzAdvKeywordsKey {
         this.opttime = opttime;
     }
 
-	public String getNativeLanguageKeyword() {
-		return nativeLanguageKeyword;
-	}
+    public String getNativeLanguageKeyword() {
+        return nativeLanguageKeyword;
+    }
 
-	public void setNativeLanguageKeyword(String nativeLanguageKeyword) {
-		this.nativeLanguageKeyword = nativeLanguageKeyword;
-	}
-    
-    
+    public void setNativeLanguageKeyword(String nativeLanguageKeyword) {
+        this.nativeLanguageKeyword = nativeLanguageKeyword;
+    }
+
+
 }

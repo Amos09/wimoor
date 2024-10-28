@@ -13,19 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.AmazonOrderDetails;
-import com.amazon.spapi.model.shipping.AmazonShipmentDetails;
-import com.amazon.spapi.model.shipping.ChannelType;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Shipment source channel related information.
@@ -33,112 +24,115 @@ import java.io.IOException;
 @ApiModel(description = "Shipment source channel related information.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class ChannelDetails {
-  @SerializedName("channelType")
-  private ChannelType channelType = null;
 
-  @SerializedName("amazonOrderDetails")
-  private AmazonOrderDetails amazonOrderDetails = null;
+    @SerializedName("channelType")
+    private ChannelType channelType = null;
 
-  @SerializedName("amazonShipmentDetails")
-  private AmazonShipmentDetails amazonShipmentDetails = null;
+    @SerializedName("amazonOrderDetails")
+    private AmazonOrderDetails amazonOrderDetails = null;
 
-  public ChannelDetails channelType(ChannelType channelType) {
-    this.channelType = channelType;
-    return this;
-  }
+    @SerializedName("amazonShipmentDetails")
+    private AmazonShipmentDetails amazonShipmentDetails = null;
 
-   /**
-   * Get channelType
-   * @return channelType
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public ChannelType getChannelType() {
-    return channelType;
-  }
-
-  public void setChannelType(ChannelType channelType) {
-    this.channelType = channelType;
-  }
-
-  public ChannelDetails amazonOrderDetails(AmazonOrderDetails amazonOrderDetails) {
-    this.amazonOrderDetails = amazonOrderDetails;
-    return this;
-  }
-
-   /**
-   * Get amazonOrderDetails
-   * @return amazonOrderDetails
-  **/
-  @ApiModelProperty(value = "")
-  public AmazonOrderDetails getAmazonOrderDetails() {
-    return amazonOrderDetails;
-  }
-
-  public void setAmazonOrderDetails(AmazonOrderDetails amazonOrderDetails) {
-    this.amazonOrderDetails = amazonOrderDetails;
-  }
-
-  public ChannelDetails amazonShipmentDetails(AmazonShipmentDetails amazonShipmentDetails) {
-    this.amazonShipmentDetails = amazonShipmentDetails;
-    return this;
-  }
-
-   /**
-   * Get amazonShipmentDetails
-   * @return amazonShipmentDetails
-  **/
-  @ApiModelProperty(value = "")
-  public AmazonShipmentDetails getAmazonShipmentDetails() {
-    return amazonShipmentDetails;
-  }
-
-  public void setAmazonShipmentDetails(AmazonShipmentDetails amazonShipmentDetails) {
-    this.amazonShipmentDetails = amazonShipmentDetails;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public ChannelDetails channelType(ChannelType channelType) {
+        this.channelType = channelType;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get channelType
+     *
+     * @return channelType
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public ChannelType getChannelType() {
+        return channelType;
     }
-    ChannelDetails channelDetails = (ChannelDetails) o;
-    return Objects.equals(this.channelType, channelDetails.channelType) &&
-        Objects.equals(this.amazonOrderDetails, channelDetails.amazonOrderDetails) &&
-        Objects.equals(this.amazonShipmentDetails, channelDetails.amazonShipmentDetails);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(channelType, amazonOrderDetails, amazonShipmentDetails);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ChannelDetails {\n");
-    
-    sb.append("    channelType: ").append(toIndentedString(channelType)).append("\n");
-    sb.append("    amazonOrderDetails: ").append(toIndentedString(amazonOrderDetails)).append("\n");
-    sb.append("    amazonShipmentDetails: ").append(toIndentedString(amazonShipmentDetails)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setChannelType(ChannelType channelType) {
+        this.channelType = channelType;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public ChannelDetails amazonOrderDetails(AmazonOrderDetails amazonOrderDetails) {
+        this.amazonOrderDetails = amazonOrderDetails;
+        return this;
+    }
+
+    /**
+     * Get amazonOrderDetails
+     *
+     * @return amazonOrderDetails
+     **/
+    @ApiModelProperty(value = "")
+    public AmazonOrderDetails getAmazonOrderDetails() {
+        return amazonOrderDetails;
+    }
+
+    public void setAmazonOrderDetails(AmazonOrderDetails amazonOrderDetails) {
+        this.amazonOrderDetails = amazonOrderDetails;
+    }
+
+    public ChannelDetails amazonShipmentDetails(AmazonShipmentDetails amazonShipmentDetails) {
+        this.amazonShipmentDetails = amazonShipmentDetails;
+        return this;
+    }
+
+    /**
+     * Get amazonShipmentDetails
+     *
+     * @return amazonShipmentDetails
+     **/
+    @ApiModelProperty(value = "")
+    public AmazonShipmentDetails getAmazonShipmentDetails() {
+        return amazonShipmentDetails;
+    }
+
+    public void setAmazonShipmentDetails(AmazonShipmentDetails amazonShipmentDetails) {
+        this.amazonShipmentDetails = amazonShipmentDetails;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ChannelDetails channelDetails = (ChannelDetails) o;
+        return Objects.equals(this.channelType, channelDetails.channelType) &&
+                Objects.equals(this.amazonOrderDetails, channelDetails.amazonOrderDetails) &&
+                Objects.equals(this.amazonShipmentDetails, channelDetails.amazonShipmentDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(channelType, amazonOrderDetails, amazonShipmentDetails);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ChannelDetails {\n");
+
+        sb.append("    channelType: ").append(toIndentedString(channelType)).append("\n");
+        sb.append("    amazonOrderDetails: ").append(toIndentedString(amazonOrderDetails)).append("\n");
+        sb.append("    amazonShipmentDetails: ").append(toIndentedString(amazonShipmentDetails)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

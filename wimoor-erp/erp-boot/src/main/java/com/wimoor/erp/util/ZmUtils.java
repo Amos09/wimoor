@@ -1,5 +1,6 @@
 package com.wimoor.erp.util;
 
+import com.alibaba.fastjson.JSON;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -10,28 +11,25 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
-
+import java.util.Set;
 import org.apache.commons.codec.binary.Base64;
-
-import com.alibaba.fastjson.JSON;
 
 public class ZmUtils {
 
-    private static final char[] DIGITS_LOWER = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
-            'e', 'f' };
+    private static final char[] DIGITS_LOWER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
+            'e', 'f'};
 
-    private static final char[] DIGITS_UPPER = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D',
-            'E', 'F' };
+    private static final char[] DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D',
+            'E', 'F'};
 
     private static Map<String, String> charMap = new HashMap<String, String>() {
         /**
-		 * 
-		 */
-		private static final long serialVersionUID = 6684568673641607032L;
+         *
+         */
+        private static final long serialVersionUID = 6684568673641607032L;
 
-		{
+        {
             this.put("a", "-");
             this.put("c", "#");
             this.put("x", "^");
@@ -47,14 +45,15 @@ public class ZmUtils {
      * @return
      */
     @SuppressWarnings("rawtypes")
-	public static Integer getInteger(Map map, Object key) {
+    public static Integer getInteger(Map map, Object key) {
         Number answer = getNumber(map, key);
-        if (answer == null)
+        if (answer == null) {
             return null;
+        }
         if (answer instanceof Integer) {
             return ((Integer) answer);
         }
-        return   Integer.valueOf(answer.intValue());
+        return Integer.valueOf(answer.intValue());
     }
 
     /**
@@ -65,7 +64,7 @@ public class ZmUtils {
      * @return
      */
     @SuppressWarnings("rawtypes")
-	private static Number getNumber(Map map, Object key) {
+    private static Number getNumber(Map map, Object key) {
         if (map != null) {
             Object answer = map.get(key);
             if (answer != null) {
@@ -93,7 +92,7 @@ public class ZmUtils {
      * @return
      */
     @SuppressWarnings("rawtypes")
-	public static String getString(Map map, Object key) {
+    public static String getString(Map map, Object key) {
         if (map != null) {
             Object answer = map.get(key);
             if (answer != null) {
@@ -196,15 +195,15 @@ public class ZmUtils {
             String ss = stringBuffer.toString().substring(1);
             byte[] bs = null;
             try {
-                System.out.println("签名计算字符串"+ss);
+                System.out.println("签名计算字符串" + ss);
                 bs = Base64.encodeBase64(ss.getBytes("UTF-8"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
 
             String text = new String(bs);
-            System.out.println("签名计算base64字符串"+text);
-            String sign=md5Hex(text + secret).toUpperCase();
+            System.out.println("签名计算base64字符串" + text);
+            String sign = md5Hex(text + secret).toUpperCase();
             System.out.println(sign);
             return sign;
         } else {
@@ -216,7 +215,7 @@ public class ZmUtils {
 
     //----------------以下是签名计算相关------------------------------------------------------------------
     @SuppressWarnings("rawtypes")
-	public static String encodeMixChar(String source) {
+    public static String encodeMixChar(String source) {
         String encodeStr = null;
         try {
             encodeStr = Base64.encodeBase64String(source.getBytes("UTF-8"));

@@ -29,8 +29,6 @@
 
 package com.mysql.cj.protocol.a;
 
-import java.math.BigDecimal;
-
 import com.mysql.cj.BindValue;
 import com.mysql.cj.Messages;
 import com.mysql.cj.exceptions.ExceptionFactory;
@@ -39,12 +37,14 @@ import com.mysql.cj.protocol.Message;
 import com.mysql.cj.protocol.a.NativeConstants.IntegerDataType;
 import com.mysql.cj.protocol.a.NativeConstants.StringSelfDataType;
 import com.mysql.cj.util.StringUtils;
+import java.math.BigDecimal;
 
 public class NumberValueEncoder extends AbstractValueEncoder {
 
     @Override
     public String getString(BindValue binding) {
-        Number x = binding.getValue() instanceof BigDecimal ? getScaled((BigDecimal) binding.getValue(), binding.getScaleOrLength())
+        Number x = binding.getValue() instanceof BigDecimal ? getScaled((BigDecimal) binding.getValue(),
+                binding.getScaleOrLength())
                 : (Number) binding.getValue();
 
         switch (binding.getMysqlType()) {
@@ -86,17 +86,20 @@ public class NumberValueEncoder extends AbstractValueEncoder {
             case BLOB:
             case MEDIUMBLOB:
             case LONGBLOB:
-                return x instanceof BigDecimal ? ((BigDecimal) x).toPlainString() : StringUtils.fixDecimalExponent(x.toString());
+                return x instanceof BigDecimal ? ((BigDecimal) x).toPlainString()
+                        : StringUtils.fixDecimalExponent(x.toString());
             default:
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("PreparedStatement.67", new Object[] { binding.getValue().getClass().getName(), binding.getMysqlType().toString() }),
+                        Messages.getString("PreparedStatement.67", new Object[]{binding.getValue().getClass().getName(),
+                                binding.getMysqlType().toString()}),
                         this.exceptionInterceptor);
         }
     }
 
     @Override
     public void encodeAsBinary(Message msg, BindValue binding) {
-        Number x = binding.getValue() instanceof BigDecimal ? getScaled((BigDecimal) binding.getValue(), binding.getScaleOrLength())
+        Number x = binding.getValue() instanceof BigDecimal ? getScaled((BigDecimal) binding.getValue(),
+                binding.getScaleOrLength())
                 : (Number) binding.getValue();
 
         NativePacketPayload intoPacket = (NativePacketPayload) msg;
@@ -145,11 +148,13 @@ public class NumberValueEncoder extends AbstractValueEncoder {
             case MEDIUMBLOB:
             case LONGBLOB:
                 intoPacket.writeBytes(StringSelfDataType.STRING_LENENC,
-                        StringUtils.getBytes(x instanceof BigDecimal ? ((BigDecimal) x).toPlainString() : x.toString(), this.charEncoding.getValue()));
+                        StringUtils.getBytes(x instanceof BigDecimal ? ((BigDecimal) x).toPlainString() : x.toString(),
+                                this.charEncoding.getValue()));
                 return;
             default:
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("PreparedStatement.67", new Object[] { binding.getValue().getClass().getName(), binding.getMysqlType().toString() }),
+                        Messages.getString("PreparedStatement.67", new Object[]{binding.getValue().getClass().getName(),
+                                binding.getMysqlType().toString()}),
                         this.exceptionInterceptor);
         }
     }

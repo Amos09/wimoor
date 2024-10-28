@@ -2,19 +2,20 @@ package com.wimoor.amazon.adv.common.pojo;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-@Entity
-@Table(name="t_exchangerate_customer")
-public class ExchangeRateCustomer extends BaseObject{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2361231061507591530L;
 
-	@Column(name = "shopid")
+@Entity
+@Table(name = "t_exchangerate_customer")
+public class ExchangeRateCustomer extends BaseObject {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2361231061507591530L;
+
+    @Column(name = "shopid")
     private String shopid;
 
     @Column(name = "name")
@@ -83,13 +84,13 @@ public class ExchangeRateCustomer extends BaseObject{
         this.utctime = utctime;
     }
 
-	public String getOperator() {
-		return operator;
-	}
+    public String getOperator() {
+        return operator;
+    }
 
-	public void setOperator(String operator) {
-		this.operator = operator;
-	}
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
 
-  
+
 }

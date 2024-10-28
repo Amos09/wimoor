@@ -1,19 +1,18 @@
 package com.wimoor.admin.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("t_sys_dept")  
+@TableName("t_sys_dept")
 public class SysDept extends BaseEntity {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     private String name;
 

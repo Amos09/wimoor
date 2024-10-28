@@ -1,8 +1,7 @@
 package com.wimoor.sys.gc.template;
 
 /**
- *  @author wangsong
- * 复选Html 模板配置
+ * @author wangsong 复选Html 模板配置
  */
 public interface VueMainSlotTemplate {
 
@@ -21,8 +20,8 @@ public interface VueMainSlotTemplate {
 
 
     /**
-     * 时间范围选择
-     *  {prop}
+     * 时间范围选择 {prop}
+     *
      * @author wangsong
      * @mail 1720696548@qq.com
      * @date 2022/9/9 0009 0:23

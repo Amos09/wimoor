@@ -4,10 +4,11 @@ import java.util.regex.Pattern;
 
 /**
  * 参数验证工具类
+ *
  * @author wangsong
+ * @version 1.0.1
  * @mail 1720696548@qq.com
  * @date 2021/9/13 0013 10:59
- * @version 1.0.1
  */
 @SuppressWarnings("all")
 public class RegUtil {

@@ -1,10 +1,10 @@
 package com.wimoor.amazon.report.pojo.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,13 +19,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_report_request_type")
-@ApiModel(value="ReportRequestType对象", description="亚马逊报表类型")
+@ApiModel(value = "ReportRequestType对象", description = "亚马逊报表类型")
 public class ReportRequestType implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "ID")
-      private Integer id;
+    private Integer id;
 
     @ApiModelProperty(value = "中文名称")
     private String cname;

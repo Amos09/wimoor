@@ -13,17 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.PackageDocumentList;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The post-purchase details of a package that will be shipped using a shipping service.
@@ -31,112 +24,115 @@ import java.io.IOException;
 @ApiModel(description = "The post-purchase details of a package that will be shipped using a shipping service.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class PackageDocumentDetail {
-  @SerializedName("packageClientReferenceId")
-  private String packageClientReferenceId = null;
 
-  @SerializedName("packageDocuments")
-  private PackageDocumentList packageDocuments = null;
+    @SerializedName("packageClientReferenceId")
+    private String packageClientReferenceId = null;
 
-  @SerializedName("trackingId")
-  private String trackingId = null;
+    @SerializedName("packageDocuments")
+    private PackageDocumentList packageDocuments = null;
 
-  public PackageDocumentDetail packageClientReferenceId(String packageClientReferenceId) {
-    this.packageClientReferenceId = packageClientReferenceId;
-    return this;
-  }
+    @SerializedName("trackingId")
+    private String trackingId = null;
 
-   /**
-   * Get packageClientReferenceId
-   * @return packageClientReferenceId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getPackageClientReferenceId() {
-    return packageClientReferenceId;
-  }
-
-  public void setPackageClientReferenceId(String packageClientReferenceId) {
-    this.packageClientReferenceId = packageClientReferenceId;
-  }
-
-  public PackageDocumentDetail packageDocuments(PackageDocumentList packageDocuments) {
-    this.packageDocuments = packageDocuments;
-    return this;
-  }
-
-   /**
-   * Get packageDocuments
-   * @return packageDocuments
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public PackageDocumentList getPackageDocuments() {
-    return packageDocuments;
-  }
-
-  public void setPackageDocuments(PackageDocumentList packageDocuments) {
-    this.packageDocuments = packageDocuments;
-  }
-
-  public PackageDocumentDetail trackingId(String trackingId) {
-    this.trackingId = trackingId;
-    return this;
-  }
-
-   /**
-   * Get trackingId
-   * @return trackingId
-  **/
-  @ApiModelProperty(value = "")
-  public String getTrackingId() {
-    return trackingId;
-  }
-
-  public void setTrackingId(String trackingId) {
-    this.trackingId = trackingId;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public PackageDocumentDetail packageClientReferenceId(String packageClientReferenceId) {
+        this.packageClientReferenceId = packageClientReferenceId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get packageClientReferenceId
+     *
+     * @return packageClientReferenceId
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getPackageClientReferenceId() {
+        return packageClientReferenceId;
     }
-    PackageDocumentDetail packageDocumentDetail = (PackageDocumentDetail) o;
-    return Objects.equals(this.packageClientReferenceId, packageDocumentDetail.packageClientReferenceId) &&
-        Objects.equals(this.packageDocuments, packageDocumentDetail.packageDocuments) &&
-        Objects.equals(this.trackingId, packageDocumentDetail.trackingId);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(packageClientReferenceId, packageDocuments, trackingId);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PackageDocumentDetail {\n");
-    
-    sb.append("    packageClientReferenceId: ").append(toIndentedString(packageClientReferenceId)).append("\n");
-    sb.append("    packageDocuments: ").append(toIndentedString(packageDocuments)).append("\n");
-    sb.append("    trackingId: ").append(toIndentedString(trackingId)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setPackageClientReferenceId(String packageClientReferenceId) {
+        this.packageClientReferenceId = packageClientReferenceId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public PackageDocumentDetail packageDocuments(PackageDocumentList packageDocuments) {
+        this.packageDocuments = packageDocuments;
+        return this;
+    }
+
+    /**
+     * Get packageDocuments
+     *
+     * @return packageDocuments
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public PackageDocumentList getPackageDocuments() {
+        return packageDocuments;
+    }
+
+    public void setPackageDocuments(PackageDocumentList packageDocuments) {
+        this.packageDocuments = packageDocuments;
+    }
+
+    public PackageDocumentDetail trackingId(String trackingId) {
+        this.trackingId = trackingId;
+        return this;
+    }
+
+    /**
+     * Get trackingId
+     *
+     * @return trackingId
+     **/
+    @ApiModelProperty(value = "")
+    public String getTrackingId() {
+        return trackingId;
+    }
+
+    public void setTrackingId(String trackingId) {
+        this.trackingId = trackingId;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PackageDocumentDetail packageDocumentDetail = (PackageDocumentDetail) o;
+        return Objects.equals(this.packageClientReferenceId, packageDocumentDetail.packageClientReferenceId) &&
+                Objects.equals(this.packageDocuments, packageDocumentDetail.packageDocuments) &&
+                Objects.equals(this.trackingId, packageDocumentDetail.trackingId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(packageClientReferenceId, packageDocuments, trackingId);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PackageDocumentDetail {\n");
+
+        sb.append("    packageClientReferenceId: ").append(toIndentedString(packageClientReferenceId)).append("\n");
+        sb.append("    packageDocuments: ").append(toIndentedString(packageDocuments)).append("\n");
+        sb.append("    trackingId: ").append(toIndentedString(trackingId)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

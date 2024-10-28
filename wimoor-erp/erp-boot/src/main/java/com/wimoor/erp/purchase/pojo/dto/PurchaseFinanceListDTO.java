@@ -7,23 +7,23 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value="PurchaseFinanceListDTO对象", description="获取采购请款列表")
-public class PurchaseFinanceListDTO extends BasePageQuery{
+@ApiModel(value = "PurchaseFinanceListDTO对象", description = "获取采购请款列表")
+public class PurchaseFinanceListDTO extends BasePageQuery {
 
-	
-	String supplierid;
-	
-	String search;
-	
-	String searchtype;
-	
-	String fromDate;
-	
-	String toDate;
-	
-	String paymethod;
-	
-	String status;
-	
-	String remark;
+
+    String supplierid;
+
+    String search;
+
+    String searchtype;
+
+    String fromDate;
+
+    String toDate;
+
+    String paymethod;
+
+    String status;
+
+    String remark;
 }

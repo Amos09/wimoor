@@ -1,8 +1,18 @@
 package com.wimoor.admin.controller;
 
 
+import com.wimoor.admin.pojo.entity.SysDept;
+import com.wimoor.admin.pojo.vo.DeptVO;
+import com.wimoor.admin.service.ISysDeptService;
+import com.wimoor.common.SelectVO;
+import com.wimoor.common.TreeSelectVO;
+import com.wimoor.common.result.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,19 +21,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.wimoor.admin.pojo.entity.SysDept;
-import com.wimoor.admin.pojo.vo.DeptVO;
-import com.wimoor.admin.service.ISysDeptService;
-import com.wimoor.common.SelectVO;
-import com.wimoor.common.TreeSelectVO;
-import com.wimoor.common.result.Result;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 
 /**
  * 部门控制器
@@ -63,8 +60,8 @@ public class DeptController {
         List<SelectVO> deptSelectList = deptService.listSelect();
         return Result.success(deptSelectList);
     }
-    
-    
+
+
     @ApiOperation(value = "部门详情")
     @ApiImplicitParam(name = "id", value = "部门id", required = true, paramType = "path", dataType = "Long")
     @GetMapping("/{id}")
@@ -92,7 +89,7 @@ public class DeptController {
     @ApiImplicitParam(name = "ids", value = "部门ID，多个以英文逗号,分割拼接", required = true, paramType = "query", dataType = "String")
     @DeleteMapping("/{ids}")
     public Result<Boolean> delete(@PathVariable("ids") String ids) {
-        boolean status= deptService.deleteByIds(ids);
+        boolean status = deptService.deleteByIds(ids);
         return Result.judge(status);
     }
 

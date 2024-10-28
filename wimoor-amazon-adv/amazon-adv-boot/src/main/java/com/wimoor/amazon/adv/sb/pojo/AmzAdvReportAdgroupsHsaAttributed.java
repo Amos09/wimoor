@@ -1,59 +1,57 @@
 package com.wimoor.amazon.adv.sb.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 
 @Entity
-@Table(name="t_amz_adv_rpt2_hsa_campaigns_attributed")
-public class AmzAdvReportAdgroupsHsaAttributed  {
-	
-	@Id
-	@Column(name="adGroupId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+@Table(name = "t_amz_adv_rpt2_hsa_campaigns_attributed")
+public class AmzAdvReportAdgroupsHsaAttributed {
+
+    @Id
+    @Column(name = "adGroupId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adgroupid;
-	
-	@Id
-	@Column(name="bydate")
+
+    @Id
+    @Column(name = "bydate")
     private Date bydate;
- 
-	@Column(name="attributedSales14d")
+
+    @Column(name = "attributedSales14d")
     private BigDecimal attributedsales14d;
 
-	@Column(name="attributedSales14dSameSKU")
+    @Column(name = "attributedSales14dSameSKU")
     private BigDecimal attributedsales14dsamesku;
 
-	@Column(name="attributedConversions14d")
+    @Column(name = "attributedConversions14d")
     private Integer attributedconversions14d;
 
-	@Column(name="attributedconversions14dsamesku")
+    @Column(name = "attributedconversions14dsamesku")
     private Integer attributedconversions14dsamesku;
 
     public BigInteger getAdgroupid() {
-		return adgroupid;
-	}
+        return adgroupid;
+    }
 
-	public void setAdgroupid(BigInteger adgroupid) {
-		this.adgroupid = adgroupid;
-	}
-	
+    public void setAdgroupid(BigInteger adgroupid) {
+        this.adgroupid = adgroupid;
+    }
+
     public Date getBydate() {
-		return bydate;
-	}
+        return bydate;
+    }
 
-	public void setBydate(Date bydate) {
-		this.bydate = bydate;
-	}
- 
+    public void setBydate(Date bydate) {
+        this.bydate = bydate;
+    }
+
     public BigDecimal getAttributedsales14d() {
         return attributedsales14d;
     }
@@ -87,10 +85,18 @@ public class AmzAdvReportAdgroupsHsaAttributed  {
     }
 
     public boolean isZero() {
-    	if(attributedsales14d!=null&&attributedsales14d.floatValue()>0.001)return false;
-    	if(attributedsales14dsamesku!=null&&attributedsales14dsamesku.floatValue()>0.001)return false;
-    	if(attributedconversions14d!=null&&attributedconversions14d!=0)return false;
-    	if(attributedconversions14dsamesku!=null&&attributedconversions14dsamesku!=0)return false;
+        if (attributedsales14d != null && attributedsales14d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales14dsamesku != null && attributedsales14dsamesku.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedconversions14d != null && attributedconversions14d != 0) {
+            return false;
+        }
+        if (attributedconversions14dsamesku != null && attributedconversions14dsamesku != 0) {
+            return false;
+        }
         return true;
     }
 }

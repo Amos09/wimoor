@@ -7,11 +7,11 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SerializeUtils {
+
     private static Logger logger = LoggerFactory.getLogger(SerializeUtils.class);
 
     public SerializeUtils() {
@@ -39,12 +39,12 @@ public class SerializeUtils {
             } catch (Exception var7) {
                 logger.error("Failed to deserialize", var7);
             }
-            if(result!=null) {
-            	if(result instanceof LinkedList&&((LinkedList<?>)result).size()==0) {
-            		return null;
-            	}else if(result instanceof AtomicInteger && ((AtomicInteger)result).intValue()==0) {
-            		return null;
-            	}
+            if (result != null) {
+                if (result instanceof LinkedList && ((LinkedList<?>) result).size() == 0) {
+                    return null;
+                } else if (result instanceof AtomicInteger && ((AtomicInteger) result).intValue() == 0) {
+                    return null;
+                }
             }
             return result;
         }
@@ -64,7 +64,9 @@ public class SerializeUtils {
 
                 try {
                     if (!(object instanceof Serializable)) {
-                        throw new IllegalArgumentException(SerializeUtils.class.getSimpleName() + " requires a Serializable payload " + "but received an object of type [" + object.getClass().getName() + "]");
+                        throw new IllegalArgumentException(
+                                SerializeUtils.class.getSimpleName() + " requires a Serializable payload "
+                                        + "but received an object of type [" + object.getClass().getName() + "]");
                     }
 
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteStream);

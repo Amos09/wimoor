@@ -1,18 +1,16 @@
 package com.wimoor.sys.tool.service.impl;
 
-import org.springframework.stereotype.Service;
-
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wimoor.sys.tool.mapper.SysTagsGroupsMapper;
 import com.wimoor.sys.tool.mapper.SysTagsMapper;
 import com.wimoor.sys.tool.pojo.entity.SysTagsGroups;
 import com.wimoor.sys.tool.service.ISysTagsGroupsService;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author wimoor team
@@ -20,14 +18,15 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class SysTagsGroupsServiceImpl extends ServiceImpl<SysTagsGroupsMapper, SysTagsGroups> implements ISysTagsGroupsService {
+public class SysTagsGroupsServiceImpl extends ServiceImpl<SysTagsGroupsMapper, SysTagsGroups> implements
+        ISysTagsGroupsService {
 
-	final SysTagsMapper sysTagsMapper;
-	
-	
-	@Override
-	public void disableList(String groupid) {
-    	SysTagsGroups groups = this.baseMapper.selectById(groupid);
+    final SysTagsMapper sysTagsMapper;
+
+
+    @Override
+    public void disableList(String groupid) {
+        SysTagsGroups groups = this.baseMapper.selectById(groupid);
 //    	LambdaQueryWrapper<SysTags> queryWrapper=new LambdaQueryWrapper<SysTags>();
 //    	queryWrapper.eq(SysTags::getTaggroupid,groupid);
 //		List<SysTags> tagslist = sysTagsMapper.selectList(queryWrapper);
@@ -40,8 +39,8 @@ public class SysTagsGroupsServiceImpl extends ServiceImpl<SysTagsGroupsMapper, S
 //				}
 //			}
 //		}
-    	groups.setStatus(0);
-    	this.baseMapper.updateById(groups);
-	}
+        groups.setStatus(0);
+        this.baseMapper.updateById(groups);
+    }
 
 }

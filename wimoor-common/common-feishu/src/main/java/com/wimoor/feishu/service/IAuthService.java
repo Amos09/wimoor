@@ -1,11 +1,11 @@
 package com.wimoor.feishu.service;
 
-import com.wimoor.feishu.pojo.entity.Auth;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.feishu.pojo.entity.Auth;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team

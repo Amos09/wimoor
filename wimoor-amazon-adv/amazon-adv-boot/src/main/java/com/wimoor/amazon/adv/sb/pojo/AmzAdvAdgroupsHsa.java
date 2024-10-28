@@ -1,77 +1,77 @@
 package com.wimoor.amazon.adv.sb.pojo;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="t_amz_adv_adgroups_hsa")
+@Table(name = "t_amz_adv_adgroups_hsa")
 public class AmzAdvAdgroupsHsa extends AmzAdvAdgroupsHsaKey {
-	@Column(name="name")
+
+    @Column(name = "name")
     private String name;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
-	
-	@Column(name="state")
-    private String state;
-	
 
-	@Transient
-	private String servingStatus;
-	    
-	@Transient
-	private String camname;
-	
+    @Column(name = "state")
+    private String state;
+
+
     @Transient
-	private Date creationDate;
-    
+    private String servingStatus;
+
     @Transient
-	private Date lastUpdatedDate;
-	
+    private String camname;
+
+    @Transient
+    private Date creationDate;
+
+    @Transient
+    private Date lastUpdatedDate;
+
     @Transient
     public String getServingStatus() {
-		return servingStatus;
-	}
+        return servingStatus;
+    }
 
     @Transient
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
     @Transient
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
     @Transient
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
     @Transient
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
 
     @Transient
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-    
-	
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+
     public String getCamname() {
-		return camname;
-	}
+        return camname;
+    }
 
-	public void setCamname(String camname) {
-		this.camname = camname;
-	}
+    public void setCamname(String camname) {
+        this.camname = camname;
+    }
 
-	public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -87,13 +87,13 @@ public class AmzAdvAdgroupsHsa extends AmzAdvAdgroupsHsaKey {
         this.opttime = opttime;
     }
 
-	public String getState() {
-		return state;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
-    
-    
+    public void setState(String state) {
+        this.state = state;
+    }
+
+
 }

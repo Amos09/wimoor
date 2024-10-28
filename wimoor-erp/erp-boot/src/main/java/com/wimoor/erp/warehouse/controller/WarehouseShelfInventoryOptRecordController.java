@@ -1,15 +1,7 @@
 package com.wimoor.erp.warehouse.controller;
 
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wimoor.common.result.Result;
 import com.wimoor.common.user.UserInfo;
@@ -17,11 +9,16 @@ import com.wimoor.common.user.UserInfoContext;
 import com.wimoor.erp.warehouse.pojo.dto.ShelfInvListDto;
 import com.wimoor.erp.warehouse.pojo.entity.WarehouseShelfInventoryOptRecord;
 import com.wimoor.erp.warehouse.service.IWarehouseShelfInventoryOptRecordService;
-
-import cn.hutool.core.util.StrUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
+import java.util.List;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -36,27 +33,30 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/warehouse/shelfInventoryOptRecord")
 @RequiredArgsConstructor
 public class WarehouseShelfInventoryOptRecordController {
-	final IWarehouseShelfInventoryOptRecordService iWarehouseShelfInventoryOptRecordService;
-	
-	@GetMapping
-	public Result<List<WarehouseShelfInventoryOptRecord>> getRecord(String formid, String formtype,String shelfid) {
-		   UserInfo user = UserInfoContext.get();
-		   List<WarehouseShelfInventoryOptRecord> result = iWarehouseShelfInventoryOptRecordService.getRecord(user.getCompanyid(), formid, formtype,shelfid);
-		return Result.success(result);
-		   
-	}
-	
-	@PostMapping("/getOptList")
-	public Result<?> getOptListAction(@ApiParam("查询DTO")@RequestBody ShelfInvListDto condition) {
-	   UserInfo user = UserInfoContext.get();
-	   if(StrUtil.isNotEmpty(condition.getSearch())) {
-		   condition.setSearch("%"+condition.getSearch()+"%");
-	   }
-	   if(StrUtil.isEmpty(condition.getWarehouseid())) {
-		   condition.setWarehouseid(null);
-	   }
-	   IPage<Map<String, Object>> result = iWarehouseShelfInventoryOptRecordService.getOptList(condition,user.getCompanyid());
-	   return Result.success(result);
-	}
+
+    final IWarehouseShelfInventoryOptRecordService iWarehouseShelfInventoryOptRecordService;
+
+    @GetMapping
+    public Result<List<WarehouseShelfInventoryOptRecord>> getRecord(String formid, String formtype, String shelfid) {
+        UserInfo user = UserInfoContext.get();
+        List<WarehouseShelfInventoryOptRecord> result = iWarehouseShelfInventoryOptRecordService.getRecord(
+                user.getCompanyid(), formid, formtype, shelfid);
+        return Result.success(result);
+
+    }
+
+    @PostMapping("/getOptList")
+    public Result<?> getOptListAction(@ApiParam("查询DTO") @RequestBody ShelfInvListDto condition) {
+        UserInfo user = UserInfoContext.get();
+        if (StrUtil.isNotEmpty(condition.getSearch())) {
+            condition.setSearch("%" + condition.getSearch() + "%");
+        }
+        if (StrUtil.isEmpty(condition.getWarehouseid())) {
+            condition.setWarehouseid(null);
+        }
+        IPage<Map<String, Object>> result = iWarehouseShelfInventoryOptRecordService.getOptList(condition,
+                user.getCompanyid());
+        return Result.success(result);
+    }
 }
 

@@ -1,12 +1,15 @@
 package com.wimoor.sys.gc.util;
 
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.sql.*;
-
 import com.wimoor.common.mvc.BizException;
 import com.wimoor.common.result.ResultCode;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Jdbc数据源连接工具类
@@ -16,13 +19,15 @@ public class JdbcPool {
 
     /**
      * 数据源
+     *
      * @return
      */
     public static Connection getConn(String url, String username, String password) {
         Connection conn = null;
         try {
             String driverClass = "com.mysql.cj.jdbc.Driver";
-            String newUrl = "jdbc:mysql://"+url + "?useUnicode=true&characterEncoding=utf-8&useTimezone=true&serverTimezone=GMT%2B8";
+            String newUrl = "jdbc:mysql://" + url
+                    + "?useUnicode=true&characterEncoding=utf-8&useTimezone=true&serverTimezone=GMT%2B8";
             // 当数据库连接异常中断时，是否自动重新连接，不重连,直接进入异常(提示失败)
             newUrl += "&autoReconnect=false";
             String newUsername = username;
@@ -57,6 +62,7 @@ public class JdbcPool {
 
     /**
      * 添加修改后关闭数据连接
+     *
      * @param ps
      */
     public static void closeUpdateRes(PreparedStatement ps) {
@@ -77,9 +83,9 @@ public class JdbcPool {
     /**
      * 查询后关闭连接
      *
+     * @param rs
      * @author wangsong
      * @date 2019年6月15日 下午1:26:50
-     * @param rs
      */
     public static void closeQueryRes(ResultSet rs) {
         if (rs != null) {

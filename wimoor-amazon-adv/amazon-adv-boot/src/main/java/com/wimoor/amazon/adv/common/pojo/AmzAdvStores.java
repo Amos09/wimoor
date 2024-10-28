@@ -1,26 +1,26 @@
 package com.wimoor.amazon.adv.common.pojo;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_adv_stores")
+@Table(name = "t_amz_adv_stores")
 public class AmzAdvStores extends AmzAdvStoresKey {
-	@Column(name="storeName")
+
+    @Column(name = "storeName")
     private String storename;
 
-	@Column(name="storePageUrl")
+    @Column(name = "storePageUrl")
     private String storepageurl;
-	
-	@Column(name="storePageName")
+
+    @Column(name = "storePageName")
     private String storepagename;
-	
-	@Column(name="opptime")
+
+    @Column(name = "opptime")
     private Date opptime;
-	
+
     public String getStorename() {
         return storename;
     }

@@ -1,9 +1,9 @@
 package com.wimoor.admin.service.impl;
 
-import com.wimoor.admin.pojo.entity.SysUserDatalimit;
-import com.wimoor.admin.mapper.SysUserDatalimitMapper;
-import com.wimoor.admin.service.ISysUserDatalimitService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wimoor.admin.mapper.SysUserDatalimitMapper;
+import com.wimoor.admin.pojo.entity.SysUserDatalimit;
+import com.wimoor.admin.service.ISysUserDatalimitService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2022-09-29
  */
 @Service
-public class SysUserDatalimitServiceImpl extends ServiceImpl<SysUserDatalimitMapper, SysUserDatalimit> implements ISysUserDatalimitService {
+public class SysUserDatalimitServiceImpl extends ServiceImpl<SysUserDatalimitMapper, SysUserDatalimit> implements
+        ISysUserDatalimitService {
 
 }

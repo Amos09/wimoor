@@ -1,13 +1,12 @@
 package com.wimoor.erp.warehouse.mapper;
 
-import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wimoor.erp.warehouse.pojo.entity.WarehouseShelfInventoryOptRecord;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -20,8 +19,9 @@ import com.wimoor.erp.warehouse.pojo.entity.WarehouseShelfInventoryOptRecord;
 @Mapper
 public interface WarehouseShelfInventoryOptRecordMapper extends BaseMapper<WarehouseShelfInventoryOptRecord> {
 
-	IPage<Map<String, Object>> getOptList(Page<?> page,@Param("shopid")String shopid,@Param("warehouseid")String warehouseid,@Param("search")String search,
-			@Param("startDate")String startDate,@Param("endDate")String endDate);
+    IPage<Map<String, Object>> getOptList(Page<?> page, @Param("shopid") String shopid,
+            @Param("warehouseid") String warehouseid, @Param("search") String search,
+            @Param("startDate") String startDate, @Param("endDate") String endDate);
 
 
 }

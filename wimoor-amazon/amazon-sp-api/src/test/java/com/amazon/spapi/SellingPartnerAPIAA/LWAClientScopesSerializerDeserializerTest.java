@@ -1,21 +1,19 @@
 package com.amazon.spapi.SellingPartnerAPIAA;
 
+import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
-
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import com.google.gson.Gson;
-
- 
 
 public class LWAClientScopesSerializerDeserializerTest {
+
     private static final String TEST_SCOPE_1 = com.amazon.spapi.SellingPartnerAPIAA.ScopeConstants.SCOPE_NOTIFICATIONS_API;
     private static final String TEST_SCOPE_2 = com.amazon.spapi.SellingPartnerAPIAA.ScopeConstants.SCOPE_MIGRATION_API;
 
@@ -32,7 +30,7 @@ public class LWAClientScopesSerializerDeserializerTest {
         gson = new Gson();
     }
 
-    public static Stream<Arguments> scopeSerialization(){
+    public static Stream<Arguments> scopeSerialization() {
 
         return Stream.of(
                 Arguments.of(SELLER_TYPE_SELLER, null),
@@ -40,38 +38,37 @@ public class LWAClientScopesSerializerDeserializerTest {
         );
     }
 
-    public static Stream<Arguments> scopeDeserialization(){
+    public static Stream<Arguments> scopeDeserialization() {
 
         return Stream.of(
                 Arguments.of(SELLER_TYPE_SELLER, null),
-                Arguments.of(SELLER_TYPE_SELLERLESS, "{\"scope\":\"sellingpartnerapi::migration sellingpartnerapi::notifications\"}")
+                Arguments.of(SELLER_TYPE_SELLERLESS,
+                        "{\"scope\":\"sellingpartnerapi::migration sellingpartnerapi::notifications\"}")
         );
     }
 
     @ParameterizedTest
     @MethodSource("scopeSerialization")
-    public void testSerializeScope(String sellerType, LWAClientScopes testScope){
+    public void testSerializeScope(String sellerType, LWAClientScopes testScope) {
 
         String scopeJSON = gson.toJson(testScope);
 
         if (sellerType.equals(SELLER_TYPE_SELLER)) {
             Assert.assertEquals("null", scopeJSON);
-        }
-        else if (sellerType.equals(SELLER_TYPE_SELLERLESS)){
+        } else if (sellerType.equals(SELLER_TYPE_SELLERLESS)) {
             Assert.assertTrue(!scopeJSON.isEmpty());
         }
     }
 
     @ParameterizedTest
     @MethodSource("scopeDeserialization")
-    public void testDeserializeScope(String sellerType, String serializedValue){
+    public void testDeserializeScope(String sellerType, String serializedValue) {
 
         LWAClientScopes deserializedValue = gson.fromJson(serializedValue, LWAClientScopes.class);
         if (sellerType.equals(SELLER_TYPE_SELLER)) {
             Assert.assertNull(deserializedValue);
-        }
-        else if (sellerType.equals(SELLER_TYPE_SELLERLESS)){
-            Assert.assertEquals(deserializedValue.getScopes(),scopesTestSellerless);
+        } else if (sellerType.equals(SELLER_TYPE_SELLERLESS)) {
+            Assert.assertEquals(deserializedValue.getScopes(), scopesTestSellerless);
         }
     }
 

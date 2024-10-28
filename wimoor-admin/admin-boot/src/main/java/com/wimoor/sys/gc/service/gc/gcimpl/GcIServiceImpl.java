@@ -1,20 +1,16 @@
 package com.wimoor.sys.gc.service.gc.gcimpl;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
+import cn.hutool.core.collection.CollUtil;
 import com.alibaba.fastjson.JSON;
-import com.wimoor.common.service.impl.BaseServiceImpl;
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.constant.FieldTypeConstant;
 import com.wimoor.sys.gc.model.po.DbFieldPO;
 import com.wimoor.sys.gc.service.gc.GcSevice;
 import com.wimoor.sys.gc.util.GcDataUtil;
 import com.wimoor.sys.gc.util.GcFileUtil;
-
-import cn.hutool.core.collection.CollUtil;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("all")
 @Component
@@ -72,11 +68,13 @@ public class GcIServiceImpl implements GcSevice {
             String tableNameUp = gcConfig.getDefaultTemplateParam("tableNameUp");
 
             // 指定类型字段不生成到列表中，同时排除list接口查询
-            List<String> vueFieldTypeArray = JSON.parseObject(gcConfig.getDefaultTemplateParam("vueFieldTypesArray"), List.class);
+            List<String> vueFieldTypeArray = JSON.parseObject(gcConfig.getDefaultTemplateParam("vueFieldTypesArray"),
+                    List.class);
             if (vueFieldTypeArray.contains(vueFieldType + "")) {
                 if (excludeReturn.toString().equals("")) {
                     excludeReturn.append("        ");
-                    excludeReturn.append("queryWrapper.select(" + tableNameUp + ".class, info -> !\"" + fieldName + "\".equals(info.getColumn())");
+                    excludeReturn.append("queryWrapper.select(" + tableNameUp + ".class, info -> !\"" + fieldName
+                            + "\".equals(info.getColumn())");
                 } else {
                     excludeReturn.append("\r\n");
                     excludeReturn.append("                 ");
@@ -91,7 +89,6 @@ public class GcIServiceImpl implements GcSevice {
             fieldName = GcDataUtil.getFieldName(gcConfig, fieldName);
             fieldName = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
 
-
             //字段  // !=null StringUtils.isNotBlank(account)
             findPageMybatisPlus.append("        ");
             if (type.equals(FieldTypeConstant.INT) || type.equals(FieldTypeConstant.BIGINT)
@@ -99,13 +96,17 @@ public class GcIServiceImpl implements GcSevice {
                 /**
                  * 整数 int/long/tinyint
                  */
-                findPageMybatisPlus.append("queryWrapper.eq(query.get" + fieldName + "() != null, " + tableNameUp + "::get" + fieldName + ", query.get" + fieldName + "());");
+                findPageMybatisPlus.append(
+                        "queryWrapper.eq(query.get" + fieldName + "() != null, " + tableNameUp + "::get" + fieldName
+                                + ", query.get" + fieldName + "());");
             } else if (type.equals(FieldTypeConstant.DOUBLE) || type.equals(FieldTypeConstant.FLOAT)
                     || type.equals(FieldTypeConstant.DECIMAL)) {
                 /**
                  * 单精度小数 Float / 双精度小数 Double / decimal等
                  */
-                findPageMybatisPlus.append("queryWrapper.eq(query.get" + fieldName + "() != null, " + tableNameUp + "::get" + fieldName + ", query.get" + fieldName + "());");
+                findPageMybatisPlus.append(
+                        "queryWrapper.eq(query.get" + fieldName + "() != null, " + tableNameUp + "::get" + fieldName
+                                + ", query.get" + fieldName + "());");
             } else if (type.equals(FieldTypeConstant.VARCHAR) || type.equals(FieldTypeConstant.TEXT)
                     || type.equals(FieldTypeConstant.CHAR) || type.equals(FieldTypeConstant.LONG_TEXT
             )) {
@@ -113,9 +114,13 @@ public class GcIServiceImpl implements GcSevice {
                  * 字符串 / 大文本、超大文本
                  */
                 if (EQ_FIELD.contains(fieldMap.getName())) {
-                    findPageMybatisPlus.append("queryWrapper.eq(StringUtils.isNotBlank(query.get" + fieldName + "()), " + tableNameUp + "::get" + fieldName + ", query.get" + fieldName + "());");
+                    findPageMybatisPlus.append(
+                            "queryWrapper.eq(StringUtils.isNotBlank(query.get" + fieldName + "()), " + tableNameUp
+                                    + "::get" + fieldName + ", query.get" + fieldName + "());");
                 } else {
-                    findPageMybatisPlus.append("queryWrapper.likeRight(StringUtils.isNotBlank(query.get" + fieldName + "()), " + tableNameUp + "::get" + fieldName + ", query.get" + fieldName + "());");
+                    findPageMybatisPlus.append(
+                            "queryWrapper.likeRight(StringUtils.isNotBlank(query.get" + fieldName + "()), "
+                                    + tableNameUp + "::get" + fieldName + ", query.get" + fieldName + "());");
                 }
             } else if (type.equals(FieldTypeConstant.DATETIME) || type.equals(FieldTypeConstant.TIME)
                     || type.equals(FieldTypeConstant.TIMESTAMP) || type.equals(FieldTypeConstant.DATE)) {
@@ -123,12 +128,18 @@ public class GcIServiceImpl implements GcSevice {
                  * 时间
                  */
                 if (type.equals(FieldTypeConstant.DATETIME) || type.equals(FieldTypeConstant.DATE)) {
-                    String hql = "if (StringUtils.isNotBlank(query.get{prop}()) && query.get{prop}().split(SymbolConst.COMMA).length >= 1) {\n" +
-                            "            queryWrapper.between({tableNameUp}::get{prop}, query.get{prop}().split(\",\")[0], query.get{prop}().split(\",\")[1]);\n" +
-                            "        }";
-                    findPageMybatisPlus.append(hql.replaceAll("\\{prop}", fieldName).replaceAll("\\{tableNameUp}", tableNameUp));
+                    String hql =
+                            "if (StringUtils.isNotBlank(query.get{prop}()) && query.get{prop}().split(SymbolConst.COMMA).length >= 1) {\n"
+                                    +
+                                    "            queryWrapper.between({tableNameUp}::get{prop}, query.get{prop}().split(\",\")[0], query.get{prop}().split(\",\")[1]);\n"
+                                    +
+                                    "        }";
+                    findPageMybatisPlus.append(
+                            hql.replaceAll("\\{prop}", fieldName).replaceAll("\\{tableNameUp}", tableNameUp));
                 } else {
-                    findPageMybatisPlus.append("queryWrapper.eq(query.get" + fieldName + "() != null, " + tableNameUp + "::get" + fieldName + ", query.get" + fieldName + "());");
+                    findPageMybatisPlus.append(
+                            "queryWrapper.eq(query.get" + fieldName + "() != null, " + tableNameUp + "::get" + fieldName
+                                    + ", query.get" + fieldName + "());");
                 }
             }
             findPageMybatisPlus.append("\r\n");

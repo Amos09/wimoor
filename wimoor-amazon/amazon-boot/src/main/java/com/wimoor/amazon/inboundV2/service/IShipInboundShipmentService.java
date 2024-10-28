@@ -1,10 +1,5 @@
 package com.wimoor.amazon.inboundV2.service;
 
- 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 import com.amazon.spapi.model.fulfillmentinboundV20240320.ListDeliveryWindowOptionsResponse;
 import com.amazon.spapi.model.fulfillmentinboundV20240320.ListShipmentBoxesResponse;
@@ -27,60 +22,63 @@ import com.wimoor.amazon.inboundV2.pojo.entity.ShipInboundShipmentBox;
 import com.wimoor.amazon.inboundV2.pojo.entity.ShipInboundShipmentBoxItem;
 import com.wimoor.amazon.inboundV2.pojo.entity.ShipInboundShipmentItem;
 import com.wimoor.common.user.UserInfo;
- 
- 
+import java.util.List;
+import java.util.Map;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
-public interface IShipInboundShipmentService extends IService<ShipInboundShipment>{
 
-	IPage<ShipInboundShipmenSummarytVo> findByTraceCondition(ShipInboundShipmenSummaryDTO dto);
-	
-	Map<String, Object> listPlacementOptions(PlacementDTO dto);
-	
-	ShipInboundOperation confirmPlacementOption(UserInfo user,String planid, String placementOptionId);
-	
-	ShipInboundOperation generatePlacementOptions(String planid);
+public interface IShipInboundShipmentService extends IService<ShipInboundShipment> {
 
-	Shipment getShipment(String planid, String shipmentId);
+    IPage<ShipInboundShipmenSummarytVo> findByTraceCondition(ShipInboundShipmenSummaryDTO dto);
 
-	ListShipmentItemsResponse getshipmentItems(ShipmentItemsDTO dto);
+    Map<String, Object> listPlacementOptions(PlacementDTO dto);
 
-	ListShipmentBoxesResponse listShipmentBoxes(ShipmentItemsDTO dto);
+    ShipInboundOperation confirmPlacementOption(UserInfo user, String planid, String placementOptionId);
 
-	String saveShipment(UserInfo user, ShipInboundPlan inplan, List<String> shipmentid);
+    ShipInboundOperation generatePlacementOptions(String planid);
 
-	ShipInboundOperation generateDeliveryWindowOptions(String formid, String shipmentId);
+    Shipment getShipment(String planid, String shipmentId);
 
-	public ListDeliveryWindowOptionsResponse listDeliveryWindowOptions(deliveryWindowDTO dto);
+    ListShipmentItemsResponse getshipmentItems(ShipmentItemsDTO dto);
 
-	ShipInboundOperation confirmDeliveryWindowOptions(deliveryWindowDTO dto);
+    ListShipmentBoxesResponse listShipmentBoxes(ShipmentItemsDTO dto);
 
-	ShipInboundDestinationAddress getToAddress(String destination);
+    String saveShipment(UserInfo user, ShipInboundPlan inplan, List<String> shipmentid);
 
-	String getShipmentStatusName(String shipmentstatus);
+    ShipInboundOperation generateDeliveryWindowOptions(String formid, String shipmentId);
 
-	ShipInboundShipmenSummarytVo summaryShipmentItemWithoutItem(String shipmentid);
+    public ListDeliveryWindowOptionsResponse listDeliveryWindowOptions(deliveryWindowDTO dto);
 
-	List<Map<String, Object>> findInboundItemByShipmentId(String shipmentid);
+    ShipInboundOperation confirmDeliveryWindowOptions(deliveryWindowDTO dto);
 
-	SummaryShipmentVo showPlanListByPlanid(String shipmentid);
+    ShipInboundDestinationAddress getToAddress(String destination);
 
-	Map<String, String> getPkgPaper(String string);
-	
-	String getLabelUrl(UserInfo user,String shipmentid,String pagetype,String labelType,String pannum);
-	
-	List<ShipInboundShipmentBox> findShipInboundBoxByShipment(String shipmentid);
+    String getShipmentStatusName(String shipmentstatus);
 
-	List<ShipInboundShipmentBoxItem> findShipInboundCaseByShipment(String shipmentid);
-	
-	ShipTransDetail getTransChannelInfo(String id);
-	Map<String, Object> getSelfTransDataView(String shipmentid);
-	
+    ShipInboundShipmenSummarytVo summaryShipmentItemWithoutItem(String shipmentid);
 
-	List<Map<String, Object>> findShipInboundBox(String shipmentid);
+    List<Map<String, Object>> findInboundItemByShipmentId(String shipmentid);
 
-	ShipInboundOperation saveTransTrance(UserInfo user, ShipInboundShipment ship, List<Map<String, Object>> boxinfo);
+    SummaryShipmentVo showPlanListByPlanid(String shipmentid);
 
-	void setExcelBoxDetail(UserInfo user, SXSSFWorkbook workbook, String shipmentid);
+    Map<String, String> getPkgPaper(String string);
 
-	void updateFeeByShipment(List<ShipInboundShipmentItem> list);
+    String getLabelUrl(UserInfo user, String shipmentid, String pagetype, String labelType, String pannum);
+
+    List<ShipInboundShipmentBox> findShipInboundBoxByShipment(String shipmentid);
+
+    List<ShipInboundShipmentBoxItem> findShipInboundCaseByShipment(String shipmentid);
+
+    ShipTransDetail getTransChannelInfo(String id);
+
+    Map<String, Object> getSelfTransDataView(String shipmentid);
+
+
+    List<Map<String, Object>> findShipInboundBox(String shipmentid);
+
+    ShipInboundOperation saveTransTrance(UserInfo user, ShipInboundShipment ship, List<Map<String, Object>> boxinfo);
+
+    void setExcelBoxDetail(UserInfo user, SXSSFWorkbook workbook, String shipmentid);
+
+    void updateFeeByShipment(List<ShipInboundShipmentItem> list);
 }

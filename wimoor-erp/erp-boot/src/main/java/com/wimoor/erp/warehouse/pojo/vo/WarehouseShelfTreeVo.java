@@ -1,13 +1,11 @@
 package com.wimoor.erp.warehouse.pojo.vo;
 
+import com.wimoor.erp.common.pojo.entity.BaseEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import com.wimoor.erp.common.pojo.entity.BaseEntity;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,14 +21,15 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="WarehouseShelfVo对象", description="仓库货柜树形")
-public class WarehouseShelfTreeVo  extends BaseEntity{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 8526330045933801869L;
+@ApiModel(value = "WarehouseShelfVo对象", description = "仓库货柜树形")
+public class WarehouseShelfTreeVo extends BaseEntity {
 
-	@ApiModelProperty(value = "仓位ID")
+    /**
+     *
+     */
+    private static final long serialVersionUID = 8526330045933801869L;
+
+    @ApiModelProperty(value = "仓位ID")
     private BigInteger addressid;
 
     @ApiModelProperty(value = "货柜名称")
@@ -62,7 +61,7 @@ public class WarehouseShelfTreeVo  extends BaseEntity{
 
     @ApiModelProperty(value = "名称")
     private String numbername;
-    
+
     @ApiModelProperty(value = "公司ID")
     private BigInteger shopid;
 

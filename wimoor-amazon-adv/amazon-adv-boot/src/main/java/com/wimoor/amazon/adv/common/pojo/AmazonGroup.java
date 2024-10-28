@@ -2,73 +2,73 @@ package com.wimoor.amazon.adv.common.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amazon_group")
-public class AmazonGroup extends BaseObject implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 4632144329348858750L;
+@Table(name = "t_amazon_group")
+public class AmazonGroup extends BaseObject implements Serializable {
 
-	@Column(name = "name")
+    /**
+     *
+     */
+    private static final long serialVersionUID = 4632144329348858750L;
+
+    @Column(name = "name")
     private String name;
-    
+
     @Column(name = "shopid")
     private String shopid;
 
     @Column(name = "profitcfgid")
-   	protected String profitcfgid;
-    
+    protected String profitcfgid;
+
     @Column(name = "operator")
     private String operator;
-    
+
     @Column(name = "opttime")
     private Date opttime;
-    
+
     @Column(name = "creator")
     private String creator;
-    
+
     @Column(name = "createtime")
     private Date createtime;
 
     public String getOperator() {
-		return operator;
-	}
+        return operator;
+    }
 
-	public void setOperator(String operator) {
-		this.operator = operator;
-	}
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
 
-	public String getCreator() {
-		return creator;
-	}
+    public String getCreator() {
+        return creator;
+    }
 
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
 
-	public Date getCreatetime() {
-		return createtime;
-	}
+    public Date getCreatetime() {
+        return createtime;
+    }
 
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
 
-	public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -84,12 +84,12 @@ public class AmazonGroup extends BaseObject implements Serializable{
         this.shopid = shopid == null ? null : shopid.trim();
     }
 
-	public String getProfitcfgid() {
-		return profitcfgid;
-	}
+    public String getProfitcfgid() {
+        return profitcfgid;
+    }
 
-	public void setProfitcfgid(String profitcfgid) {
-		this.profitcfgid = profitcfgid;
-	}
-    
+    public void setProfitcfgid(String profitcfgid) {
+        this.profitcfgid = profitcfgid;
+    }
+
 }

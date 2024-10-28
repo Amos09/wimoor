@@ -12,31 +12,32 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 @SuppressWarnings("deprecation")
 public class XjTransactionUtil {
 
-	/**
-	 * 接口
-	 */
-	public interface TransactionRun {
-		/**
-		 * 执行
-		 */
-		void exec();
-	}
+    /**
+     * 接口
+     */
+    public interface TransactionRun {
 
-	/**
-	 * 提交后执行
-	 *
-	 * @param transactionRun 接口
-	 */
-	public static void runOfAfterCommit(TransactionRun transactionRun) {
-		if (TransactionSynchronizationManager.isSynchronizationActive()) {
-			TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
-				@Override
-				public void afterCommit() {
-					transactionRun.exec();
-				}
-			});
-		} else {
-			transactionRun.exec();
-		}
-	}
+        /**
+         * 执行
+         */
+        void exec();
+    }
+
+    /**
+     * 提交后执行
+     *
+     * @param transactionRun 接口
+     */
+    public static void runOfAfterCommit(TransactionRun transactionRun) {
+        if (TransactionSynchronizationManager.isSynchronizationActive()) {
+            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+                @Override
+                public void afterCommit() {
+                    transactionRun.exec();
+                }
+            });
+        } else {
+            transactionRun.exec();
+        }
+    }
 }

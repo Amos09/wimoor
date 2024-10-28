@@ -1,11 +1,11 @@
 package com.wimoor.erp.warehouse.service;
 
-import com.wimoor.erp.warehouse.pojo.entity.ErpWarehouseAddress;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.erp.warehouse.pojo.entity.ErpWarehouseAddress;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
@@ -13,6 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IErpWarehouseAddressService extends IService<ErpWarehouseAddress> {
 
-	ErpWarehouseAddress getByNumber(String companyid, String addressnum);
+    ErpWarehouseAddress getByNumber(String companyid, String addressnum);
 
 }

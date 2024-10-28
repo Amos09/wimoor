@@ -1,18 +1,16 @@
 package com.wimoor.amazon.product.service;
 
-import com.wimoor.amazon.product.pojo.dto.ProductInAftersaleDTO;
-import com.wimoor.amazon.product.pojo.entity.ProductInAftersale;
-
-import java.util.List;
-import java.util.Map;
-
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.product.pojo.dto.ProductInAftersaleDTO;
+import com.wimoor.amazon.product.pojo.entity.ProductInAftersale;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
@@ -20,9 +18,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IProductInAftersaleService extends IService<ProductInAftersale> {
 
-	void insertBatch(List<ProductInAftersale> salesafter);
-	
-	List<Map<String,Object>> getSummary(String shopid,String groupid);
+    void insertBatch(List<ProductInAftersale> salesafter);
 
-	IPage<Map<String, Object>> findList(Page<Object> page, ProductInAftersaleDTO dto);
+    List<Map<String, Object>> getSummary(String shopid, String groupid);
+
+    IPage<Map<String, Object>> findList(Page<Object> page, ProductInAftersaleDTO dto);
 }

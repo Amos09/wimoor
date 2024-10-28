@@ -1,14 +1,13 @@
 package com.wimoor.amazon.notifications.pojo.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import java.math.BigInteger;
-
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,13 +22,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_notifications_subscriptions")
-@ApiModel(value="AmzNotificationsSubscriptions对象", description="订阅消息对象")
+@ApiModel(value = "AmzNotificationsSubscriptions对象", description = "订阅消息对象")
 public class AmzNotificationsSubscriptions implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "订阅ID")
-   @TableId("subscriptionId")
+    @TableId("subscriptionId")
     private String subscriptionId;
 
     @ApiModelProperty(value = "订阅类型")

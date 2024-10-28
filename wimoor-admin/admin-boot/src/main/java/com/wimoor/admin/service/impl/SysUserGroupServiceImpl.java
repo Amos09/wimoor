@@ -1,9 +1,9 @@
 package com.wimoor.admin.service.impl;
 
-import com.wimoor.admin.pojo.entity.SysUserGroup;
-import com.wimoor.admin.mapper.SysUserGroupMapper;
-import com.wimoor.admin.service.ISysUserGroupService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wimoor.admin.mapper.SysUserGroupMapper;
+import com.wimoor.admin.pojo.entity.SysUserGroup;
+import com.wimoor.admin.service.ISysUserGroupService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2022-09-29
  */
 @Service
-public class SysUserGroupServiceImpl extends ServiceImpl<SysUserGroupMapper, SysUserGroup> implements ISysUserGroupService {
+public class SysUserGroupServiceImpl extends ServiceImpl<SysUserGroupMapper, SysUserGroup> implements
+        ISysUserGroupService {
 
 }

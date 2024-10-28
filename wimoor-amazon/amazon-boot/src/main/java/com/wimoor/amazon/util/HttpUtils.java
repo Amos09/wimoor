@@ -1,20 +1,18 @@
 package com.wimoor.amazon.util;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import com.alibaba.fastjson.JSONObject;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.util.Cookie;
- 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 
 /**
  * <pre>
@@ -24,6 +22,7 @@ import com.gargoylesoftware.htmlunit.util.Cookie;
  * Created by felix at 2020/8/12 11:12.
  */
 public class HttpUtils {
+
     /**
      * 请求超时时间,默认20000ms
      */
@@ -44,8 +43,9 @@ public class HttpUtils {
      * @return
      */
     public static HttpUtils getInstance() {
-        if (httpUtils == null)
+        if (httpUtils == null) {
             httpUtils = new HttpUtils();
+        }
         return httpUtils;
     }
 
@@ -77,7 +77,7 @@ public class HttpUtils {
 
     /**
      * 将网页返回为解析后的文档格式
-     * 
+     *
      * @param html
      * @return
      * @throws Exception
@@ -99,29 +99,31 @@ public class HttpUtils {
      * @return
      * @throws Exception
      */
-    Map<String,Set<Cookie>> mycookie=new HashMap<String,Set<Cookie>>();
-    public String getHtmlPageResponse(String url,JSONObject jsonData) throws Exception {
+    Map<String, Set<Cookie>> mycookie = new HashMap<String, Set<Cookie>>();
+
+    public String getHtmlPageResponse(String url, JSONObject jsonData) throws Exception {
         String result = "";
-        String marketpont = url.split("/product-reviews/")[0];   
-          WebClient webClient = null;
-        if("127.0.0.1".equals(jsonData.getString("ip"))) {
-        	 webClient = new WebClient(BrowserVersion.CHROME);
-        }else {
-        	 webClient = new WebClient(BrowserVersion.CHROME,jsonData.getString("ip"),jsonData.getInteger("port"));//BrowserVersion.CHROME
+        String marketpont = url.split("/product-reviews/")[0];
+        WebClient webClient = null;
+        if ("127.0.0.1".equals(jsonData.getString("ip"))) {
+            webClient = new WebClient(BrowserVersion.CHROME);
+        } else {
+            webClient = new WebClient(BrowserVersion.CHROME, jsonData.getString("ip"),
+                    jsonData.getInteger("port"));//BrowserVersion.CHROME
         }
-        
+
         webClient.getCookieManager().setCookiesEnabled(true);
-        if(  mycookie.get(marketpont)!=null) {
-        	Set<Cookie> cookies = mycookie.get(marketpont);
-        	for(Cookie item:cookies) {
-        		webClient.getCookieManager().addCookie(item);	
-        	}
+        if (mycookie.get(marketpont) != null) {
+            Set<Cookie> cookies = mycookie.get(marketpont);
+            for (Cookie item : cookies) {
+                webClient.getCookieManager().addCookie(item);
+            }
         }
-     
+
         webClient.getOptions().setThrowExceptionOnScriptError(false);//当JS执行出错的时候是否抛出异常
         webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);//当HTTP的状态非200时是否抛出异常
         webClient.getOptions().setActiveXNative(false);
-        
+
         webClient.getOptions().setCssEnabled(false);//是否启用CSS
         webClient.getOptions().setJavaScriptEnabled(true); //很重要，启用JS
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());//很重要，设置支持AJAX
@@ -132,7 +134,7 @@ public class HttpUtils {
         try {
             page = webClient.getPage(url);
             Set<Cookie> cookies = webClient.getCookieManager().getCookies();
-            mycookie.put(marketpont,cookies);
+            mycookie.put(marketpont, cookies);
         } catch (Exception e) {
             webClient.close();
             throw e;
@@ -143,6 +145,7 @@ public class HttpUtils {
 
         return result;
     }
+
     /**
      * 获取页面文档字串(等待异步JS执行)
      *
@@ -152,21 +155,21 @@ public class HttpUtils {
      */
     public String getHtmlPageResponse(String url) throws Exception {
         String result = "";
-       // String IP=GeneralUtil.loadJson("http://http.tiqu.alicdns.com/getip3?num=1&type=2&pro=&city=0&yys=0&port=11&time=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=5&mr=1&regions=");
-    
-        String marketpont = url.split("/sp")[0];   
+        // String IP=GeneralUtil.loadJson("http://http.tiqu.alicdns.com/getip3?num=1&type=2&pro=&city=0&yys=0&port=11&time=1&ts=0&ys=0&cs=0&lb=1&sb=0&pb=5&mr=1&regions=");
+
+        String marketpont = url.split("/sp")[0];
         final WebClient webClient = new WebClient(BrowserVersion.CHROME);
         //String agent = GeneralUtil.getAgent();
         //webClient.addRequestHeader("User-Agent", agent);
         //webClient.addCookie("",new URL(url),"getHtmlPageResponse");
         webClient.getCookieManager().setCookiesEnabled(true);
-        if(  mycookie.get(marketpont)!=null) {
-        	Set<Cookie> cookies = mycookie.get(marketpont);
-        	for(Cookie item:cookies) {
-        		webClient.getCookieManager().addCookie(item);	
-        	}
+        if (mycookie.get(marketpont) != null) {
+            Set<Cookie> cookies = mycookie.get(marketpont);
+            for (Cookie item : cookies) {
+                webClient.getCookieManager().addCookie(item);
+            }
         }
-     
+
         webClient.getOptions().setThrowExceptionOnScriptError(false);//当JS执行出错的时候是否抛出异常
         webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);//当HTTP的状态非200时是否抛出异常
         webClient.getOptions().setActiveXNative(false);
@@ -181,7 +184,7 @@ public class HttpUtils {
         try {
             page = webClient.getPage(url);
             Set<Cookie> cookies = webClient.getCookieManager().getCookies();
-            mycookie.put(marketpont,cookies);
+            mycookie.put(marketpont, cookies);
         } catch (Exception e) {
             webClient.close();
             throw e;
@@ -191,6 +194,7 @@ public class HttpUtils {
         webClient.close();
         return result;
     }
+
     /**
      * 获取页面文档Document对象(等待异步JS执行)
      *
@@ -198,9 +202,10 @@ public class HttpUtils {
      * @return
      * @throws Exception
      */
-    public Document getHtmlPageResponseAsDocument(String url,JSONObject jsonData) throws Exception {
-        return parseHtmlToDoc(getHtmlPageResponse(url,jsonData));
+    public Document getHtmlPageResponseAsDocument(String url, JSONObject jsonData) throws Exception {
+        return parseHtmlToDoc(getHtmlPageResponse(url, jsonData));
     }
+
     public Document getHtmlPageResponseAsDocument(String url) throws Exception {
         return parseHtmlToDoc(getHtmlPageResponse(url));
     }

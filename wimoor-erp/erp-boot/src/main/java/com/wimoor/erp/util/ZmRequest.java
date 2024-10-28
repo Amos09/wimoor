@@ -1,7 +1,11 @@
 package com.wimoor.erp.util;
- 
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -32,11 +36,7 @@ public class ZmRequest {
     Map<String, Object> datas;
 
     /**
-     * 哲盟发放授权格式：
-     * 客户代号:XX0000
-     * 账号:XXXXXXX
-     * 秘钥:XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-     * 指定路线:义乌FEDEX-X-IP,义乌FEDEX-A-IP
+     * 哲盟发放授权格式： 客户代号:XX0000 账号:XXXXXXX 秘钥:XXXXXXXXXXXXXXXXXXXXXXXXXXXXX 指定路线:义乌FEDEX-X-IP,义乌FEDEX-A-IP
      *
      * @param appKey    账号
      * @param appSecret 秘钥
@@ -63,7 +63,7 @@ public class ZmRequest {
 
     // 获取 标准token
     @SuppressWarnings("unchecked")
-	public String getToken(String url) {
+    public String getToken(String url) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("appKey", appKey);
         params.put("appSecret", appSecret);
@@ -292,8 +292,9 @@ public class ZmRequest {
             if (params != null) {
                 Set<Entry<String, Object>> entrySet = params.entrySet();
                 for (Entry<String, Object> entry : entrySet) {
-                    if (queryString.length() > 0)
+                    if (queryString.length() > 0) {
                         queryString = queryString + "&";
+                    }
                     queryString += entry.getKey() + "=" + URLEncoder.encode(entry.getValue().toString(), "utf-8");
                 }
             }

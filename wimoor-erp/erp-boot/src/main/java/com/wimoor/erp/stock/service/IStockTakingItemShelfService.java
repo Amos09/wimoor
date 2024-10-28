@@ -7,7 +7,7 @@ import com.wimoor.erp.stock.pojo.entity.StockTakingItemShelf;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
@@ -15,6 +15,6 @@ import com.wimoor.erp.stock.pojo.entity.StockTakingItemShelf;
  */
 public interface IStockTakingItemShelfService extends IService<StockTakingItemShelf> {
 
-	void stockTakingInvOperate(StockTaking stocktaking, UserInfo user);
+    void stockTakingInvOperate(StockTaking stocktaking, UserInfo user);
 
 }

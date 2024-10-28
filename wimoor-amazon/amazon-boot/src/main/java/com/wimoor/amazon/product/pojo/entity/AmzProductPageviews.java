@@ -1,15 +1,13 @@
 package com.wimoor.amazon.product.pojo.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.common.pojo.entity.BaseEntity;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,10 +22,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_product_pageviews_download")
-@ApiModel(value="AmzProductPageviews对象", description="流量报表")
-public class AmzProductPageviews  extends BaseEntity {
+@ApiModel(value = "AmzProductPageviews对象", description = "流量报表")
+public class AmzProductPageviews extends BaseEntity {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
     @TableField("amazonAuthid")
     private BigInteger amazonAuthid;
 

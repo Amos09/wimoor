@@ -1,7 +1,7 @@
 package com.wimoor.amazon.report.service;
 
-import com.wimoor.amazon.report.pojo.entity.ReportRequestType;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.report.pojo.entity.ReportRequestType;
 
 /**
  * <p>
@@ -13,6 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IReportRequestTypeService extends IService<ReportRequestType> {
 
-	ReportRequestType findByTypeCode(String requestType);
+    ReportRequestType findByTypeCode(String requestType);
 
 }

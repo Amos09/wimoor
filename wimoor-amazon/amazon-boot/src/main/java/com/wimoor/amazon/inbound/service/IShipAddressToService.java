@@ -6,6 +6,6 @@ import com.wimoor.amazon.inbound.pojo.entity.ShipInboundShipment;
 
 public interface IShipAddressToService extends IService<ShipAddressTo> {
 
-	ShipAddressTo getToAddress(ShipInboundShipment ship);
-	
+    ShipAddressTo getToAddress(ShipInboundShipment ship);
+
 }

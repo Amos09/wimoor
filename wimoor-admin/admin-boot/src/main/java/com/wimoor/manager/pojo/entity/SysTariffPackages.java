@@ -1,16 +1,14 @@
 package com.wimoor.manager.pojo.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,10 +23,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_sys_tariff_packages")
-@ApiModel(value="SysTariffPackages对象", description="套餐表")
+@ApiModel(value = "SysTariffPackages对象", description = "套餐表")
 public class SysTariffPackages implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "套餐id 0-基础版，1-标准版，2-专业版，3-独享版,4-自定义")
     @TableId
@@ -36,7 +34,7 @@ public class SysTariffPackages implements Serializable {
 
     @ApiModelProperty(value = "套餐名字")
     private String name;
-    
+
     @ApiModelProperty(value = "套餐名字")
     private Boolean isdefault;
 

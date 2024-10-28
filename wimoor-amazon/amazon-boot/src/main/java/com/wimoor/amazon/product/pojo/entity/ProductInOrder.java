@@ -1,16 +1,14 @@
 package com.wimoor.amazon.product.pojo.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,10 +23,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_product_in_order")
-@ApiModel(value="ProductInOrder对象", description="产品信息的订单销售数据")
+@ApiModel(value = "ProductInOrder对象", description = "产品信息的订单销售数据")
 public class ProductInOrder implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "产品ID")
     @TableId
@@ -72,7 +70,7 @@ public class ProductInOrder implements Serializable {
     private Integer salesFifteen;
 
     @ApiModelProperty(value = "排名")
-    @TableField(value= "`rank`")
+    @TableField(value = "`rank`")
     private Integer rank;
 
 

@@ -1,13 +1,13 @@
 package com.wimoor.common.service;
 
 
-import java.util.List;
-
 import com.wimoor.common.pojo.entity.QuartzJobsVO;
 import com.wimoor.common.pojo.entity.QuartzTask;
+import java.util.List;
 
 
 public interface SystemSchedulerService {
+
     /**
      * 添加
      *
@@ -17,7 +17,7 @@ public interface SystemSchedulerService {
      * @return
      */
     boolean addScheduler(QuartzTask quartzTask);
- 
+
     /**
      * 修改
      *
@@ -27,7 +27,7 @@ public interface SystemSchedulerService {
      * @return
      */
     boolean updateScheduler(String jobDetailName, String jobDetailGroup, String cron);
- 
+
     /**
      * 删除
      *
@@ -36,7 +36,7 @@ public interface SystemSchedulerService {
      * @return
      */
     boolean deleteScheduler(String jobDetailName, String jobDetailGroup);
- 
+
     /**
      * 暂停
      *
@@ -45,7 +45,7 @@ public interface SystemSchedulerService {
      * @return
      */
     boolean puaseScheduler(String jobDetailName, String jobDetailGroup);
- 
+
     /**
      * 恢复
      *
@@ -54,12 +54,15 @@ public interface SystemSchedulerService {
      * @return
      */
     boolean resumeScheduler(String jobDetailName, String jobDetailGroup);
-    public boolean findScheduler(String jobDetailName, String jobDetailGroup) ;
 
-	List<QuartzJobsVO> listScheduler();
-	  
-	public void refreshTask();
-	public void deleteAllTask() ;
-	public void insertTask();
+    public boolean findScheduler(String jobDetailName, String jobDetailGroup);
+
+    List<QuartzJobsVO> listScheduler();
+
+    public void refreshTask();
+
+    public void deleteAllTask();
+
+    public void insertTask();
 }
  

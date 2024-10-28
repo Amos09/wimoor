@@ -2,12 +2,10 @@ package com.wimoor.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wimoor.admin.pojo.entity.SysRoleMenu;
-
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Mapper;
-
 import java.math.BigInteger;
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {

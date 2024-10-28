@@ -1,20 +1,19 @@
 package com.wimoor.common.pojo.entity;
-import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
- 
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_sys_operationlog")
-public class OperationLog   extends BaseEntity{
- 
+public class OperationLog extends BaseEntity {
+
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 5224375654057826320L;
+     *
+     */
+    private static final long serialVersionUID = 5224375654057826320L;
 
     private Date time;
 
@@ -29,19 +28,18 @@ public class OperationLog   extends BaseEntity{
     private String method;
 
     private String param;
-    
-    private String exceptiondetail;
-    
-    private String description;
-    
- 
-	public void setParam(String param) {
-		if(param.length()>=3990) {
-			param=param.substring(0, 3990);
-		}
-		this.param = param;
-	}
- 
 
-    
+    private String exceptiondetail;
+
+    private String description;
+
+
+    public void setParam(String param) {
+        if (param.length() >= 3990) {
+            param = param.substring(0, 3990);
+        }
+        this.param = param;
+    }
+
+
 }

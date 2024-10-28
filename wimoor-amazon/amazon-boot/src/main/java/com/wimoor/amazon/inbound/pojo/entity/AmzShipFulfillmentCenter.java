@@ -2,14 +2,14 @@ package com.wimoor.amazon.inbound.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -18,11 +18,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_ship_fulfillment_center")
-@ApiModel(value="AmzShipFulfillmentCenter对象", description="")
+@ApiModel(value = "AmzShipFulfillmentCenter对象", description = "")
 public class AmzShipFulfillmentCenter implements Serializable {
 
-    private static final long serialVersionUID=1L;
-    
+    private static final long serialVersionUID = 1L;
+
     @TableId
     private String code;
 
@@ -37,6 +37,6 @@ public class AmzShipFulfillmentCenter implements Serializable {
     private String zip;
 
     private String area;
-    
+
     private Boolean isfar;
 }

@@ -3,8 +3,8 @@ package com.wimoor.sys.gc.service.gc;
 import com.wimoor.sys.gc.config.GcConfig;
 
 /**
-  * 代码生成执行器
-  */
+ * 代码生成执行器
+ */
 @SuppressWarnings("all")
 public interface GcSevice {
 

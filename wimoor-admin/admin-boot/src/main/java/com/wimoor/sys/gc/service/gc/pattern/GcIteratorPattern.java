@@ -1,10 +1,5 @@
 package com.wimoor.sys.gc.service.gc.pattern;
 
- 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import org.springframework.stereotype.Service;
 
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.service.gc.GcSevice;
@@ -21,6 +16,9 @@ import com.wimoor.sys.gc.service.gc.gcimpl.GcVueAdd;
 import com.wimoor.sys.gc.service.gc.gcimpl.GcVueMain;
 import com.wimoor.sys.gc.service.gc.gcimpl.GcVuePid;
 import com.wimoor.sys.gc.service.gc.gcimpl.GcVueUpd;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import org.springframework.stereotype.Service;
 
 /**
  * 执行代码生成，并依次生成文件

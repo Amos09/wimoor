@@ -6,7 +6,11 @@ import com.wimoor.amazon.auth.pojo.entity.AmazonAuthority;
 import com.wimoor.amazon.finances.pojo.entity.AmzFinAccount;
 
 public interface IAmazonSettlementOpenService {
-	public void getGroupIdData() throws ApiException, InterruptedException, LWAException;
-	public void getGroupIdData(AmazonAuthority amazonAuthority) throws ApiException, InterruptedException, LWAException;
-	public void getGroupIdData(AmazonAuthority amazonAuthority,AmzFinAccount item) throws ApiException, InterruptedException, LWAException ;
+
+    public void getGroupIdData() throws ApiException, InterruptedException, LWAException;
+
+    public void getGroupIdData(AmazonAuthority amazonAuthority) throws ApiException, InterruptedException, LWAException;
+
+    public void getGroupIdData(AmazonAuthority amazonAuthority, AmzFinAccount item)
+            throws ApiException, InterruptedException, LWAException;
 }

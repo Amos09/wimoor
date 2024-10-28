@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 @MappedTypes(value = {Integer[].class})
 @MappedJdbcTypes(value = {JdbcType.VARCHAR}, includeNullJdbcType = true)
 public class IntegerArrayJsonTypeHandler extends ArrayObjectJsonTypeHandler<Integer> {
+
     public IntegerArrayJsonTypeHandler() {
         super(Integer[].class);
     }

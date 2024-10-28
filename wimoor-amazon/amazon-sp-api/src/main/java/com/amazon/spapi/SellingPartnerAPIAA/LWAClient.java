@@ -14,6 +14,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.EnumUtils;
 
 class LWAClient {
+
     private static final String ACCESS_TOKEN_KEY = "access_token";
     private static final String ACCESS_TOKEN_EXPIRES_IN = "expires_in";
     private static final MediaType JSON_MEDIA_TYPE = MediaType.parse("application/json; charset=utf-8");

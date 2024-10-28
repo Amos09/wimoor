@@ -1,11 +1,15 @@
 package com.amazon.spapi.documents;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DownloadSpecificationTest {
+
     @Test
     public void testBuilderConstructorMissingCryptoStreamFactory() throws Exception {
         CryptoStreamFactory cryptoStreamFactory = null;

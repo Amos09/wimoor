@@ -1,15 +1,15 @@
 package com.wimoor.manager.pojo.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -18,10 +18,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_sys_tariff_packages_append_discount")
-@ApiModel(value="SysTariffPackagesAppendDiscount对象", description="")
+@ApiModel(value = "SysTariffPackagesAppendDiscount对象", description = "")
 public class SysTariffPackagesAppendDiscount implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private Integer appendid;
 

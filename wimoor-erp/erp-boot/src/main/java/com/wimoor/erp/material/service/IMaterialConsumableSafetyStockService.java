@@ -1,11 +1,11 @@
 package com.wimoor.erp.material.service;
 
-import com.wimoor.erp.material.pojo.entity.MaterialConsumableSafetyStock;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.erp.material.pojo.entity.MaterialConsumableSafetyStock;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team

@@ -1,9 +1,8 @@
 package com.wimoor.common.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
-
 import java.io.Serializable;
+import lombok.Data;
 
 /**
  * @author haoxr
@@ -13,11 +12,11 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -3755762471234699039L;
+     *
+     */
+    private static final long serialVersionUID = -3755762471234699039L;
 
-	private String code;
+    private String code;
 
     private T data;
 
@@ -45,7 +44,6 @@ public class Result<T> implements Serializable {
         result.setTotal(total.intValue());
         return result;
     }
-
 
 
     public static <T> Result<T> failed() {

@@ -5,6 +5,6 @@ import com.wimoor.amazon.profit.pojo.entity.ProductTier;
 
 public interface IProductTierService extends IService<ProductTier> {
 
-	ProductTier selectByPKey(String productTierId);
+    ProductTier selectByPKey(String productTierId);
 
 }

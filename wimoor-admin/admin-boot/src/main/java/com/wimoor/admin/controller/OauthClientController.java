@@ -1,7 +1,21 @@
 package com.wimoor.admin.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wimoor.admin.pojo.dto.OAuth2ClientDTO;
+import com.wimoor.admin.pojo.entity.SysOauthClient;
+import com.wimoor.admin.service.ISysOauthClientService;
+import com.wimoor.common.result.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import java.util.Arrays;
-
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,23 +25,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wimoor.admin.pojo.dto.OAuth2ClientDTO;
-import com.wimoor.admin.pojo.entity.SysOauthClient;
-import com.wimoor.admin.service.ISysOauthClientService;
-import com.wimoor.common.result.Result;
-
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.StrUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 
 @Api(tags = "客户端接口")
 @RestController
@@ -63,7 +60,7 @@ public class OauthClientController {
     @ApiOperation(value = "新增客户端")
     @ApiImplicitParam(name = "client", value = "实体JSON对象", required = true, paramType = "body", dataType = "OauthClientDetails")
     @PostMapping
-    public Result<?>add(@RequestBody SysOauthClient client) {
+    public Result<?> add(@RequestBody SysOauthClient client) {
         boolean status = iSysOauthClientService.save(client);
         return Result.judge(status);
     }
@@ -94,7 +91,7 @@ public class OauthClientController {
     @GetMapping("/getOAuth2ClientById")
     public Result<OAuth2ClientDTO> getOAuth2ClientById(@RequestParam String clientId) {
         SysOauthClient client = iSysOauthClientService.getById(clientId);
-        Assert.isTrue(client!=null, "OAuth2 客户端不存在");
+        Assert.isTrue(client != null, "OAuth2 客户端不存在");
         OAuth2ClientDTO oAuth2ClientDTO = new OAuth2ClientDTO();
         BeanUtil.copyProperties(client, oAuth2ClientDTO);
         return Result.success(oAuth2ClientDTO);

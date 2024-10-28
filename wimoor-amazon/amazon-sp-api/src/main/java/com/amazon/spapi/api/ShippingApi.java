@@ -13,14 +13,6 @@
 
 package com.amazon.spapi.api;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCache;
 import com.amazon.spapi.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
 import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
@@ -64,8 +56,16 @@ import com.amazon.spapi.model.shipping.PurchaseShipmentResponse;
 import com.amazon.spapi.model.shipping.UnlinkCarrierAccountRequest;
 import com.amazon.spapi.model.shipping.UnlinkCarrierAccountResponse;
 import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ShippingApi {
+
     private ApiClient apiClient;
 
     ShippingApi() {
@@ -86,112 +86,156 @@ public class ShippingApi {
 
     /**
      * Build call for cancelShipment
-     * @param shipmentId The shipment identifier originally returned by the purchaseShipment operation. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param shipmentId              The shipment identifier originally returned by the purchaseShipment operation.
+     *                                (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call cancelShipmentCall(String shipmentId, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call cancelShipmentCall(String shipmentId, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/shipping/v2/shipments/{shipmentId}/cancel"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call cancelShipmentValidateBeforeCall(String shipmentId, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call cancelShipmentValidateBeforeCall(String shipmentId, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'shipmentId' is set
         if (shipmentId == null) {
             throw new ApiException("Missing the required parameter 'shipmentId' when calling cancelShipment(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = cancelShipmentCall(shipmentId, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = cancelShipmentCall(shipmentId, xAmznShippingBusinessId, progressListener,
+                progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param shipmentId The shipment identifier originally returned by the purchaseShipment operation. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.  **Usage Plan:**
+     *  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param shipmentId              The shipment identifier originally returned by the purchaseShipment operation.
+     *                                (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return CancelShipmentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public CancelShipmentResponse cancelShipment(String shipmentId, String xAmznShippingBusinessId) throws ApiException,LWAException {
+    public CancelShipmentResponse cancelShipment(String shipmentId, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
         ApiResponse<CancelShipmentResponse> resp = cancelShipmentWithHttpInfo(shipmentId, xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param shipmentId The shipment identifier originally returned by the purchaseShipment operation. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.  **Usage Plan:**
+     *  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param shipmentId              The shipment identifier originally returned by the purchaseShipment operation.
+     *                                (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;CancelShipmentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<CancelShipmentResponse> cancelShipmentWithHttpInfo(String shipmentId, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = cancelShipmentValidateBeforeCall(shipmentId, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<CancelShipmentResponse>(){}.getType();
+    public ApiResponse<CancelShipmentResponse> cancelShipmentWithHttpInfo(String shipmentId,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = cancelShipmentValidateBeforeCall(shipmentId, xAmznShippingBusinessId, null,
+                null);
+        Type localVarReturnType = new TypeToken<CancelShipmentResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param shipmentId The shipment identifier originally returned by the purchaseShipment operation. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Cancels a purchased shipment. Returns an empty object if the shipment is successfully cancelled.
+     *  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param shipmentId              The shipment identifier originally returned by the purchaseShipment operation.
+     *                                (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call cancelShipmentAsync(String shipmentId, String xAmznShippingBusinessId, final ApiCallback<CancelShipmentResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call cancelShipmentAsync(String shipmentId, String xAmznShippingBusinessId,
+            final ApiCallback<CancelShipmentResponse> callback) throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -212,24 +256,36 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = cancelShipmentValidateBeforeCall(shipmentId, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<CancelShipmentResponse>(){}.getType();
+        com.squareup.okhttp.Call call = cancelShipmentValidateBeforeCall(shipmentId, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CancelShipmentResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for directPurchaseShipment
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param locale The IETF Language Tag. Note that this only supports the primary language subtag with one secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary language subtags.  (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param locale                  The IETF Language Tag. Note that this only supports the primary language subtag
+     *                                with one secondary language subtag (i.e. en-US, fr-CA). The secondary language
+     *                                subtag is almost always a regional designation. This does not support additional
+     *                                subtags beyond the primary and secondary language subtags.  (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call directPurchaseShipmentCall(DirectPurchaseRequest body, String xAmznIdempotencyKey, String locale, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call directPurchaseShipmentCall(DirectPurchaseRequest body, String xAmznIdempotencyKey,
+            String locale, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -239,103 +295,156 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznIdempotencyKey != null)
-        localVarHeaderParams.put("x-amzn-IdempotencyKey", apiClient.parameterToString(xAmznIdempotencyKey));
-        if (locale != null)
-        localVarHeaderParams.put("locale", apiClient.parameterToString(locale));
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznIdempotencyKey != null) {
+            localVarHeaderParams.put("x-amzn-IdempotencyKey", apiClient.parameterToString(xAmznIdempotencyKey));
+        }
+        if (locale != null) {
+            localVarHeaderParams.put("locale", apiClient.parameterToString(locale));
+        }
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call directPurchaseShipmentValidateBeforeCall(DirectPurchaseRequest body, String xAmznIdempotencyKey, String locale, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call directPurchaseShipmentValidateBeforeCall(DirectPurchaseRequest body,
+            String xAmznIdempotencyKey, String locale, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling directPurchaseShipment(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = directPurchaseShipmentCall(body, xAmznIdempotencyKey, locale, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = directPurchaseShipmentCall(body, xAmznIdempotencyKey, locale,
+                xAmznShippingBusinessId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param locale The IETF Language Tag. Note that this only supports the primary language subtag with one secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary language subtags.  (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
+     * details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param locale                  The IETF Language Tag. Note that this only supports the primary language subtag
+     *                                with one secondary language subtag (i.e. en-US, fr-CA). The secondary language
+     *                                subtag is almost always a regional designation. This does not support additional
+     *                                subtags beyond the primary and secondary language subtags.  (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return DirectPurchaseResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public DirectPurchaseResponse directPurchaseShipment(DirectPurchaseRequest body, String xAmznIdempotencyKey, String locale, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<DirectPurchaseResponse> resp = directPurchaseShipmentWithHttpInfo(body, xAmznIdempotencyKey, locale, xAmznShippingBusinessId);
+    public DirectPurchaseResponse directPurchaseShipment(DirectPurchaseRequest body, String xAmznIdempotencyKey,
+            String locale, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<DirectPurchaseResponse> resp = directPurchaseShipmentWithHttpInfo(body, xAmznIdempotencyKey, locale,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param locale The IETF Language Tag. Note that this only supports the primary language subtag with one secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary language subtags.  (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related
+     * details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param locale                  The IETF Language Tag. Note that this only supports the primary language subtag
+     *                                with one secondary language subtag (i.e. en-US, fr-CA). The secondary language
+     *                                subtag is almost always a regional designation. This does not support additional
+     *                                subtags beyond the primary and secondary language subtags.  (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;DirectPurchaseResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<DirectPurchaseResponse> directPurchaseShipmentWithHttpInfo(DirectPurchaseRequest body, String xAmznIdempotencyKey, String locale, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = directPurchaseShipmentValidateBeforeCall(body, xAmznIdempotencyKey, locale, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<DirectPurchaseResponse>(){}.getType();
+    public ApiResponse<DirectPurchaseResponse> directPurchaseShipmentWithHttpInfo(DirectPurchaseRequest body,
+            String xAmznIdempotencyKey, String locale, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = directPurchaseShipmentValidateBeforeCall(body, xAmznIdempotencyKey, locale,
+                xAmznShippingBusinessId, null, null);
+        Type localVarReturnType = new TypeToken<DirectPurchaseResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Purchases the shipping service for a shipment using the best fit service offering. Returns purchase related details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param locale The IETF Language Tag. Note that this only supports the primary language subtag with one secondary language subtag (i.e. en-US, fr-CA). The secondary language subtag is almost always a regional designation. This does not support additional subtags beyond the primary and secondary language subtags.  (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Purchases the shipping service for a shipment using the best fit service offering. Returns
+     * purchase related details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- |
+     * | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were
+     * applied to the requested operation, when available. The table above indicates the default rate and burst values
+     * for this operation. Selling partners whose business demands require higher throughput may see higher rate and
+     * burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param locale                  The IETF Language Tag. Note that this only supports the primary language subtag
+     *                                with one secondary language subtag (i.e. en-US, fr-CA). The secondary language
+     *                                subtag is almost always a regional designation. This does not support additional
+     *                                subtags beyond the primary and secondary language subtags.  (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call directPurchaseShipmentAsync(DirectPurchaseRequest body, String xAmznIdempotencyKey, String locale, String xAmznShippingBusinessId, final ApiCallback<DirectPurchaseResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call directPurchaseShipmentAsync(DirectPurchaseRequest body, String xAmznIdempotencyKey,
+            String locale, String xAmznShippingBusinessId, final ApiCallback<DirectPurchaseResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -356,23 +465,33 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = directPurchaseShipmentValidateBeforeCall(body, xAmznIdempotencyKey, locale, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<DirectPurchaseResponse>(){}.getType();
+        com.squareup.okhttp.Call call = directPurchaseShipmentValidateBeforeCall(body, xAmznIdempotencyKey, locale,
+                xAmznShippingBusinessId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<DirectPurchaseResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for generateCollectionForm
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call generateCollectionFormCall(GenerateCollectionFormRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call generateCollectionFormCall(GenerateCollectionFormRequest body,
+            String xAmznIdempotencyKey, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -382,98 +501,139 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznIdempotencyKey != null)
-        localVarHeaderParams.put("x-amzn-IdempotencyKey", apiClient.parameterToString(xAmznIdempotencyKey));
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznIdempotencyKey != null) {
+            localVarHeaderParams.put("x-amzn-IdempotencyKey", apiClient.parameterToString(xAmznIdempotencyKey));
+        }
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call generateCollectionFormValidateBeforeCall(GenerateCollectionFormRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call generateCollectionFormValidateBeforeCall(GenerateCollectionFormRequest body,
+            String xAmznIdempotencyKey, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling generateCollectionForm(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = generateCollectionFormCall(body, xAmznIdempotencyKey, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = generateCollectionFormCall(body, xAmznIdempotencyKey, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * This API  Call to generate the collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API  Call to generate the collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ----
+     * | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits
+     * that were applied to the requested operation, when available. The table above indicates the default rate and
+     * burst values for this operation. Selling partners whose business demands require higher throughput may see higher
+     * rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the
+     * Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GenerateCollectionFormResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GenerateCollectionFormResponse generateCollectionForm(GenerateCollectionFormRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<GenerateCollectionFormResponse> resp = generateCollectionFormWithHttpInfo(body, xAmznIdempotencyKey, xAmznShippingBusinessId);
+    public GenerateCollectionFormResponse generateCollectionForm(GenerateCollectionFormRequest body,
+            String xAmznIdempotencyKey, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<GenerateCollectionFormResponse> resp = generateCollectionFormWithHttpInfo(body, xAmznIdempotencyKey,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * This API  Call to generate the collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API  Call to generate the collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ----
+     * | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits
+     * that were applied to the requested operation, when available. The table above indicates the default rate and
+     * burst values for this operation. Selling partners whose business demands require higher throughput may see higher
+     * rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the
+     * Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GenerateCollectionFormResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GenerateCollectionFormResponse> generateCollectionFormWithHttpInfo(GenerateCollectionFormRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = generateCollectionFormValidateBeforeCall(body, xAmznIdempotencyKey, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GenerateCollectionFormResponse>(){}.getType();
+    public ApiResponse<GenerateCollectionFormResponse> generateCollectionFormWithHttpInfo(
+            GenerateCollectionFormRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = generateCollectionFormValidateBeforeCall(body, xAmznIdempotencyKey,
+                xAmznShippingBusinessId, null, null);
+        Type localVarReturnType = new TypeToken<GenerateCollectionFormResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * This API  Call to generate the collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) This API  Call to generate the collection form.   **Usage Plan:**  | Rate (requests per second)
+     * | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call generateCollectionFormAsync(GenerateCollectionFormRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId, final ApiCallback<GenerateCollectionFormResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call generateCollectionFormAsync(GenerateCollectionFormRequest body,
+            String xAmznIdempotencyKey, String xAmznShippingBusinessId,
+            final ApiCallback<GenerateCollectionFormResponse> callback) throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -494,24 +654,33 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = generateCollectionFormValidateBeforeCall(body, xAmznIdempotencyKey, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GenerateCollectionFormResponse>(){}.getType();
+        com.squareup.okhttp.Call call = generateCollectionFormValidateBeforeCall(body, xAmznIdempotencyKey,
+                xAmznShippingBusinessId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GenerateCollectionFormResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getAccessPoints
-     * @param accessPointTypes  (required)
-     * @param countryCode  (required)
-     * @param postalCode  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param accessPointTypes        (required)
+     * @param countryCode             (required)
+     * @param postalCode              (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getAccessPointsCall(List<String> accessPointTypes, String countryCode, String postalCode, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getAccessPointsCall(List<String> accessPointTypes, String countryCode,
+            String postalCode, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -519,117 +688,160 @@ public class ShippingApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (accessPointTypes != null)
-        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("csv", "accessPointTypes", accessPointTypes));
-        if (countryCode != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("countryCode", countryCode));
-        if (postalCode != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("postalCode", postalCode));
+        if (accessPointTypes != null) {
+            localVarCollectionQueryParams.addAll(
+                    apiClient.parameterToPairs("csv", "accessPointTypes", accessPointTypes));
+        }
+        if (countryCode != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("countryCode", countryCode));
+        }
+        if (postalCode != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("postalCode", postalCode));
+        }
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getAccessPointsValidateBeforeCall(List<String> accessPointTypes, String countryCode, String postalCode, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getAccessPointsValidateBeforeCall(List<String> accessPointTypes,
+            String countryCode, String postalCode, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'accessPointTypes' is set
         if (accessPointTypes == null) {
-            throw new ApiException("Missing the required parameter 'accessPointTypes' when calling getAccessPoints(Async)");
+            throw new ApiException(
+                    "Missing the required parameter 'accessPointTypes' when calling getAccessPoints(Async)");
         }
-        
+
         // verify the required parameter 'countryCode' is set
         if (countryCode == null) {
             throw new ApiException("Missing the required parameter 'countryCode' when calling getAccessPoints(Async)");
         }
-        
+
         // verify the required parameter 'postalCode' is set
         if (postalCode == null) {
             throw new ApiException("Missing the required parameter 'postalCode' when calling getAccessPoints(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getAccessPointsCall(accessPointTypes, countryCode, postalCode, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getAccessPointsCall(accessPointTypes, countryCode, postalCode,
+                xAmznShippingBusinessId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Returns a list of access points in proximity of input postal code.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param accessPointTypes  (required)
-     * @param countryCode  (required)
-     * @param postalCode  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns a list of access points in proximity of input postal code.  **Usage Plan:**  | Rate (requests per second)
+     * | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param accessPointTypes        (required)
+     * @param countryCode             (required)
+     * @param postalCode              (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetAccessPointsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetAccessPointsResponse getAccessPoints(List<String> accessPointTypes, String countryCode, String postalCode, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<GetAccessPointsResponse> resp = getAccessPointsWithHttpInfo(accessPointTypes, countryCode, postalCode, xAmznShippingBusinessId);
+    public GetAccessPointsResponse getAccessPoints(List<String> accessPointTypes, String countryCode, String postalCode,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<GetAccessPointsResponse> resp = getAccessPointsWithHttpInfo(accessPointTypes, countryCode,
+                postalCode, xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Returns a list of access points in proximity of input postal code.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param accessPointTypes  (required)
-     * @param countryCode  (required)
-     * @param postalCode  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns a list of access points in proximity of input postal code.  **Usage Plan:**  | Rate (requests per second)
+     * | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param accessPointTypes        (required)
+     * @param countryCode             (required)
+     * @param postalCode              (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetAccessPointsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetAccessPointsResponse> getAccessPointsWithHttpInfo(List<String> accessPointTypes, String countryCode, String postalCode, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = getAccessPointsValidateBeforeCall(accessPointTypes, countryCode, postalCode, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetAccessPointsResponse>(){}.getType();
+    public ApiResponse<GetAccessPointsResponse> getAccessPointsWithHttpInfo(List<String> accessPointTypes,
+            String countryCode, String postalCode, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = getAccessPointsValidateBeforeCall(accessPointTypes, countryCode, postalCode,
+                xAmznShippingBusinessId, null, null);
+        Type localVarReturnType = new TypeToken<GetAccessPointsResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Returns a list of access points in proximity of input postal code.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param accessPointTypes  (required)
-     * @param countryCode  (required)
-     * @param postalCode  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Returns a list of access points in proximity of input postal code.  **Usage Plan:**  | Rate
+     * (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response
+     * header returns the usage plan rate limits that were applied to the requested operation, when available. The table
+     * above indicates the default rate and burst values for this operation. Selling partners whose business demands
+     * require higher throughput may see higher rate and burst values then those shown here. For more information, see
+     * [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param accessPointTypes        (required)
+     * @param countryCode             (required)
+     * @param postalCode              (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getAccessPointsAsync(List<String> accessPointTypes, String countryCode, String postalCode, String xAmznShippingBusinessId, final ApiCallback<GetAccessPointsResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getAccessPointsAsync(List<String> accessPointTypes, String countryCode,
+            String postalCode, String xAmznShippingBusinessId, final ApiCallback<GetAccessPointsResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -650,23 +862,32 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAccessPointsValidateBeforeCall(accessPointTypes, countryCode, postalCode, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetAccessPointsResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getAccessPointsValidateBeforeCall(accessPointTypes, countryCode, postalCode,
+                xAmznShippingBusinessId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetAccessPointsResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getAdditionalInputs
-     * @param requestToken The request token returned in the response to the getRates operation. (required)
-     * @param rateId The rate identifier for the shipping offering (rate) returned in the response to the getRates operation. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param requestToken            The request token returned in the response to the getRates operation. (required)
+     * @param rateId                  The rate identifier for the shipping offering (rate) returned in the response to
+     *                                the getRates operation. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getAdditionalInputsCall(String requestToken, String rateId, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getAdditionalInputsCall(String requestToken, String rateId,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -674,107 +895,156 @@ public class ShippingApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (requestToken != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("requestToken", requestToken));
-        if (rateId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("rateId", rateId));
+        if (requestToken != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("requestToken", requestToken));
+        }
+        if (rateId != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("rateId", rateId));
+        }
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getAdditionalInputsValidateBeforeCall(String requestToken, String rateId, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getAdditionalInputsValidateBeforeCall(String requestToken, String rateId,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'requestToken' is set
         if (requestToken == null) {
-            throw new ApiException("Missing the required parameter 'requestToken' when calling getAdditionalInputs(Async)");
+            throw new ApiException(
+                    "Missing the required parameter 'requestToken' when calling getAdditionalInputs(Async)");
         }
-        
+
         // verify the required parameter 'rateId' is set
         if (rateId == null) {
             throw new ApiException("Missing the required parameter 'rateId' when calling getAdditionalInputs(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getAdditionalInputsCall(requestToken, rateId, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getAdditionalInputsCall(requestToken, rateId, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that additional inputs are required for the rate (shipping offering) that you want to purchase.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param requestToken The request token returned in the response to the getRates operation. (required)
-     * @param rateId The rate identifier for the shipping offering (rate) returned in the response to the getRates operation. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
+     * the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that
+     * additional inputs are required for the rate (shipping offering) that you want to purchase.  **Usage Plan:**  |
+     * Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param requestToken            The request token returned in the response to the getRates operation. (required)
+     * @param rateId                  The rate identifier for the shipping offering (rate) returned in the response to
+     *                                the getRates operation. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetAdditionalInputsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetAdditionalInputsResponse getAdditionalInputs(String requestToken, String rateId, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<GetAdditionalInputsResponse> resp = getAdditionalInputsWithHttpInfo(requestToken, rateId, xAmznShippingBusinessId);
+    public GetAdditionalInputsResponse getAdditionalInputs(String requestToken, String rateId,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<GetAdditionalInputsResponse> resp = getAdditionalInputsWithHttpInfo(requestToken, rateId,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that additional inputs are required for the rate (shipping offering) that you want to purchase.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param requestToken The request token returned in the response to the getRates operation. (required)
-     * @param rateId The rate identifier for the shipping offering (rate) returned in the response to the getRates operation. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call
+     * the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that
+     * additional inputs are required for the rate (shipping offering) that you want to purchase.  **Usage Plan:**  |
+     * Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param requestToken            The request token returned in the response to the getRates operation. (required)
+     * @param rateId                  The rate identifier for the shipping offering (rate) returned in the response to
+     *                                the getRates operation. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetAdditionalInputsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetAdditionalInputsResponse> getAdditionalInputsWithHttpInfo(String requestToken, String rateId, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = getAdditionalInputsValidateBeforeCall(requestToken, rateId, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetAdditionalInputsResponse>(){}.getType();
+    public ApiResponse<GetAdditionalInputsResponse> getAdditionalInputsWithHttpInfo(String requestToken, String rateId,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = getAdditionalInputsValidateBeforeCall(requestToken, rateId,
+                xAmznShippingBusinessId, null, null);
+        Type localVarReturnType = new TypeToken<GetAdditionalInputsResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Returns the JSON schema to use for providing additional inputs when needed to purchase a shipping offering. Call the getAdditionalInputs operation when the response to a previous call to the getRates operation indicates that additional inputs are required for the rate (shipping offering) that you want to purchase.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param requestToken The request token returned in the response to the getRates operation. (required)
-     * @param rateId The rate identifier for the shipping offering (rate) returned in the response to the getRates operation. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Returns the JSON schema to use for providing additional inputs when needed to purchase a
+     * shipping offering. Call the getAdditionalInputs operation when the response to a previous call to the getRates
+     * operation indicates that additional inputs are required for the rate (shipping offering) that you want to
+     * purchase.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param requestToken            The request token returned in the response to the getRates operation. (required)
+     * @param rateId                  The rate identifier for the shipping offering (rate) returned in the response to
+     *                                the getRates operation. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getAdditionalInputsAsync(String requestToken, String rateId, String xAmznShippingBusinessId, final ApiCallback<GetAdditionalInputsResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getAdditionalInputsAsync(String requestToken, String rateId,
+            String xAmznShippingBusinessId, final ApiCallback<GetAdditionalInputsResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -795,21 +1065,29 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAdditionalInputsValidateBeforeCall(requestToken, rateId, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetAdditionalInputsResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getAdditionalInputsValidateBeforeCall(requestToken, rateId,
+                xAmznShippingBusinessId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetAdditionalInputsResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getCarrierAccountFormInputs
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getCarrierAccountFormInputsCall(String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getCarrierAccountFormInputsCall(String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -819,85 +1097,121 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getCarrierAccountFormInputsValidateBeforeCall(String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getCarrierAccountFormInputsValidateBeforeCall(String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
 
-        com.squareup.okhttp.Call call = getCarrierAccountFormInputsCall(xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getCarrierAccountFormInputsCall(xAmznShippingBusinessId, progressListener,
+                progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * This API will return a list of input schema required to register a shipper account with the carrier.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API will return a list of input schema required to register a shipper account with the carrier.   **Usage
+     * Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetCarrierAccountFormInputsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetCarrierAccountFormInputsResponse getCarrierAccountFormInputs(String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<GetCarrierAccountFormInputsResponse> resp = getCarrierAccountFormInputsWithHttpInfo(xAmznShippingBusinessId);
+    public GetCarrierAccountFormInputsResponse getCarrierAccountFormInputs(String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
+        ApiResponse<GetCarrierAccountFormInputsResponse> resp = getCarrierAccountFormInputsWithHttpInfo(
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * This API will return a list of input schema required to register a shipper account with the carrier.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API will return a list of input schema required to register a shipper account with the carrier.   **Usage
+     * Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetCarrierAccountFormInputsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetCarrierAccountFormInputsResponse> getCarrierAccountFormInputsWithHttpInfo(String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = getCarrierAccountFormInputsValidateBeforeCall(xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetCarrierAccountFormInputsResponse>(){}.getType();
+    public ApiResponse<GetCarrierAccountFormInputsResponse> getCarrierAccountFormInputsWithHttpInfo(
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = getCarrierAccountFormInputsValidateBeforeCall(xAmznShippingBusinessId, null,
+                null);
+        Type localVarReturnType = new TypeToken<GetCarrierAccountFormInputsResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * This API will return a list of input schema required to register a shipper account with the carrier.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) This API will return a list of input schema required to register a shipper account with the
+     * carrier.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getCarrierAccountFormInputsAsync(String xAmznShippingBusinessId, final ApiCallback<GetCarrierAccountFormInputsResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getCarrierAccountFormInputsAsync(String xAmznShippingBusinessId,
+            final ApiCallback<GetCarrierAccountFormInputsResponse> callback) throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -918,22 +1232,30 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getCarrierAccountFormInputsValidateBeforeCall(xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetCarrierAccountFormInputsResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getCarrierAccountFormInputsValidateBeforeCall(xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetCarrierAccountFormInputsResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getCarrierAccounts
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getCarrierAccountsCall(GetCarrierAccountsRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getCarrierAccountsCall(GetCarrierAccountsRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -943,93 +1265,128 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getCarrierAccountsValidateBeforeCall(GetCarrierAccountsRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getCarrierAccountsValidateBeforeCall(GetCarrierAccountsRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling getCarrierAccounts(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getCarrierAccountsCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getCarrierAccountsCall(body, xAmznShippingBusinessId, progressListener,
+                progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * This API will return Get all carrier accounts for a merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API will return Get all carrier accounts for a merchant.   **Usage Plan:**  | Rate (requests per second) |
+     * Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetCarrierAccountsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetCarrierAccountsResponse getCarrierAccounts(GetCarrierAccountsRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
+    public GetCarrierAccountsResponse getCarrierAccounts(GetCarrierAccountsRequest body, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
         ApiResponse<GetCarrierAccountsResponse> resp = getCarrierAccountsWithHttpInfo(body, xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * This API will return Get all carrier accounts for a merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API will return Get all carrier accounts for a merchant.   **Usage Plan:**  | Rate (requests per second) |
+     * Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetCarrierAccountsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetCarrierAccountsResponse> getCarrierAccountsWithHttpInfo(GetCarrierAccountsRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
+    public ApiResponse<GetCarrierAccountsResponse> getCarrierAccountsWithHttpInfo(GetCarrierAccountsRequest body,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
         com.squareup.okhttp.Call call = getCarrierAccountsValidateBeforeCall(body, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetCarrierAccountsResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetCarrierAccountsResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * This API will return Get all carrier accounts for a merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) This API will return Get all carrier accounts for a merchant.   **Usage Plan:**  | Rate
+     * (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response
+     * header returns the usage plan rate limits that were applied to the requested operation, when available. The table
+     * above indicates the default rate and burst values for this operation. Selling partners whose business demands
+     * require higher throughput may see higher rate and burst values then those shown here. For more information, see
+     * [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getCarrierAccountsAsync(GetCarrierAccountsRequest body, String xAmznShippingBusinessId, final ApiCallback<GetCarrierAccountsResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getCarrierAccountsAsync(GetCarrierAccountsRequest body,
+            String xAmznShippingBusinessId, final ApiCallback<GetCarrierAccountsResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1050,119 +1407,161 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getCarrierAccountsValidateBeforeCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetCarrierAccountsResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getCarrierAccountsValidateBeforeCall(body, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetCarrierAccountsResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getCollectionForm
-     * @param collectionFormId collection form Id to reprint a collection. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param collectionFormId        collection form Id to reprint a collection. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getCollectionFormCall(String collectionFormId, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getCollectionFormCall(String collectionFormId, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/shipping/v2/collectionForms/{collectionFormId}"
-            .replaceAll("\\{" + "collectionFormId" + "\\}", apiClient.escapeString(collectionFormId.toString()));
+                .replaceAll("\\{" + "collectionFormId" + "\\}", apiClient.escapeString(collectionFormId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getCollectionFormValidateBeforeCall(String collectionFormId, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getCollectionFormValidateBeforeCall(String collectionFormId,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'collectionFormId' is set
         if (collectionFormId == null) {
-            throw new ApiException("Missing the required parameter 'collectionFormId' when calling getCollectionForm(Async)");
+            throw new ApiException(
+                    "Missing the required parameter 'collectionFormId' when calling getCollectionForm(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getCollectionFormCall(collectionFormId, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getCollectionFormCall(collectionFormId, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * This API reprint a collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param collectionFormId collection form Id to reprint a collection. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API reprint a collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | |
+     * 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were
+     * applied to the requested operation, when available. The table above indicates the default rate and burst values
+     * for this operation. Selling partners whose business demands require higher throughput may see higher rate and
+     * burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param collectionFormId        collection form Id to reprint a collection. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetCollectionFormResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetCollectionFormResponse getCollectionForm(String collectionFormId, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<GetCollectionFormResponse> resp = getCollectionFormWithHttpInfo(collectionFormId, xAmznShippingBusinessId);
+    public GetCollectionFormResponse getCollectionForm(String collectionFormId, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
+        ApiResponse<GetCollectionFormResponse> resp = getCollectionFormWithHttpInfo(collectionFormId,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * This API reprint a collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param collectionFormId collection form Id to reprint a collection. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API reprint a collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | |
+     * 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were
+     * applied to the requested operation, when available. The table above indicates the default rate and burst values
+     * for this operation. Selling partners whose business demands require higher throughput may see higher rate and
+     * burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param collectionFormId        collection form Id to reprint a collection. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetCollectionFormResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetCollectionFormResponse> getCollectionFormWithHttpInfo(String collectionFormId, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = getCollectionFormValidateBeforeCall(collectionFormId, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetCollectionFormResponse>(){}.getType();
+    public ApiResponse<GetCollectionFormResponse> getCollectionFormWithHttpInfo(String collectionFormId,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = getCollectionFormValidateBeforeCall(collectionFormId, xAmznShippingBusinessId,
+                null, null);
+        Type localVarReturnType = new TypeToken<GetCollectionFormResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * This API reprint a collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param collectionFormId collection form Id to reprint a collection. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) This API reprint a collection form.   **Usage Plan:**  | Rate (requests per second) | Burst | |
+     * ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate
+     * limits that were applied to the requested operation, when available. The table above indicates the default rate
+     * and burst values for this operation. Selling partners whose business demands require higher throughput may see
+     * higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the
+     * Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param collectionFormId        collection form Id to reprint a collection. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getCollectionFormAsync(String collectionFormId, String xAmznShippingBusinessId, final ApiCallback<GetCollectionFormResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getCollectionFormAsync(String collectionFormId, String xAmznShippingBusinessId,
+            final ApiCallback<GetCollectionFormResponse> callback) throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1183,22 +1582,30 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getCollectionFormValidateBeforeCall(collectionFormId, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetCollectionFormResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getCollectionFormValidateBeforeCall(collectionFormId, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetCollectionFormResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getCollectionFormHistory
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getCollectionFormHistoryCall(GetCollectionFormHistoryRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getCollectionFormHistoryCall(GetCollectionFormHistoryRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -1208,93 +1615,131 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getCollectionFormHistoryValidateBeforeCall(GetCollectionFormHistoryRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getCollectionFormHistoryValidateBeforeCall(GetCollectionFormHistoryRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling getCollectionFormHistory(Async)");
+            throw new ApiException(
+                    "Missing the required parameter 'body' when calling getCollectionFormHistory(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getCollectionFormHistoryCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getCollectionFormHistoryCall(body, xAmznShippingBusinessId, progressListener,
+                progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * This API Call to get the history of the previously generated collection forms.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API Call to get the history of the previously generated collection forms.   **Usage Plan:**  | Rate
+     * (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response
+     * header returns the usage plan rate limits that were applied to the requested operation, when available. The table
+     * above indicates the default rate and burst values for this operation. Selling partners whose business demands
+     * require higher throughput may see higher rate and burst values then those shown here. For more information, see
+     * [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetCollectionFormHistoryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetCollectionFormHistoryResponse getCollectionFormHistory(GetCollectionFormHistoryRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<GetCollectionFormHistoryResponse> resp = getCollectionFormHistoryWithHttpInfo(body, xAmznShippingBusinessId);
+    public GetCollectionFormHistoryResponse getCollectionFormHistory(GetCollectionFormHistoryRequest body,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<GetCollectionFormHistoryResponse> resp = getCollectionFormHistoryWithHttpInfo(body,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * This API Call to get the history of the previously generated collection forms.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API Call to get the history of the previously generated collection forms.   **Usage Plan:**  | Rate
+     * (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response
+     * header returns the usage plan rate limits that were applied to the requested operation, when available. The table
+     * above indicates the default rate and burst values for this operation. Selling partners whose business demands
+     * require higher throughput may see higher rate and burst values then those shown here. For more information, see
+     * [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetCollectionFormHistoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetCollectionFormHistoryResponse> getCollectionFormHistoryWithHttpInfo(GetCollectionFormHistoryRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = getCollectionFormHistoryValidateBeforeCall(body, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetCollectionFormHistoryResponse>(){}.getType();
+    public ApiResponse<GetCollectionFormHistoryResponse> getCollectionFormHistoryWithHttpInfo(
+            GetCollectionFormHistoryRequest body, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = getCollectionFormHistoryValidateBeforeCall(body, xAmznShippingBusinessId, null,
+                null);
+        Type localVarReturnType = new TypeToken<GetCollectionFormHistoryResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * This API Call to get the history of the previously generated collection forms.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) This API Call to get the history of the previously generated collection forms.   **Usage Plan:**
+     *  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getCollectionFormHistoryAsync(GetCollectionFormHistoryRequest body, String xAmznShippingBusinessId, final ApiCallback<GetCollectionFormHistoryResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getCollectionFormHistoryAsync(GetCollectionFormHistoryRequest body,
+            String xAmznShippingBusinessId, final ApiCallback<GetCollectionFormHistoryResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1315,22 +1760,30 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getCollectionFormHistoryValidateBeforeCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetCollectionFormHistoryResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getCollectionFormHistoryValidateBeforeCall(body, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetCollectionFormHistoryResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getRates
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getRatesCall(GetRatesRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getRatesCall(GetRatesRequest body, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -1340,93 +1793,125 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getRatesValidateBeforeCall(GetRatesRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getRatesValidateBeforeCall(GetRatesRequest body, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling getRates(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getRatesCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getRatesCall(body, xAmznShippingBusinessId, progressListener,
+                progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Returns the available shipping service offerings.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns the available shipping service offerings.  **Usage Plan:**  | Rate (requests per second) | Burst | | ----
+     * | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits
+     * that were applied to the requested operation, when available. The table above indicates the default rate and
+     * burst values for this operation. Selling partners whose business demands require higher throughput may see higher
+     * rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the
+     * Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetRatesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetRatesResponse getRates(GetRatesRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
+    public GetRatesResponse getRates(GetRatesRequest body, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
         ApiResponse<GetRatesResponse> resp = getRatesWithHttpInfo(body, xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Returns the available shipping service offerings.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns the available shipping service offerings.  **Usage Plan:**  | Rate (requests per second) | Burst | | ----
+     * | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits
+     * that were applied to the requested operation, when available. The table above indicates the default rate and
+     * burst values for this operation. Selling partners whose business demands require higher throughput may see higher
+     * rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the
+     * Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetRatesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetRatesResponse> getRatesWithHttpInfo(GetRatesRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
+    public ApiResponse<GetRatesResponse> getRatesWithHttpInfo(GetRatesRequest body, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
         com.squareup.okhttp.Call call = getRatesValidateBeforeCall(body, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetRatesResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetRatesResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Returns the available shipping service offerings.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Returns the available shipping service offerings.  **Usage Plan:**  | Rate (requests per second)
+     * | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getRatesAsync(GetRatesRequest body, String xAmznShippingBusinessId, final ApiCallback<GetRatesResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getRatesAsync(GetRatesRequest body, String xAmznShippingBusinessId,
+            final ApiCallback<GetRatesResponse> callback) throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1447,142 +1932,215 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getRatesValidateBeforeCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetRatesResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getRatesValidateBeforeCall(body, xAmznShippingBusinessId, progressListener,
+                progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetRatesResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getShipmentDocuments
-     * @param shipmentId The shipment identifier originally returned by the purchaseShipment operation. (required)
-     * @param packageClientReferenceId The package client reference identifier originally provided in the request body parameter for the getRates operation. (required)
-     * @param format The file format of the document. Must be one of the supported formats returned by the getRates operation. (optional)
-     * @param dpi The resolution of the document (for example, 300 means 300 dots per inch). Must be one of the supported resolutions returned in the response to the getRates operation. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
+     *
+     * @param shipmentId               The shipment identifier originally returned by the purchaseShipment operation.
+     *                                 (required)
+     * @param packageClientReferenceId The package client reference identifier originally provided in the request body
+     *                                 parameter for the getRates operation. (required)
+     * @param format                   The file format of the document. Must be one of the supported formats returned by
+     *                                 the getRates operation. (optional)
+     * @param dpi                      The resolution of the document (for example, 300 means 300 dots per inch). Must
+     *                                 be one of the supported resolutions returned in the response to the getRates
+     *                                 operation. (optional)
+     * @param xAmznShippingBusinessId  Amazon shipping business to assume for this request. The default is
+     *                                 AmazonShipping_UK. (optional)
+     * @param progressListener         Progress listener
+     * @param progressRequestListener  Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getShipmentDocumentsCall(String shipmentId, String packageClientReferenceId, String format, BigDecimal dpi, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getShipmentDocumentsCall(String shipmentId, String packageClientReferenceId,
+            String format, BigDecimal dpi, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/shipping/v2/shipments/{shipmentId}/documents"
-            .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
+                .replaceAll("\\{" + "shipmentId" + "\\}", apiClient.escapeString(shipmentId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (packageClientReferenceId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("packageClientReferenceId", packageClientReferenceId));
-        if (format != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("format", format));
-        if (dpi != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("dpi", dpi));
+        if (packageClientReferenceId != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("packageClientReferenceId", packageClientReferenceId));
+        }
+        if (format != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("format", format));
+        }
+        if (dpi != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("dpi", dpi));
+        }
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getShipmentDocumentsValidateBeforeCall(String shipmentId, String packageClientReferenceId, String format, BigDecimal dpi, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getShipmentDocumentsValidateBeforeCall(String shipmentId,
+            String packageClientReferenceId, String format, BigDecimal dpi, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'shipmentId' is set
         if (shipmentId == null) {
-            throw new ApiException("Missing the required parameter 'shipmentId' when calling getShipmentDocuments(Async)");
+            throw new ApiException(
+                    "Missing the required parameter 'shipmentId' when calling getShipmentDocuments(Async)");
         }
-        
+
         // verify the required parameter 'packageClientReferenceId' is set
         if (packageClientReferenceId == null) {
-            throw new ApiException("Missing the required parameter 'packageClientReferenceId' when calling getShipmentDocuments(Async)");
+            throw new ApiException(
+                    "Missing the required parameter 'packageClientReferenceId' when calling getShipmentDocuments(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getShipmentDocumentsCall(shipmentId, packageClientReferenceId, format, dpi, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getShipmentDocumentsCall(shipmentId, packageClientReferenceId, format, dpi,
+                xAmznShippingBusinessId, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Returns the shipping documents associated with a package in a shipment.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param shipmentId The shipment identifier originally returned by the purchaseShipment operation. (required)
-     * @param packageClientReferenceId The package client reference identifier originally provided in the request body parameter for the getRates operation. (required)
-     * @param format The file format of the document. Must be one of the supported formats returned by the getRates operation. (optional)
-     * @param dpi The resolution of the document (for example, 300 means 300 dots per inch). Must be one of the supported resolutions returned in the response to the getRates operation. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns the shipping documents associated with a package in a shipment.  **Usage Plan:**  | Rate (requests per
+     * second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns
+     * the usage plan rate limits that were applied to the requested operation, when available. The table above
+     * indicates the default rate and burst values for this operation. Selling partners whose business demands require
+     * higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage
+     * Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param shipmentId               The shipment identifier originally returned by the purchaseShipment operation.
+     *                                 (required)
+     * @param packageClientReferenceId The package client reference identifier originally provided in the request body
+     *                                 parameter for the getRates operation. (required)
+     * @param format                   The file format of the document. Must be one of the supported formats returned by
+     *                                 the getRates operation. (optional)
+     * @param dpi                      The resolution of the document (for example, 300 means 300 dots per inch). Must
+     *                                 be one of the supported resolutions returned in the response to the getRates
+     *                                 operation. (optional)
+     * @param xAmznShippingBusinessId  Amazon shipping business to assume for this request. The default is
+     *                                 AmazonShipping_UK. (optional)
      * @return GetShipmentDocumentsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetShipmentDocumentsResponse getShipmentDocuments(String shipmentId, String packageClientReferenceId, String format, BigDecimal dpi, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<GetShipmentDocumentsResponse> resp = getShipmentDocumentsWithHttpInfo(shipmentId, packageClientReferenceId, format, dpi, xAmznShippingBusinessId);
+    public GetShipmentDocumentsResponse getShipmentDocuments(String shipmentId, String packageClientReferenceId,
+            String format, BigDecimal dpi, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<GetShipmentDocumentsResponse> resp = getShipmentDocumentsWithHttpInfo(shipmentId,
+                packageClientReferenceId, format, dpi, xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Returns the shipping documents associated with a package in a shipment.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param shipmentId The shipment identifier originally returned by the purchaseShipment operation. (required)
-     * @param packageClientReferenceId The package client reference identifier originally provided in the request body parameter for the getRates operation. (required)
-     * @param format The file format of the document. Must be one of the supported formats returned by the getRates operation. (optional)
-     * @param dpi The resolution of the document (for example, 300 means 300 dots per inch). Must be one of the supported resolutions returned in the response to the getRates operation. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns the shipping documents associated with a package in a shipment.  **Usage Plan:**  | Rate (requests per
+     * second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns
+     * the usage plan rate limits that were applied to the requested operation, when available. The table above
+     * indicates the default rate and burst values for this operation. Selling partners whose business demands require
+     * higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage
+     * Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param shipmentId               The shipment identifier originally returned by the purchaseShipment operation.
+     *                                 (required)
+     * @param packageClientReferenceId The package client reference identifier originally provided in the request body
+     *                                 parameter for the getRates operation. (required)
+     * @param format                   The file format of the document. Must be one of the supported formats returned by
+     *                                 the getRates operation. (optional)
+     * @param dpi                      The resolution of the document (for example, 300 means 300 dots per inch). Must
+     *                                 be one of the supported resolutions returned in the response to the getRates
+     *                                 operation. (optional)
+     * @param xAmznShippingBusinessId  Amazon shipping business to assume for this request. The default is
+     *                                 AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetShipmentDocumentsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetShipmentDocumentsResponse> getShipmentDocumentsWithHttpInfo(String shipmentId, String packageClientReferenceId, String format, BigDecimal dpi, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = getShipmentDocumentsValidateBeforeCall(shipmentId, packageClientReferenceId, format, dpi, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetShipmentDocumentsResponse>(){}.getType();
+    public ApiResponse<GetShipmentDocumentsResponse> getShipmentDocumentsWithHttpInfo(String shipmentId,
+            String packageClientReferenceId, String format, BigDecimal dpi, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = getShipmentDocumentsValidateBeforeCall(shipmentId, packageClientReferenceId,
+                format, dpi, xAmznShippingBusinessId, null, null);
+        Type localVarReturnType = new TypeToken<GetShipmentDocumentsResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Returns the shipping documents associated with a package in a shipment.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param shipmentId The shipment identifier originally returned by the purchaseShipment operation. (required)
-     * @param packageClientReferenceId The package client reference identifier originally provided in the request body parameter for the getRates operation. (required)
-     * @param format The file format of the document. Must be one of the supported formats returned by the getRates operation. (optional)
-     * @param dpi The resolution of the document (for example, 300 means 300 dots per inch). Must be one of the supported resolutions returned in the response to the getRates operation. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Returns the shipping documents associated with a package in a shipment.  **Usage Plan:**  | Rate
+     * (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response
+     * header returns the usage plan rate limits that were applied to the requested operation, when available. The table
+     * above indicates the default rate and burst values for this operation. Selling partners whose business demands
+     * require higher throughput may see higher rate and burst values then those shown here. For more information, see
+     * [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param shipmentId               The shipment identifier originally returned by the purchaseShipment operation.
+     *                                 (required)
+     * @param packageClientReferenceId The package client reference identifier originally provided in the request body
+     *                                 parameter for the getRates operation. (required)
+     * @param format                   The file format of the document. Must be one of the supported formats returned by
+     *                                 the getRates operation. (optional)
+     * @param dpi                      The resolution of the document (for example, 300 means 300 dots per inch). Must
+     *                                 be one of the supported resolutions returned in the response to the getRates
+     *                                 operation. (optional)
+     * @param xAmznShippingBusinessId  Amazon shipping business to assume for this request. The default is
+     *                                 AmazonShipping_UK. (optional)
+     * @param callback                 The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getShipmentDocumentsAsync(String shipmentId, String packageClientReferenceId, String format, BigDecimal dpi, String xAmznShippingBusinessId, final ApiCallback<GetShipmentDocumentsResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getShipmentDocumentsAsync(String shipmentId, String packageClientReferenceId,
+            String format, BigDecimal dpi, String xAmznShippingBusinessId,
+            final ApiCallback<GetShipmentDocumentsResponse> callback) throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1603,23 +2161,33 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getShipmentDocumentsValidateBeforeCall(shipmentId, packageClientReferenceId, format, dpi, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetShipmentDocumentsResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getShipmentDocumentsValidateBeforeCall(shipmentId, packageClientReferenceId,
+                format, dpi, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetShipmentDocumentsResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getTracking
-     * @param trackingId A carrier-generated tracking identifier originally returned by the purchaseShipment operation. (required)
-     * @param carrierId A carrier identifier originally returned by the getRates operation for the selected rate. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param trackingId              A carrier-generated tracking identifier originally returned by the
+     *                                purchaseShipment operation. (required)
+     * @param carrierId               A carrier identifier originally returned by the getRates operation for the
+     *                                selected rate. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getTrackingCall(String trackingId, String carrierId, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getTrackingCall(String trackingId, String carrierId, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1627,107 +2195,149 @@ public class ShippingApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (trackingId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("trackingId", trackingId));
-        if (carrierId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("carrierId", carrierId));
+        if (trackingId != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("trackingId", trackingId));
+        }
+        if (carrierId != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("carrierId", carrierId));
+        }
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getTrackingValidateBeforeCall(String trackingId, String carrierId, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getTrackingValidateBeforeCall(String trackingId, String carrierId,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'trackingId' is set
         if (trackingId == null) {
             throw new ApiException("Missing the required parameter 'trackingId' when calling getTracking(Async)");
         }
-        
+
         // verify the required parameter 'carrierId' is set
         if (carrierId == null) {
             throw new ApiException("Missing the required parameter 'carrierId' when calling getTracking(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getTrackingCall(trackingId, carrierId, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getTrackingCall(trackingId, carrierId, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Returns tracking information for a purchased shipment.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param trackingId A carrier-generated tracking identifier originally returned by the purchaseShipment operation. (required)
-     * @param carrierId A carrier identifier originally returned by the getRates operation for the selected rate. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns tracking information for a purchased shipment.  **Usage Plan:**  | Rate (requests per second) | Burst | |
+     * ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate
+     * limits that were applied to the requested operation, when available. The table above indicates the default rate
+     * and burst values for this operation. Selling partners whose business demands require higher throughput may see
+     * higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the
+     * Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param trackingId              A carrier-generated tracking identifier originally returned by the
+     *                                purchaseShipment operation. (required)
+     * @param carrierId               A carrier identifier originally returned by the getRates operation for the
+     *                                selected rate. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetTrackingResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetTrackingResponse getTracking(String trackingId, String carrierId, String xAmznShippingBusinessId) throws ApiException,LWAException {
+    public GetTrackingResponse getTracking(String trackingId, String carrierId, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
         ApiResponse<GetTrackingResponse> resp = getTrackingWithHttpInfo(trackingId, carrierId, xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Returns tracking information for a purchased shipment.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param trackingId A carrier-generated tracking identifier originally returned by the purchaseShipment operation. (required)
-     * @param carrierId A carrier identifier originally returned by the getRates operation for the selected rate. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Returns tracking information for a purchased shipment.  **Usage Plan:**  | Rate (requests per second) | Burst | |
+     * ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate
+     * limits that were applied to the requested operation, when available. The table above indicates the default rate
+     * and burst values for this operation. Selling partners whose business demands require higher throughput may see
+     * higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the
+     * Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param trackingId              A carrier-generated tracking identifier originally returned by the
+     *                                purchaseShipment operation. (required)
+     * @param carrierId               A carrier identifier originally returned by the getRates operation for the
+     *                                selected rate. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetTrackingResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetTrackingResponse> getTrackingWithHttpInfo(String trackingId, String carrierId, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = getTrackingValidateBeforeCall(trackingId, carrierId, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetTrackingResponse>(){}.getType();
+    public ApiResponse<GetTrackingResponse> getTrackingWithHttpInfo(String trackingId, String carrierId,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = getTrackingValidateBeforeCall(trackingId, carrierId, xAmznShippingBusinessId,
+                null, null);
+        Type localVarReturnType = new TypeToken<GetTrackingResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Returns tracking information for a purchased shipment.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param trackingId A carrier-generated tracking identifier originally returned by the purchaseShipment operation. (required)
-     * @param carrierId A carrier identifier originally returned by the getRates operation for the selected rate. (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Returns tracking information for a purchased shipment.  **Usage Plan:**  | Rate (requests per
+     * second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns
+     * the usage plan rate limits that were applied to the requested operation, when available. The table above
+     * indicates the default rate and burst values for this operation. Selling partners whose business demands require
+     * higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage
+     * Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param trackingId              A carrier-generated tracking identifier originally returned by the
+     *                                purchaseShipment operation. (required)
+     * @param carrierId               A carrier identifier originally returned by the getRates operation for the
+     *                                selected rate. (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getTrackingAsync(String trackingId, String carrierId, String xAmznShippingBusinessId, final ApiCallback<GetTrackingResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getTrackingAsync(String trackingId, String carrierId,
+            String xAmznShippingBusinessId, final ApiCallback<GetTrackingResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1748,22 +2358,30 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getTrackingValidateBeforeCall(trackingId, carrierId, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetTrackingResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getTrackingValidateBeforeCall(trackingId, carrierId, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetTrackingResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for getUnmanifestedShipments
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getUnmanifestedShipmentsCall(GetUnmanifestedShipmentsRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getUnmanifestedShipmentsCall(GetUnmanifestedShipmentsRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -1773,93 +2391,134 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getUnmanifestedShipmentsValidateBeforeCall(GetUnmanifestedShipmentsRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call getUnmanifestedShipmentsValidateBeforeCall(GetUnmanifestedShipmentsRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling getUnmanifestedShipments(Async)");
+            throw new ApiException(
+                    "Missing the required parameter 'body' when calling getUnmanifestedShipments(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = getUnmanifestedShipmentsCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUnmanifestedShipmentsCall(body, xAmznShippingBusinessId, progressListener,
+                progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments         with an eligible carrier for manifesting shall be returned.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
+     *      with an eligible carrier for manifesting shall be returned.   **Usage Plan:**  | Rate (requests per second)
+     * | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return GetUnmanifestedShipmentsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public GetUnmanifestedShipmentsResponse getUnmanifestedShipments(GetUnmanifestedShipmentsRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<GetUnmanifestedShipmentsResponse> resp = getUnmanifestedShipmentsWithHttpInfo(body, xAmznShippingBusinessId);
+    public GetUnmanifestedShipmentsResponse getUnmanifestedShipments(GetUnmanifestedShipmentsRequest body,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<GetUnmanifestedShipmentsResponse> resp = getUnmanifestedShipmentsWithHttpInfo(body,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments         with an eligible carrier for manifesting shall be returned.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments
+     *      with an eligible carrier for manifesting shall be returned.   **Usage Plan:**  | Rate (requests per second)
+     * | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;GetUnmanifestedShipmentsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<GetUnmanifestedShipmentsResponse> getUnmanifestedShipmentsWithHttpInfo(GetUnmanifestedShipmentsRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = getUnmanifestedShipmentsValidateBeforeCall(body, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<GetUnmanifestedShipmentsResponse>(){}.getType();
+    public ApiResponse<GetUnmanifestedShipmentsResponse> getUnmanifestedShipmentsWithHttpInfo(
+            GetUnmanifestedShipmentsRequest body, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = getUnmanifestedShipmentsValidateBeforeCall(body, xAmznShippingBusinessId, null,
+                null);
+        Type localVarReturnType = new TypeToken<GetUnmanifestedShipmentsResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * This API Get all unmanifested carriers with shipment locations. Any locations which has unmanifested shipments         with an eligible carrier for manifesting shall be returned.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) This API Get all unmanifested carriers with shipment locations. Any locations which has
+     * unmanifested shipments         with an eligible carrier for manifesting shall be returned.   **Usage Plan:**  |
+     * Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call getUnmanifestedShipmentsAsync(GetUnmanifestedShipmentsRequest body, String xAmznShippingBusinessId, final ApiCallback<GetUnmanifestedShipmentsResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call getUnmanifestedShipmentsAsync(GetUnmanifestedShipmentsRequest body,
+            String xAmznShippingBusinessId, final ApiCallback<GetUnmanifestedShipmentsResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1880,128 +2539,174 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getUnmanifestedShipmentsValidateBeforeCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<GetUnmanifestedShipmentsResponse>(){}.getType();
+        com.squareup.okhttp.Call call = getUnmanifestedShipmentsValidateBeforeCall(body, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetUnmanifestedShipmentsResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for linkCarrierAccount
-     * @param carrierId The unique identifier associated with the carrier account. (required)
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param carrierId               The unique identifier associated with the carrier account. (required)
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call linkCarrierAccountCall(String carrierId, LinkCarrierAccountRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call linkCarrierAccountCall(String carrierId, LinkCarrierAccountRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
         String localVarPath = "/shipping/v2/carrierAccounts/{carrierId}"
-            .replaceAll("\\{" + "carrierId" + "\\}", apiClient.escapeString(carrierId.toString()));
+                .replaceAll("\\{" + "carrierId" + "\\}", apiClient.escapeString(carrierId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call linkCarrierAccountValidateBeforeCall(String carrierId, LinkCarrierAccountRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call linkCarrierAccountValidateBeforeCall(String carrierId,
+            LinkCarrierAccountRequest body, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'carrierId' is set
         if (carrierId == null) {
             throw new ApiException("Missing the required parameter 'carrierId' when calling linkCarrierAccount(Async)");
         }
-        
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling linkCarrierAccount(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = linkCarrierAccountCall(carrierId, body, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = linkCarrierAccountCall(carrierId, body, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * This API associates/links the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param carrierId The unique identifier associated with the carrier account. (required)
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API associates/links the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests
+     * per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header
+     * returns the usage plan rate limits that were applied to the requested operation, when available. The table above
+     * indicates the default rate and burst values for this operation. Selling partners whose business demands require
+     * higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage
+     * Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param carrierId               The unique identifier associated with the carrier account. (required)
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return LinkCarrierAccountResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public LinkCarrierAccountResponse linkCarrierAccount(String carrierId, LinkCarrierAccountRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<LinkCarrierAccountResponse> resp = linkCarrierAccountWithHttpInfo(carrierId, body, xAmznShippingBusinessId);
+    public LinkCarrierAccountResponse linkCarrierAccount(String carrierId, LinkCarrierAccountRequest body,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<LinkCarrierAccountResponse> resp = linkCarrierAccountWithHttpInfo(carrierId, body,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * This API associates/links the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param carrierId The unique identifier associated with the carrier account. (required)
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API associates/links the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests
+     * per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header
+     * returns the usage plan rate limits that were applied to the requested operation, when available. The table above
+     * indicates the default rate and burst values for this operation. Selling partners whose business demands require
+     * higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage
+     * Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param carrierId               The unique identifier associated with the carrier account. (required)
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;LinkCarrierAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<LinkCarrierAccountResponse> linkCarrierAccountWithHttpInfo(String carrierId, LinkCarrierAccountRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = linkCarrierAccountValidateBeforeCall(carrierId, body, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<LinkCarrierAccountResponse>(){}.getType();
+    public ApiResponse<LinkCarrierAccountResponse> linkCarrierAccountWithHttpInfo(String carrierId,
+            LinkCarrierAccountRequest body, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = linkCarrierAccountValidateBeforeCall(carrierId, body, xAmznShippingBusinessId,
+                null, null);
+        Type localVarReturnType = new TypeToken<LinkCarrierAccountResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * This API associates/links the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param carrierId The unique identifier associated with the carrier account. (required)
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) This API associates/links the specified carrier account with the merchant.   **Usage Plan:**  |
+     * Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param carrierId               The unique identifier associated with the carrier account. (required)
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call linkCarrierAccountAsync(String carrierId, LinkCarrierAccountRequest body, String xAmznShippingBusinessId, final ApiCallback<LinkCarrierAccountResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call linkCarrierAccountAsync(String carrierId, LinkCarrierAccountRequest body,
+            String xAmznShippingBusinessId, final ApiCallback<LinkCarrierAccountResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2022,22 +2727,30 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = linkCarrierAccountValidateBeforeCall(carrierId, body, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<LinkCarrierAccountResponse>(){}.getType();
+        com.squareup.okhttp.Call call = linkCarrierAccountValidateBeforeCall(carrierId, body, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<LinkCarrierAccountResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for oneClickShipment
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call oneClickShipmentCall(OneClickShipmentRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call oneClickShipmentCall(OneClickShipmentRequest body, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -2047,93 +2760,127 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call oneClickShipmentValidateBeforeCall(OneClickShipmentRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call oneClickShipmentValidateBeforeCall(OneClickShipmentRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling oneClickShipment(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = oneClickShipmentCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = oneClickShipmentCall(body, xAmznShippingBusinessId, progressListener,
+                progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Purchases a shipping service identifier and returns purchase-related details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Purchases a shipping service identifier and returns purchase-related details and documents.  **Usage Plan:**  |
+     * Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return OneClickShipmentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public OneClickShipmentResponse oneClickShipment(OneClickShipmentRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
+    public OneClickShipmentResponse oneClickShipment(OneClickShipmentRequest body, String xAmznShippingBusinessId)
+            throws ApiException, LWAException {
         ApiResponse<OneClickShipmentResponse> resp = oneClickShipmentWithHttpInfo(body, xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Purchases a shipping service identifier and returns purchase-related details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Purchases a shipping service identifier and returns purchase-related details and documents.  **Usage Plan:**  |
+     * Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60;
+     * response header returns the usage plan rate limits that were applied to the requested operation, when available.
+     * The table above indicates the default rate and burst values for this operation. Selling partners whose business
+     * demands require higher throughput may see higher rate and burst values then those shown here. For more
+     * information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;OneClickShipmentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<OneClickShipmentResponse> oneClickShipmentWithHttpInfo(OneClickShipmentRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
+    public ApiResponse<OneClickShipmentResponse> oneClickShipmentWithHttpInfo(OneClickShipmentRequest body,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
         com.squareup.okhttp.Call call = oneClickShipmentValidateBeforeCall(body, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<OneClickShipmentResponse>(){}.getType();
+        Type localVarReturnType = new TypeToken<OneClickShipmentResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Purchases a shipping service identifier and returns purchase-related details and documents.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Purchases a shipping service identifier and returns purchase-related details and documents.
+     * **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call oneClickShipmentAsync(OneClickShipmentRequest body, String xAmznShippingBusinessId, final ApiCallback<OneClickShipmentResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call oneClickShipmentAsync(OneClickShipmentRequest body, String xAmznShippingBusinessId,
+            final ApiCallback<OneClickShipmentResponse> callback) throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2154,23 +2901,32 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = oneClickShipmentValidateBeforeCall(body, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<OneClickShipmentResponse>(){}.getType();
+        com.squareup.okhttp.Call call = oneClickShipmentValidateBeforeCall(body, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<OneClickShipmentResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for purchaseShipment
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call purchaseShipmentCall(PurchaseShipmentRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call purchaseShipmentCall(PurchaseShipmentRequest body, String xAmznIdempotencyKey,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -2180,98 +2936,149 @@ public class ShippingApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznIdempotencyKey != null)
-        localVarHeaderParams.put("x-amzn-IdempotencyKey", apiClient.parameterToString(xAmznIdempotencyKey));
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznIdempotencyKey != null) {
+            localVarHeaderParams.put("x-amzn-IdempotencyKey", apiClient.parameterToString(xAmznIdempotencyKey));
+        }
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call purchaseShipmentValidateBeforeCall(PurchaseShipmentRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call purchaseShipmentValidateBeforeCall(PurchaseShipmentRequest body,
+            String xAmznIdempotencyKey, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling purchaseShipment(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = purchaseShipmentCall(body, xAmznIdempotencyKey, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = purchaseShipmentCall(body, xAmznIdempotencyKey, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * Purchases a shipping service and returns purchase related details and documents.  Note: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the 10 minutes have expired, you will receive an error response with the error code equal to \&quot;TOKEN_EXPIRED\&quot;. If you receive this error response, you must get the rates for the shipment again.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Purchases a shipping service and returns purchase related details and documents.  Note: You must complete the
+     * purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the
+     * 10 minutes have expired, you will receive an error response with the error code equal to
+     * \&quot;TOKEN_EXPIRED\&quot;. If you receive this error response, you must get the rates for the shipment again.
+     * **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return PurchaseShipmentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public PurchaseShipmentResponse purchaseShipment(PurchaseShipmentRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<PurchaseShipmentResponse> resp = purchaseShipmentWithHttpInfo(body, xAmznIdempotencyKey, xAmznShippingBusinessId);
+    public PurchaseShipmentResponse purchaseShipment(PurchaseShipmentRequest body, String xAmznIdempotencyKey,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<PurchaseShipmentResponse> resp = purchaseShipmentWithHttpInfo(body, xAmznIdempotencyKey,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * Purchases a shipping service and returns purchase related details and documents.  Note: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the 10 minutes have expired, you will receive an error response with the error code equal to \&quot;TOKEN_EXPIRED\&quot;. If you receive this error response, you must get the rates for the shipment again.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * Purchases a shipping service and returns purchase related details and documents.  Note: You must complete the
+     * purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the
+     * 10 minutes have expired, you will receive an error response with the error code equal to
+     * \&quot;TOKEN_EXPIRED\&quot;. If you receive this error response, you must get the rates for the shipment again.
+     * **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;PurchaseShipmentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<PurchaseShipmentResponse> purchaseShipmentWithHttpInfo(PurchaseShipmentRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = purchaseShipmentValidateBeforeCall(body, xAmznIdempotencyKey, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<PurchaseShipmentResponse>(){}.getType();
+    public ApiResponse<PurchaseShipmentResponse> purchaseShipmentWithHttpInfo(PurchaseShipmentRequest body,
+            String xAmznIdempotencyKey, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = purchaseShipmentValidateBeforeCall(body, xAmznIdempotencyKey,
+                xAmznShippingBusinessId, null, null);
+        Type localVarReturnType = new TypeToken<PurchaseShipmentResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * Purchases a shipping service and returns purchase related details and documents.  Note: You must complete the purchase within 10 minutes of rate creation by the shipping service provider. If you make the request after the 10 minutes have expired, you will receive an error response with the error code equal to \&quot;TOKEN_EXPIRED\&quot;. If you receive this error response, you must get the rates for the shipment again.  **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param body  (required)
-     * @param xAmznIdempotencyKey A unique value which the server uses to recognize subsequent retries of the same request. (optional)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) Purchases a shipping service and returns purchase related details and documents.  Note: You must
+     * complete the purchase within 10 minutes of rate creation by the shipping service provider. If you make the
+     * request after the 10 minutes have expired, you will receive an error response with the error code equal to
+     * \&quot;TOKEN_EXPIRED\&quot;. If you receive this error response, you must get the rates for the shipment again.
+     * **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The
+     * &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the
+     * requested operation, when available. The table above indicates the default rate and burst values for this
+     * operation. Selling partners whose business demands require higher throughput may see higher rate and burst values
+     * then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param body                    (required)
+     * @param xAmznIdempotencyKey     A unique value which the server uses to recognize subsequent retries of the same
+     *                                request. (optional)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call purchaseShipmentAsync(PurchaseShipmentRequest body, String xAmznIdempotencyKey, String xAmznShippingBusinessId, final ApiCallback<PurchaseShipmentResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call purchaseShipmentAsync(PurchaseShipmentRequest body, String xAmznIdempotencyKey,
+            String xAmznShippingBusinessId, final ApiCallback<PurchaseShipmentResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2292,128 +3099,175 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = purchaseShipmentValidateBeforeCall(body, xAmznIdempotencyKey, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<PurchaseShipmentResponse>(){}.getType();
+        com.squareup.okhttp.Call call = purchaseShipmentValidateBeforeCall(body, xAmznIdempotencyKey,
+                xAmznShippingBusinessId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PurchaseShipmentResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
     /**
      * Build call for unlinkCarrierAccount
-     * @param carrierId carrier Id to unlink with merchant. (required)
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param progressListener Progress listener
+     *
+     * @param carrierId               carrier Id to unlink with merchant. (required)
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param progressListener        Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call unlinkCarrierAccountCall(String carrierId, UnlinkCarrierAccountRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call unlinkCarrierAccountCall(String carrierId, UnlinkCarrierAccountRequest body,
+            String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
         Object localVarPostBody = body;
 
         // create path and map variables
         String localVarPath = "/shipping/v2/carrierAccounts/{carrierId}/unlink"
-            .replaceAll("\\{" + "carrierId" + "\\}", apiClient.escapeString(carrierId.toString()));
+                .replaceAll("\\{" + "carrierId" + "\\}", apiClient.escapeString(carrierId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        if (xAmznShippingBusinessId != null)
-        localVarHeaderParams.put("x-amzn-shipping-business-id", apiClient.parameterToString(xAmznShippingBusinessId));
+        if (xAmznShippingBusinessId != null) {
+            localVarHeaderParams.put("x-amzn-shipping-business-id",
+                    apiClient.parameterToString(xAmznShippingBusinessId));
+        }
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        if(progressListener != null) {
+        if (progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain)
+                        throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
                 }
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[]{};
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams,
+                localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call unlinkCarrierAccountValidateBeforeCall(String carrierId, UnlinkCarrierAccountRequest body, String xAmznShippingBusinessId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException, LWAException {
-        
+    private com.squareup.okhttp.Call unlinkCarrierAccountValidateBeforeCall(String carrierId,
+            UnlinkCarrierAccountRequest body, String xAmznShippingBusinessId,
+            final ProgressResponseBody.ProgressListener progressListener,
+            final ProgressRequestBody.ProgressRequestListener progressRequestListener)
+            throws ApiException, LWAException {
+
         // verify the required parameter 'carrierId' is set
         if (carrierId == null) {
-            throw new ApiException("Missing the required parameter 'carrierId' when calling unlinkCarrierAccount(Async)");
+            throw new ApiException(
+                    "Missing the required parameter 'carrierId' when calling unlinkCarrierAccount(Async)");
         }
-        
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling unlinkCarrierAccount(Async)");
         }
-        
 
-        com.squareup.okhttp.Call call = unlinkCarrierAccountCall(carrierId, body, xAmznShippingBusinessId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = unlinkCarrierAccountCall(carrierId, body, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * 
-     * This API Unlink the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param carrierId carrier Id to unlink with merchant. (required)
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API Unlink the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests per second)
+     * | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param carrierId               carrier Id to unlink with merchant. (required)
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return UnlinkCarrierAccountResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public UnlinkCarrierAccountResponse unlinkCarrierAccount(String carrierId, UnlinkCarrierAccountRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        ApiResponse<UnlinkCarrierAccountResponse> resp = unlinkCarrierAccountWithHttpInfo(carrierId, body, xAmznShippingBusinessId);
+    public UnlinkCarrierAccountResponse unlinkCarrierAccount(String carrierId, UnlinkCarrierAccountRequest body,
+            String xAmznShippingBusinessId) throws ApiException, LWAException {
+        ApiResponse<UnlinkCarrierAccountResponse> resp = unlinkCarrierAccountWithHttpInfo(carrierId, body,
+                xAmznShippingBusinessId);
         return resp.getData();
     }
 
     /**
-     * 
-     * This API Unlink the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param carrierId carrier Id to unlink with merchant. (required)
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
+     * This API Unlink the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests per second)
+     * | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage
+     * plan rate limits that were applied to the requested operation, when available. The table above indicates the
+     * default rate and burst values for this operation. Selling partners whose business demands require higher
+     * throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and
+     * Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param carrierId               carrier Id to unlink with merchant. (required)
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
      * @return ApiResponse&lt;UnlinkCarrierAccountResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public ApiResponse<UnlinkCarrierAccountResponse> unlinkCarrierAccountWithHttpInfo(String carrierId, UnlinkCarrierAccountRequest body, String xAmznShippingBusinessId) throws ApiException,LWAException {
-        com.squareup.okhttp.Call call = unlinkCarrierAccountValidateBeforeCall(carrierId, body, xAmznShippingBusinessId, null, null);
-        Type localVarReturnType = new TypeToken<UnlinkCarrierAccountResponse>(){}.getType();
+    public ApiResponse<UnlinkCarrierAccountResponse> unlinkCarrierAccountWithHttpInfo(String carrierId,
+            UnlinkCarrierAccountRequest body, String xAmznShippingBusinessId) throws ApiException, LWAException {
+        com.squareup.okhttp.Call call = unlinkCarrierAccountValidateBeforeCall(carrierId, body, xAmznShippingBusinessId,
+                null, null);
+        Type localVarReturnType = new TypeToken<UnlinkCarrierAccountResponse>() {
+        }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
-     * This API Unlink the specified carrier account with the merchant.   **Usage Plan:**  | Rate (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
-     * @param carrierId carrier Id to unlink with merchant. (required)
-     * @param body  (required)
-     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is AmazonShipping_UK. (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * (asynchronously) This API Unlink the specified carrier account with the merchant.   **Usage Plan:**  | Rate
+     * (requests per second) | Burst | | ---- | ---- | | 80 | 100 |  The &#x60;x-amzn-RateLimit-Limit&#x60; response
+     * header returns the usage plan rate limits that were applied to the requested operation, when available. The table
+     * above indicates the default rate and burst values for this operation. Selling partners whose business demands
+     * require higher throughput may see higher rate and burst values then those shown here. For more information, see
+     * [Usage Plans and Rate Limits in the Selling Partner
+     * API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+     *
+     * @param carrierId               carrier Id to unlink with merchant. (required)
+     * @param body                    (required)
+     * @param xAmznShippingBusinessId Amazon shipping business to assume for this request. The default is
+     *                                AmazonShipping_UK. (optional)
+     * @param callback                The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @throws LWAException If calls to fetch LWA access token fails
      */
-    public com.squareup.okhttp.Call unlinkCarrierAccountAsync(String carrierId, UnlinkCarrierAccountRequest body, String xAmznShippingBusinessId, final ApiCallback<UnlinkCarrierAccountResponse> callback) throws ApiException, LWAException {
+    public com.squareup.okhttp.Call unlinkCarrierAccountAsync(String carrierId, UnlinkCarrierAccountRequest body,
+            String xAmznShippingBusinessId, final ApiCallback<UnlinkCarrierAccountResponse> callback)
+            throws ApiException, LWAException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2434,13 +3288,16 @@ public class ShippingApi {
             };
         }
 
-        com.squareup.okhttp.Call call = unlinkCarrierAccountValidateBeforeCall(carrierId, body, xAmznShippingBusinessId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UnlinkCarrierAccountResponse>(){}.getType();
+        com.squareup.okhttp.Call call = unlinkCarrierAccountValidateBeforeCall(carrierId, body, xAmznShippingBusinessId,
+                progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<UnlinkCarrierAccountResponse>() {
+        }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
 
     public static class Builder {
+
         private LWAAuthorizationCredentials lwaAuthorizationCredentials;
         private String endpoint;
         private LWAAccessTokenCache lwaAccessTokenCache;
@@ -2457,22 +3314,22 @@ public class ShippingApi {
             this.endpoint = endpoint;
             return this;
         }
-        
+
         public Builder lwaAccessTokenCache(LWAAccessTokenCache lwaAccessTokenCache) {
             this.lwaAccessTokenCache = lwaAccessTokenCache;
             return this;
         }
-		
-	   public Builder disableAccessTokenCache() {
+
+        public Builder disableAccessTokenCache() {
             this.disableAccessTokenCache = true;
             return this;
         }
 
-        public Builder rateLimitConfigurationOnRequests(RateLimitConfiguration rateLimitConfiguration){
+        public Builder rateLimitConfigurationOnRequests(RateLimitConfiguration rateLimitConfiguration) {
             this.rateLimitConfiguration = rateLimitConfiguration;
             return this;
         }
-        
+
         public Builder disableRateLimitOnRequests() {
             this.rateLimitConfiguration = null;
             return this;
@@ -2486,22 +3343,21 @@ public class ShippingApi {
             if (StringUtil.isEmpty(endpoint)) {
                 throw new RuntimeException("Endpoint not set");
             }
-            
-            LWAAuthorizationSigner lwaAuthorizationSigner = null;            
+
+            LWAAuthorizationSigner lwaAuthorizationSigner = null;
             if (disableAccessTokenCache) {
                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials);
-            }
-            else {
+            } else {
                 if (lwaAccessTokenCache == null) {
-                    lwaAccessTokenCache = new LWAAccessTokenCacheImpl();                  
-                 }
-                 lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials,lwaAccessTokenCache);
+                    lwaAccessTokenCache = new LWAAccessTokenCacheImpl();
+                }
+                lwaAuthorizationSigner = new LWAAuthorizationSigner(lwaAuthorizationCredentials, lwaAccessTokenCache);
             }
 
             return new ShippingApi(new ApiClient()
-                .setLWAAuthorizationSigner(lwaAuthorizationSigner)
-                .setBasePath(endpoint)
-                .setRateLimiter(rateLimitConfiguration));
+                    .setLWAAuthorizationSigner(lwaAuthorizationSigner)
+                    .setBasePath(endpoint)
+                    .setRateLimiter(rateLimitConfiguration));
         }
     }
 }

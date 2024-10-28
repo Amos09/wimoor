@@ -1,17 +1,14 @@
 package com.wimoor.amazon.product.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wimoor.amazon.product.pojo.entity.AmzProductRefresh;
-
 import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author wimoor team
@@ -20,12 +17,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 @Mapper
 public interface AmzProductRefreshMapper extends BaseMapper<AmzProductRefresh> {
 
-	void insertDefault();
+    void insertDefault();
 
-	AmzProductRefresh findForDetailRefresh(@Param("amazonauthid") String amazonauthid);
-	
-	List<AmzProductRefresh> findForCatalogRefresh(@Param("amazonauthid") String amazonauthid);
+    AmzProductRefresh findForDetailRefresh(@Param("amazonauthid") String amazonauthid);
 
-	List<AmzProductRefresh> findForPriceRefresh(@Param("amazonauthid")String amazonauthid);
+    List<AmzProductRefresh> findForCatalogRefresh(@Param("amazonauthid") String amazonauthid);
+
+    List<AmzProductRefresh> findForPriceRefresh(@Param("amazonauthid") String amazonauthid);
 
 }

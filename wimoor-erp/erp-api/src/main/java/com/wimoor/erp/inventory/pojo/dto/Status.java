@@ -1,27 +1,28 @@
 package com.wimoor.erp.inventory.pojo.dto;
 
 public enum Status {
-	inbound("inbound", 1), fulfillable("fulfillable", 2), outbound("outbound", 3);
-	public String value;
-	private int index;
-	private Status(String value, int index) {
-		this.value = value;
-		this.index = index;
-	}
+    inbound("inbound", 1), fulfillable("fulfillable", 2), outbound("outbound", 3);
+    public String value;
+    private int index;
 
-	public String getValue() {
-		return value;
-	}
+    private Status(String value, int index) {
+        this.value = value;
+        this.index = index;
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    public String getValue() {
+        return value;
+    }
 
-	public int getIndex() {
-		return index;
-	}
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-	public void setIndex(int index) {
-		this.index = index;
-	}
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 }

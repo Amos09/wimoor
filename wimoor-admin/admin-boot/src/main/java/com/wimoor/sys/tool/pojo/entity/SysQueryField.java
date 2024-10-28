@@ -1,18 +1,16 @@
 package com.wimoor.sys.tool.pojo.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -21,12 +19,12 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_sys_query_field")
-@ApiModel(value="SysQueryField对象", description="")
+@ApiModel(value = "SysQueryField对象", description = "")
 public class SysQueryField implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
-      private String fquery;
+    private String fquery;
 
     private String ffield;
 
@@ -51,8 +49,8 @@ public class SysQueryField implements Serializable {
     private String align;
 
     private Date createdate;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private Boolean isShow;
 
 

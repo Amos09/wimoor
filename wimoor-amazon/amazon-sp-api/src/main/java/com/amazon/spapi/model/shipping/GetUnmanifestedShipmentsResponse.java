@@ -13,17 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.UnmanifestedCarrierInformationList;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The Response  for the GetUnmanifestedShipmentsResponse operation.
@@ -31,66 +24,71 @@ import java.io.IOException;
 @ApiModel(description = "The Response  for the GetUnmanifestedShipmentsResponse operation.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class GetUnmanifestedShipmentsResponse {
-  @SerializedName("unmanifestedCarrierInformationList")
-  private UnmanifestedCarrierInformationList unmanifestedCarrierInformationList = null;
 
-  public GetUnmanifestedShipmentsResponse unmanifestedCarrierInformationList(UnmanifestedCarrierInformationList unmanifestedCarrierInformationList) {
-    this.unmanifestedCarrierInformationList = unmanifestedCarrierInformationList;
-    return this;
-  }
+    @SerializedName("unmanifestedCarrierInformationList")
+    private UnmanifestedCarrierInformationList unmanifestedCarrierInformationList = null;
 
-   /**
-   * Get unmanifestedCarrierInformationList
-   * @return unmanifestedCarrierInformationList
-  **/
-  @ApiModelProperty(value = "")
-  public UnmanifestedCarrierInformationList getUnmanifestedCarrierInformationList() {
-    return unmanifestedCarrierInformationList;
-  }
-
-  public void setUnmanifestedCarrierInformationList(UnmanifestedCarrierInformationList unmanifestedCarrierInformationList) {
-    this.unmanifestedCarrierInformationList = unmanifestedCarrierInformationList;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetUnmanifestedShipmentsResponse unmanifestedCarrierInformationList(
+            UnmanifestedCarrierInformationList unmanifestedCarrierInformationList) {
+        this.unmanifestedCarrierInformationList = unmanifestedCarrierInformationList;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get unmanifestedCarrierInformationList
+     *
+     * @return unmanifestedCarrierInformationList
+     **/
+    @ApiModelProperty(value = "")
+    public UnmanifestedCarrierInformationList getUnmanifestedCarrierInformationList() {
+        return unmanifestedCarrierInformationList;
     }
-    GetUnmanifestedShipmentsResponse getUnmanifestedShipmentsResponse = (GetUnmanifestedShipmentsResponse) o;
-    return Objects.equals(this.unmanifestedCarrierInformationList, getUnmanifestedShipmentsResponse.unmanifestedCarrierInformationList);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(unmanifestedCarrierInformationList);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetUnmanifestedShipmentsResponse {\n");
-    
-    sb.append("    unmanifestedCarrierInformationList: ").append(toIndentedString(unmanifestedCarrierInformationList)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setUnmanifestedCarrierInformationList(
+            UnmanifestedCarrierInformationList unmanifestedCarrierInformationList) {
+        this.unmanifestedCarrierInformationList = unmanifestedCarrierInformationList;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetUnmanifestedShipmentsResponse getUnmanifestedShipmentsResponse = (GetUnmanifestedShipmentsResponse) o;
+        return Objects.equals(this.unmanifestedCarrierInformationList,
+                getUnmanifestedShipmentsResponse.unmanifestedCarrierInformationList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(unmanifestedCarrierInformationList);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetUnmanifestedShipmentsResponse {\n");
+
+        sb.append("    unmanifestedCarrierInformationList: ")
+                .append(toIndentedString(unmanifestedCarrierInformationList)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

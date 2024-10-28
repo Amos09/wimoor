@@ -5,7 +5,7 @@ import com.wimoor.amazon.inventory.pojo.entity.AmzInventoryPlanning;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team

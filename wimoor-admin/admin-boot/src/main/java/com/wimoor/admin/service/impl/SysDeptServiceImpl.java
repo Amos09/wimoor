@@ -1,6 +1,9 @@
 package com.wimoor.admin.service.impl;
 
- 
+
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wimoor.admin.common.constants.GlobalConstants;
@@ -11,17 +14,15 @@ import com.wimoor.admin.pojo.vo.DeptVO;
 import com.wimoor.admin.service.ISysDeptService;
 import com.wimoor.common.SelectVO;
 import com.wimoor.common.TreeSelectVO;
-
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.StrUtil;
-
-import org.apache.logging.log4j.util.Strings;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
+import org.apache.logging.log4j.util.Strings;
+import org.springframework.stereotype.Service;
 
 /**
  * 部门业务类
@@ -194,44 +195,45 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
             treePath = String.valueOf(SystemConstants.ROOT_DEPT_ID);
         } else {
             SysDept parentDept = this.getById(parentId);
-            treePath = Optional.ofNullable(parentDept).map(item -> item.getTreePath() + "," + item.getId()).orElse(Strings.EMPTY);
+            treePath = Optional.ofNullable(parentDept).map(item -> item.getTreePath() + "," + item.getId())
+                    .orElse(Strings.EMPTY);
         }
         return treePath;
     }
 
-	@Override
-	public List<SelectVO> listSelect() {
-		// TODO Auto-generated method stub
-		  List<SysDept> deptList = this.list(new LambdaQueryWrapper<SysDept>()
-	                .eq(SysDept::getStatus, GlobalConstants.STATUS_YES)
-	                .orderByAsc(SysDept::getSort)
-	        );
-	        List<SelectVO> deptSelectList = recursionSelectList(SystemConstants.ROOT_DEPT_ID, deptList);
-	        return deptSelectList;
-	}
- 
+    @Override
+    public List<SelectVO> listSelect() {
+        // TODO Auto-generated method stub
+        List<SysDept> deptList = this.list(new LambdaQueryWrapper<SysDept>()
+                .eq(SysDept::getStatus, GlobalConstants.STATUS_YES)
+                .orderByAsc(SysDept::getSort)
+        );
+        List<SelectVO> deptSelectList = recursionSelectList(SystemConstants.ROOT_DEPT_ID, deptList);
+        return deptSelectList;
+    }
 
-	    /**
-	     * 递归生成部门表格层级列表
-	     *
-	     * @param parentId
-	     * @param deptList
-	     * @return
-	     */
-	    public static List<SelectVO> recursionSelectList(String parentId, List<SysDept> deptList) {
-	        List<SelectVO> deptTreeSelectList = new ArrayList<>();
-	        Optional.ofNullable(deptList).orElse(new ArrayList<>())
-	                .stream()
-	                .filter(dept -> dept.getParentId().equals(parentId))
-	                .forEach(dept -> {
-	                	SelectVO treeSelectVO = new SelectVO(dept.getId(), dept.getName());
-	                    List<SelectVO> children = recursionSelectList(dept.getId(), deptList);
-	                    if (CollectionUtil.isNotEmpty(children)) {
-	                        treeSelectVO.setChildren(children);
-	                    }
-	                    deptTreeSelectList.add(treeSelectVO);
-	                });
-	        return deptTreeSelectList;
-	    }
+
+    /**
+     * 递归生成部门表格层级列表
+     *
+     * @param parentId
+     * @param deptList
+     * @return
+     */
+    public static List<SelectVO> recursionSelectList(String parentId, List<SysDept> deptList) {
+        List<SelectVO> deptTreeSelectList = new ArrayList<>();
+        Optional.ofNullable(deptList).orElse(new ArrayList<>())
+                .stream()
+                .filter(dept -> dept.getParentId().equals(parentId))
+                .forEach(dept -> {
+                    SelectVO treeSelectVO = new SelectVO(dept.getId(), dept.getName());
+                    List<SelectVO> children = recursionSelectList(dept.getId(), deptList);
+                    if (CollectionUtil.isNotEmpty(children)) {
+                        treeSelectVO.setChildren(children);
+                    }
+                    deptTreeSelectList.add(treeSelectVO);
+                });
+        return deptTreeSelectList;
+    }
 
 }

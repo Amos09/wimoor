@@ -3,23 +3,23 @@ package com.amazon.spapi.documents;
 import com.amazon.spapi.documents.exception.CryptoException;
 import com.amazon.spapi.documents.exception.HttpResponseException;
 import com.amazon.spapi.documents.impl.OkHttpTransferClient;
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import org.apache.commons.io.FileUtils;
 
 /**
  * Helper class for encrypting and uploading documents.
  */
 public class UploadHelper {
+
     private final HttpTransferClient httpTransferClient;
     private final String tmpFilePrefix;
     private final String tmpFileSuffix;
     private final File tmpFileDirectory;
 
     private UploadHelper(HttpTransferClient httpTransferClient, String tmpFilePrefix, String tmpFileSuffix,
-                         File tmpFileDirectory) {
+            File tmpFileDirectory) {
         this.httpTransferClient = httpTransferClient;
         this.tmpFilePrefix = tmpFilePrefix;
         this.tmpFileSuffix = tmpFileSuffix;
@@ -29,15 +29,15 @@ public class UploadHelper {
     /**
      * Perform the specified upload. This method will buffer the encrypted contents of the document in a temporary file
      * before uploading to the specified url.
-     *
+     * <p>
      * Common reasons for receiving a 403 response include:
      * <li> The signed URL has expired
      * <li> {@link UploadSpecification#getContentType()} does not match the content type the URL was signed with
      *
      * @param spec The specification for the upload
-     * @throws CryptoException Crypto exception
+     * @throws CryptoException       Crypto exception
      * @throws HttpResponseException On failure HTTP response
-     * @throws IOException IO exception
+     * @throws IOException           IO exception
      */
     public void upload(UploadSpecification spec) throws CryptoException, HttpResponseException, IOException {
         File tmpFile = File.createTempFile(tmpFilePrefix, tmpFileSuffix, tmpFileDirectory);
@@ -59,6 +59,7 @@ public class UploadHelper {
      * Use this to create an instance of an {@link UploadHelper}.
      */
     public static class Builder {
+
         private HttpTransferClient httpTransferClient = null;
         private String tmpFilePrefix = "SPAPI";
         private String tmpFileSuffix = null;

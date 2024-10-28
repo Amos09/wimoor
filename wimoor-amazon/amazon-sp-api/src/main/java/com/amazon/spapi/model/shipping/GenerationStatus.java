@@ -13,62 +13,58 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 /**
  * Generation Status.
  */
 @JsonAdapter(GenerationStatus.Adapter.class)
 public enum GenerationStatus {
-  
-  COMPLETED("Completed"),
-  
-  INPROGRESS("InProgress");
 
-  private String value;
+    COMPLETED("Completed"),
 
-  GenerationStatus(String value) {
-    this.value = value;
-  }
+    INPROGRESS("InProgress");
 
-  public String getValue() {
-    return value;
-  }
+    private String value;
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  public static GenerationStatus fromValue(String text) {
-    for (GenerationStatus b : GenerationStatus.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    GenerationStatus(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<GenerationStatus> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final GenerationStatus enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public GenerationStatus read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return GenerationStatus.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static GenerationStatus fromValue(String text) {
+        for (GenerationStatus b : GenerationStatus.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<GenerationStatus> {
+
+        @Override
+        public void write(final JsonWriter jsonWriter, final GenerationStatus enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public GenerationStatus read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return GenerationStatus.fromValue(String.valueOf(value));
+        }
+    }
 }
 

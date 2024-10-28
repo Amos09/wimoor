@@ -1,17 +1,17 @@
 package com.wimoor.amazon.adv.report.pojo;
 
 import java.math.BigInteger;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 
 public class AmzAdvRequestKey {
-	@Id
-	@Column(name="reportId")
+
+    @Id
+    @Column(name = "reportId")
     private String reportid;
-	
-	@Id
-	@Column(name="profileId")
+
+    @Id
+    @Column(name = "profileId")
     private BigInteger profileid;
 
     public String getReportid() {
@@ -22,13 +22,13 @@ public class AmzAdvRequestKey {
         this.reportid = reportid == null ? null : reportid.trim();
     }
 
-	public BigInteger getProfileid() {
-		return profileid;
-	}
+    public BigInteger getProfileid() {
+        return profileid;
+    }
 
-	public void setProfileid(BigInteger profileid) {
-		this.profileid = profileid;
-	}
+    public void setProfileid(BigInteger profileid) {
+        this.profileid = profileid;
+    }
 
- 
+
 }

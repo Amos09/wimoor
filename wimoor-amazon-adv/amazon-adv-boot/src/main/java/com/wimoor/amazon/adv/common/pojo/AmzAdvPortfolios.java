@@ -3,7 +3,6 @@ package com.wimoor.amazon.adv.common.pojo;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,100 +10,100 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="t_amz_adv_portfolios")
+@Table(name = "t_amz_adv_portfolios")
 public class AmzAdvPortfolios {
-	
-	@Id
-	@Column(name="id")
+
+    @Id
+    @Column(name = "id")
     private BigInteger id;
-	
-	@Id
-	@Column(name="profileid")
+
+    @Id
+    @Column(name = "profileid")
     private BigInteger profileid;
 
-	@Column(name="name")
+    @Column(name = "name")
     private String name;
 
-	@Column(name="policy")
+    @Column(name = "policy")
     private String policy;
-	
-	@Column(name="currencyCode")
+
+    @Column(name = "currencyCode")
     private String currencycode;
 
-	@Column(name="amount")
+    @Column(name = "amount")
     private BigDecimal amount;
 
-	@Column(name="state")
+    @Column(name = "state")
     private String state;
 
-	@Column(name="inBudget")
+    @Column(name = "inBudget")
     private Boolean inbudget;
 
-	@Column(name="startDate")
+    @Column(name = "startDate")
     private Date startdate;
 
-	@Column(name="endDate")
+    @Column(name = "endDate")
     private Date enddate;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
-	
-	@Transient
-	private Date creationDate;
-	
-	@Transient
-	private Date lastUpdatedDate;
-	
-	@Transient
-	private String servingStatus;
 
-	@Transient
+    @Transient
+    private Date creationDate;
+
+    @Transient
+    private Date lastUpdatedDate;
+
+    @Transient
+    private String servingStatus;
+
+    @Transient
     public Date getCreationDate() {
-		return creationDate;
-	}
+        return creationDate;
+    }
 
-	@Transient
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    @Transient
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	@Transient
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    @Transient
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
 
-	@Transient
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
+    @Transient
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
 
-	@Transient
-	public String getServingStatus() {
-		return servingStatus;
-	}
+    @Transient
+    public String getServingStatus() {
+        return servingStatus;
+    }
 
-	@Transient
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    @Transient
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
-	public String getCurrencycode() {
-		return currencycode;
-	}
+    public String getCurrencycode() {
+        return currencycode;
+    }
 
-	public void setCurrencycode(String currencycode) {
-		this.currencycode = currencycode;
-	}
+    public void setCurrencycode(String currencycode) {
+        this.currencycode = currencycode;
+    }
 
-	public BigInteger getProfileid() {
-		return profileid;
-	}
+    public BigInteger getProfileid() {
+        return profileid;
+    }
 
-	public void setProfileid(BigInteger profileid) {
-		this.profileid = profileid;
-	}
+    public void setProfileid(BigInteger profileid) {
+        this.profileid = profileid;
+    }
 
-	public BigInteger getId() {
+    public BigInteger getId() {
         return id;
     }
 

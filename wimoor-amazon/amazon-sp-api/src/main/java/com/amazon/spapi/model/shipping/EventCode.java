@@ -13,80 +13,76 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 /**
  * The tracking event type.
  */
 @JsonAdapter(EventCode.Adapter.class)
 public enum EventCode {
-  
-  READYFORRECEIVE("ReadyForReceive"),
-  
-  PICKUPDONE("PickupDone"),
-  
-  DELIVERED("Delivered"),
-  
-  DEPARTED("Departed"),
-  
-  DELIVERYATTEMPTED("DeliveryAttempted"),
-  
-  LOST("Lost"),
-  
-  OUTFORDELIVERY("OutForDelivery"),
-  
-  ARRIVEDATCARRIERFACILITY("ArrivedAtCarrierFacility"),
-  
-  REJECTED("Rejected"),
-  
-  UNDELIVERABLE("Undeliverable"),
-  
-  PICKUPCANCELLED("PickupCancelled");
 
-  private String value;
+    READYFORRECEIVE("ReadyForReceive"),
 
-  EventCode(String value) {
-    this.value = value;
-  }
+    PICKUPDONE("PickupDone"),
 
-  public String getValue() {
-    return value;
-  }
+    DELIVERED("Delivered"),
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    DEPARTED("Departed"),
 
-  public static EventCode fromValue(String text) {
-    for (EventCode b : EventCode.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    DELIVERYATTEMPTED("DeliveryAttempted"),
+
+    LOST("Lost"),
+
+    OUTFORDELIVERY("OutForDelivery"),
+
+    ARRIVEDATCARRIERFACILITY("ArrivedAtCarrierFacility"),
+
+    REJECTED("Rejected"),
+
+    UNDELIVERABLE("Undeliverable"),
+
+    PICKUPCANCELLED("PickupCancelled");
+
+    private String value;
+
+    EventCode(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<EventCode> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final EventCode enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public EventCode read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return EventCode.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static EventCode fromValue(String text) {
+        for (EventCode b : EventCode.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<EventCode> {
+
+        @Override
+        public void write(final JsonWriter jsonWriter, final EventCode enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public EventCode read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return EventCode.fromValue(String.valueOf(value));
+        }
+    }
 }
 

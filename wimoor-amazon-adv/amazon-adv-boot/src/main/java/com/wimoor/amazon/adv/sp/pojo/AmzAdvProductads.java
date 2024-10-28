@@ -1,79 +1,78 @@
 package com.wimoor.amazon.adv.sp.pojo;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="t_amz_adv_productads")
+@Table(name = "t_amz_adv_productads")
 public class AmzAdvProductads extends AmzAdvProductadsKey {
 
-	@Column(name="sku")
+    @Column(name = "sku")
     private String sku;
-	
-	@Column(name="asin")
+
+    @Column(name = "asin")
     private String asin;
 
-	@Column(name="state")
+    @Column(name = "state")
     private String state;
-	
-	@Column(name="customText")
-	private String customText;
 
-	@Column(name="opttime")
+    @Column(name = "customText")
+    private String customText;
+
+    @Column(name = "opttime")
     private Date opttime;
 
-	@Transient
-	private String servingStatus;
-	    
     @Transient
-	private Date creationDate;
-    
+    private String servingStatus;
+
     @Transient
-	private Date lastUpdatedDate;
-	
+    private Date creationDate;
+
+    @Transient
+    private Date lastUpdatedDate;
+
     @Transient
     public String getServingStatus() {
-		return servingStatus;
-	}
+        return servingStatus;
+    }
 
     @Transient
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
     @Transient
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
     @Transient
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
     @Transient
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
 
     @Transient
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
-	
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
     public String getSku() {
-		return sku;
-	}
+        return sku;
+    }
 
-	public void setSku(String sku) {
-		this.sku = sku;
-	}
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 
-	public String getAsin() {
+    public String getAsin() {
         return asin;
     }
 
@@ -97,12 +96,12 @@ public class AmzAdvProductads extends AmzAdvProductadsKey {
         this.opttime = opttime;
     }
 
-	public String getCustomText() {
-		return customText;
-	}
+    public String getCustomText() {
+        return customText;
+    }
 
-	public void setCustomText(String customText) {
-		this.customText = customText;
-	}
-    
+    public void setCustomText(String customText) {
+        this.customText = customText;
+    }
+
 }

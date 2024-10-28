@@ -1,10 +1,12 @@
 package com.amazon.spapi.documents.exception;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class HttpResponseExceptionTest {
+
     @Test
     public void testConstructor() {
         String message = "This is the message";

@@ -2,13 +2,12 @@ package com.wimoor.sys.gc.service;
 
 import com.wimoor.sys.gc.model.vo.TableFieldVO;
 import com.wimoor.sys.gc.model.vo.TableVO;
-
 import java.util.List;
 
 /**
  * 数据库相关数据查询，代码生成，ecxel sql处理内
  */
-public interface DataBaseService   {
+public interface DataBaseService {
 
 
     /**
@@ -18,7 +17,7 @@ public interface DataBaseService   {
      * @return java.util.List<io.github.wslxm.springbootplus2.manage.gc.model.vo.TableVO>
      * @version 1.0.0
      */
-    List<TableVO> findTable( String dataSourceId);
+    List<TableVO> findTable(String dataSourceId);
 
 
     /**

@@ -1,7 +1,6 @@
 package com.wimoor.sys.gc.model.vo;
 
 import com.wimoor.sys.gc.model.core.BaseVo;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

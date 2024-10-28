@@ -2,74 +2,73 @@ package com.wimoor.amazon.adv.common.pojo;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="t_amz_advert_report_summary")
-public class ProductAdvertReportSummary  extends BaseObject {
+@Table(name = "t_amz_advert_report_summary")
+public class ProductAdvertReportSummary extends BaseObject {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1395966675821615234L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -1395966675821615234L;
 
-	@Column(name="asin")
+    @Column(name = "asin")
     private String asin;
 
-	@Column(name="clicks")
+    @Column(name = "clicks")
     private Integer clicks;
 
-	@Column(name="impressions")
+    @Column(name = "impressions")
     private Integer impressions;
 
-	@Column(name="ctr")
+    @Column(name = "ctr")
     private Double ctr;
 
-	@Column(name="currency")
+    @Column(name = "currency")
     private String currency;
 
-	@Column(name="spend")
+    @Column(name = "spend")
     private BigDecimal spend;
 
-	@Column(name="cpc")
+    @Column(name = "cpc")
     private BigDecimal cpc;
 
-	@Column(name="acos")
+    @Column(name = "acos")
     private Double acos;
 
-	@Column(name="roas")
+    @Column(name = "roas")
     private Double roas;
 
-	@Column(name="orders")
+    @Column(name = "orders")
     private Integer orders;
 
-	@Column(name="units")
+    @Column(name = "units")
     private Integer units;
 
-	@Column(name="spc")
+    @Column(name = "spc")
     private Double spc;
 
-	@Column(name="totalsales")
+    @Column(name = "totalsales")
     private BigDecimal totalsales;
 
-	@Column(name="sellerid")
+    @Column(name = "sellerid")
     private String sellerid;
 
- 
-	@Column(name="marketplaceid")
+
+    @Column(name = "marketplaceid")
     private String marketplaceid;
- 
-	@Column(name="sku")
+
+    @Column(name = "sku")
     private String sku;
-	
-	@Column(name="ctype")
+
+    @Column(name = "ctype")
     private String ctype;
- 
-	@Column(name="bydate")
+
+    @Column(name = "bydate")
     private Date bydate;
 
     public String getSellerid() {
@@ -103,7 +102,7 @@ public class ProductAdvertReportSummary  extends BaseObject {
     public void setBydate(Date bydate) {
         this.bydate = bydate;
     }
-    
+
     public String getAsin() {
         return asin;
     }
@@ -208,13 +207,13 @@ public class ProductAdvertReportSummary  extends BaseObject {
         this.totalsales = totalsales;
     }
 
-	public String getCtype() {
-		return ctype;
-	}
+    public String getCtype() {
+        return ctype;
+    }
 
-	public void setCtype(String ctype) {
-		this.ctype = ctype;
-	}
-    
-    
+    public void setCtype(String ctype) {
+        this.ctype = ctype;
+    }
+
+
 }

@@ -13,17 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.IneligibilityReasonCode;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The reason why a shipping service offering is ineligible.
@@ -31,89 +24,91 @@ import java.io.IOException;
 @ApiModel(description = "The reason why a shipping service offering is ineligible.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class IneligibilityReason {
-  @SerializedName("code")
-  private IneligibilityReasonCode code = null;
 
-  @SerializedName("message")
-  private String message = null;
+    @SerializedName("code")
+    private IneligibilityReasonCode code = null;
 
-  public IneligibilityReason code(IneligibilityReasonCode code) {
-    this.code = code;
-    return this;
-  }
+    @SerializedName("message")
+    private String message = null;
 
-   /**
-   * Get code
-   * @return code
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public IneligibilityReasonCode getCode() {
-    return code;
-  }
-
-  public void setCode(IneligibilityReasonCode code) {
-    this.code = code;
-  }
-
-  public IneligibilityReason message(String message) {
-    this.message = message;
-    return this;
-  }
-
-   /**
-   * The ineligibility reason.
-   * @return message
-  **/
-  @ApiModelProperty(required = true, value = "The ineligibility reason.")
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public IneligibilityReason code(IneligibilityReasonCode code) {
+        this.code = code;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get code
+     *
+     * @return code
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public IneligibilityReasonCode getCode() {
+        return code;
     }
-    IneligibilityReason ineligibilityReason = (IneligibilityReason) o;
-    return Objects.equals(this.code, ineligibilityReason.code) &&
-        Objects.equals(this.message, ineligibilityReason.message);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(code, message);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class IneligibilityReason {\n");
-    
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setCode(IneligibilityReasonCode code) {
+        this.code = code;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public IneligibilityReason message(String message) {
+        this.message = message;
+        return this;
+    }
+
+    /**
+     * The ineligibility reason.
+     *
+     * @return message
+     **/
+    @ApiModelProperty(required = true, value = "The ineligibility reason.")
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        IneligibilityReason ineligibilityReason = (IneligibilityReason) o;
+        return Objects.equals(this.code, ineligibilityReason.code) &&
+                Objects.equals(this.message, ineligibilityReason.message);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, message);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class IneligibilityReason {\n");
+
+        sb.append("    code: ").append(toIndentedString(code)).append("\n");
+        sb.append("    message: ").append(toIndentedString(message)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

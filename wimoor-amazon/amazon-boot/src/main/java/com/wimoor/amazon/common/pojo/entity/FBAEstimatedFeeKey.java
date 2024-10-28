@@ -3,16 +3,17 @@ package com.wimoor.amazon.common.pojo.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 public class FBAEstimatedFeeKey {
-	@TableId(value="sku")
+
+    @TableId(value = "sku")
     private String sku;
 
-	@TableId(value="asin")
+    @TableId(value = "asin")
     private String asin;
 
-	@TableId(value="amazonauthid")
+    @TableId(value = "amazonauthid")
     private String amazonauthid;
 
-	@TableId(value="marketplaceid")
+    @TableId(value = "marketplaceid")
     private String marketplaceid;
 
     public String getSku() {

@@ -4,6 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 
 public interface IAwsSQSMessageHandlerService {
 
-	boolean handlerMessage(JSONObject body);
+    boolean handlerMessage(JSONObject body);
 
 }

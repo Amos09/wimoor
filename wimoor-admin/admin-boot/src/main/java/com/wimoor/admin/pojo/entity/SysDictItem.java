@@ -1,5 +1,5 @@
 package com.wimoor.admin.pojo.entity;
- 
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,9 +12,9 @@ import lombok.experimental.Accessors;
 public class SysDictItem extends BaseEntity {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -3984144199012663754L;
+     *
+     */
+    private static final long serialVersionUID = -3984144199012663754L;
 
     private String name;
 

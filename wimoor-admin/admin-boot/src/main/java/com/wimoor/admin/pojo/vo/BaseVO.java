@@ -1,10 +1,9 @@
 package com.wimoor.admin.pojo.vo;
 
+import java.io.Serializable;
 import lombok.Data;
 import lombok.ToString;
 
-import java.io.Serializable;
- 
 @Data
 @ToString
 public class BaseVO implements Serializable {

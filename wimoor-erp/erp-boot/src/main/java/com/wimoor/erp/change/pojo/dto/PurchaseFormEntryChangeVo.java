@@ -1,47 +1,46 @@
 package com.wimoor.erp.change.pojo.dto;
 
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="PurchaseFormEntryChangeVo对象", description="换货Vo")
+@ApiModel(value = "PurchaseFormEntryChangeVo对象", description = "换货Vo")
 public class PurchaseFormEntryChangeVo {
 
-	    private String id;
-	    
-	    private String shopid;
-	    
-	    private String number;
+    private String id;
 
-	    private String entryid;
+    private String shopid;
 
-	    private String supplierid;
+    private String number;
 
-	    private String logistics;
+    private String entryid;
 
-	    private Integer amount;
+    private String supplierid;
 
-	    @ApiModelProperty(value = "1:进行中，0：已完成")
-	    private Integer auditstatus;
+    private String logistics;
 
-	    private Integer totalin;
+    private Integer amount;
 
-	    private String materialid;
+    @ApiModelProperty(value = "1:进行中，0：已完成")
+    private Integer auditstatus;
 
-	    private String warehouseid;
+    private Integer totalin;
 
-	    private String remark;
+    private String materialid;
 
-	    private String operator;
+    private String warehouseid;
 
-	    private String creator;
+    private String remark;
 
-	    private Date opttime;
+    private String operator;
 
-	    private Date createtime;
+    private String creator;
+
+    private Date opttime;
+
+    private Date createtime;
 }

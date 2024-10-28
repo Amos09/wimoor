@@ -1,114 +1,114 @@
 package com.wimoor.amazon.adv.report.pojo;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_adv_report_request")
+@Table(name = "t_amz_adv_report_request")
 public class AmzAdvRequest extends AmzAdvRequestKey {
-	
-	@Column(name="recordType")
+
+    @Column(name = "recordType")
     private String recordtype;
-	
-	@Column(name="campaignType")
+
+    @Column(name = "campaignType")
     private String campaigntype;
-	
-	@Column(name="segment")
+
+    @Column(name = "segment")
     private String segment;
-	
-	@Column(name="reportType")
-	private Integer reportType;
-	
-	@Column(name="creativeType")
+
+    @Column(name = "reportType")
+    private Integer reportType;
+
+    @Column(name = "creativeType")
     private String creativeType;
 
-	@Column(name="status")
-	private String status;
-	
-	@Column(name="statusDetails")
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "statusDetails")
     private String statusdetails;
-	
-	@Column(name="opttime")
-	private Date opttime;
-	
-	@Column(name="location")
-	private String location;
-	
-	@Column(name="fileSize")
-	private Integer filesize;
-    
-	@Column(name="startDate")
-	private Date startDate;
-	
-	@Column(name="endDate")
-	private Date endDate;
-	
-	@Column(name="requesttime")
-	private Date requesttime;
-	
-	@Column(name="treat_number")
-	private Integer treatNumber;
-	
-	@Column(name="treat_status")
-	private String treatStatus;
-	
-	@Column(name="log")
-	private String log;
-	
-	@Column(name="isrun")
-	private boolean isrun;
 
-	public Date getRequesttime() {
-		return requesttime;
-	}
+    @Column(name = "opttime")
+    private Date opttime;
 
-	public void setRequesttime(Date requesttime) {
-		this.requesttime = requesttime;
-	}
+    @Column(name = "location")
+    private String location;
 
-	public Integer getTreatNumber() {
-		return treatNumber==null?0:treatNumber;
-	}
+    @Column(name = "fileSize")
+    private Integer filesize;
 
-	public void setTreatNumber(Integer treatNumber) {
-		this.treatNumber = treatNumber;
-	}
+    @Column(name = "startDate")
+    private Date startDate;
 
-	public String getTreatStatus() {
-		return treatStatus;
-	}
+    @Column(name = "endDate")
+    private Date endDate;
 
-	public void setTreatStatus(String treatStatus) {
-		this.treatStatus = treatStatus;
-	}
+    @Column(name = "requesttime")
+    private Date requesttime;
 
-	public String getLog() {
-		return log;
-	}
+    @Column(name = "treat_number")
+    private Integer treatNumber;
 
-	public void setLog(String log) {
-		this.log = log;
-	}
+    @Column(name = "treat_status")
+    private String treatStatus;
 
-	public String getSegment() {
-		return segment;
-	}
+    @Column(name = "log")
+    private String log;
 
-	public void setSegment(String segment) {
-		this.segment = segment;
-	}
-	
-	public String getCampaigntype() {
-		return campaigntype;
-	}
+    @Column(name = "isrun")
+    private boolean isrun;
 
-	public void setCampaigntype(String campaigntype) {
-		this.campaigntype = campaigntype;
-	}
-	public String getRecordtype() {
+    public Date getRequesttime() {
+        return requesttime;
+    }
+
+    public void setRequesttime(Date requesttime) {
+        this.requesttime = requesttime;
+    }
+
+    public Integer getTreatNumber() {
+        return treatNumber == null ? 0 : treatNumber;
+    }
+
+    public void setTreatNumber(Integer treatNumber) {
+        this.treatNumber = treatNumber;
+    }
+
+    public String getTreatStatus() {
+        return treatStatus;
+    }
+
+    public void setTreatStatus(String treatStatus) {
+        this.treatStatus = treatStatus;
+    }
+
+    public String getLog() {
+        return log;
+    }
+
+    public void setLog(String log) {
+        this.log = log;
+    }
+
+    public String getSegment() {
+        return segment;
+    }
+
+    public void setSegment(String segment) {
+        this.segment = segment;
+    }
+
+    public String getCampaigntype() {
+        return campaigntype;
+    }
+
+    public void setCampaigntype(String campaigntype) {
+        this.campaigntype = campaigntype;
+    }
+
+    public String getRecordtype() {
         return recordtype;
     }
 
@@ -132,68 +132,68 @@ public class AmzAdvRequest extends AmzAdvRequestKey {
         this.statusdetails = statusdetails == null ? null : statusdetails.trim();
     }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public Integer getFilesize() {
-		return filesize;
-	}
+    public Integer getFilesize() {
+        return filesize;
+    }
 
-	public void setFilesize(Integer filesize) {
-		this.filesize = filesize;
-	}
- 
-	public boolean isIsrun() {
-		return isrun;
-	}
+    public void setFilesize(Integer filesize) {
+        this.filesize = filesize;
+    }
 
-	public void setIsrun(boolean isrun) {
-		this.isrun = isrun;
-	}
+    public boolean isIsrun() {
+        return isrun;
+    }
 
-	public String getCreativeType() {
-		return creativeType;
-	}
+    public void setIsrun(boolean isrun) {
+        this.isrun = isrun;
+    }
 
-	public void setCreativeType(String creativeType) {
-		this.creativeType = creativeType;
-	}
+    public String getCreativeType() {
+        return creativeType;
+    }
 
-	public Integer getReportType() {
-		return reportType;
-	}
+    public void setCreativeType(String creativeType) {
+        this.creativeType = creativeType;
+    }
 
-	public void setReportType(Integer reportType) {
-		this.reportType = reportType;
-	}
+    public Integer getReportType() {
+        return reportType;
+    }
 
-	public Date getStartDate() {
-		return startDate;
-	}
+    public void setReportType(Integer reportType) {
+        this.reportType = reportType;
+    }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+    public Date getStartDate() {
+        return startDate;
+    }
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-    
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
 }

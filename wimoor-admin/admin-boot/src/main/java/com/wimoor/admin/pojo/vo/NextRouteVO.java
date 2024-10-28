@@ -1,22 +1,20 @@
 package com.wimoor.admin.pojo.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.Data;
- 
+
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class NextRouteVO implements Serializable{
+public class NextRouteVO implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 2454641212777363465L;
+     *
+     */
+    private static final long serialVersionUID = 2454641212777363465L;
 
-	private String path;
+    private String path;
 
     private String component;
 

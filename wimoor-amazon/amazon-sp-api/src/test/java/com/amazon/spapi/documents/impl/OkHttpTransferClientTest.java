@@ -1,11 +1,22 @@
 package com.amazon.spapi.documents.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import com.amazon.spapi.documents.exception.HttpResponseException;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.okhttp.ResponseBody;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import okio.Buffer;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
@@ -14,22 +25,12 @@ import org.junit.platform.commons.util.ReflectionUtils;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.StringReader;
-import java.nio.charset.StandardCharsets;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class OkHttpTransferClientTest {
 
     @Test
     public void testDefaultBuilder() throws Exception {
         OkHttpTransferClient helper = new OkHttpTransferClient.Builder().build();
-        OkHttpClient client = (OkHttpClient)ReflectionUtils.tryToReadFieldValue(OkHttpTransferClient.class,
+        OkHttpClient client = (OkHttpClient) ReflectionUtils.tryToReadFieldValue(OkHttpTransferClient.class,
                 "client", helper).get();
     }
 
@@ -101,7 +102,7 @@ class OkHttpTransferClientTest {
     }
 
     private void failureResponseMocks(Response response, ResponseBody responseBody,
-                                      int httpStatusCode, String message, String bodyContent) throws Exception {
+            int httpStatusCode, String message, String bodyContent) throws Exception {
         Mockito.doReturn(httpStatusCode).when(response).code();
         Mockito.doReturn(message).when(response).message();
 
@@ -143,7 +144,7 @@ class OkHttpTransferClientTest {
         try {
             helper.download(url, tmpFile);
             fail("Expected exception");
-        } catch(HttpResponseException e) {
+        } catch (HttpResponseException e) {
             assertEquals(httpStatusCode, e.getCode());
             assertEquals(message, e.getMessage());
             assertEquals("This ", e.getBody());
@@ -190,7 +191,7 @@ class OkHttpTransferClientTest {
         try {
             helper.download(url, tmpFile);
             fail("Expected exception");
-        } catch(HttpResponseException e) {
+        } catch (HttpResponseException e) {
             assertEquals(httpStatusCode, e.getCode());
             assertEquals(message, e.getMessage());
             assertEquals("", e.getBody());
@@ -318,7 +319,7 @@ class OkHttpTransferClientTest {
 
             helper.upload(url, contentType, tmpFile);
             fail("Expected exception");
-        } catch(HttpResponseException e) {
+        } catch (HttpResponseException e) {
             assertEquals(httpStatusCode, e.getCode());
             assertEquals(message, e.getMessage());
             assertEquals("This ", e.getBody());

@@ -1,19 +1,18 @@
 package com.wimoor.amazon.orders.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
-import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -21,16 +20,15 @@ import lombok.Data;
  */
 @Data
 @TableName("t_amz_orders_invoice_report")
-@ApiModel(value="AmzOrdersInvoiceReport对象", description="")
+@ApiModel(value = "AmzOrdersInvoiceReport对象", description = "")
 public class AmzOrdersInvoiceReport implements Serializable {
 
-    private static final long serialVersionUID=1L;
-    	
-    	
-    	
+    private static final long serialVersionUID = 1L;
+
+
     @TableField("order_id")
     private String orderId;
-    
+
     @TableField("order_item_id")
     private String orderItemId;
 
@@ -117,7 +115,7 @@ public class AmzOrdersInvoiceReport implements Serializable {
 
     @TableField("price_designation")
     private String priceDesignation;
-    
+
     @TableField("sales_channel")
     private String salesChannel;
 

@@ -1,12 +1,5 @@
 package com.wimoor.admin.mapper;
 
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -14,27 +7,33 @@ import com.wimoor.admin.pojo.dto.UserDTO;
 import com.wimoor.admin.pojo.entity.SysUser;
 import com.wimoor.admin.pojo.entity.SysUserWechatMP;
 import com.wimoor.admin.pojo.vo.UserVO;
- 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
-	BigInteger getShortUUID();
-	
+
+    BigInteger getShortUUID();
+
     Integer getDIFFReport();
-    
-	List<SysUser> findByAccountOrEmail(String account);
 
-	List<Map<String, Object>> findExcludedUrls(String userid);
+    List<SysUser> findByAccountOrEmail(String account);
 
-	String findShopIdByUserId(String id);
+    List<Map<String, Object>> findExcludedUrls(String userid);
 
-	Map<String, Object> findUserInfoById(String id);
+    String findShopIdByUserId(String id);
 
-	SysUserWechatMP getUserWechatMP(String openid);
+    Map<String, Object> findUserInfoById(String id);
 
-	IPage<UserVO> listQuery(Page<?> page, UserDTO dto);
-	
-	List<Map<String, Object>> findOwnerAll(@Param("shopid")String shopid,@Param("search")String search);
-	
-	void mergeAccountData(@Param("fromuser")String shopid,@Param("touser")String search);
+    SysUserWechatMP getUserWechatMP(String openid);
+
+    IPage<UserVO> listQuery(Page<?> page, UserDTO dto);
+
+    List<Map<String, Object>> findOwnerAll(@Param("shopid") String shopid, @Param("search") String search);
+
+    void mergeAccountData(@Param("fromuser") String shopid, @Param("touser") String search);
 }

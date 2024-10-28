@@ -13,17 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.PackageDocumentDetailList;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The payload for the directPurchaseShipment operation.
@@ -31,89 +24,91 @@ import java.io.IOException;
 @ApiModel(description = "The payload for the directPurchaseShipment operation.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class DirectPurchaseResult {
-  @SerializedName("shipmentId")
-  private String shipmentId = null;
 
-  @SerializedName("packageDocumentDetailList")
-  private PackageDocumentDetailList packageDocumentDetailList = null;
+    @SerializedName("shipmentId")
+    private String shipmentId = null;
 
-  public DirectPurchaseResult shipmentId(String shipmentId) {
-    this.shipmentId = shipmentId;
-    return this;
-  }
+    @SerializedName("packageDocumentDetailList")
+    private PackageDocumentDetailList packageDocumentDetailList = null;
 
-   /**
-   * Get shipmentId
-   * @return shipmentId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getShipmentId() {
-    return shipmentId;
-  }
-
-  public void setShipmentId(String shipmentId) {
-    this.shipmentId = shipmentId;
-  }
-
-  public DirectPurchaseResult packageDocumentDetailList(PackageDocumentDetailList packageDocumentDetailList) {
-    this.packageDocumentDetailList = packageDocumentDetailList;
-    return this;
-  }
-
-   /**
-   * Get packageDocumentDetailList
-   * @return packageDocumentDetailList
-  **/
-  @ApiModelProperty(value = "")
-  public PackageDocumentDetailList getPackageDocumentDetailList() {
-    return packageDocumentDetailList;
-  }
-
-  public void setPackageDocumentDetailList(PackageDocumentDetailList packageDocumentDetailList) {
-    this.packageDocumentDetailList = packageDocumentDetailList;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public DirectPurchaseResult shipmentId(String shipmentId) {
+        this.shipmentId = shipmentId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get shipmentId
+     *
+     * @return shipmentId
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getShipmentId() {
+        return shipmentId;
     }
-    DirectPurchaseResult directPurchaseResult = (DirectPurchaseResult) o;
-    return Objects.equals(this.shipmentId, directPurchaseResult.shipmentId) &&
-        Objects.equals(this.packageDocumentDetailList, directPurchaseResult.packageDocumentDetailList);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(shipmentId, packageDocumentDetailList);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class DirectPurchaseResult {\n");
-    
-    sb.append("    shipmentId: ").append(toIndentedString(shipmentId)).append("\n");
-    sb.append("    packageDocumentDetailList: ").append(toIndentedString(packageDocumentDetailList)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setShipmentId(String shipmentId) {
+        this.shipmentId = shipmentId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public DirectPurchaseResult packageDocumentDetailList(PackageDocumentDetailList packageDocumentDetailList) {
+        this.packageDocumentDetailList = packageDocumentDetailList;
+        return this;
+    }
+
+    /**
+     * Get packageDocumentDetailList
+     *
+     * @return packageDocumentDetailList
+     **/
+    @ApiModelProperty(value = "")
+    public PackageDocumentDetailList getPackageDocumentDetailList() {
+        return packageDocumentDetailList;
+    }
+
+    public void setPackageDocumentDetailList(PackageDocumentDetailList packageDocumentDetailList) {
+        this.packageDocumentDetailList = packageDocumentDetailList;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        DirectPurchaseResult directPurchaseResult = (DirectPurchaseResult) o;
+        return Objects.equals(this.shipmentId, directPurchaseResult.shipmentId) &&
+                Objects.equals(this.packageDocumentDetailList, directPurchaseResult.packageDocumentDetailList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shipmentId, packageDocumentDetailList);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class DirectPurchaseResult {\n");
+
+        sb.append("    shipmentId: ").append(toIndentedString(shipmentId)).append("\n");
+        sb.append("    packageDocumentDetailList: ").append(toIndentedString(packageDocumentDetailList)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

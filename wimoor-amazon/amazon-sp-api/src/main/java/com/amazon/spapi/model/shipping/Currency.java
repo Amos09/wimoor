@@ -13,17 +13,11 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * The monetary value in the currency indicated, in ISO 4217 standard format.
@@ -31,89 +25,91 @@ import java.math.BigDecimal;
 @ApiModel(description = "The monetary value in the currency indicated, in ISO 4217 standard format.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class Currency {
-  @SerializedName("value")
-  private BigDecimal value = null;
 
-  @SerializedName("unit")
-  private String unit = null;
+    @SerializedName("value")
+    private BigDecimal value = null;
 
-  public Currency value(BigDecimal value) {
-    this.value = value;
-    return this;
-  }
+    @SerializedName("unit")
+    private String unit = null;
 
-   /**
-   * The monetary value.
-   * @return value
-  **/
-  @ApiModelProperty(required = true, value = "The monetary value.")
-  public BigDecimal getValue() {
-    return value;
-  }
-
-  public void setValue(BigDecimal value) {
-    this.value = value;
-  }
-
-  public Currency unit(String unit) {
-    this.unit = unit;
-    return this;
-  }
-
-   /**
-   * The ISO 4217 format 3-character currency code.
-   * @return unit
-  **/
-  @ApiModelProperty(required = true, value = "The ISO 4217 format 3-character currency code.")
-  public String getUnit() {
-    return unit;
-  }
-
-  public void setUnit(String unit) {
-    this.unit = unit;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public Currency value(BigDecimal value) {
+        this.value = value;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The monetary value.
+     *
+     * @return value
+     **/
+    @ApiModelProperty(required = true, value = "The monetary value.")
+    public BigDecimal getValue() {
+        return value;
     }
-    Currency currency = (Currency) o;
-    return Objects.equals(this.value, currency.value) &&
-        Objects.equals(this.unit, currency.unit);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(value, unit);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Currency {\n");
-    
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public Currency unit(String unit) {
+        this.unit = unit;
+        return this;
+    }
+
+    /**
+     * The ISO 4217 format 3-character currency code.
+     *
+     * @return unit
+     **/
+    @ApiModelProperty(required = true, value = "The ISO 4217 format 3-character currency code.")
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Currency currency = (Currency) o;
+        return Objects.equals(this.value, currency.value) &&
+                Objects.equals(this.unit, currency.unit);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, unit);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Currency {\n");
+
+        sb.append("    value: ").append(toIndentedString(value)).append("\n");
+        sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

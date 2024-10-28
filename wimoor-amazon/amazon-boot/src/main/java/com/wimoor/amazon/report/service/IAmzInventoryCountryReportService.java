@@ -9,6 +9,6 @@ package com.wimoor.amazon.report.service;
  * @author wimoor team
  * @since 2022-10-08
  */
-public interface IAmzInventoryCountryReportService   {
+public interface IAmzInventoryCountryReportService {
 
 }

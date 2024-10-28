@@ -1,18 +1,17 @@
 package com.wimoor.erp.purchase.alibaba.pojo.entity;
 
-import java.math.BigDecimal;
-
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -21,10 +20,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_erp_purchase_alibaba_settlement")
-@ApiModel(value="PurchaseAlibabaSettlement对象", description="")
+@ApiModel(value = "PurchaseAlibabaSettlement对象", description = "")
 public class PurchaseAlibabaSettlement implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
     @TableId
     private String id;
 
@@ -44,7 +43,7 @@ public class PurchaseAlibabaSettlement implements Serializable {
     private BigDecimal payamount;
     private BigDecimal returnamount;
     private BigDecimal payreturnamount;
-    
+
     private Integer paytimes;
     private Integer returntimes;
 

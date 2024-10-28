@@ -1,14 +1,12 @@
 package com.wimoor.amazon.product.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,11 +21,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_product_price_record")
-@ApiModel(value="AmzProductPriceRecord对象", description="用于记录调价")
+@ApiModel(value = "AmzProductPriceRecord对象", description = "用于记录调价")
 public class AmzProductPriceRecord implements Serializable {
 
-    private static final long serialVersionUID=1L;
-    @TableField(value="pid")
+    private static final long serialVersionUID = 1L;
+    @TableField(value = "pid")
     private String pid;
 
     private Date opttime;
@@ -52,7 +50,7 @@ public class AmzProductPriceRecord implements Serializable {
     private Integer ftype;
 
     private String remark;
-    
+
     private String operator;
 
 

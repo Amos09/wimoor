@@ -5,20 +5,20 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 public class AmzAdvWarningDateKey {
-	
-	@Id
-	@Column(name="shopid")
+
+    @Id
+    @Column(name = "shopid")
     private String shopid;
 
-	@Id
-	@Column(name="recordType")
+    @Id
+    @Column(name = "recordType")
     private String recordtype;
 
-	@Id
-	@Column(name="ftype")
+    @Id
+    @Column(name = "ftype")
     private String ftype;
 
-	public String getShopid() {
+    public String getShopid() {
         return shopid;
     }
 

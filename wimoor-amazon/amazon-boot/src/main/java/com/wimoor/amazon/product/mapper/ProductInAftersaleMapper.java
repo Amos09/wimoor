@@ -1,21 +1,18 @@
 package com.wimoor.amazon.product.mapper;
 
-import com.wimoor.amazon.product.pojo.dto.ProductInAftersaleDTO;
-import com.wimoor.amazon.product.pojo.entity.ProductInAftersale;
-
-import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wimoor.amazon.product.pojo.dto.ProductInAftersaleDTO;
+import com.wimoor.amazon.product.pojo.entity.ProductInAftersale;
+import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author wimoor team
@@ -24,9 +21,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 @Mapper
 public interface ProductInAftersaleMapper extends BaseMapper<ProductInAftersale> {
 
-	void insertBatch(List<ProductInAftersale> salesafter);
-	
-	List<Map<String,Object>> getSummary(@Param("shopid")String shopid,@Param("groupid")String groupid);
+    void insertBatch(List<ProductInAftersale> salesafter);
 
-	IPage<Map<String, Object>> findList(Page<?> page, @Param("param")ProductInAftersaleDTO dto);
+    List<Map<String, Object>> getSummary(@Param("shopid") String shopid, @Param("groupid") String groupid);
+
+    IPage<Map<String, Object>> findList(Page<?> page, @Param("param") ProductInAftersaleDTO dto);
 }

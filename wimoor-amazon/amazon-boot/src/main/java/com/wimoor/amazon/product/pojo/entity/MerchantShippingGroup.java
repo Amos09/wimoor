@@ -1,17 +1,16 @@
 package com.wimoor.amazon.product.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
-
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -20,10 +19,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_merchant_shipping_group")
-@ApiModel(value="MerchantShippingGroup对象", description="")
+@ApiModel(value = "MerchantShippingGroup对象", description = "")
 public class MerchantShippingGroup implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String id;
 
@@ -32,7 +31,7 @@ public class MerchantShippingGroup implements Serializable {
     private String marketplaceid;
 
     private String name;
-    
+
     private Date refreshtime;
 
 

@@ -4,6 +4,7 @@ package com.amazon.spapi.documents.exception;
  * The details of an HTTP response that indicates failure.
  */
 public class HttpResponseException extends Exception {
+
     private final String body;
     private final int code;
 
@@ -11,8 +12,8 @@ public class HttpResponseException extends Exception {
      * {@inheritDoc}
      *
      * @param message The {@link Exception} message
-     * @param body The body
-     * @param code The HTTP status code
+     * @param body    The body
+     * @param code    The HTTP status code
      */
     public HttpResponseException(String message, String body, int code) {
         super(message);
@@ -24,9 +25,9 @@ public class HttpResponseException extends Exception {
      * {@inheritDoc}
      *
      * @param message The {@link Exception} message
-     * @param cause The {@link Exception} cause
-     * @param body The body
-     * @param code The HTTP status code
+     * @param cause   The {@link Exception} cause
+     * @param body    The body
+     * @param code    The HTTP status code
      */
     public HttpResponseException(String message, Throwable cause, String body, int code) {
         super(message, cause);

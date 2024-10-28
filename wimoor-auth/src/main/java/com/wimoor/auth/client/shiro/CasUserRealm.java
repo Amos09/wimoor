@@ -4,9 +4,6 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.cas.CasRealm;
 
- 
-
- 
 
 /**
  * 用户登录和授权用的realm
@@ -14,13 +11,9 @@ import org.apache.shiro.cas.CasRealm;
 @SuppressWarnings("deprecation")
 public class CasUserRealm extends CasRealm {
 
- 
- 
 
-    
     /**
-     * CAS认证 ,验证用户身份
-     * 将用户基本信息设置到会话中
+     * CAS认证 ,验证用户身份 将用户基本信息设置到会话中
      */
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
         //调用CasRealm实现的认证方法,其包含验证ticket、填充CasToken的principal等操作)
@@ -40,8 +33,6 @@ public class CasUserRealm extends CasRealm {
 //            return null;
 //        }
     }
-    
- 
 
 
 }

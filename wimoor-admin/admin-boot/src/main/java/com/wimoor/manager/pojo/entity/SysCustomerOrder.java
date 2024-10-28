@@ -1,21 +1,19 @@
 package com.wimoor.manager.pojo.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.common.pojo.entity.BaseEntity;
-
-import java.time.LocalDateTime;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- *  
+ *
  * </p>
  *
  * @author wimoor team
@@ -24,10 +22,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_sys_customer_order")
-@ApiModel(value="SysCustomerOrder对象", description=" ")
+@ApiModel(value = "SysCustomerOrder对象", description = " ")
 public class SysCustomerOrder extends BaseEntity implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "公司ID")
     private BigInteger shopid;

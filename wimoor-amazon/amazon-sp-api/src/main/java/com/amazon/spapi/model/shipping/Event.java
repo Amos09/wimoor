@@ -13,18 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.EventCode;
-import com.amazon.spapi.model.shipping.Location;
-import java.io.IOException;
+import java.util.Objects;
 import org.threeten.bp.OffsetDateTime;
 
 /**
@@ -33,112 +25,115 @@ import org.threeten.bp.OffsetDateTime;
 @ApiModel(description = "A tracking event.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class Event {
-  @SerializedName("eventCode")
-  private EventCode eventCode = null;
 
-  @SerializedName("location")
-  private Location location = null;
+    @SerializedName("eventCode")
+    private EventCode eventCode = null;
 
-  @SerializedName("eventTime")
-  private OffsetDateTime eventTime = null;
+    @SerializedName("location")
+    private Location location = null;
 
-  public Event eventCode(EventCode eventCode) {
-    this.eventCode = eventCode;
-    return this;
-  }
+    @SerializedName("eventTime")
+    private OffsetDateTime eventTime = null;
 
-   /**
-   * Get eventCode
-   * @return eventCode
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public EventCode getEventCode() {
-    return eventCode;
-  }
-
-  public void setEventCode(EventCode eventCode) {
-    this.eventCode = eventCode;
-  }
-
-  public Event location(Location location) {
-    this.location = location;
-    return this;
-  }
-
-   /**
-   * Get location
-   * @return location
-  **/
-  @ApiModelProperty(value = "")
-  public Location getLocation() {
-    return location;
-  }
-
-  public void setLocation(Location location) {
-    this.location = location;
-  }
-
-  public Event eventTime(OffsetDateTime eventTime) {
-    this.eventTime = eventTime;
-    return this;
-  }
-
-   /**
-   * The ISO 8601 formatted timestamp of the event.
-   * @return eventTime
-  **/
-  @ApiModelProperty(required = true, value = "The ISO 8601 formatted timestamp of the event.")
-  public OffsetDateTime getEventTime() {
-    return eventTime;
-  }
-
-  public void setEventTime(OffsetDateTime eventTime) {
-    this.eventTime = eventTime;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public Event eventCode(EventCode eventCode) {
+        this.eventCode = eventCode;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get eventCode
+     *
+     * @return eventCode
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public EventCode getEventCode() {
+        return eventCode;
     }
-    Event event = (Event) o;
-    return Objects.equals(this.eventCode, event.eventCode) &&
-        Objects.equals(this.location, event.location) &&
-        Objects.equals(this.eventTime, event.eventTime);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(eventCode, location, eventTime);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Event {\n");
-    
-    sb.append("    eventCode: ").append(toIndentedString(eventCode)).append("\n");
-    sb.append("    location: ").append(toIndentedString(location)).append("\n");
-    sb.append("    eventTime: ").append(toIndentedString(eventTime)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setEventCode(EventCode eventCode) {
+        this.eventCode = eventCode;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public Event location(Location location) {
+        this.location = location;
+        return this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return location
+     **/
+    @ApiModelProperty(value = "")
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Event eventTime(OffsetDateTime eventTime) {
+        this.eventTime = eventTime;
+        return this;
+    }
+
+    /**
+     * The ISO 8601 formatted timestamp of the event.
+     *
+     * @return eventTime
+     **/
+    @ApiModelProperty(required = true, value = "The ISO 8601 formatted timestamp of the event.")
+    public OffsetDateTime getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(OffsetDateTime eventTime) {
+        this.eventTime = eventTime;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Event event = (Event) o;
+        return Objects.equals(this.eventCode, event.eventCode) &&
+                Objects.equals(this.location, event.location) &&
+                Objects.equals(this.eventTime, event.eventTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(eventCode, location, eventTime);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Event {\n");
+
+        sb.append("    eventCode: ").append(toIndentedString(eventCode)).append("\n");
+        sb.append("    location: ").append(toIndentedString(location)).append("\n");
+        sb.append("    eventTime: ").append(toIndentedString(eventTime)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

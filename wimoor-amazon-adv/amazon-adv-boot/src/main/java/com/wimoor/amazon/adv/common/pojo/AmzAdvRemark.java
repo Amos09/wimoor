@@ -1,22 +1,21 @@
 package com.wimoor.amazon.adv.common.pojo;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_adv_remark")
+@Table(name = "t_amz_adv_remark")
 public class AmzAdvRemark extends AmzAdvRemarkKey {
-	
-	@Column(name="remark")
+
+    @Column(name = "remark")
     private String remark;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
 
-	@Column(name="operator")
+    @Column(name = "operator")
     private String operator;
 
     public String getRemark() {

@@ -1,113 +1,111 @@
 package com.wimoor.erp.material.pojo.entity;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 
 @Data
 @TableName("t_erp_material_his")
 public class ERPMaterialHistory {
- 
-	@TableField(value= "id")
+
+    @TableField(value = "id")
     private String id;
- 
-	@TableField(value= "opttime")
+
+    @TableField(value = "opttime")
     private Date opttime;
 
-	
-    @TableField(value= "sku")
+
+    @TableField(value = "sku")
     private String sku;
-    
-    @TableField(value= "name")
+
+    @TableField(value = "name")
     private String name;
-    
-    @TableField(value= "shopid")
+
+    @TableField(value = "shopid")
     private String shopid;
-    
-    @TableField(value= "upc")
+
+    @TableField(value = "upc")
     private String upc;
-    
-    @TableField(value= "brand")
+
+    @TableField(value = "brand")
     private String brand;
-    
-    @TableField(value= "image")
+
+    @TableField(value = "image")
     private String image;
-    
-    @TableField(value= "itemDimensions")
+
+    @TableField(value = "itemDimensions")
     private String itemdimensions;
-    
-    @TableField(value= "pkgDimensions")
+
+    @TableField(value = "pkgDimensions")
     private String pkgdimensions;
-    
-    @TableField(value= "boxDimensions")
+
+    @TableField(value = "boxDimensions")
     private String boxdimensions;
-    
-    @TableField(value= "boxnum")
+
+    @TableField(value = "boxnum")
     private Integer boxnum;
-    
-    @TableField(value= "specification")
+
+    @TableField(value = "specification")
     private String specification;
-    
-    @TableField(value= "supplier")
+
+    @TableField(value = "supplier")
     private String supplier;
-    
-    @TableField(value= "productCode")
+
+    @TableField(value = "productCode")
     private String productcode;
-    
-    @TableField(value= "delivery_cycle")
+
+    @TableField(value = "delivery_cycle")
     private Integer deliveryCycle;
-    
-    @TableField(value= "other_cost")
+
+    @TableField(value = "other_cost")
     private BigDecimal otherCost;
-    
-    @TableField(value= "MOQ")
+
+    @TableField(value = "MOQ")
     private int MOQ;
-    
-    @TableField(value= "purchaseUrl")
+
+    @TableField(value = "purchaseUrl")
     private String purchaseurl;
-    
-    @TableField(value= "remark")
+
+    @TableField(value = "remark")
     private String remark;
-    
-    @TableField(value= "categoryid")
+
+    @TableField(value = "categoryid")
     private String categoryid;
-    
-    @TableField(value= "issfg")
+
+    @TableField(value = "issfg")
     private String issfg;
-    
-    @TableField(value= "color")
+
+    @TableField(value = "color")
     private String color;
-    
-    @TableField(value= "owner")
+
+    @TableField(value = "owner")
     private String owner;
-    
-    @TableField(value= "operator")
+
+    @TableField(value = "operator")
     private String operator;
-    
-    @TableField(value= "price")
+
+    @TableField(value = "price")
     private BigDecimal price;
-    
-    @TableField(value= "createdate")
+
+    @TableField(value = "createdate")
     private Date createdate;
-    
-    @TableField(value= "creator")
+
+    @TableField(value = "creator")
     private String creator;
-    
-    @TableField(value= "parentid")
+
+    @TableField(value = "parentid")
     private String parentid;
-    
-    @TableField(value= "effectivedate")
+
+    @TableField(value = "effectivedate")
     private Date effectivedate;
-    
-    @TableField(value= "isSmlAndLight")
+
+    @TableField(value = "isSmlAndLight")
     private Boolean isSmlAndLight;
-    
-    @TableField(value= "assembly_time")
+
+    @TableField(value = "assembly_time")
     private Integer assemblyTime;
 
-     
+
 }

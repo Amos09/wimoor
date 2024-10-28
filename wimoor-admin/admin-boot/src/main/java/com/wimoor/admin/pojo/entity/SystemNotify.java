@@ -1,46 +1,47 @@
 package com.wimoor.admin.pojo.entity;
 
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.util.Date;
 import lombok.Data;
 import lombok.experimental.Accessors;
- 
+
 @Data
 @Accessors(chain = true)
 @TableName("t_sys_notify")
 public class SystemNotify {
-	@TableId(value = "id" )
+
+    @TableId(value = "id")
     private Integer id;
 
-	@TableField(value= "title")
-	private String title;
-	
-	@TableField(value= "content")
+    @TableField(value = "title")
+    private String title;
+
+    @TableField(value = "content")
     private String content;
 
-	@TableField(value= "ftype")
+    @TableField(value = "ftype")
     private Integer type;
 
-	@TableField(value= "target")
+    @TableField(value = "target")
     private String target;
 
-	@TableField(value= "action")
+    @TableField(value = "action")
     private String action;
 
-	@TableField(value= "sender")
+    @TableField(value = "sender")
     private String sender;
-	
-	@TableField(value= "receiver")
-	private String receiver;
 
-	@TableField(value= "createdAt")
+    @TableField(value = "receiver")
+    private String receiver;
+
+    @TableField(value = "createdAt")
     private Date createdat;
 
-	@TableField(value= "shopid")
+    @TableField(value = "shopid")
     private String shopid;
-	
-	@TableField(exist= false)
+
+    @TableField(exist = false)
     private Boolean isRead;
 }

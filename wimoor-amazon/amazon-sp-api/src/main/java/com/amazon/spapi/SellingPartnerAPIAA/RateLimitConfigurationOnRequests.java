@@ -1,4 +1,5 @@
 package com.amazon.spapi.SellingPartnerAPIAA;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class RateLimitConfigurationOnRequests implements RateLimitConfiguration 
      */
     private Long waitTimeOutInMilliSeconds;
 
- @Override
+    @Override
     public Long getTimeOut() {
         return waitTimeOutInMilliSeconds;
     }

@@ -1,25 +1,25 @@
 package com.wimoor.amazon.adv.common.pojo;
 
 import java.math.BigInteger;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 
 public class AmzAdvStoresKey {
-	@Id
-	@Column(name="entityId")
+
+    @Id
+    @Column(name = "entityId")
     private String entityid;
 
-	@Id
-	@Column(name="brandEntityId")
+    @Id
+    @Column(name = "brandEntityId")
     private String brandentityid;
 
-	@Id
-	@Column(name="profileid")
+    @Id
+    @Column(name = "profileid")
     private BigInteger profileid;
 
-	@Id
-	@Column(name="storePageId")
+    @Id
+    @Column(name = "storePageId")
     private String storepageid;
 
     public String getEntityid() {

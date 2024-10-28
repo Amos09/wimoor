@@ -1,9 +1,5 @@
 package com.wimoor.sys.gc.service.gc.gcimpl;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
 import com.alibaba.fastjson.JSON;
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.constant.Base;
@@ -13,8 +9,9 @@ import com.wimoor.sys.gc.service.gc.GcSevice;
 import com.wimoor.sys.gc.template.VueMainTemplate;
 import com.wimoor.sys.gc.util.GcDataUtil;
 import com.wimoor.sys.gc.util.GcFileUtil;
-
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("all")
 @Component
@@ -30,9 +27,9 @@ public class GcVueMain extends BaseGcImpl implements GcSevice {
     /**
      * 生成Html-main 主页
      *
-     * @param data    数据
+     * @param data           数据
      * @param GenerateConfig 数据
-     * @param path    生成代码路径
+     * @param path           生成代码路径
      * @return void
      * @date 2019/11/20 19:18
      */
@@ -51,7 +48,8 @@ public class GcVueMain extends BaseGcImpl implements GcSevice {
             Object vueFieldType = dbFieldPO.getVueFieldType();
 
             // 指定类型字段不生成到列表中，同时排除list接口查询
-            List<Integer> vueFieldTypeArray = JSON.parseObject(gcConfig.getDefaultTemplateParam(TpParamConstant.VUE_FIELD_TYPES_ARRAY), List.class);
+            List<Integer> vueFieldTypeArray = JSON.parseObject(
+                    gcConfig.getDefaultTemplateParam(TpParamConstant.VUE_FIELD_TYPES_ARRAY), List.class);
             if (vueFieldTypeArray.contains(vueFieldType + "")) {
                 continue;
             }
@@ -78,7 +76,8 @@ public class GcVueMain extends BaseGcImpl implements GcSevice {
                 // 字典 - 多选
                 vueInfoColumns.append(VueMainTemplate.TEXT_DICT_CHECKBOX
                         .replaceAll("\\{label}", newDesc).replace("{prop}", name)
-                        .replace("{search}", isSearch + "").replace("{dictCode}", getDictCode(dbFieldPO.getDictCode())));
+                        .replace("{search}", isSearch + "")
+                        .replace("{dictCode}", getDictCode(dbFieldPO.getDictCode())));
             } else if (vueFieldTypeInt.equals(Base.VueFieldType.V11.getValue())) {
                 // 时间
                 vueInfoColumns.append(VueMainTemplate.TEXT.replaceAll("\\{label}", newDesc).replace("{prop}", name)
@@ -87,7 +86,8 @@ public class GcVueMain extends BaseGcImpl implements GcSevice {
                 // 时间-小时选择
                 vueInfoColumns.append(VueMainTemplate.TIME.replaceAll("\\{label}", newDesc)
                         .replace("{prop}", name).replace("{search}", isSearch + ""));
-            } else if (vueFieldTypeInt.equals(Base.VueFieldType.V13.getValue()) || vueFieldTypeInt.equals(Base.VueFieldType.V14.getValue())) {
+            } else if (vueFieldTypeInt.equals(Base.VueFieldType.V13.getValue()) || vueFieldTypeInt.equals(
+                    Base.VueFieldType.V14.getValue())) {
                 // 图片
                 vueInfoColumns.append(VueMainTemplate.IMG.replaceAll("\\{label}", newDesc).replace("{prop}", name));
             } else if (vueFieldTypeInt.equals(Base.VueFieldType.V20.getValue())) {

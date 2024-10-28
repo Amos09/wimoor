@@ -1,10 +1,14 @@
 package com.wimoor.sys.gc.util;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.ResourceUtils;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -13,6 +17,9 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.ResourceUtils;
 
 
 /**
@@ -68,11 +75,12 @@ public class FileDownloadUtil {
 
     /**
      * url可访问的单文件下载
-     * @author wangsong
+     *
      * @param response
      * @param filePath 可访问的url
      * @param fileName 下载的文件名
      * @return void
+     * @author wangsong
      */
     public static void download(String filePaths, HttpServletResponse response) {
         // 获取文件名称
@@ -120,12 +128,14 @@ public class FileDownloadUtil {
 
     /**
      * Zip 压缩包（url可访问的文件打包下载）
-     * @param res         HttpServletResponse
-     * @param filePaths  下载路径集, 可访问的url
-     * @param zipName     压缩包名 + .zip
+     *
+     * @param res       HttpServletResponse
+     * @param filePaths 下载路径集, 可访问的url
+     * @param zipName   压缩包名 + .zip
      * @return void
      */
-    public static void downloadZip(List<String> filePaths, String zipName, HttpServletResponse res) { //String zipName = zipName;       // 压缩包名字
+    public static void downloadZip(List<String> filePaths, String zipName,
+            HttpServletResponse res) { //String zipName = zipName;       // 压缩包名字
         //项目跟目录
         try {
             File path = new File(ResourceUtils.getURL("classpath:").getPath());
@@ -172,7 +182,7 @@ public class FileDownloadUtil {
     /**
      * 压缩文件
      *
-     * @param filePaths   需要压缩的文件路径集合
+     * @param filePaths 需要压缩的文件路径集合
      * @throws IOException
      */
     private static String zipFile(List<String> filePaths, ZipOutputStream zos) {

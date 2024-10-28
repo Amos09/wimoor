@@ -2,12 +2,11 @@ package com.wimoor.amazon.auth.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDateTime;
-import java.io.Serializable;
-import java.math.BigInteger;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,16 +21,16 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amazonseller_market")
-@ApiModel(value="AmazonSellerMarket对象", description="授权对应区域客户所有绑定的站点")
+@ApiModel(value = "AmazonSellerMarket对象", description = "授权对应区域客户所有绑定的站点")
 public class AmazonSellerMarket implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "卖家Sellerid")
     private String sellerid;
 
     @ApiModelProperty(value = "站点ID")
-    @TableField(value="marketplace_id")
+    @TableField(value = "marketplace_id")
     private String marketplaceId;
 
     @ApiModelProperty(value = "国家编码")

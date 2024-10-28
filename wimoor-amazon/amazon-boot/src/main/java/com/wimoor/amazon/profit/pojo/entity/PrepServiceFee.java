@@ -1,20 +1,18 @@
 package com.wimoor.amazon.profit.pojo.entity;
-import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import io.swagger.annotations.ApiModel;
+import java.math.BigDecimal;
 import lombok.Data;
 
 
-
 @Data
-@TableName("t_prepservicefee")  
-@ApiModel(value="PrepServiceFee对象", description="产品PrepServiceFee费用")
+@TableName("t_prepservicefee")
+@ApiModel(value = "PrepServiceFee对象", description = "产品PrepServiceFee费用")
 public class PrepServiceFee {
-	
-	@TableId
+
+    @TableId
     private Integer id;
 
     private String category;
@@ -24,5 +22,5 @@ public class PrepServiceFee {
     private BigDecimal prepservicefee;
 
     private String country;
- 
+
 }

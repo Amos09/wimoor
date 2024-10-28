@@ -1,22 +1,7 @@
 package com.wimoor.erp.inventory.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wimoor.common.mvc.BizException;
 import com.wimoor.common.result.Result;
@@ -33,303 +18,320 @@ import com.wimoor.erp.material.pojo.entity.Material;
 import com.wimoor.erp.material.service.IMaterialService;
 import com.wimoor.erp.warehouse.pojo.entity.Warehouse;
 import com.wimoor.erp.warehouse.service.IWarehouseService;
-
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.StrUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
- 
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 @Api(tags = "仓存接口")
 @RestController
 @RequestMapping("/api/v1/inventory")
 @RequiredArgsConstructor
-public class InventoryController   {
-	@Resource
-	IInventoryService inventoryService;
-	@Resource
-	IMaterialService materialService;
-	@Resource
-	IWarehouseService wareService;
+public class InventoryController {
+
+    @Resource
+    IInventoryService inventoryService;
+    @Resource
+    IMaterialService materialService;
+    @Resource
+    IWarehouseService wareService;
     @Resource
     AssemblyMapper assemblyMapper;
     @Resource
     MaterialConsumableMapper materialConsumableMapper;
-	final IAssemblyService assemblyService;
-	
-	@GetMapping("/list")
-	public Result<List<Map<String, Object>>> getListData(String id,String ftype)  {
-		UserInfo userinfo = UserInfoContext.get();
-		List<Map<String, Object>> inventoryList = inventoryService.findByTypeWithStockCycle(id, ftype,userinfo.getCompanyid());
-		return Result.success(inventoryList);
-	}
+    final IAssemblyService assemblyService;
 
-	@GetMapping("getInventoryField")
-	public Result<Map<String,Object>> getInventoryFieldAction() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		UserInfo userinfo = UserInfoContext.get();
-		String shopid = userinfo.getCompanyid();
-		List<Warehouse> warehouseList = wareService.findByType("self_usable", shopid);
-		Map<String, Object> warehouseMap = new HashMap<String, Object>();
-		warehouseMap.put("warehouseList", warehouseList);
-		map.put("warehouseList", warehouseList);
-		return Result.success(map);
-	}
-	
-	@GetMapping("getSelfInvDetail")
-	public Result<Map<String, Object>> getInventoryDetail(String warehosueid,String materialid)  {
-		Map<String, Object> inv = inventoryService.getSelfInvBySKU(warehosueid,materialid);
-		return Result.success(inv);
-	}
-	
-	@PostMapping( "getInventory")
-	public IPage<Map<String, Object>> getInventoryDetail(@ApiParam("查询DTO")@RequestBody InventoryQueryDTO query)  {
-		String skuid = query.getMaterialid();
-		if (StrUtil.isEmpty(skuid)) {
-			skuid = null;
-		}
-		UserInfo userinfo = UserInfoContext.get();
-		String shopid = userinfo.getCompanyid();
-		List<Warehouse> warehouseList = wareService.findByType("self_usable", shopid);
-		if (warehouseList == null || warehouseList.size() == 0) {
-			warehouseList = null;
-		}
-		Map<String, Object> warehouseMap = new HashMap<String, Object>();
-		warehouseMap.put("warehouseList", warehouseList);
-		warehouseMap.put("shopid", shopid);
-		warehouseMap.put("skuid", skuid);
-		if (userinfo.isLimit(UserLimitDataType.owner)) {
-		   warehouseMap.put("myself", userinfo.getId());
-		}else {
-		   warehouseMap.put("myself", null);
-		}
-		IPage<Map<String, Object>> warehouseDetailList = inventoryService.findInventoryDetail(query.getPage(),warehouseMap);
-		return warehouseDetailList;
-	}
+    @GetMapping("/list")
+    public Result<List<Map<String, Object>>> getListData(String id, String ftype) {
+        UserInfo userinfo = UserInfoContext.get();
+        List<Map<String, Object>> inventoryList = inventoryService.findByTypeWithStockCycle(id, ftype,
+                userinfo.getCompanyid());
+        return Result.success(inventoryList);
+    }
 
-	@GetMapping( "getInventoryExport")
-	public void getInventoryDetailForExport(String skuid, HttpServletResponse response)  {
-		if (StrUtil.isEmpty(skuid)) {
-			skuid = null;
-		}
-		UserInfo userinfo = UserInfoContext.get();
-		String shopid=userinfo.getCompanyid();
-		List<Warehouse> warehouseList = wareService.findByType("self_usable", shopid);
-		if (warehouseList == null || warehouseList.size() == 0) {
-			warehouseList = null;
-		}
-		Map<String, Object> warehouseMap = new HashMap<String, Object>();
-		warehouseMap.put("warehouseList", warehouseList);
-		warehouseMap.put("shopid", shopid);
-		warehouseMap.put("skuid", skuid);
-		List<Map<String, Object>> warehouseDetailList = inventoryService.findInventoryDetailForExport(warehouseMap);
-		try {
-			// 创建新的Excel工作薄
-			SXSSFWorkbook workbook = new SXSSFWorkbook();
-			response.setContentType("application/force-download");// 设置强制下载不打开
-			response.addHeader("Content-Disposition", "attachment;fileName=inventoryReport" + System.currentTimeMillis() + ".xlsx");// 设置文件名
-			ServletOutputStream fOut = response.getOutputStream();
-			// 将数据写入Excel
-			List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
-			for(Warehouse item:warehouseList) {
-						list.add(BeanUtil.beanToMap(item));
-			}
-			inventoryService.setExcelBookInventoryReport(workbook,  list, warehouseDetailList);
-			workbook.write(fOut);
-			workbook.close();
-			fOut.flush();
-			fOut.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @GetMapping("getInventoryField")
+    public Result<Map<String, Object>> getInventoryFieldAction() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        UserInfo userinfo = UserInfoContext.get();
+        String shopid = userinfo.getCompanyid();
+        List<Warehouse> warehouseList = wareService.findByType("self_usable", shopid);
+        Map<String, Object> warehouseMap = new HashMap<String, Object>();
+        warehouseMap.put("warehouseList", warehouseList);
+        map.put("warehouseList", warehouseList);
+        return Result.success(map);
+    }
 
-	
-	 
-	@PostMapping(value = "getWarehouse")
-	public Result<IPage<Map<String, Object>>> getWareHouseLsit(@ApiParam("查询DTO")@RequestBody  InventoryQueryDTO dto)  {
-		UserInfo user = UserInfoContext.get();
-		String fType = dto.getFType();
-		String groupid = dto.getGroupid();
-		String warehouseid =dto.getWarehouseid();
-		String sku =dto.getSku();
-		String conssku = dto.getConssku();
-		String itemsku = dto.getItemsku();
-		String category = dto.getCategory();
-		String ftypes = dto.getFtypes();
-		String supplierid=dto.getSupplierid();
-		String search=dto.getSearch();
-		if (StrUtil.isEmpty(category) || category.equals("all")) {
-			category = null;
-		}
-		if (StrUtil.isBlank(ftypes) || ftypes.equals("all")) {
-			ftypes = null;
-		}
-		if (StrUtil.isBlank(itemsku) || itemsku.equals("all")) {
-			itemsku = null;
-		}
-		if (StrUtil.isBlank(conssku) || conssku.equals("all")) {
-			conssku = null;
-		}
-		if (StrUtil.isBlank(sku) || sku.equals("all")) {
-			sku = null;
-		}
-		if (StrUtil.isBlank(warehouseid)) {
-			warehouseid = null;
-		}
-		if (StrUtil.isEmpty(groupid)) {
-			groupid = null;
-		}	
-		if(StrUtil.isEmpty(supplierid)) {
-			supplierid=null;
-		}
-		
-		if (StrUtil.isNotBlank(search)) {
-			if(dto.getNotlike()==null||dto.getNotlike()==false) {
-				search = "%"+search.trim()+"%";
-			}else {
-				search = search.trim();
-			}
-		}else {
-			search=null;
-		}
-		Map<String,Object> param=new HashMap<String,Object>();
-		if (user.isLimit(UserLimitDataType.owner)) {
-			param.put("myself", user.getId());
-		}
-		if(dto.getHasinv()!=null&&dto.getHasinv()==true) {
-			param.put("hasinv", true);
-		}else {
-			param.put("hasinv", null);
-		}
-		if(StrUtil.isNotBlank(warehouseid)) {
-			param.put("warehouseid", warehouseid);
-		}else {
-			param.put("warehouseid", null);
-		}
-		param.put("skuid", sku);
-		param.put("sku", sku);
-		param.put("shopid", user.getCompanyid());
-		param.put("groupid", groupid);
-		param.put("itemsku", itemsku);
-		param.put("conssku", conssku);
-		param.put("category", category);
-		param.put("ftypes", ftypes);
-		param.put("search", search);
-		param.put("ftype", fType);
-		param.put("supplierid", supplierid);
-		IPage<Map<String, Object>> result = inventoryService.findLocalInventory(dto.getPage(),param);
-		if (result != null && result.getRecords().size() > 0) {
-			List<Map<String, Object>> inventoryList=result.getRecords();
-			if(dto.getCurrentpage()==1) {
-				Map<String, Object> summap = inventoryService.findSum(param);
-				inventoryList.get(0).put("allinbound", summap.get("inbound"));
-				inventoryList.get(0).put("allfulfillable", summap.get("fulfillable"));
-				inventoryList.get(0).put("alloutbound", summap.get("outbound"));
-			}
-		}
-		return Result.success(result);
-	}
-	
-	@PostMapping("getWarehouseExport")
-	public void getWareHouseExport(@ApiParam("查询DTO")@RequestBody InventoryQueryDTO dto, HttpServletResponse response)  {
-		UserInfo userinfo = UserInfoContext.get();
-		String shopid=userinfo.getCompanyid();
-		String fType = dto.getFType();
-		String groupid = dto.getGroupid();
-		String warehouseid = dto.getWarehouseid();
-		String sku = dto.getSku();
-		String conssku =dto.getConssku();
-		String itemsku =dto.getItemsku();
-		String category = dto.getCategory();
-		String ftypes = dto.getFtypes();
-		if (StrUtil.isEmpty(category) || category.equals("all")) {
-			category = null;
-		}
-		if (StrUtil.isEmpty(ftypes) || ftypes.equals("all")) {
-			ftypes = null;
-		}
-		if (StrUtil.isEmpty(itemsku) || itemsku.equals("all")) {
-			itemsku = null;
-		}
-		if (StrUtil.isEmpty(conssku) || conssku.equals("all")) {
-			conssku = null;
-		}
-		if (StrUtil.isEmpty(sku) || sku.equals("all")) {
-			sku = null;
-		}
-		if (StrUtil.isEmpty(warehouseid)) {
-			warehouseid = null;
-		}
-		if (StrUtil.isEmpty(groupid)) {
-			groupid = null;
-		}
-		Map<String,Object> param=new HashMap<String,Object>();
-		param.put("warehouseid", warehouseid);
-		param.put("skuid", sku);
-		param.put("sku", sku);
-		param.put("shopid", shopid);
-		param.put("groupid", groupid);
-		param.put("itemsku", itemsku);
-		param.put("conssku", conssku);
-		param.put("category", category);
-		param.put("ftypes", ftypes);
-		param.put("ftype", fType);
-		if(dto.getHasinv()!=null&&dto.getHasinv()==true) {
-			param.put("hasinv", true);
-		}else {
-			param.put("hasinv", null);
-		}
-		List<Map<String, Object>> inventoryList = inventoryService.findLocalInventory(param);
-		Map<String, Object> summap = inventoryService.findSum(param);
-		String fileName = "";
-		if ("FBA".equals(fType)) {
-			fileName = "FBAInventoryReport";
-			summap.put("groupname", "合计");
-		} else {
-			fileName = "LocalInventoryReport";
-			summap.put("warehouse", "合计");
-		}
-		inventoryList.add(summap);
-		try {
-			// 创建新的Excel工作薄
-			SXSSFWorkbook workbook = new SXSSFWorkbook();
-			response.setContentType("application/force-download");// 设置强制下载不打开
-			response.addHeader("Content-Disposition", "attachment;fileName=" + fileName + System.currentTimeMillis() + ".xlsx");// 设置文件名
-			ServletOutputStream fOut = response.getOutputStream();
-			// 将数据写入Excel
-	        inventoryService.getExcelBookInventoryReport(workbook, inventoryList);
-			workbook.write(fOut);
-			workbook.close();
-			fOut.flush();
-			fOut.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@GetMapping("/findInboundDetail")
-	public Result<List<Map<String, Object>>> findInboundDetail(String mid,String warehouseid){
-		List<Map<String, Object>> result = null;
-		UserInfo user = UserInfoContext.get();
-		if (StrUtil.isEmpty(mid)) {
-			mid = null;
-		}
-		result = inventoryService.findInboundDetail(mid, warehouseid, user.getCompanyid());
-		return Result.success(result);
-	}
-	
-	@GetMapping("/findOutboundDetail")
-	public Result<List<Map<String, Object>>> findOutboundDetail(String mid,String warehouseid) {
-		List<Map<String, Object>> result = null;
-		UserInfo user = UserInfoContext.get();
-		if (StrUtil.isEmpty(mid)) {
-			mid = null;
-		}
-		result = inventoryService.findOutboundDetail(mid, warehouseid, user.getCompanyid());
-		return Result.success(result);
-	}
+    @GetMapping("getSelfInvDetail")
+    public Result<Map<String, Object>> getInventoryDetail(String warehosueid, String materialid) {
+        Map<String, Object> inv = inventoryService.getSelfInvBySKU(warehosueid, materialid);
+        return Result.success(inv);
+    }
+
+    @PostMapping("getInventory")
+    public IPage<Map<String, Object>> getInventoryDetail(@ApiParam("查询DTO") @RequestBody InventoryQueryDTO query) {
+        String skuid = query.getMaterialid();
+        if (StrUtil.isEmpty(skuid)) {
+            skuid = null;
+        }
+        UserInfo userinfo = UserInfoContext.get();
+        String shopid = userinfo.getCompanyid();
+        List<Warehouse> warehouseList = wareService.findByType("self_usable", shopid);
+        if (warehouseList == null || warehouseList.size() == 0) {
+            warehouseList = null;
+        }
+        Map<String, Object> warehouseMap = new HashMap<String, Object>();
+        warehouseMap.put("warehouseList", warehouseList);
+        warehouseMap.put("shopid", shopid);
+        warehouseMap.put("skuid", skuid);
+        if (userinfo.isLimit(UserLimitDataType.owner)) {
+            warehouseMap.put("myself", userinfo.getId());
+        } else {
+            warehouseMap.put("myself", null);
+        }
+        IPage<Map<String, Object>> warehouseDetailList = inventoryService.findInventoryDetail(query.getPage(),
+                warehouseMap);
+        return warehouseDetailList;
+    }
+
+    @GetMapping("getInventoryExport")
+    public void getInventoryDetailForExport(String skuid, HttpServletResponse response) {
+        if (StrUtil.isEmpty(skuid)) {
+            skuid = null;
+        }
+        UserInfo userinfo = UserInfoContext.get();
+        String shopid = userinfo.getCompanyid();
+        List<Warehouse> warehouseList = wareService.findByType("self_usable", shopid);
+        if (warehouseList == null || warehouseList.size() == 0) {
+            warehouseList = null;
+        }
+        Map<String, Object> warehouseMap = new HashMap<String, Object>();
+        warehouseMap.put("warehouseList", warehouseList);
+        warehouseMap.put("shopid", shopid);
+        warehouseMap.put("skuid", skuid);
+        List<Map<String, Object>> warehouseDetailList = inventoryService.findInventoryDetailForExport(warehouseMap);
+        try {
+            // 创建新的Excel工作薄
+            SXSSFWorkbook workbook = new SXSSFWorkbook();
+            response.setContentType("application/force-download");// 设置强制下载不打开
+            response.addHeader("Content-Disposition",
+                    "attachment;fileName=inventoryReport" + System.currentTimeMillis() + ".xlsx");// 设置文件名
+            ServletOutputStream fOut = response.getOutputStream();
+            // 将数据写入Excel
+            List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+            for (Warehouse item : warehouseList) {
+                list.add(BeanUtil.beanToMap(item));
+            }
+            inventoryService.setExcelBookInventoryReport(workbook, list, warehouseDetailList);
+            workbook.write(fOut);
+            workbook.close();
+            fOut.flush();
+            fOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @PostMapping(value = "getWarehouse")
+    public Result<IPage<Map<String, Object>>> getWareHouseLsit(
+            @ApiParam("查询DTO") @RequestBody InventoryQueryDTO dto) {
+        UserInfo user = UserInfoContext.get();
+        String fType = dto.getFType();
+        String groupid = dto.getGroupid();
+        String warehouseid = dto.getWarehouseid();
+        String sku = dto.getSku();
+        String conssku = dto.getConssku();
+        String itemsku = dto.getItemsku();
+        String category = dto.getCategory();
+        String ftypes = dto.getFtypes();
+        String supplierid = dto.getSupplierid();
+        String search = dto.getSearch();
+        if (StrUtil.isEmpty(category) || category.equals("all")) {
+            category = null;
+        }
+        if (StrUtil.isBlank(ftypes) || ftypes.equals("all")) {
+            ftypes = null;
+        }
+        if (StrUtil.isBlank(itemsku) || itemsku.equals("all")) {
+            itemsku = null;
+        }
+        if (StrUtil.isBlank(conssku) || conssku.equals("all")) {
+            conssku = null;
+        }
+        if (StrUtil.isBlank(sku) || sku.equals("all")) {
+            sku = null;
+        }
+        if (StrUtil.isBlank(warehouseid)) {
+            warehouseid = null;
+        }
+        if (StrUtil.isEmpty(groupid)) {
+            groupid = null;
+        }
+        if (StrUtil.isEmpty(supplierid)) {
+            supplierid = null;
+        }
+
+        if (StrUtil.isNotBlank(search)) {
+            if (dto.getNotlike() == null || dto.getNotlike() == false) {
+                search = "%" + search.trim() + "%";
+            } else {
+                search = search.trim();
+            }
+        } else {
+            search = null;
+        }
+        Map<String, Object> param = new HashMap<String, Object>();
+        if (user.isLimit(UserLimitDataType.owner)) {
+            param.put("myself", user.getId());
+        }
+        if (dto.getHasinv() != null && dto.getHasinv() == true) {
+            param.put("hasinv", true);
+        } else {
+            param.put("hasinv", null);
+        }
+        if (StrUtil.isNotBlank(warehouseid)) {
+            param.put("warehouseid", warehouseid);
+        } else {
+            param.put("warehouseid", null);
+        }
+        param.put("skuid", sku);
+        param.put("sku", sku);
+        param.put("shopid", user.getCompanyid());
+        param.put("groupid", groupid);
+        param.put("itemsku", itemsku);
+        param.put("conssku", conssku);
+        param.put("category", category);
+        param.put("ftypes", ftypes);
+        param.put("search", search);
+        param.put("ftype", fType);
+        param.put("supplierid", supplierid);
+        IPage<Map<String, Object>> result = inventoryService.findLocalInventory(dto.getPage(), param);
+        if (result != null && result.getRecords().size() > 0) {
+            List<Map<String, Object>> inventoryList = result.getRecords();
+            if (dto.getCurrentpage() == 1) {
+                Map<String, Object> summap = inventoryService.findSum(param);
+                inventoryList.get(0).put("allinbound", summap.get("inbound"));
+                inventoryList.get(0).put("allfulfillable", summap.get("fulfillable"));
+                inventoryList.get(0).put("alloutbound", summap.get("outbound"));
+            }
+        }
+        return Result.success(result);
+    }
+
+    @PostMapping("getWarehouseExport")
+    public void getWareHouseExport(@ApiParam("查询DTO") @RequestBody InventoryQueryDTO dto,
+            HttpServletResponse response) {
+        UserInfo userinfo = UserInfoContext.get();
+        String shopid = userinfo.getCompanyid();
+        String fType = dto.getFType();
+        String groupid = dto.getGroupid();
+        String warehouseid = dto.getWarehouseid();
+        String sku = dto.getSku();
+        String conssku = dto.getConssku();
+        String itemsku = dto.getItemsku();
+        String category = dto.getCategory();
+        String ftypes = dto.getFtypes();
+        if (StrUtil.isEmpty(category) || category.equals("all")) {
+            category = null;
+        }
+        if (StrUtil.isEmpty(ftypes) || ftypes.equals("all")) {
+            ftypes = null;
+        }
+        if (StrUtil.isEmpty(itemsku) || itemsku.equals("all")) {
+            itemsku = null;
+        }
+        if (StrUtil.isEmpty(conssku) || conssku.equals("all")) {
+            conssku = null;
+        }
+        if (StrUtil.isEmpty(sku) || sku.equals("all")) {
+            sku = null;
+        }
+        if (StrUtil.isEmpty(warehouseid)) {
+            warehouseid = null;
+        }
+        if (StrUtil.isEmpty(groupid)) {
+            groupid = null;
+        }
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("warehouseid", warehouseid);
+        param.put("skuid", sku);
+        param.put("sku", sku);
+        param.put("shopid", shopid);
+        param.put("groupid", groupid);
+        param.put("itemsku", itemsku);
+        param.put("conssku", conssku);
+        param.put("category", category);
+        param.put("ftypes", ftypes);
+        param.put("ftype", fType);
+        if (dto.getHasinv() != null && dto.getHasinv() == true) {
+            param.put("hasinv", true);
+        } else {
+            param.put("hasinv", null);
+        }
+        List<Map<String, Object>> inventoryList = inventoryService.findLocalInventory(param);
+        Map<String, Object> summap = inventoryService.findSum(param);
+        String fileName = "";
+        if ("FBA".equals(fType)) {
+            fileName = "FBAInventoryReport";
+            summap.put("groupname", "合计");
+        } else {
+            fileName = "LocalInventoryReport";
+            summap.put("warehouse", "合计");
+        }
+        inventoryList.add(summap);
+        try {
+            // 创建新的Excel工作薄
+            SXSSFWorkbook workbook = new SXSSFWorkbook();
+            response.setContentType("application/force-download");// 设置强制下载不打开
+            response.addHeader("Content-Disposition",
+                    "attachment;fileName=" + fileName + System.currentTimeMillis() + ".xlsx");// 设置文件名
+            ServletOutputStream fOut = response.getOutputStream();
+            // 将数据写入Excel
+            inventoryService.getExcelBookInventoryReport(workbook, inventoryList);
+            workbook.write(fOut);
+            workbook.close();
+            fOut.flush();
+            fOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/findInboundDetail")
+    public Result<List<Map<String, Object>>> findInboundDetail(String mid, String warehouseid) {
+        List<Map<String, Object>> result = null;
+        UserInfo user = UserInfoContext.get();
+        if (StrUtil.isEmpty(mid)) {
+            mid = null;
+        }
+        result = inventoryService.findInboundDetail(mid, warehouseid, user.getCompanyid());
+        return Result.success(result);
+    }
+
+    @GetMapping("/findOutboundDetail")
+    public Result<List<Map<String, Object>>> findOutboundDetail(String mid, String warehouseid) {
+        List<Map<String, Object>> result = null;
+        UserInfo user = UserInfoContext.get();
+        if (StrUtil.isEmpty(mid)) {
+            mid = null;
+        }
+        result = inventoryService.findOutboundDetail(mid, warehouseid, user.getCompanyid());
+        return Result.success(result);
+    }
 
 	/*
 	@ResponseBody
@@ -450,49 +452,51 @@ public class InventoryController   {
 
 
 
-*/	
-	
-	@GetMapping(value = "/getInventoryByMaterial")
-	public Result<List<Map<String, Object>>> getInventoryByMaterialByIdAction(String mid){
-		return Result.success(inventoryService.findFulByMaterial(mid));
-	}
-	 
-	@GetMapping(value = "/getInventoryByMaterialSKU")
-	public Result<List<MaterialInventoryVo>> getInventoryByMaterialAction(String sku)  {
-		UserInfo userinfo = UserInfoContext.get();
-		Material material = materialService.findBySKU(sku, userinfo.getCompanyid());
-		if(material==null) {
-			throw new BizException("未找到本地SKU"+sku);
-		}
-		return Result.success(inventoryService.findLocalWarehouseInventory(userinfo.getCompanyid(),material.getId()));
-	}
-	
-	
+*/
+
+    @GetMapping(value = "/getInventoryByMaterial")
+    public Result<List<Map<String, Object>>> getInventoryByMaterialByIdAction(String mid) {
+        return Result.success(inventoryService.findFulByMaterial(mid));
+    }
+
+    @GetMapping(value = "/getInventoryByMaterialSKU")
+    public Result<List<MaterialInventoryVo>> getInventoryByMaterialAction(String sku) {
+        UserInfo userinfo = UserInfoContext.get();
+        Material material = materialService.findBySKU(sku, userinfo.getCompanyid());
+        if (material == null) {
+            throw new BizException("未找到本地SKU" + sku);
+        }
+        return Result.success(inventoryService.findLocalWarehouseInventory(userinfo.getCompanyid(), material.getId()));
+    }
+
+
     @ApiOperation("根据本地产品ID查询产品详情")
     @GetMapping("/getInventory")
-	public Result<MaterialInventoryVo> getInventoryAction(@ApiParam("本地SKU id")@RequestParam String materialid,@ApiParam("仓库ID")@RequestParam String warehouseid) {
-    	MaterialInventoryVo vo=new MaterialInventoryVo();
-    	UserInfo userinfo = UserInfoContext.get();
-    	  String shopid=userinfo.getCompanyid();
-    		vo.setFulfillable(0);
-    		vo.setOutbound(0);
-    		vo.setInbound(0);
-    		vo.setCanassembly(0);
-    		vo.setCanconsumable(null);
-		if(StrUtil.isNotBlank(warehouseid)) {
-			Integer canconsumable = materialConsumableMapper.findCanConsumableByInventory(materialid, warehouseid, shopid);
-			if(canconsumable!=null) {
-				vo.setCanconsumable(canconsumable);
-			}
-		}
-		return Result.success(vo);
-	} 
-    
+    public Result<MaterialInventoryVo> getInventoryAction(@ApiParam("本地SKU id") @RequestParam String materialid,
+            @ApiParam("仓库ID") @RequestParam String warehouseid) {
+        MaterialInventoryVo vo = new MaterialInventoryVo();
+        UserInfo userinfo = UserInfoContext.get();
+        String shopid = userinfo.getCompanyid();
+        vo.setFulfillable(0);
+        vo.setOutbound(0);
+        vo.setInbound(0);
+        vo.setCanassembly(0);
+        vo.setCanconsumable(null);
+        if (StrUtil.isNotBlank(warehouseid)) {
+            Integer canconsumable = materialConsumableMapper.findCanConsumableByInventory(materialid, warehouseid,
+                    shopid);
+            if (canconsumable != null) {
+                vo.setCanconsumable(canconsumable);
+            }
+        }
+        return Result.success(vo);
+    }
+
     @ApiOperation("根据本地产品ID查询产品详情")
     @GetMapping("/findInventoryNowCostByShopId")
-	public Result<List<Map<String, Object>>> findInventoryNowCostByShopIdAction(@RequestParam String shopid) {
-			List<Map<String, Object>> result = inventoryService.findInventoryNowCostByShopId(shopid);
-		    return Result.success(result);
-	} 
-    
+    public Result<List<Map<String, Object>>> findInventoryNowCostByShopIdAction(@RequestParam String shopid) {
+        List<Map<String, Object>> result = inventoryService.findInventoryNowCostByShopId(shopid);
+        return Result.success(result);
+    }
+
 }

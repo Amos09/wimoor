@@ -11,7 +11,7 @@ public class MapSortUtil {
     /**
      * 根据map的key排序
      *
-     * @param map 待排序的map
+     * @param map    待排序的map
      * @param isDesc 是否降序，true：降序，false：升序
      * @return 排序好的map
      */
@@ -30,12 +30,12 @@ public class MapSortUtil {
     /**
      * 根据map的value排序
      *
-     * @param map 待排序的map
+     * @param map    待排序的map
      * @param isDesc 是否降序，true：降序，false：升序
      * @return 排序好的map
      */
     public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map, boolean isDesc) {
-        Map<K, V> result =new LinkedHashMap<>();
+        Map<K, V> result = new LinkedHashMap<>();
         if (isDesc) {
             map.entrySet().stream().sorted(Map.Entry.<K, V>comparingByValue().reversed())
                     .forEach(e -> result.put(e.getKey(), e.getValue()));

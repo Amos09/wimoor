@@ -1,18 +1,17 @@
 package com.wimoor.amazon.notifications.pojo.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
 import java.io.Serializable;
 import java.math.BigInteger;
-
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -21,10 +20,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_notifications")
-@ApiModel(value="AmzNotifications对象", description="")
+@ApiModel(value = "AmzNotifications对象", description = "")
 public class AmzNotifications implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private BigInteger id;
@@ -34,5 +33,5 @@ public class AmzNotifications implements Serializable {
     private String description;
 
     private Boolean isrun;
- 
+
 }

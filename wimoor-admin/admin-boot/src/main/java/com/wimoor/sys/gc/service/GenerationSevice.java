@@ -1,13 +1,13 @@
 package com.wimoor.sys.gc.service;
 
 
-import java.util.Map;
-
 import com.wimoor.sys.gc.model.dto.GenerateDto;
+import java.util.Map;
 
 
 /**
- *  代码生成调用层service
+ * 代码生成调用层service
+ *
  * @version 1.0.0
  */
 public interface GenerationSevice {
@@ -54,7 +54,7 @@ public interface GenerationSevice {
      * 获取生成路径（服务端+前端）
      *
      * @param dataSourceId 数据源配置id
-     * @param tableName tableName
+     * @param tableName    tableName
      * @return java.util.Map<java.lang.String, java.lang.String>
      * @version 1.0.0
      */

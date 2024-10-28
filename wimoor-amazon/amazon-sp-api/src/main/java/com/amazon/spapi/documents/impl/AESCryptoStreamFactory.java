@@ -3,23 +3,23 @@ package com.amazon.spapi.documents.impl;
 import com.amazon.spapi.documents.CryptoStreamFactory;
 import com.amazon.spapi.documents.exception.CryptoException;
 import com.google.common.base.Preconditions;
-
-import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.InputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * A crypto stream factory implementing AES encryption.
  */
 public class AESCryptoStreamFactory implements CryptoStreamFactory {
+
     private static final String ENCRYPTION_ALGORITHM = "AES/CBC/PKCS5Padding";
 
     private final Key key;
@@ -36,7 +36,7 @@ public class AESCryptoStreamFactory implements CryptoStreamFactory {
             cipher.init(mode, key, new IvParameterSpec(initializationVector));
             return cipher;
         } catch (InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException |
-                NoSuchPaddingException e) {
+                 NoSuchPaddingException e) {
             throw new CryptoException(e);
         }
     }
@@ -61,6 +61,7 @@ public class AESCryptoStreamFactory implements CryptoStreamFactory {
      * Use this to create an instance of an {@link AESCryptoStreamFactory}.
      */
     public static class Builder {
+
         private static final Base64.Decoder BASE64_DECODER = Base64.getDecoder();
         private static final String REQUIRED_KEY_ALGORITHM = "AES";
 
@@ -70,7 +71,7 @@ public class AESCryptoStreamFactory implements CryptoStreamFactory {
         /**
          * Create the builder.
          *
-         * @param key The key
+         * @param key                  The key
          * @param initializationVector The initialization vector
          */
         public Builder(String key, String initializationVector) {

@@ -4,84 +4,88 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 @Entity
-@Table(name="t_amz_adv_browsenode")
+@Table(name = "t_amz_adv_browsenode")
 public class AmzAdvBrowseNode {
-	@Id
-	@Column(name="id")
+
+    @Id
+    @Column(name = "id")
     private BigInteger id;
 
-	@Column(name="name")
+    @Column(name = "name")
     private String name;
 
-	@Column(name="parentid")
+    @Column(name = "parentid")
     private BigInteger parentid;
 
-	@Column(name="country")
+    @Column(name = "country")
     private String country;
 
-	@Column(name="is_category_root")
+    @Column(name = "is_category_root")
     private Boolean isCategoryRoot;
 
-	@Column(name="refreshtime")
+    @Column(name = "refreshtime")
     private Date refreshtime;
-	
-	@Column(name="level")
+
+    @Column(name = "level")
     private Integer level;
-	
+
     @Transient
-    Map<BigInteger,AmzAdvBrowseNode> childrenMap;
+    Map<BigInteger, AmzAdvBrowseNode> childrenMap;
 
     @Transient
     public Map<BigInteger, AmzAdvBrowseNode> getChildrenMap() {
-		return childrenMap;
-	}
+        return childrenMap;
+    }
 
     @Transient
-	public void addChildrenMap(AmzAdvBrowseNode child) {
-		if(childrenMap==null) {
-			childrenMap=new HashMap<BigInteger,AmzAdvBrowseNode>();
-		}
-		 childrenMap.put(child.getId(), child);
-	}
+    public void addChildrenMap(AmzAdvBrowseNode child) {
+        if (childrenMap == null) {
+            childrenMap = new HashMap<BigInteger, AmzAdvBrowseNode>();
+        }
+        childrenMap.put(child.getId(), child);
+    }
+
     @Transient
-	public void addAllChildrenMap(Map<BigInteger,AmzAdvBrowseNode> allchild) {
-		if(childrenMap==null) {
-			childrenMap=new HashMap<BigInteger,AmzAdvBrowseNode>();
-		}
-		 childrenMap.putAll(allchild);;
-	}
-	public Integer getLevel() {
-		return level;
-	}
+    public void addAllChildrenMap(Map<BigInteger, AmzAdvBrowseNode> allchild) {
+        if (childrenMap == null) {
+            childrenMap = new HashMap<BigInteger, AmzAdvBrowseNode>();
+        }
+        childrenMap.putAll(allchild);
+        ;
+    }
 
-	public void setLevel(Integer level) {
-		this.level = level;
-	}
+    public Integer getLevel() {
+        return level;
+    }
 
-	public BigInteger getId() {
-		return id;
-	}
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
 
-	public void setId(BigInteger id) {
-		this.id = id;
-	}
+    public BigInteger getId() {
+        return id;
+    }
 
-	public BigInteger getParentid() {
-		return parentid;
-	}
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
 
-	public void setParentid(BigInteger parentid) {
-		this.parentid = parentid;
-	}
+    public BigInteger getParentid() {
+        return parentid;
+    }
 
-	public String getName() {
+    public void setParentid(BigInteger parentid) {
+        this.parentid = parentid;
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -89,7 +93,6 @@ public class AmzAdvBrowseNode {
         this.name = name == null ? null : name.trim();
     }
 
- 
 
     public String getCountry() {
         return country;

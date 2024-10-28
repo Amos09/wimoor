@@ -2,49 +2,48 @@ package com.wimoor.amazon.adv.common.pojo;
 
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_adv_assets")
+@Table(name = "t_amz_adv_assets")
 public class AmzAdvAssets {
-	
-	@Id
-	@Column(name="assetId")
+
+    @Id
+    @Column(name = "assetId")
     private String assetid;
 
-	@Id
-	@Column(name="brandEntityId")
+    @Id
+    @Column(name = "brandEntityId")
     private String brandentityid;
-	
-	@Id
-	@Column(name="profileid")
+
+    @Id
+    @Column(name = "profileid")
     private BigInteger profileid;
 
-	@Column(name="mediaType")
+    @Column(name = "mediaType")
     private String mediatype;
 
-	@Column(name="name")
+    @Column(name = "name")
     private String name;
 
-	@Column(name="url")
+    @Column(name = "url")
     private String url;
 
-	@Column(name="opptime")
+    @Column(name = "opptime")
     private Date opptime;
 
     public BigInteger getProfileid() {
-		return profileid;
-	}
+        return profileid;
+    }
 
-	public void setProfileid(BigInteger profileid) {
-		this.profileid = profileid;
-	}
+    public void setProfileid(BigInteger profileid) {
+        this.profileid = profileid;
+    }
 
-	public String getAssetid() {
+    public String getAssetid() {
         return assetid;
     }
 

@@ -39,11 +39,11 @@ public interface SecurityConstants {
     String TOKEN_BLACKLIST_PREFIX = "auth:token:blacklist:";
 
     String JWT_TOKEN_HEADER = "token";
-    
-    String JWT_TOKEN_PREFIX="tokenjwt:";
-    
-    String TOKEN_WHITELIST_PREFIX="auth:token:whitelist:";
-    
+
+    String JWT_TOKEN_PREFIX = "tokenjwt:";
+
+    String TOKEN_WHITELIST_PREFIX = "auth:token:whitelist:";
+
     String USER_ID_KEY = "userId";
 
     String USER_NAME_KEY = "username";

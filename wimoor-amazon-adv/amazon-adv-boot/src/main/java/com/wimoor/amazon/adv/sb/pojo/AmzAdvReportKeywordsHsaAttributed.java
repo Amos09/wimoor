@@ -1,62 +1,60 @@
 package com.wimoor.amazon.adv.sb.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 
 @Entity
-@Table(name="t_amz_adv_rpt2_hsa_keywords_attributed")
+@Table(name = "t_amz_adv_rpt2_hsa_keywords_attributed")
 public class AmzAdvReportKeywordsHsaAttributed {
-	 
 
-	@Id
-	@Column(name="keywordId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "keywordId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger keywordid;
 
-	@Id
-	@Column(name="bydate")
+    @Id
+    @Column(name = "bydate")
     private Date bydate;
-	
-	@Column(name="opttime")
+
+    @Column(name = "opttime")
     private Date opttime;
 
-	@Column(name="attributedSales14d")
+    @Column(name = "attributedSales14d")
     private BigDecimal attributedsales14d;
 
-	@Column(name="attributedSales14dSameSKU")
+    @Column(name = "attributedSales14dSameSKU")
     private BigDecimal attributedsales14dsamesku;
 
-	@Column(name="attributedConversions14d")
+    @Column(name = "attributedConversions14d")
     private Integer attributedconversions14d;
 
-	@Column(name="attributedConversions14dSameSKU")
+    @Column(name = "attributedConversions14dSameSKU")
     private Integer attributedconversions14dsamesku;
-  
-	public BigInteger getKeywordid() {
-		return keywordid;
-	}
 
-	public void setKeywordid(BigInteger keywordid) {
-		this.keywordid = keywordid;
-	}
-	
+    public BigInteger getKeywordid() {
+        return keywordid;
+    }
+
+    public void setKeywordid(BigInteger keywordid) {
+        this.keywordid = keywordid;
+    }
+
     public Date getBydate() {
-		return bydate;
-	}
+        return bydate;
+    }
 
-	public void setBydate(Date bydate) {
-		this.bydate = bydate;
-	}
+    public void setBydate(Date bydate) {
+        this.bydate = bydate;
+    }
 
     public Date getOpttime() {
         return opttime;
@@ -97,12 +95,20 @@ public class AmzAdvReportKeywordsHsaAttributed {
     public void setAttributedconversions14dsamesku(Integer attributedconversions14dsamesku) {
         this.attributedconversions14dsamesku = attributedconversions14dsamesku;
     }
-    
+
     public boolean isZero() {
-    	if(attributedsales14d!=null&&attributedsales14d.floatValue()>0.001)return false;
-    	if(attributedsales14dsamesku!=null&&attributedsales14dsamesku.floatValue()>0.001)return false;
-    	if(attributedconversions14d!=null&&attributedconversions14d!=0)return false;
-    	if(attributedconversions14dsamesku!=null&&attributedconversions14dsamesku!=0)return false;
+        if (attributedsales14d != null && attributedsales14d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales14dsamesku != null && attributedsales14dsamesku.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedconversions14d != null && attributedconversions14d != 0) {
+            return false;
+        }
+        if (attributedconversions14dsamesku != null && attributedconversions14dsamesku != 0) {
+            return false;
+        }
         return true;
     }
 

@@ -1,15 +1,13 @@
 package com.wimoor.amazon.inventory.mapper;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wimoor.amazon.inventory.pojo.entity.AmzInventoryCountryReport;
+import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -21,8 +19,8 @@ import com.wimoor.amazon.inventory.pojo.entity.AmzInventoryCountryReport;
  */
 @Mapper
 public interface AmzInventoryCountryReportMapper extends BaseMapper<AmzInventoryCountryReport> {
-	
-	IPage<Map<String,Object>> findFBACountry(Page<?> page,@Param("param")Map<String,Object> param);
 
-	void insertBatch(List<AmzInventoryCountryReport> list);
+    IPage<Map<String, Object>> findFBACountry(Page<?> page, @Param("param") Map<String, Object> param);
+
+    void insertBatch(List<AmzInventoryCountryReport> list);
 }

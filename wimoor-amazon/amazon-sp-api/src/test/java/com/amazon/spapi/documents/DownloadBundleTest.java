@@ -1,14 +1,14 @@
 package com.amazon.spapi.documents;
 
-import com.amazon.spapi.documents.impl.AESCryptoStreamFactory;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.amazon.spapi.documents.impl.AESCryptoStreamFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class DownloadBundleTest {
+
     private static String KEY = "sxx/wImF6BFndqSAz56O6vfiAh8iD9P297DHfFgujec=";
     private static String VECTOR = "7S2tn363v0wfCfo1IX2Q1A==";
 

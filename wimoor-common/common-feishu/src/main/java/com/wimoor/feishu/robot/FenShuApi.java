@@ -3,19 +3,17 @@ package com.wimoor.feishu.robot;
 import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.wimoor.feishu.robot.properties.RobotFeiShuProperties;
 import com.wimoor.feishu.robot.properties.RobotProperties;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * 飞书 群机器人
@@ -48,11 +46,11 @@ public class FenShuApi {
     /**
      * 签名
      *
-     * @param secret 秘密
+     * @param secret    秘密
      * @param timestamp 时间戳
      * @return {@link String}
      * @throws NoSuchAlgorithmException 没有这样算法异常
-     * @throws InvalidKeyException 无效关键例外
+     * @throws InvalidKeyException      无效关键例外
      */
     private static String genSign(String secret, long timestamp) {
         //把timestamp+"\n"+密钥当做签名字符串

@@ -1,17 +1,15 @@
 package com.wimoor.erp.warehouse.pojo.vo;
 
-import java.io.Serializable;
-import java.math.BigInteger;
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -26,17 +24,18 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @TableName("t_erp_warehouse_shelf_inventory_opt_record")
-@ApiModel(value="WarehouseShelfInventoryOptRecordVo对象", description="操作记录")
-public class WarehouseShelfInventoryOptRecordVo implements Serializable{
-	private static final long serialVersionUID = 3072300909415719829L;
-	private String id;
- 
+@ApiModel(value = "WarehouseShelfInventoryOptRecordVo对象", description = "操作记录")
+public class WarehouseShelfInventoryOptRecordVo implements Serializable {
+
+    private static final long serialVersionUID = 3072300909415719829L;
+    private String id;
+
     @ApiModelProperty(value = "货柜ID")
     private BigInteger shelfid;
 
     @ApiModelProperty(value = "仓位名称")
     private String shelfname;
-    
+
     @ApiModelProperty(value = "产品ID")
     private BigInteger materialid;
 
@@ -48,13 +47,13 @@ public class WarehouseShelfInventoryOptRecordVo implements Serializable{
 
     @ApiModelProperty(value = "操作数量对应的体积")
     private Float size;
-    
+
     @ApiModelProperty(value = "表单ID")
     private String formid;
-    
+
     @ApiModelProperty(value = "表单类型")
     private String formtype;
-    
+
     @ApiModelProperty(value = "操作后结余数量")
     private Integer balanceQty;
 

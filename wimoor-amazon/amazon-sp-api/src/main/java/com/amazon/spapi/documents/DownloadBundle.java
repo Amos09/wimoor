@@ -3,8 +3,6 @@ package com.amazon.spapi.documents;
 import com.amazon.spapi.documents.exception.CryptoException;
 import com.amazon.spapi.documents.exception.MissingCharsetException;
 import com.squareup.okhttp.MediaType;
-import org.apache.commons.io.IOUtils;
-
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.File;
@@ -14,24 +12,26 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.zip.GZIPInputStream;
+import org.apache.commons.io.IOUtils;
 
 /**
  * Helper that contains and provides access to the downloaded contents of an encrypted document. {@link #close()} must
  * be called to delete the temporary file that contains the encrypted document contents.
- *
+ * <p>
  * Multiple independent streams and readers (from which unencrypted data can be read while maintaining encryption at
- * rest on the filesystem) can be opened from an instance of {@link DownloadBundle}, but once {@link #close()} is
- * called the behavior of any open streams or readers from this instance will be unspecified as the underlying
- * temporary file will be deleted.
+ * rest on the filesystem) can be opened from an instance of {@link DownloadBundle}, but once {@link #close()} is called
+ * the behavior of any open streams or readers from this instance will be unspecified as the underlying temporary file
+ * will be deleted.
  */
 public class DownloadBundle implements AutoCloseable {
+
     private final CompressionAlgorithm compressionAlgorithm;
     private final String contentType;
     private final CryptoStreamFactory cryptoStreamFactory;
     private final File document;
 
     DownloadBundle(CompressionAlgorithm compressionAlgorithm, String contentType,
-                   CryptoStreamFactory cryptoStreamFactory, File document) {
+            CryptoStreamFactory cryptoStreamFactory, File document) {
         this.compressionAlgorithm = compressionAlgorithm;
         this.contentType = contentType;
         this.cryptoStreamFactory = cryptoStreamFactory;
@@ -55,7 +55,7 @@ public class DownloadBundle implements AutoCloseable {
      *
      * @return An {@link InputStream} that decompresses and decrypts the document's contents
      * @throws CryptoException Crypto exception
-     * @throws IOException IO exception
+     * @throws IOException     IO exception
      */
     public InputStream newInputStream() throws CryptoException, IOException {
         Closeable closeThis = null;
@@ -85,13 +85,13 @@ public class DownloadBundle implements AutoCloseable {
      * Open a {@link BufferedReader} that allows the caller to read the decompressed (if applicable) and decrypted
      * contents of the downloaded document. The character set is parsed from {@link #getContentType()}. If the character
      * set could not be parsed, this method will fail with {@link MissingCharsetException}.
-     *
+     * <p>
      * It is the responsibility of the caller to close the returned {@link BufferedReader}. This {@link BufferedReader}
      * will become invalid once this {@link DownloadBundle} is closed.
      *
      * @return A {@link BufferedReader} that decompresses and decrypts the document's contents
-     * @throws CryptoException Crypto exception
-     * @throws IOException IO exception
+     * @throws CryptoException         Crypto exception
+     * @throws IOException             IO exception
      * @throws MissingCharsetException The character set could not be parsed from {@link #getContentType()}
      */
     public BufferedReader newBufferedReader() throws CryptoException, IOException, MissingCharsetException {
@@ -103,16 +103,16 @@ public class DownloadBundle implements AutoCloseable {
      * contents of the downloaded document. The character set is parsed from {@link #getContentType()}. If the character
      * set could not be parsed and <code>defaultCharset</code> is specified, this method will attempt to open the reader
      * with <code>defaultCharset</code>.  Otherwise, this method will fail with {@link MissingCharsetException}.
-     *
+     * <p>
      * It is the responsibility of the caller to close the returned {@link BufferedReader}. This {@link BufferedReader}
      * will become invalid once this {@link DownloadBundle} is closed.
      *
      * @param defaultCharset The default charset to use if a charset cannot be parsed from the content type.
      * @return A {@link BufferedReader} that decompresses and decrypts the document's contents
-     * @throws CryptoException Crypto exception
-     * @throws IOException IO exception
+     * @throws CryptoException         Crypto exception
+     * @throws IOException             IO exception
      * @throws MissingCharsetException The character set could not be parsed from {@link #getContentType()} and
-     *                                  <code>defaultCharset</code> was not specified.
+     *                                 <code>defaultCharset</code> was not specified.
      */
     public BufferedReader newBufferedReader(Charset defaultCharset) throws CryptoException, IOException,
             MissingCharsetException {

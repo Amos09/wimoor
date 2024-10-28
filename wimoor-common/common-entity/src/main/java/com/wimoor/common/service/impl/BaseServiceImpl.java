@@ -2,12 +2,11 @@ package com.wimoor.common.service.impl;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.client.RestTemplate;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 
 public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> {
@@ -28,10 +27,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
     @Autowired
     protected RestTemplate restTemplate;
     /**
-     * 数据库操作
-     * execute：可以执行所有SQL语句，没有返回值, 一般用于执行DDL语句。
-     * update：用于执行INSERT、UPDATE、DELETE等DML语句。
-     * queryXxx：用于DQL数据查询语句。
+     * 数据库操作 execute：可以执行所有SQL语句，没有返回值, 一般用于执行DDL语句。 update：用于执行INSERT、UPDATE、DELETE等DML语句。 queryXxx：用于DQL数据查询语句。
      */
     @Autowired
     protected JdbcTemplate jdbcTemplate;

@@ -1,20 +1,20 @@
 package com.amazon.spapi.documents;
 
 import com.google.common.base.Preconditions;
-
 import java.io.InputStream;
 
 /**
  * Specification for {@link UploadHelper#upload(UploadSpecification)}.
  */
 public class UploadSpecification {
+
     private final String contentType;
     private final CryptoStreamFactory cryptoStreamFactory;
     private final InputStream source;
     private final String url;
 
     private UploadSpecification(String contentType, CryptoStreamFactory cryptoStreamFactory, InputStream source,
-                                String url) {
+            String url) {
         this.contentType = contentType;
         this.cryptoStreamFactory = cryptoStreamFactory;
         this.source = source;
@@ -41,6 +41,7 @@ public class UploadSpecification {
      * Use this to create an instance of an {@link UploadSpecification}.
      */
     public static class Builder {
+
         private final String contentType;
         private final CryptoStreamFactory cryptoStreamFactory;
         private final InputStream source;
@@ -49,10 +50,10 @@ public class UploadSpecification {
         /**
          * Create the builder.
          *
-         * @param contentType The content type of the document to upload
+         * @param contentType         The content type of the document to upload
          * @param cryptoStreamFactory The crypto stream factory
-         * @param source The source of the unencrypted data to upload
-         * @param url The url
+         * @param source              The source of the unencrypted data to upload
+         * @param url                 The url
          */
         public Builder(String contentType, CryptoStreamFactory cryptoStreamFactory, InputStream source, String url) {
             Preconditions.checkArgument(contentType != null, "contentType is required");

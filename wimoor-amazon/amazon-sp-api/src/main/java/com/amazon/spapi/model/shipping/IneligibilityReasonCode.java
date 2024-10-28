@@ -13,78 +13,74 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 /**
  * Reasons that make a shipment service offering ineligible.
  */
 @JsonAdapter(IneligibilityReasonCode.Adapter.class)
 public enum IneligibilityReasonCode {
-  
-  NO_COVERAGE("NO_COVERAGE"),
-  
-  PICKUP_SLOT_RESTRICTION("PICKUP_SLOT_RESTRICTION"),
-  
-  UNSUPPORTED_VAS("UNSUPPORTED_VAS"),
-  
-  VAS_COMBINATION_RESTRICTION("VAS_COMBINATION_RESTRICTION"),
-  
-  SIZE_RESTRICTIONS("SIZE_RESTRICTIONS"),
-  
-  WEIGHT_RESTRICTIONS("WEIGHT_RESTRICTIONS"),
-  
-  LATE_DELIVERY("LATE_DELIVERY"),
-  
-  PROGRAM_CONSTRAINTS("PROGRAM_CONSTRAINTS"),
-  
-  TERMS_AND_CONDITIONS_NOT_ACCEPTED("TERMS_AND_CONDITIONS_NOT_ACCEPTED"),
-  
-  UNKNOWN("UNKNOWN");
 
-  private String value;
+    NO_COVERAGE("NO_COVERAGE"),
 
-  IneligibilityReasonCode(String value) {
-    this.value = value;
-  }
+    PICKUP_SLOT_RESTRICTION("PICKUP_SLOT_RESTRICTION"),
 
-  public String getValue() {
-    return value;
-  }
+    UNSUPPORTED_VAS("UNSUPPORTED_VAS"),
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    VAS_COMBINATION_RESTRICTION("VAS_COMBINATION_RESTRICTION"),
 
-  public static IneligibilityReasonCode fromValue(String text) {
-    for (IneligibilityReasonCode b : IneligibilityReasonCode.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    SIZE_RESTRICTIONS("SIZE_RESTRICTIONS"),
+
+    WEIGHT_RESTRICTIONS("WEIGHT_RESTRICTIONS"),
+
+    LATE_DELIVERY("LATE_DELIVERY"),
+
+    PROGRAM_CONSTRAINTS("PROGRAM_CONSTRAINTS"),
+
+    TERMS_AND_CONDITIONS_NOT_ACCEPTED("TERMS_AND_CONDITIONS_NOT_ACCEPTED"),
+
+    UNKNOWN("UNKNOWN");
+
+    private String value;
+
+    IneligibilityReasonCode(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<IneligibilityReasonCode> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final IneligibilityReasonCode enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public IneligibilityReasonCode read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return IneligibilityReasonCode.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static IneligibilityReasonCode fromValue(String text) {
+        for (IneligibilityReasonCode b : IneligibilityReasonCode.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<IneligibilityReasonCode> {
+
+        @Override
+        public void write(final JsonWriter jsonWriter, final IneligibilityReasonCode enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public IneligibilityReasonCode read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return IneligibilityReasonCode.fromValue(String.valueOf(value));
+        }
+    }
 }
 

@@ -1,6 +1,7 @@
 package com.wimoor.shopee.common;
 
 public class Result<T> {
+
     private String code;
     private String msg;
     private T data;

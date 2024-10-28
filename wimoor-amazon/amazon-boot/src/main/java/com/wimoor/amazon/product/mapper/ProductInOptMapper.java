@@ -1,15 +1,12 @@
 package com.wimoor.amazon.product.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wimoor.amazon.product.pojo.entity.ProductInOpt;
 import com.wimoor.amazon.product.pojo.entity.ProductInfo;
-
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
@@ -21,26 +18,27 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 @Mapper
 public interface ProductInOptMapper extends BaseMapper<ProductInOpt> {
-	
-	int updateByAdvReport(@Param("marketplaceid")String marketplaceid, @Param("sellerid")String sellerid);
-	
-	int updateAllOpt();
 
-	void updateBySessionRpt(@Param("marketplaceid")String marketplaceid, @Param("amazonauthid")String amazonauthid);
+    int updateByAdvReport(@Param("marketplaceid") String marketplaceid, @Param("sellerid") String sellerid);
 
-	List<Map<String, Object>> selectMaterialSize(@Param("param")Map<String, Object> param);
+    int updateAllOpt();
 
-	List<Map<String, Object>> findMSKUByShopid(Map<String, Object> param);
-	
-	ProductInfo findProductInfoByUpload(@Param("sku")String sku,@Param("marketname") String marketname, @Param("shopid")String shopid, @Param("groupname")String groupname);
+    void updateBySessionRpt(@Param("marketplaceid") String marketplaceid, @Param("amazonauthid") String amazonauthid);
 
-	List<Map<String,Object>> findAdvert(Map<String,Object> paramter);
-	
-	List<Map<String, Object>> getMonthSumNum(Map<String,Object> param);
-	
-	
-	List<Map<String, Object>> findSKUImageForProduct(@Param("maps")Map<String, Object> param);
-	
-	void syncProductList(@Param("shopid")String shopid);
-	
+    List<Map<String, Object>> selectMaterialSize(@Param("param") Map<String, Object> param);
+
+    List<Map<String, Object>> findMSKUByShopid(Map<String, Object> param);
+
+    ProductInfo findProductInfoByUpload(@Param("sku") String sku, @Param("marketname") String marketname,
+            @Param("shopid") String shopid, @Param("groupname") String groupname);
+
+    List<Map<String, Object>> findAdvert(Map<String, Object> paramter);
+
+    List<Map<String, Object>> getMonthSumNum(Map<String, Object> param);
+
+
+    List<Map<String, Object>> findSKUImageForProduct(@Param("maps") Map<String, Object> param);
+
+    void syncProductList(@Param("shopid") String shopid);
+
 }

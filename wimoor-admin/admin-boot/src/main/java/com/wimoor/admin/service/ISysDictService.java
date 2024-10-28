@@ -6,4 +6,5 @@ import com.wimoor.admin.pojo.entity.SysDict;
 
 
 public interface ISysDictService extends IService<SysDict> {
+
 }

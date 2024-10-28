@@ -1,15 +1,14 @@
 package com.wimoor.common.redis.config;
 
+import cn.hutool.core.util.NumberUtil;
 import java.time.Duration;
-
 import org.springframework.data.redis.cache.RedisCache;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 
-import cn.hutool.core.util.NumberUtil;
-
 public class CustomRedisCacheManager extends RedisCacheManager {
+
     /*
      * @description 提供默认构造器
      * @param
@@ -20,6 +19,7 @@ public class CustomRedisCacheManager extends RedisCacheManager {
     public CustomRedisCacheManager(RedisCacheWriter cacheWriter, RedisCacheConfiguration defaultCacheConfiguration) {
         super(cacheWriter, defaultCacheConfiguration);
     }
+
     /*
      * @description 重写父类createRedisCache方法
      * @param
@@ -37,7 +37,7 @@ public class CustomRedisCacheManager extends RedisCacheManager {
                 int cycle = Integer.parseInt(SPEL[1]);
                 return super.createRedisCache(SPEL[0], cacheConfig.entryTtl(Duration.ofMinutes(cycle)));
             }
-        } 
+        }
         return super.createRedisCache(name, cacheConfig.entryTtl(Duration.ofMinutes(600)));
     }
 }

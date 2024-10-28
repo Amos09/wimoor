@@ -1,11 +1,11 @@
 package com.wimoor.amazon.inventory.service;
 
-import com.wimoor.amazon.inventory.pojo.entity.InventorySummaryReport;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.inventory.pojo.entity.InventorySummaryReport;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team

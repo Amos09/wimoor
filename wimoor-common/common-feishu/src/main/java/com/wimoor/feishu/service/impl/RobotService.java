@@ -1,14 +1,12 @@
 package com.wimoor.feishu.service.impl;
 
- 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.wimoor.feishu.robot.FenShuApi;
 import com.wimoor.feishu.robot.properties.RobotProperties;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * 机器人服务
@@ -34,7 +32,8 @@ public class RobotService {
         // 发送飞书消息
         if (robotProperties.getFeishu() != null
                 && robotProperties.getFeishu().getUrl() != null && !"".equals(robotProperties.getFeishu().getUrl())
-                && robotProperties.getFeishu().getSecret() != null && !"".equals(robotProperties.getFeishu().getSecret())) {
+                && robotProperties.getFeishu().getSecret() != null && !"".equals(
+                robotProperties.getFeishu().getSecret())) {
             Map<String, Object> contentMap = new HashMap<>(4);
             contentMap.put("text", content);
             fenShuApi.sendMsg(contentMap);

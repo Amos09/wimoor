@@ -1,11 +1,10 @@
 package com.wimoor.common.mybatisplus;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import org.apache.ibatis.reflection.MetaObject;
-import org.springframework.stereotype.Component;
-
 import java.time.LocalDateTime;
 import java.util.Date;
+import org.apache.ibatis.reflection.MetaObject;
+import org.springframework.stereotype.Component;
 
 /**
  * 字段自动填充
@@ -22,10 +21,10 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         this.strictInsertFill(metaObject, "gmtCreate", () -> LocalDateTime.now(), LocalDateTime.class);
         this.strictUpdateFill(metaObject, "gmtModified", () -> LocalDateTime.now(), LocalDateTime.class);
-        
+
         this.strictInsertFill(metaObject, "createtime", () -> new Date(), Date.class);
         this.strictInsertFill(metaObject, "createdate", () -> new Date(), Date.class);
-        this.strictUpdateFill(metaObject, "opttime", () -> new Date(),Date.class);
+        this.strictUpdateFill(metaObject, "opttime", () -> new Date(), Date.class);
     }
 
     /**
@@ -36,8 +35,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         this.strictUpdateFill(metaObject, "gmtModified", () -> LocalDateTime.now(), LocalDateTime.class);
-        
-        this.strictUpdateFill(metaObject, "opttime", () ->  new Date(),Date.class);
+
+        this.strictUpdateFill(metaObject, "opttime", () -> new Date(), Date.class);
     }
 
 }

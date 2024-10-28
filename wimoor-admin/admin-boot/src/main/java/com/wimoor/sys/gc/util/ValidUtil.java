@@ -1,9 +1,8 @@
 package com.wimoor.sys.gc.util;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.wimoor.common.mvc.BizException;
 import com.wimoor.common.result.ResultCode;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 参数校检并返回错误信息给用户端
@@ -12,9 +11,8 @@ public class ValidUtil {
 
 
     /**
-     * 条件判断
-     * 当判断条件 expression = true, 跳出程序，返回错误信息 errorMsg
-     * 当判断条件=false时，不处理
+     * 条件判断 当判断条件 expression = true, 跳出程序，返回错误信息 errorMsg 当判断条件=false时，不处理
+     *
      * @param expression 判断条件结果
      */
     public static void isTrue(boolean expression, String errorMsg) {
@@ -26,15 +24,15 @@ public class ValidUtil {
 
     /**
      * 条件判断
-     * <P>
-     *    当判断条件 expression = true, 跳出程序，返回错误枚举 resultType
-     *    当判断条件=false时，不处理
+     * <p>
+     * 当判断条件 expression = true, 跳出程序，返回错误枚举 resultType 当判断条件=false时，不处理
      * </P>
-     * @author wangsong
+     *
      * @param expression 判断条件结果
      * @param resultType 判断条件为true时返回的错误信息
-     * @date 2022/9/7 0007 10:41
      * @return void
+     * @author wangsong
+     * @date 2022/9/7 0007 10:41
      * @version 1.0.0
      */
     public static void isTrue(boolean expression, ResultCode resultType) {
@@ -65,6 +63,7 @@ public class ValidUtil {
 
     /**
      * 判断字符串长度
+     *
      * @author wangsong
      * @mail 1720696548@qq.com
      * @date 2021/9/30 0030 9:36
@@ -116,11 +115,12 @@ public class ValidUtil {
 
     /**
      * 校验汉字
-     * @author wangsong
+     *
      * @param chinese
      * @param paramName 参数名称描叙
-     * @date 2021/9/30 0030 9:49
      * @return void
+     * @author wangsong
+     * @date 2021/9/30 0030 9:49
      * @version 1.0.1
      */
     public static void isChinese(String chinese, String paramName) {

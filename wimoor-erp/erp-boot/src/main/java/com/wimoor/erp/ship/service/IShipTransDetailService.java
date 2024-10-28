@@ -6,6 +6,6 @@ import com.wimoor.erp.ship.pojo.entity.ShipTransDetail;
 
 public interface IShipTransDetailService extends IService<ShipTransDetail> {
 
-	int usedTransType(String shopid, String transtype);
+    int usedTransType(String shopid, String transtype);
 
 }

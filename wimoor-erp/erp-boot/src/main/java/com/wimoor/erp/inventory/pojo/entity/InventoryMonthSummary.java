@@ -1,77 +1,74 @@
 package com.wimoor.erp.inventory.pojo.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.erp.common.pojo.entity.BaseEntity;
-
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
- 
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_erp_inventory_month_summary")
-public class InventoryMonthSummary extends BaseEntity{
- 
+public class InventoryMonthSummary extends BaseEntity {
+
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 50899126190573904L;
+     *
+     */
+    private static final long serialVersionUID = 50899126190573904L;
 
-    @TableField(value= "shopid")
+    @TableField(value = "shopid")
     private BigInteger shopid;
-    
-    @TableField(value= "materialid")
-	private BigInteger materialid;
 
-    @TableField(value= "warehouseid")
+    @TableField(value = "materialid")
+    private BigInteger materialid;
+
+    @TableField(value = "warehouseid")
     private BigInteger warehouseid;
 
-    @TableField(value= "month")
+    @TableField(value = "month")
     private Date month;
-    
-    @TableField(value= "startqty")
+
+    @TableField(value = "startqty")
     private Integer startqty;
-    
-    @TableField(value= "endqty")
+
+    @TableField(value = "endqty")
     private Integer endqty;
 
-    @TableField(value= "shipment")
+    @TableField(value = "shipment")
     private Integer shipment;
 
-    @TableField(value= "purchase")
+    @TableField(value = "purchase")
     private Integer purchase;
 
-    @TableField(value= "otherout")
+    @TableField(value = "otherout")
     private Integer otherout;
 
-    @TableField(value= "otherin")
+    @TableField(value = "otherin")
     private Integer otherin;
 
-    @TableField(value= "dispatch")
+    @TableField(value = "dispatch")
     private Integer dispatch;
-    
-    @TableField(value= "assembly")
+
+    @TableField(value = "assembly")
     private Integer assembly;
-    
-    @TableField(value= "diff")
+
+    @TableField(value = "diff")
     private Integer diff;
 
-    @TableField(value="stock")
+    @TableField(value = "stock")
     private Integer stock;
-    
-    @TableField(value="period")
+
+    @TableField(value = "period")
     private BigDecimal period;
-    
-    @TableField(value="turndays")
+
+    @TableField(value = "turndays")
     private BigDecimal turndays;
-    
-    @TableField(value= "refreshtime")
+
+    @TableField(value = "refreshtime")
     private Date refreshtime;
-    
+
 }

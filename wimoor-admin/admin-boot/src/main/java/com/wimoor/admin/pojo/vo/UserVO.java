@@ -1,23 +1,21 @@
 package com.wimoor.admin.pojo.vo;
 
-import lombok.Data;
-
+import com.wimoor.common.mvc.Dict;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
-
-import com.wimoor.common.mvc.Dict;
+import lombok.Data;
 
 @Data
-public class UserVO implements Serializable{
+public class UserVO implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private BigInteger id;
+    private BigInteger id;
 
     private String name;
 
@@ -25,14 +23,14 @@ public class UserVO implements Serializable{
 
     private Date createDate;
 
-    private Date losingEffect ;
-    
+    private Date losingEffect;
+
     @Dict(dictCode = "user_status")
     private Integer status;
 
     private String image;
     private String deptname;
     private List<String> roles;
-    private List<String> perms ;
-    private List<String> groups ;
+    private List<String> perms;
+    private List<String> groups;
 }

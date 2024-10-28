@@ -13,107 +13,102 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.Address;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
- * UnmanifestedShipmentLocation info 
+ * UnmanifestedShipmentLocation info
  */
 @ApiModel(description = "UnmanifestedShipmentLocation info ")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class UnmanifestedShipmentLocation {
-  @SerializedName("address")
-  private Address address = null;
 
-  @SerializedName("lastManifestDate")
-  private String lastManifestDate = null;
+    @SerializedName("address")
+    private Address address = null;
 
-  public UnmanifestedShipmentLocation address(Address address) {
-    this.address = address;
-    return this;
-  }
+    @SerializedName("lastManifestDate")
+    private String lastManifestDate = null;
 
-   /**
-   * Get address
-   * @return address
-  **/
-  @ApiModelProperty(value = "")
-  public Address getAddress() {
-    return address;
-  }
-
-  public void setAddress(Address address) {
-    this.address = address;
-  }
-
-  public UnmanifestedShipmentLocation lastManifestDate(String lastManifestDate) {
-    this.lastManifestDate = lastManifestDate;
-    return this;
-  }
-
-   /**
-   * Its Last Manifest Date.
-   * @return lastManifestDate
-  **/
-  @ApiModelProperty(value = "Its Last Manifest Date.")
-  public String getLastManifestDate() {
-    return lastManifestDate;
-  }
-
-  public void setLastManifestDate(String lastManifestDate) {
-    this.lastManifestDate = lastManifestDate;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public UnmanifestedShipmentLocation address(Address address) {
+        this.address = address;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get address
+     *
+     * @return address
+     **/
+    @ApiModelProperty(value = "")
+    public Address getAddress() {
+        return address;
     }
-    UnmanifestedShipmentLocation unmanifestedShipmentLocation = (UnmanifestedShipmentLocation) o;
-    return Objects.equals(this.address, unmanifestedShipmentLocation.address) &&
-        Objects.equals(this.lastManifestDate, unmanifestedShipmentLocation.lastManifestDate);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(address, lastManifestDate);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class UnmanifestedShipmentLocation {\n");
-    
-    sb.append("    address: ").append(toIndentedString(address)).append("\n");
-    sb.append("    lastManifestDate: ").append(toIndentedString(lastManifestDate)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setAddress(Address address) {
+        this.address = address;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public UnmanifestedShipmentLocation lastManifestDate(String lastManifestDate) {
+        this.lastManifestDate = lastManifestDate;
+        return this;
+    }
+
+    /**
+     * Its Last Manifest Date.
+     *
+     * @return lastManifestDate
+     **/
+    @ApiModelProperty(value = "Its Last Manifest Date.")
+    public String getLastManifestDate() {
+        return lastManifestDate;
+    }
+
+    public void setLastManifestDate(String lastManifestDate) {
+        this.lastManifestDate = lastManifestDate;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UnmanifestedShipmentLocation unmanifestedShipmentLocation = (UnmanifestedShipmentLocation) o;
+        return Objects.equals(this.address, unmanifestedShipmentLocation.address) &&
+                Objects.equals(this.lastManifestDate, unmanifestedShipmentLocation.lastManifestDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(address, lastManifestDate);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class UnmanifestedShipmentLocation {\n");
+
+        sb.append("    address: ").append(toIndentedString(address)).append("\n");
+        sb.append("    lastManifestDate: ").append(toIndentedString(lastManifestDate)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

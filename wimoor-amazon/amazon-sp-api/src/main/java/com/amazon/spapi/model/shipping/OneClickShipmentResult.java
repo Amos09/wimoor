@@ -13,21 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.Carrier;
-import com.amazon.spapi.model.shipping.Currency;
-import com.amazon.spapi.model.shipping.PackageDocumentDetailList;
-import com.amazon.spapi.model.shipping.Promise;
-import com.amazon.spapi.model.shipping.Service;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The payload for the OneClickShipment API.
@@ -35,181 +24,187 @@ import java.io.IOException;
 @ApiModel(description = "The payload for the OneClickShipment API.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class OneClickShipmentResult {
-  @SerializedName("shipmentId")
-  private String shipmentId = null;
 
-  @SerializedName("packageDocumentDetails")
-  private PackageDocumentDetailList packageDocumentDetails = null;
+    @SerializedName("shipmentId")
+    private String shipmentId = null;
 
-  @SerializedName("promise")
-  private Promise promise = null;
+    @SerializedName("packageDocumentDetails")
+    private PackageDocumentDetailList packageDocumentDetails = null;
 
-  @SerializedName("carrier")
-  private Carrier carrier = null;
+    @SerializedName("promise")
+    private Promise promise = null;
 
-  @SerializedName("service")
-  private Service service = null;
+    @SerializedName("carrier")
+    private Carrier carrier = null;
 
-  @SerializedName("totalCharge")
-  private Currency totalCharge = null;
+    @SerializedName("service")
+    private Service service = null;
 
-  public OneClickShipmentResult shipmentId(String shipmentId) {
-    this.shipmentId = shipmentId;
-    return this;
-  }
+    @SerializedName("totalCharge")
+    private Currency totalCharge = null;
 
-   /**
-   * Get shipmentId
-   * @return shipmentId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getShipmentId() {
-    return shipmentId;
-  }
-
-  public void setShipmentId(String shipmentId) {
-    this.shipmentId = shipmentId;
-  }
-
-  public OneClickShipmentResult packageDocumentDetails(PackageDocumentDetailList packageDocumentDetails) {
-    this.packageDocumentDetails = packageDocumentDetails;
-    return this;
-  }
-
-   /**
-   * Get packageDocumentDetails
-   * @return packageDocumentDetails
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public PackageDocumentDetailList getPackageDocumentDetails() {
-    return packageDocumentDetails;
-  }
-
-  public void setPackageDocumentDetails(PackageDocumentDetailList packageDocumentDetails) {
-    this.packageDocumentDetails = packageDocumentDetails;
-  }
-
-  public OneClickShipmentResult promise(Promise promise) {
-    this.promise = promise;
-    return this;
-  }
-
-   /**
-   * Get promise
-   * @return promise
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Promise getPromise() {
-    return promise;
-  }
-
-  public void setPromise(Promise promise) {
-    this.promise = promise;
-  }
-
-  public OneClickShipmentResult carrier(Carrier carrier) {
-    this.carrier = carrier;
-    return this;
-  }
-
-   /**
-   * Get carrier
-   * @return carrier
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Carrier getCarrier() {
-    return carrier;
-  }
-
-  public void setCarrier(Carrier carrier) {
-    this.carrier = carrier;
-  }
-
-  public OneClickShipmentResult service(Service service) {
-    this.service = service;
-    return this;
-  }
-
-   /**
-   * Get service
-   * @return service
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Service getService() {
-    return service;
-  }
-
-  public void setService(Service service) {
-    this.service = service;
-  }
-
-  public OneClickShipmentResult totalCharge(Currency totalCharge) {
-    this.totalCharge = totalCharge;
-    return this;
-  }
-
-   /**
-   * Get totalCharge
-   * @return totalCharge
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Currency getTotalCharge() {
-    return totalCharge;
-  }
-
-  public void setTotalCharge(Currency totalCharge) {
-    this.totalCharge = totalCharge;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public OneClickShipmentResult shipmentId(String shipmentId) {
+        this.shipmentId = shipmentId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get shipmentId
+     *
+     * @return shipmentId
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getShipmentId() {
+        return shipmentId;
     }
-    OneClickShipmentResult oneClickShipmentResult = (OneClickShipmentResult) o;
-    return Objects.equals(this.shipmentId, oneClickShipmentResult.shipmentId) &&
-        Objects.equals(this.packageDocumentDetails, oneClickShipmentResult.packageDocumentDetails) &&
-        Objects.equals(this.promise, oneClickShipmentResult.promise) &&
-        Objects.equals(this.carrier, oneClickShipmentResult.carrier) &&
-        Objects.equals(this.service, oneClickShipmentResult.service) &&
-        Objects.equals(this.totalCharge, oneClickShipmentResult.totalCharge);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(shipmentId, packageDocumentDetails, promise, carrier, service, totalCharge);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class OneClickShipmentResult {\n");
-    
-    sb.append("    shipmentId: ").append(toIndentedString(shipmentId)).append("\n");
-    sb.append("    packageDocumentDetails: ").append(toIndentedString(packageDocumentDetails)).append("\n");
-    sb.append("    promise: ").append(toIndentedString(promise)).append("\n");
-    sb.append("    carrier: ").append(toIndentedString(carrier)).append("\n");
-    sb.append("    service: ").append(toIndentedString(service)).append("\n");
-    sb.append("    totalCharge: ").append(toIndentedString(totalCharge)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setShipmentId(String shipmentId) {
+        this.shipmentId = shipmentId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public OneClickShipmentResult packageDocumentDetails(PackageDocumentDetailList packageDocumentDetails) {
+        this.packageDocumentDetails = packageDocumentDetails;
+        return this;
+    }
+
+    /**
+     * Get packageDocumentDetails
+     *
+     * @return packageDocumentDetails
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public PackageDocumentDetailList getPackageDocumentDetails() {
+        return packageDocumentDetails;
+    }
+
+    public void setPackageDocumentDetails(PackageDocumentDetailList packageDocumentDetails) {
+        this.packageDocumentDetails = packageDocumentDetails;
+    }
+
+    public OneClickShipmentResult promise(Promise promise) {
+        this.promise = promise;
+        return this;
+    }
+
+    /**
+     * Get promise
+     *
+     * @return promise
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public Promise getPromise() {
+        return promise;
+    }
+
+    public void setPromise(Promise promise) {
+        this.promise = promise;
+    }
+
+    public OneClickShipmentResult carrier(Carrier carrier) {
+        this.carrier = carrier;
+        return this;
+    }
+
+    /**
+     * Get carrier
+     *
+     * @return carrier
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public Carrier getCarrier() {
+        return carrier;
+    }
+
+    public void setCarrier(Carrier carrier) {
+        this.carrier = carrier;
+    }
+
+    public OneClickShipmentResult service(Service service) {
+        this.service = service;
+        return this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return service
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
+
+    public OneClickShipmentResult totalCharge(Currency totalCharge) {
+        this.totalCharge = totalCharge;
+        return this;
+    }
+
+    /**
+     * Get totalCharge
+     *
+     * @return totalCharge
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public Currency getTotalCharge() {
+        return totalCharge;
+    }
+
+    public void setTotalCharge(Currency totalCharge) {
+        this.totalCharge = totalCharge;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        OneClickShipmentResult oneClickShipmentResult = (OneClickShipmentResult) o;
+        return Objects.equals(this.shipmentId, oneClickShipmentResult.shipmentId) &&
+                Objects.equals(this.packageDocumentDetails, oneClickShipmentResult.packageDocumentDetails) &&
+                Objects.equals(this.promise, oneClickShipmentResult.promise) &&
+                Objects.equals(this.carrier, oneClickShipmentResult.carrier) &&
+                Objects.equals(this.service, oneClickShipmentResult.service) &&
+                Objects.equals(this.totalCharge, oneClickShipmentResult.totalCharge);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shipmentId, packageDocumentDetails, promise, carrier, service, totalCharge);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class OneClickShipmentResult {\n");
+
+        sb.append("    shipmentId: ").append(toIndentedString(shipmentId)).append("\n");
+        sb.append("    packageDocumentDetails: ").append(toIndentedString(packageDocumentDetails)).append("\n");
+        sb.append("    promise: ").append(toIndentedString(promise)).append("\n");
+        sb.append("    carrier: ").append(toIndentedString(carrier)).append("\n");
+        sb.append("    service: ").append(toIndentedString(service)).append("\n");
+        sb.append("    totalCharge: ").append(toIndentedString(totalCharge)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

@@ -2,7 +2,6 @@ package com.amazon.spapi.documents;
 
 import com.amazon.spapi.documents.exception.HttpResponseException;
 import com.amazon.spapi.documents.impl.OkHttpTransferClient;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -10,13 +9,14 @@ import java.io.IOException;
  * Helper for downloading encrypted documents.
  */
 public class DownloadHelper {
+
     private final HttpTransferClient httpTransferClient;
     private final String tmpFilePrefix;
     private final String tmpFileSuffix;
     private final File tmpFileDirectory;
 
     private DownloadHelper(HttpTransferClient httpTransferClient, String tmpFilePrefix, String tmpFileSuffix,
-                           File tmpFileDirectory) {
+            File tmpFileDirectory) {
         this.httpTransferClient = httpTransferClient;
         this.tmpFilePrefix = tmpFilePrefix;
         this.tmpFileSuffix = tmpFileSuffix;
@@ -26,14 +26,14 @@ public class DownloadHelper {
     /**
      * Download the specified document's encrypted contents to a temporary file on disk. It is the responsibility of the
      * caller to call <code>close</code> on the returned {@link AutoCloseable} {@link DownloadBundle}.
-     *
+     * <p>
      * Common reasons for receiving a 403 response include:
      * <li> The signed URL has expired
      *
      * @param spec The specification for the download
      * @return The closeable {@link DownloadBundle}
      * @throws HttpResponseException On failure HTTP response
-     * @throws IOException IO Exception
+     * @throws IOException           IO Exception
      */
     public DownloadBundle download(DownloadSpecification spec) throws HttpResponseException, IOException {
 
@@ -56,6 +56,7 @@ public class DownloadHelper {
      * Use this to create an instance of a {@link DownloadHelper}.
      */
     public static class Builder {
+
         private HttpTransferClient httpTransferClient = null;
         private String tmpFilePrefix = "SPAPI";
         private String tmpFileSuffix = null;

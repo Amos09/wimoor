@@ -1,7 +1,7 @@
 package com.wimoor.amazon.notifications.service;
 
-import com.wimoor.amazon.notifications.pojo.entity.AmzNotificationsDestination;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.notifications.pojo.entity.AmzNotificationsDestination;
 
 /**
  * <p>
@@ -11,9 +11,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author wimoor team
  * @since 2022-06-27
  */
-public interface IAmzNotificationsDestinationService extends IService<AmzNotificationsDestination>  {
+public interface IAmzNotificationsDestinationService extends IService<AmzNotificationsDestination> {
 
-	void executTask();
+    void executTask();
+
     public String getSqsName();
-	void deleteDestination(String id);
+
+    void deleteDestination(String id);
 }

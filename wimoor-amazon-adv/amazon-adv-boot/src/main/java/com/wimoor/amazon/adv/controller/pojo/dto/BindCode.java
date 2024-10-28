@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class BindCode {
-	String code;
-	String state;
+
+    String code;
+    String state;
 }

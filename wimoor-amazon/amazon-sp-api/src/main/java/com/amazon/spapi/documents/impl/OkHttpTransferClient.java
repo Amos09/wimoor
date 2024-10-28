@@ -7,17 +7,17 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
 /**
  * HTTP transfer client utilizing OkHttp.
  */
 public class OkHttpTransferClient implements HttpTransferClient {
+
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
 
     private final OkHttpClient client;
@@ -93,6 +93,7 @@ public class OkHttpTransferClient implements HttpTransferClient {
      * Use this to create an instance of an {@link OkHttpTransferClient}.
      */
     public static class Builder {
+
         private OkHttpClient client = null;
         private int maxErrorBodyLen = 4096;
 

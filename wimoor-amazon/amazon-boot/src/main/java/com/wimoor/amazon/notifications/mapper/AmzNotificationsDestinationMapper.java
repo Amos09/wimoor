@@ -1,10 +1,8 @@
 package com.wimoor.amazon.notifications.mapper;
 
-import com.wimoor.amazon.notifications.pojo.entity.AmzNotificationsDestination;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wimoor.amazon.notifications.pojo.entity.AmzNotificationsDestination;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>

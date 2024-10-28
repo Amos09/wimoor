@@ -1,11 +1,11 @@
 package com.wimoor.amazon.inbound.service;
 
-import com.wimoor.amazon.inbound.pojo.entity.AmzShipFulfillmentCenter;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.inbound.pojo.entity.AmzShipFulfillmentCenter;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
@@ -13,6 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IAmzShipFulfillmentCenterService extends IService<AmzShipFulfillmentCenter> {
 
-	AmzShipFulfillmentCenter getByCode(String destinationfulfillmentcenterid);
+    AmzShipFulfillmentCenter getByCode(String destinationfulfillmentcenterid);
 
 }

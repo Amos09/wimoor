@@ -1,22 +1,17 @@
 package com.wimoor.sys.gc.util;
 
+import com.wimoor.util.SpringUtil;
+import java.io.InputStream;
+import java.util.Properties;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import com.wimoor.util.SpringUtil;
-
-import java.io.InputStream;
-import java.util.Properties;
-
 /**
  * 读取配置文件 (无法正常读取 -Dspring.profiles.active=pro 测试配置)
- * <P>
- *     不区分 yml / properties,都可以读取， 不区分启动环境(自动读取 如：application.yml + application-dev.yml 配置, -dev 为当前启动的环境测试)
- *     1、先读取 application.yml
- *     2、在读取 application.当前启动环境.yml
- *     3、在读取 application.properties
- *     4、在读取 application.当前启动环境.yml
+ * <p>
+ * 不区分 yml / properties,都可以读取， 不区分启动环境(自动读取 如：application.yml + application-dev.yml 配置, -dev 为当前启动的环境测试) 1、先读取
+ * application.yml 2、在读取 application.当前启动环境.yml 3、在读取 application.properties 4、在读取 application.当前启动环境.yml
  *
  * </P>
  *
@@ -44,6 +39,7 @@ public class PropUtil {
 
     /**
      * 获取 properties 配置
+     *
      * @param key
      * @param suffix
      * @param env
@@ -65,6 +61,7 @@ public class PropUtil {
 
     /**
      * 获取 yml 配置(可以返回list, yml可读取多层的Map数据或list数据)
+     *
      * @param key
      * @param suffix
      * @param env

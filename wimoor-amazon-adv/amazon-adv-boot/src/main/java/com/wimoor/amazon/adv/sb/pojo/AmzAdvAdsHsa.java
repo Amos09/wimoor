@@ -2,7 +2,6 @@ package com.wimoor.amazon.adv.sb.pojo;
 
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,103 +9,102 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="t_amz_adv_ads_hsa")
-public class AmzAdvAdsHsa  {
-	
-	@Id
-	@Column(name="adId")
+@Table(name = "t_amz_adv_ads_hsa")
+public class AmzAdvAdsHsa {
+
+    @Id
+    @Column(name = "adId")
     private BigInteger adid;
-	
-	@Column(name="adGroupId")
+
+    @Column(name = "adGroupId")
     private BigInteger adgroupid;
 
-	@Column(name="campaignId")
+    @Column(name = "campaignId")
     private BigInteger campaignid;
 
-	@Column(name="profileid")
+    @Column(name = "profileid")
     private BigInteger profileid;
 
 
-	@Column(name="name")
+    @Column(name = "name")
     private String name;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
-	
-	@Column(name="creative")
+
+    @Column(name = "creative")
     private String creative;
-	
-	
-	@Column(name="landingPage")
+
+
+    @Column(name = "landingPage")
     private String landingPage;
-	
-	
-	@Column(name="state")
+
+
+    @Column(name = "state")
     private String state;
-	
-	@Transient
-	private String camname;
-	
-	
-	public String getCreative() {
-		return creative;
-	}
 
-	public void setCreative(String creative) {
-		this.creative = creative;
-	}
+    @Transient
+    private String camname;
 
-	public String getLandingPage() {
-		return landingPage;
-	}
 
-	public void setLandingPage(String landingPage) {
-		this.landingPage = landingPage;
-	}
+    public String getCreative() {
+        return creative;
+    }
 
-	public BigInteger getAdid() {
-		return adid;
-	}
+    public void setCreative(String creative) {
+        this.creative = creative;
+    }
 
-	public void setAdid(BigInteger adid) {
-		this.adid = adid;
-	}
+    public String getLandingPage() {
+        return landingPage;
+    }
 
-	public BigInteger getAdgroupid() {
-		return adgroupid;
-	}
+    public void setLandingPage(String landingPage) {
+        this.landingPage = landingPage;
+    }
 
-	public void setAdgroupid(BigInteger adgroupid) {
-		this.adgroupid = adgroupid;
-	}
+    public BigInteger getAdid() {
+        return adid;
+    }
 
-	public BigInteger getCampaignid() {
-		return campaignid;
-	}
+    public void setAdid(BigInteger adid) {
+        this.adid = adid;
+    }
 
-	public void setCampaignid(BigInteger campaignid) {
-		this.campaignid = campaignid;
-	}
+    public BigInteger getAdgroupid() {
+        return adgroupid;
+    }
 
-	public BigInteger getProfileid() {
-		return profileid;
-	}
+    public void setAdgroupid(BigInteger adgroupid) {
+        this.adgroupid = adgroupid;
+    }
 
-	public void setProfileid(BigInteger profileid) {
-		this.profileid = profileid;
-	}
+    public BigInteger getCampaignid() {
+        return campaignid;
+    }
 
-	
-	
+    public void setCampaignid(BigInteger campaignid) {
+        this.campaignid = campaignid;
+    }
+
+    public BigInteger getProfileid() {
+        return profileid;
+    }
+
+    public void setProfileid(BigInteger profileid) {
+        this.profileid = profileid;
+    }
+
+
     public String getCamname() {
-		return camname;
-	}
+        return camname;
+    }
 
-	public void setCamname(String camname) {
-		this.camname = camname;
-	}
+    public void setCamname(String camname) {
+        this.camname = camname;
+    }
 
-	public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -122,13 +120,13 @@ public class AmzAdvAdsHsa  {
         this.opttime = opttime;
     }
 
-	public String getState() {
-		return state;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
-    
-    
+    public void setState(String state) {
+        this.state = state;
+    }
+
+
 }

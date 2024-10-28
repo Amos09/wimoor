@@ -2,23 +2,23 @@ package com.wimoor.amazon.adv.report.pojo;
 
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="t_amz_adv_snapshot")
+@Table(name = "t_amz_adv_snapshot")
 public class AmzAdvSnapshot {
-	
-	@Id
-	@Column(name="snapshotId")
+
+    @Id
+    @Column(name = "snapshotId")
     private String snapshotid;
 
-	@Column(name="profileid")
+    @Column(name = "profileid")
     private BigInteger profileid;
 
-	@Column(name="region")
+    @Column(name = "region")
     private String region;
 
     public String getSnapshotid() {
@@ -34,7 +34,7 @@ public class AmzAdvSnapshot {
     }
 
     public void setProfileid(BigInteger profileid) {
-        this.profileid = profileid  ;
+        this.profileid = profileid;
     }
 
     public String getRegion() {
@@ -44,85 +44,85 @@ public class AmzAdvSnapshot {
     public void setRegion(String region) {
         this.region = region == null ? null : region.trim();
     }
-    
-	@Column(name="status")
+
+    @Column(name = "status")
     private String status;
 
-	@Column(name="location")
+    @Column(name = "location")
     private String location;
-	
-	@Column(name="recordtype")
+
+    @Column(name = "recordtype")
     private String recordtype;
-	
-	@Column(name="campaignType")
+
+    @Column(name = "campaignType")
     private String campaigntype;
-	
-	@Column(name="fileSize")
+
+    @Column(name = "fileSize")
     private Integer filesize;
-	
-	@Column(name="requesttime")
+
+    @Column(name = "requesttime")
     private Date requesttime;
-	
-	@Column(name="opttime")
+
+    @Column(name = "opttime")
     private Date opttime;
-	
-	@Column(name="treat_number")
+
+    @Column(name = "treat_number")
     private Integer treatnumber;
-	
-	@Column(name="treat_status")
+
+    @Column(name = "treat_status")
     private String treatstatus;
-	
-	@Column(name="log")
+
+    @Column(name = "log")
     private String log;
-	
-	public String getTreatstatus() {
-		return treatstatus;
-	}
 
-	public void setTreatstatus(String treatstatus) {
-		this.treatstatus = treatstatus;
-	}
+    public String getTreatstatus() {
+        return treatstatus;
+    }
 
-	public Date getRequesttime() {
-		return requesttime;
-	}
+    public void setTreatstatus(String treatstatus) {
+        this.treatstatus = treatstatus;
+    }
 
-	public void setRequesttime(Date requesttime) {
-		this.requesttime = requesttime;
-	}
+    public Date getRequesttime() {
+        return requesttime;
+    }
 
-	public Integer getTreatnumber() {
-		return treatnumber == null ? 0 : treatnumber;
-	}
+    public void setRequesttime(Date requesttime) {
+        this.requesttime = requesttime;
+    }
 
-	public void setTreatnumber(Integer treatnumber) {
-		this.treatnumber = treatnumber;
-	}
+    public Integer getTreatnumber() {
+        return treatnumber == null ? 0 : treatnumber;
+    }
 
-	public String getLog() {
-		return log;
-	}
+    public void setTreatnumber(Integer treatnumber) {
+        this.treatnumber = treatnumber;
+    }
 
-	public void setLog(String log) {
-		this.log = log;
-	}
+    public String getLog() {
+        return log;
+    }
 
-	public Integer getFilesize() {
-		return filesize;
-	}
+    public void setLog(String log) {
+        this.log = log;
+    }
 
-	public void setFilesize(Integer filesize) {
-		this.filesize = filesize;
-	}
+    public Integer getFilesize() {
+        return filesize;
+    }
 
-	public String getCampaigntype() {
-		return campaigntype;
-	}
+    public void setFilesize(Integer filesize) {
+        this.filesize = filesize;
+    }
 
-	public void setCampaigntype(String campaigntype) {
-		this.campaigntype = campaigntype;
-	}
-	
+    public String getCampaigntype() {
+        return campaigntype;
+    }
+
+    public void setCampaigntype(String campaigntype) {
+        this.campaigntype = campaigntype;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -147,12 +147,12 @@ public class AmzAdvSnapshot {
         this.opttime = opttime;
     }
 
-	public String getLocation() {
-		return location;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
-    
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
 }

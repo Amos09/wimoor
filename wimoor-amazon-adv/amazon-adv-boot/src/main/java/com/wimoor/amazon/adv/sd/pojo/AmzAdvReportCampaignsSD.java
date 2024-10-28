@@ -1,46 +1,44 @@
 package com.wimoor.amazon.adv.sd.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 
 @Entity
-@Table(name="t_amz_adv_rpt2_sd_campaigns")
+@Table(name = "t_amz_adv_rpt2_sd_campaigns")
 public class AmzAdvReportCampaignsSD {
-	
-	@Id
-	@Column(name="campaignId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "campaignId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger campaignid;
 
-	@Id
-	@Column(name="bydate")
-	private Date bydate;
+    @Id
+    @Column(name = "bydate")
+    private Date bydate;
 
-	@Column(name="profileid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Column(name = "profileid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger profileid;
 
-	@Column(name="impressions")
+    @Column(name = "impressions")
     private Integer impressions;
 
-	@Column(name="clicks")
+    @Column(name = "clicks")
     private Integer clicks;
 
-	@Column(name="cost")
+    @Column(name = "cost")
     private BigDecimal cost;
- 
-	@Column(name="opttime")
-	private Date opttime;
+
+    @Column(name = "opttime")
+    private Date opttime;
 
     public BigInteger getCampaignid() {
         return campaignid;
@@ -65,8 +63,8 @@ public class AmzAdvReportCampaignsSD {
     public void setProfileid(BigInteger profileid) {
         this.profileid = profileid;
     }
-    
-   
+
+
     public Integer getImpressions() {
         return impressions;
     }
@@ -91,14 +89,13 @@ public class AmzAdvReportCampaignsSD {
         this.cost = cost;
     }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
- 
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
 
-    
+
 }

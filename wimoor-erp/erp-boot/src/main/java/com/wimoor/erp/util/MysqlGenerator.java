@@ -7,14 +7,15 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+
 /**
  * 用mybatis-plus根据数据库的表构建项目文件
- * @author admin
  *
+ * @author admin
  */
 public class MysqlGenerator {
- 
- 
+
+
     public static void generateStart(String[] args) {
 
         AutoGenerator autoGenerator = new AutoGenerator();
@@ -64,7 +65,7 @@ public class MysqlGenerator {
 
         //设置数据库类型
         dsc.setDbType(DbType.MYSQL);
-        
+
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
 
         //用户名
@@ -74,7 +75,8 @@ public class MysqlGenerator {
         dsc.setPassword("Fdds123*");
 
         //指定数据库
-        dsc.setUrl("jdbc:mysql://rm-wz903sa454i2h35ik6o.mysql.rds.aliyuncs.com:3306/db_plum?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false");
+        dsc.setUrl(
+                "jdbc:mysql://rm-wz903sa454i2h35ik6o.mysql.rds.aliyuncs.com:3306/db_plum?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false");
         autoGenerator.setDataSource(dsc);
 
         // 策略配置
@@ -84,8 +86,8 @@ public class MysqlGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
 
         // 需要生成的表
-        strategy.setInclude(new String[]{"t_erp_warehouse_shelf","t_erp_warehouse_shelf_inventory"
-        		,"t_erp_warehouse_shelf_inventory_opt_pro","t_erp_warehouse_shelf_inventory_opt_record"});
+        strategy.setInclude(new String[]{"t_erp_warehouse_shelf", "t_erp_warehouse_shelf_inventory"
+                , "t_erp_warehouse_shelf_inventory_opt_pro", "t_erp_warehouse_shelf_inventory_opt_record"});
         //strategy.setSuperServiceClass(BaseEntity.class);
         //strategy.setSuperServiceImplClass(ServiceImpl.class);
         strategy.setSuperMapperClass(null);
@@ -111,5 +113,5 @@ public class MysqlGenerator {
         // 执行生成
         autoGenerator.execute();
     }
- 
+
 }

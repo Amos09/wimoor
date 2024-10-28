@@ -1,10 +1,8 @@
 package com.wimoor.amazon.product.mapper;
 
-import com.wimoor.amazon.product.pojo.entity.AmzProductPriceRecord;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wimoor.amazon.product.pojo.entity.AmzProductPriceRecord;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>

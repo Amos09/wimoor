@@ -1,12 +1,17 @@
 package com.wimoor.common.mvc;
 
+import cn.hutool.core.exceptions.ValidateException;
+import cn.hutool.json.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.wimoor.common.result.Result;
+import com.wimoor.common.result.ResultCode;
+import feign.FeignException;
 import java.util.concurrent.CompletionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.servlet.ServletException;
 import javax.validation.ConstraintViolationException;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -19,23 +24,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.wimoor.common.result.Result;
-import com.wimoor.common.result.ResultCode;
-
-import cn.hutool.core.exceptions.ValidateException;
-import cn.hutool.json.JSONObject;
-import feign.FeignException;
-import lombok.extern.slf4j.Slf4j;
-
 /**
- * 
  * @author admin
- *
  */
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+
     /**
      * 表单绑定到 java bean 出错时抛出 BindException 异常
      */

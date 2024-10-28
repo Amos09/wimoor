@@ -1,40 +1,38 @@
 package com.wimoor.amazon.adv.sb.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
-
 @Entity
-@Table(name="t_amz_adv_rpt2_hsa_product_targets_attributed")
-public class AmzAdvReportProductTargetsHsaAttributed   {
-	
-	@Id
-	@Column(name="bydate")
+@Table(name = "t_amz_adv_rpt2_hsa_product_targets_attributed")
+public class AmzAdvReportProductTargetsHsaAttributed {
+
+    @Id
+    @Column(name = "bydate")
     private Date bydate;
 
-	@Id
-	@Column(name="targetId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "targetId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger targetid;
 
-	@Column(name="attributedConversions14d")
+    @Column(name = "attributedConversions14d")
     private Integer attributedconversions14d;
 
-	@Column(name="attributedConversions14dSameSKU")
+    @Column(name = "attributedConversions14dSameSKU")
     private Integer attributedconversions14dsamesku;
 
-	@Column(name="attributedSales14d")
+    @Column(name = "attributedSales14d")
     private BigDecimal attributedsales14d;
 
-	@Column(name="attributedSales14dSameSKU")
+    @Column(name = "attributedSales14dSameSKU")
     private BigDecimal attributedsales14dsamesku;
 
 
@@ -46,13 +44,13 @@ public class AmzAdvReportProductTargetsHsaAttributed   {
         this.bydate = bydate;
     }
 
-	public BigInteger getTargetid() {
-		return targetid;
-	}
+    public BigInteger getTargetid() {
+        return targetid;
+    }
 
-	public void setTargetid(BigInteger targetid) {
-		this.targetid = targetid;
-	}
+    public void setTargetid(BigInteger targetid) {
+        this.targetid = targetid;
+    }
 
     public Integer getAttributedconversions14d() {
         return attributedconversions14d;
@@ -85,12 +83,20 @@ public class AmzAdvReportProductTargetsHsaAttributed   {
     public void setAttributedsales14dsamesku(BigDecimal attributedsales14dsamesku) {
         this.attributedsales14dsamesku = attributedsales14dsamesku;
     }
-    
+
     public boolean isZero() {
-    	if(attributedsales14d!=null&&attributedsales14d.floatValue()>0.001)return false;
-    	if(attributedsales14dsamesku!=null&&attributedsales14dsamesku.floatValue()>0.001)return false;
-    	if(attributedconversions14d!=null&&attributedconversions14d!=0)return false;
-    	if(attributedconversions14dsamesku!=null&&attributedconversions14dsamesku!=0)return false;
+        if (attributedsales14d != null && attributedsales14d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales14dsamesku != null && attributedsales14dsamesku.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedconversions14d != null && attributedconversions14d != 0) {
+            return false;
+        }
+        if (attributedconversions14dsamesku != null && attributedconversions14dsamesku != 0) {
+            return false;
+        }
         return true;
     }
 }

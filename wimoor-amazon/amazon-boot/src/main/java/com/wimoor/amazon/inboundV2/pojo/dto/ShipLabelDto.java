@@ -4,11 +4,12 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 @Data
-@ApiModel(value="ShipLabelDto对象", description="货件打标")
+@ApiModel(value = "ShipLabelDto对象", description = "货件打标")
 public class ShipLabelDto {
-    String  sku;
+
+    String sku;
     Integer amount;
-    String  groupid;
-    String  marketplaceid;
-    String  amazonauthid;
+    String groupid;
+    String marketplaceid;
+    String amazonauthid;
 }

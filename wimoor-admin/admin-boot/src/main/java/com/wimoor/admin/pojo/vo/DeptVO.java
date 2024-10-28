@@ -1,19 +1,18 @@
 package com.wimoor.admin.pojo.vo;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
+import lombok.Data;
 
 @Data
-public class DeptVO implements Serializable{
+public class DeptVO implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -5253368756977859991L;
+     *
+     */
+    private static final long serialVersionUID = -5253368756977859991L;
 
-	private String id;
+    private String id;
 
     private String name;
 

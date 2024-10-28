@@ -1,18 +1,18 @@
 package com.wimoor.amazon.auth.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wimoor.amazon.auth.pojo.entity.AmazonGroup;
 import com.wimoor.common.user.UserInfo;
+import java.util.List;
+import java.util.Map;
 
-public interface IAmazonGroupService  extends IService<AmazonGroup> {
-	List<AmazonGroup> getGroupByUser(UserInfo user);
+public interface IAmazonGroupService extends IService<AmazonGroup> {
 
-	List<AmazonGroup> selectByShopId(String shopid);
+    List<AmazonGroup> getGroupByUser(UserInfo user);
 
-	AmazonGroup findAmazonGroupByName(String groupname, String companyid);
+    List<AmazonGroup> selectByShopId(String shopid);
 
-	List<Map<String,Object>> selectTaskInfoList(String sellerid, String marketplaceid);
+    AmazonGroup findAmazonGroupByName(String groupname, String companyid);
+
+    List<Map<String, Object>> selectTaskInfoList(String sellerid, String marketplaceid);
 }

@@ -1,7 +1,5 @@
 package com.wimoor.sys.gc.service.impl;
 
-import org.springframework.stereotype.Service;
-
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,6 +11,7 @@ import com.wimoor.sys.gc.model.query.DatasourceQuery;
 import com.wimoor.sys.gc.model.vo.DatasourceVO;
 import com.wimoor.sys.gc.service.DatasourceService;
 import com.wimoor.sys.gc.util.BeanDtoVoUtil;
+import org.springframework.stereotype.Service;
 
 /**
  * 代码生成数据源维护表
@@ -28,7 +27,8 @@ public class DatasourceServiceImpl extends BaseServiceImpl<DatasourceMapper, Dat
                 .select(Datasource.class, info -> !"db_password".equals(info.getColumn()))
                 .like(StringUtils.isNotBlank(query.getDbTitle()), Datasource::getDbTitle, query.getDbTitle())
                 .like(StringUtils.isNotBlank(query.getDbName()), Datasource::getDbName, query.getDbName());
-         return  BeanDtoVoUtil.pageVo(this.page(new Page<>(query.getCurrent(), query.getSize()), queryWrapper), DatasourceVO.class);
+        return BeanDtoVoUtil.pageVo(this.page(new Page<>(query.getCurrent(), query.getSize()), queryWrapper),
+                DatasourceVO.class);
     }
 
 

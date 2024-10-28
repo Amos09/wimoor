@@ -1,16 +1,13 @@
 package com.wimoor.sys.gc.service.gc.gcimpl;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.model.po.DbFieldPO;
 import com.wimoor.sys.gc.service.gc.GcSevice;
 import com.wimoor.sys.gc.util.GcDataUtil;
 import com.wimoor.sys.gc.util.GcFileUtil;
-
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("all")
 @Component
@@ -26,9 +23,9 @@ public class GcVueUpd extends BaseGcImpl implements GcSevice {
     /**
      * 生成Html-Upd 修改页
      *
-     * @param data    数据
+     * @param data           数据
      * @param GenerateConfig 数据
-     * @param path    生成代码路径
+     * @param path           生成代码路径
      * @return void
      * @date 2019/11/20 19:18
      */
@@ -57,7 +54,7 @@ public class GcVueUpd extends BaseGcImpl implements GcSevice {
 
             // 生成字段 插槽
             String name = GcDataUtil.getFieldName(gcConfig, dbField.getName());
-            vueAddColumnSlots.append(super.jxVueColumnsSlot( dbField.getVueFieldType(), name));
+            vueAddColumnSlots.append(super.jxVueColumnsSlot(dbField.getVueFieldType(), name));
         }
         // 数据保存
         gcConfig.setTemplateParam("vueUpdColumns", vueUpdColumns.toString());

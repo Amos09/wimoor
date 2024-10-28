@@ -1,72 +1,69 @@
 package com.wimoor.amazon.adv.sd.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
-
 
 @Entity
-@Table(name="t_amz_adv_campaigns_sd")
+@Table(name = "t_amz_adv_campaigns_sd")
 public class AmzAdvCampaignsSD {
-	
-	@Id
-	@Column(name="campaignId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "campaignId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger campaignid;
 
-	@Column(name="profileid")
+    @Column(name = "profileid")
     private BigInteger profileid;
-	
-	@Column(name="portfolioId")
+
+    @Column(name = "portfolioId")
     private BigInteger portfolioId;
-	
-	@Column(name="name")
+
+    @Column(name = "name")
     private String name;
 
-	@Column(name="tactic")
+    @Column(name = "tactic")
     private String tactic;
 
-	@Column(name="costType")
+    @Column(name = "costType")
     private String costtype;
-	
-	@Column(name="budgetType")
+
+    @Column(name = "budgetType")
     private String budgettype;
 
-	@Column(name="budget")
+    @Column(name = "budget")
     private BigDecimal budget;
 
-	@Column(name="startDate")
+    @Column(name = "startDate")
     private Date startDate;
 
-	@Column(name="endDate")
+    @Column(name = "endDate")
     private Date endDate;
 
-	@Column(name="state")
+    @Column(name = "state")
     private String state;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
 
     @Transient
-	private String servingStatus;
+    private String servingStatus;
 
-	@Transient
-	private Date creationDate;
-    
     @Transient
-	private Date lastUpdatedDate;
-    
-    
+    private Date creationDate;
+
+    @Transient
+    private Date lastUpdatedDate;
+
+
     public BigInteger getCampaignid() {
         return campaignid;
     }
@@ -82,7 +79,7 @@ public class AmzAdvCampaignsSD {
     public void setProfileid(BigInteger profileid) {
         this.profileid = profileid;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -115,24 +112,24 @@ public class AmzAdvCampaignsSD {
         this.budget = budget;
     }
 
-    
+
     public Date getStartDate() {
-		return startDate;
-	}
+        return startDate;
+    }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    public Date getEndDate() {
+        return endDate;
+    }
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 
-	public String getState() {
+    public String getState() {
         return state;
     }
 
@@ -149,73 +146,69 @@ public class AmzAdvCampaignsSD {
     }
 
 
- 
-      
-	/**
-	 * @return the servingStatus
-	 */
+    /**
+     * @return the servingStatus
+     */
     @Transient
-	public String getServingStatus() {
-		return servingStatus;
-	}
+    public String getServingStatus() {
+        return servingStatus;
+    }
 
-	/**
-	 * @param servingStatus the servingStatus to set
-	 */
+    /**
+     * @param servingStatus the servingStatus to set
+     */
     @Transient
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
-	/**
-	 * @return the creationDate
-	 */
+    /**
+     * @return the creationDate
+     */
     @Transient
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-	/**
-	 * @param creationDate the creationDate to set
-	 */
+    /**
+     * @param creationDate the creationDate to set
+     */
     @Transient
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	/**
-	 * @return the lastUpdatedDate
-	 */
+    /**
+     * @return the lastUpdatedDate
+     */
     @Transient
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
 
-	public BigInteger getPortfolioId() {
-		return portfolioId;
-	}
+    public BigInteger getPortfolioId() {
+        return portfolioId;
+    }
 
-	public void setPortfolioId(BigInteger portfolioId) {
-		this.portfolioId = portfolioId;
-	}
+    public void setPortfolioId(BigInteger portfolioId) {
+        this.portfolioId = portfolioId;
+    }
 
-	/**
-	 * @param lastUpdatedDate the lastUpdatedDate to set
-	 */
+    /**
+     * @param lastUpdatedDate the lastUpdatedDate to set
+     */
     @Transient
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
 
-	public String getCosttype() {
-		return costtype;
-	}
+    public String getCosttype() {
+        return costtype;
+    }
 
-	public void setCosttype(String costtype) {
-		this.costtype = costtype;
-	}
+    public void setCosttype(String costtype) {
+        this.costtype = costtype;
+    }
 
-	 
 
-    
 }

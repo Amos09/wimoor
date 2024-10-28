@@ -1,8 +1,7 @@
 package com.wimoor.sys.gc.template;
 
 /**
- * @author wangsong
- * 复选Html 模板配置
+ * @author wangsong 复选Html 模板配置
  */
 public interface VueMainTemplate {
 
@@ -81,7 +80,8 @@ public interface VueMainTemplate {
             "                        }else{\n" +
             "                            let imgs = val.{prop}.split(\",\");\n" +
             "                            let html = \"\"; \n" +
-            "                            imgs.forEach(item => html += \"<img src='\" + item + \"'  style='border-radius: 40px;height: 40px;width: 40px;margin-top: 10px'>\")\n" +
+            "                            imgs.forEach(item => html += \"<img src='\" + item + \"'  style='border-radius: 40px;height: 40px;width: 40px;margin-top: 10px'>\")\n"
+            +
             "                            return html;\n" +
             "                        }\n" +
             "                    }\n" +
@@ -89,8 +89,7 @@ public interface VueMainTemplate {
 
 
     /**
-     * 图标
-     * {label}  {prop}
+     * 图标 {label}  {prop}
      */
     String ICON = "                {\n" +
             "                    label: '{label} ',\n" +
@@ -102,8 +101,7 @@ public interface VueMainTemplate {
             "                },\n";
 
     /**
-     * 颜色
-     * {label}  {prop}
+     * 颜色 {label}  {prop}
      */
     String COLOR = "                {\n" +
             "                    label: '{label}',\n" +
@@ -115,8 +113,7 @@ public interface VueMainTemplate {
             "                },\n";
 
     /**
-     * 地图
-     * {label}  {prop}
+     * 地图 {label}  {prop}
      */
     String MAP = "                {\n" +
             "                    label: '{label}',\n" +

@@ -1,18 +1,15 @@
 package com.wimoor.sys.gc.config;
 
 
-
-import lombok.Data;
-
+import com.wimoor.sys.gc.config.model.GcFilePath;
+import com.wimoor.sys.gc.model.po.DbFieldPO;
+import com.wimoor.sys.gc.model.vo.DatasourceVO;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import com.wimoor.sys.gc.config.model.GcFilePath;
-import com.wimoor.sys.gc.model.po.DbFieldPO;
-import com.wimoor.sys.gc.model.vo.DatasourceVO;
+import lombok.Data;
 
 
 /**

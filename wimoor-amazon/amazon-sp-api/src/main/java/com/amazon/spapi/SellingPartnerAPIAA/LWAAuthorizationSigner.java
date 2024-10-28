@@ -9,6 +9,7 @@ import lombok.Setter;
  * LWA Authorization Signer
  */
 public class LWAAuthorizationSigner {
+
     private static final String SIGNED_ACCESS_TOKEN_HEADER_NAME = "x-amz-access-token";
 
     @Getter(AccessLevel.PACKAGE)
@@ -33,8 +34,7 @@ public class LWAAuthorizationSigner {
                 .build();
     }
 
-     /**
-     *
+    /**
      * @param lwaAuthorizationCredentials LWA Authorization Credentials for token exchange
      */
     public LWAAuthorizationSigner(LWAAuthorizationCredentials lwaAuthorizationCredentials) {
@@ -46,22 +46,22 @@ public class LWAAuthorizationSigner {
     }
 
     /**
-    *
-    * Overloaded Constructor @param lwaAuthorizationCredentials LWA Authorization Credentials for token exchange
-    * and LWAAccessTokenCache
-    */
+     * Overloaded Constructor @param lwaAuthorizationCredentials LWA Authorization Credentials for token exchange and
+     * LWAAccessTokenCache
+     */
     public LWAAuthorizationSigner(LWAAuthorizationCredentials lwaAuthorizationCredentials,
-           LWAAccessTokenCache lwaAccessTokenCache) {
+            LWAAccessTokenCache lwaAccessTokenCache) {
 
-       lwaClient = new LWAClient(lwaAuthorizationCredentials.getEndpoint());
-       lwaClient.setLWAAccessTokenCache(lwaAccessTokenCache);
+        lwaClient = new LWAClient(lwaAuthorizationCredentials.getEndpoint());
+        lwaClient.setLWAAccessTokenCache(lwaAccessTokenCache);
 
-       buildLWAAccessTokenRequestMeta(lwaAuthorizationCredentials);
+        buildLWAAccessTokenRequestMeta(lwaAuthorizationCredentials);
 
-   }
+    }
 
     /**
-     *  Signs a Request with an LWA Access Token
+     * Signs a Request with an LWA Access Token
+     *
      * @param originalRequest Request to sign (treated as immutable)
      * @return Copy of originalRequest with LWA signature
      * @throws LWAException If calls to fetch LWA access token fails

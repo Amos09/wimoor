@@ -1,53 +1,52 @@
 package com.wimoor.amazon.adv.common.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.math.BigInteger;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
- 
 
 public class AmzAdvRemindKey {
-	@Id
-	@Column(name="profileid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "profileid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger profileid;
 
-	@Id
-	@Column(name="campaignid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "campaignid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger campaignid;
 
-	@Id
-	@Column(name="adgroupid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "adgroupid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adgroupid;
 
-	@Id
-	@Column(name="keywordid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "keywordid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger keywordid;
 
-	@Id
-	@Column(name="adid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "adid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adid;
-	
-	@Id
-	@Column(name="targetid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "targetid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger targetid;
-	
+
     public BigInteger getTargetid() {
-		return targetid;
-	}
+        return targetid;
+    }
 
-	public void setTargetid(BigInteger targetid) {
-		this.targetid = targetid;
-	}
+    public void setTargetid(BigInteger targetid) {
+        this.targetid = targetid;
+    }
 
-	public BigInteger getProfileid() {
+    public BigInteger getProfileid() {
         return profileid;
     }
 
@@ -55,16 +54,16 @@ public class AmzAdvRemindKey {
         this.profileid = profileid;
     }
 
- 
+
     public BigInteger getCampaignid() {
-		return campaignid;
-	}
+        return campaignid;
+    }
 
-	public void setCampaignid(BigInteger campaignid) {
-		this.campaignid = campaignid;
-	}
+    public void setCampaignid(BigInteger campaignid) {
+        this.campaignid = campaignid;
+    }
 
-	public BigInteger getAdgroupid() {
+    public BigInteger getAdgroupid() {
         return adgroupid;
     }
 

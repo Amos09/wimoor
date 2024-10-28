@@ -1,12 +1,12 @@
 package com.wimoor.admin.domain;
 
+import java.io.Serializable;
 import lombok.Data;
 
-import java.io.Serializable;
 
- 
 @Data
 public class BaseResponse<T> implements Serializable {
+
     private static final long serialVersionUID = -4272342803400464446L;
 
     public static final int SUCCESS_CODE = 200;
@@ -32,7 +32,6 @@ public class BaseResponse<T> implements Serializable {
         this.success = code == SUCCESS_CODE ? true : false;
         this.data = data;
     }
-
 
 
 }

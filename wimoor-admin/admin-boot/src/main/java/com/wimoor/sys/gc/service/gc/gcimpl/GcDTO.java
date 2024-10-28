@@ -1,18 +1,15 @@
 package com.wimoor.sys.gc.service.gc.gcimpl;
 
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-
+import cn.hutool.core.util.IdUtil;
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.constant.TpParamConstant;
 import com.wimoor.sys.gc.model.po.DbFieldPO;
 import com.wimoor.sys.gc.service.gc.GcSevice;
 import com.wimoor.sys.gc.util.GcFileUtil;
-
-import cn.hutool.core.util.IdUtil;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("all")
 @Component
@@ -68,8 +65,8 @@ public class GcDTO extends BaseGcImpl implements GcSevice {
 
             // 2、生成必填参数jsr验证(先判断是否为必填参数)
             String isNull = fieldMap.getIsNull();
-            String jsrModel = super.jsrModel( isNull,type, typeDetail, desc,true);
-            if (StringUtils.isNotBlank(jsrModel) ) {
+            String jsrModel = super.jsrModel(isNull, type, typeDetail, desc, true);
+            if (StringUtils.isNotBlank(jsrModel)) {
                 fields.append("\r\n" + jsrModel);
             }
             // 3、生成字段

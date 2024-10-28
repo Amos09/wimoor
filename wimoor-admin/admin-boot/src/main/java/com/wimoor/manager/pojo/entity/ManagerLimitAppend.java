@@ -2,19 +2,17 @@ package com.wimoor.manager.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.common.pojo.entity.BaseEntity;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import io.swagger.annotations.ApiModel;
 import java.io.Serializable;
 import java.math.BigInteger;
-
-import io.swagger.annotations.ApiModel;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -23,10 +21,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_manager_limit_append")
-@ApiModel(value="ManagerLimitAppend对象", description="")
+@ApiModel(value = "ManagerLimitAppend对象", description = "")
 public class ManagerLimitAppend extends BaseEntity implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
 
     private BigInteger shopid;

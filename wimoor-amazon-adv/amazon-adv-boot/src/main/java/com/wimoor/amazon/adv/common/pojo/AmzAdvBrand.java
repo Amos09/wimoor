@@ -1,18 +1,18 @@
 package com.wimoor.amazon.adv.common.pojo;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_adv_brand")
+@Table(name = "t_amz_adv_brand")
 public class AmzAdvBrand extends AmzAdvBrandKey {
-	@Column(name="brandRegistryName")
+
+    @Column(name = "brandRegistryName")
     private String brandregistryname;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
 
     public String getBrandregistryname() {
@@ -23,12 +23,12 @@ public class AmzAdvBrand extends AmzAdvBrandKey {
         this.brandregistryname = brandregistryname == null ? null : brandregistryname.trim();
     }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
-   
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
+
 }

@@ -1,19 +1,17 @@
 package com.wimoor.amazon.product.pojo.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.amazon.common.pojo.entity.BaseEntity;
-
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -22,12 +20,12 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_product_rank")
-@ApiModel(value="ProductRank对象", description="")
+@ApiModel(value = "ProductRank对象", description = "")
 public class ProductRank extends BaseEntity implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
-    private Date  byday;
+    private Date byday;
 
     @TableField("categoryId")
     private String categoryid;

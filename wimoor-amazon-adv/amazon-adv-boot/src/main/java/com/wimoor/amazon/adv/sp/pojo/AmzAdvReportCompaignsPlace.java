@@ -1,63 +1,61 @@
 package com.wimoor.amazon.adv.sp.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 
 @Entity
-@Table(name="t_amz_adv_rpt2_sp_compaigns_place")
-public class AmzAdvReportCompaignsPlace  {
-	
-	@Id
-	@Column(name="campaignId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+@Table(name = "t_amz_adv_rpt2_sp_compaigns_place")
+public class AmzAdvReportCompaignsPlace {
+
+    @Id
+    @Column(name = "campaignId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger campaignid;
-	
-	@Id
-	@Column(name="bydate")
+
+    @Id
+    @Column(name = "bydate")
     private Date bydate;
-	
-	@Column(name="profileid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Column(name = "profileid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger profileid;
-	
-	@Id
-	@Column(name="placementid")
+
+    @Id
+    @Column(name = "placementid")
     private Integer placementid;
- 
-	@Column(name="campaignBudget")
+
+    @Column(name = "campaignBudget")
     private BigDecimal campaignbudget;
 
-	@Column(name="impressions")
+    @Column(name = "impressions")
     private Integer impressions;
 
-	@Column(name="clicks")
+    @Column(name = "clicks")
     private Integer clicks;
 
-	@Column(name="cost")
+    @Column(name = "cost")
     private BigDecimal cost;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
-	
-    public BigInteger getCampaignid() {
-		return campaignid;
-	}
 
-	public void setCampaignid(BigInteger campaignid) {
-		this.campaignid = campaignid;
-	}
-	
-	public Date getBydate() {
+    public BigInteger getCampaignid() {
+        return campaignid;
+    }
+
+    public void setCampaignid(BigInteger campaignid) {
+        this.campaignid = campaignid;
+    }
+
+    public Date getBydate() {
         return bydate;
     }
 
@@ -65,16 +63,15 @@ public class AmzAdvReportCompaignsPlace  {
         this.bydate = bydate;
     }
 
-    
-	public BigInteger getProfileid() {
+
+    public BigInteger getProfileid() {
         return profileid;
     }
 
     public void setProfileid(BigInteger profileid) {
-        this.profileid = profileid  ;
+        this.profileid = profileid;
     }
 
-   
 
     public BigDecimal getCampaignbudget() {
         return campaignbudget;
@@ -84,7 +81,6 @@ public class AmzAdvReportCompaignsPlace  {
         this.campaignbudget = campaignbudget;
     }
 
-    
 
     public Integer getImpressions() {
         return impressions;
@@ -110,21 +106,21 @@ public class AmzAdvReportCompaignsPlace  {
         this.cost = cost;
     }
 
-	public Integer getPlacementid() {
-		return placementid;
-	}
+    public Integer getPlacementid() {
+        return placementid;
+    }
 
-	public void setPlacementid(Integer placementid) {
-		this.placementid = placementid;
-	}
+    public void setPlacementid(Integer placementid) {
+        this.placementid = placementid;
+    }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
 
-    
+
 }

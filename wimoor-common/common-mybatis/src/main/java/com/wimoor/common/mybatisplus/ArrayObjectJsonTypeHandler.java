@@ -6,12 +6,6 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.type.BaseTypeHandler;
-import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.MappedJdbcTypes;
-import org.springframework.util.StringUtils;
-
 import java.lang.reflect.Array;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -19,11 +13,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.type.BaseTypeHandler;
+import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.type.MappedJdbcTypes;
+import org.springframework.util.StringUtils;
 
- 
+
 @Slf4j
 @MappedJdbcTypes(value = {JdbcType.OTHER}, includeNullJdbcType = true)
 public class ArrayObjectJsonTypeHandler<E> extends BaseTypeHandler<E[]> {
+
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final String STRING_JSON_ARRAY_EMPTY = "[]";
 

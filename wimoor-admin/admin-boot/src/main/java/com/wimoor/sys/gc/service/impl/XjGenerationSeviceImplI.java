@@ -1,20 +1,9 @@
 package com.wimoor.sys.gc.service.impl;
 
 
-import java.io.File;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.ZipUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.CaseFormat;
 import com.wimoor.sys.gc.config.GcConfig;
@@ -44,18 +33,25 @@ import com.wimoor.sys.gc.util.FileDownloadUtil;
 import com.wimoor.sys.gc.util.GcDataUtil;
 import com.wimoor.sys.gc.util.GcReplacUtil;
 import com.wimoor.sys.gc.util.PropUtil;
-
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.ZipUtil;
+import java.io.File;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author wangsong
  */
 @Service
 @Slf4j
-public class XjGenerationSeviceImplI    implements GenerationSevice {
+public class XjGenerationSeviceImplI implements GenerationSevice {
 
     @Autowired
     private DatasourceService adminDatasourceService;
@@ -98,7 +94,8 @@ public class XjGenerationSeviceImplI    implements GenerationSevice {
         paths.add(basePath + gcConfig.getVisitPathMap().get(GcVueUpd.KEY_NAME));
         paths.add(basePath + gcConfig.getVisitPathMap().get(GcVuePid.KEY_NAME));
         // 下载后的名字
-        String zipName = GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(), GcTPConfig.P_VUE_MEUN);
+        String zipName = GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(),
+                GcTPConfig.P_VUE_MEUN);
         zipName = zipName.replaceAll("/", ".");
         // 下载
         FileDownloadUtil.downloadZip(paths, zipName, response);
@@ -121,7 +118,8 @@ public class XjGenerationSeviceImplI    implements GenerationSevice {
         // 3、压缩
         File gcFile = ZipUtil.zip(zipFile, false, srcFile);
         // 4、下载
-        String zipName = GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(), GcTPConfig.P_ZIP_NAME);
+        String zipName = GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(),
+                GcTPConfig.P_ZIP_NAME);
         zipName = zipName.replaceAll("/", ".") + ".zip";
         FileDownloadUtil.download(gcFile, zipName, response);
     }
@@ -136,7 +134,9 @@ public class XjGenerationSeviceImplI    implements GenerationSevice {
         GcConfig gcConfig = getGcConfig(generateDto, false, false);
         // 获取路径
         Map<String, String> mapPath = new LinkedHashMap<>(16);
-        mapPath.put("X-Vue-Menu", GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(), GcTPConfig.P_VUE_MEUN));
+        mapPath.put("X-Vue-Menu",
+                GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(),
+                        GcTPConfig.P_VUE_MEUN));
         mapPath.put(GcEntity.KEY_NAME, gcConfig.getTemplatePathMap().get(GcEntity.KEY_NAME).getPath());
         mapPath.put(GcVO.KEY_NAME, gcConfig.getTemplatePathMap().get(GcVO.KEY_NAME).getPath());
         mapPath.put(GcDTO.KEY_NAME, gcConfig.getTemplatePathMap().get(GcDTO.KEY_NAME).getPath());
@@ -177,7 +177,8 @@ public class XjGenerationSeviceImplI    implements GenerationSevice {
         }
 
         // 获取模板参数
-        Map<String, String> defaultTemplateParam = getDefaultTemplateParam(gcConfig, generateDto.getDataSourceId(), generateDto.getTableName(), generateDto.getTableComment());
+        Map<String, String> defaultTemplateParam = getDefaultTemplateParam(gcConfig, generateDto.getDataSourceId(),
+                generateDto.getTableName(), generateDto.getTableComment());
         gcConfig.setDefaultTemplateParam(defaultTemplateParam);
 
         // 生成位置
@@ -195,27 +196,36 @@ public class XjGenerationSeviceImplI    implements GenerationSevice {
         gcConfig.addTemplate(GcVO.KEY_NAME, baseUrl + GcTPConfig.T_VO, previewFile + GcTPConfig.P_VO);
         gcConfig.addTemplate(GcDTO.KEY_NAME, baseUrl + GcTPConfig.T_DTO, previewFile + GcTPConfig.P_DTO);
         gcConfig.addTemplate(GcQuery.KEY_NAME, baseUrl + GcTPConfig.T_QUERY, previewFile + GcTPConfig.P_QUERY);
-        gcConfig.addTemplate(GcController.KEY_NAME, baseUrl + GcTPConfig.T_CONTROLLER, previewFile + GcTPConfig.P_CONTROLLER);
+        gcConfig.addTemplate(GcController.KEY_NAME, baseUrl + GcTPConfig.T_CONTROLLER,
+                previewFile + GcTPConfig.P_CONTROLLER);
         gcConfig.addTemplate(GcIService.KEY_NAME, baseUrl + GcTPConfig.T_SERVICE, previewFile + GcTPConfig.P_SERVICE);
-        gcConfig.addTemplate(GcIServiceImpl.KEY_NAME, baseUrl + GcTPConfig.T_SERVICEIMPL, previewFile + GcTPConfig.P_SERVICE_IMPL);
+        gcConfig.addTemplate(GcIServiceImpl.KEY_NAME, baseUrl + GcTPConfig.T_SERVICEIMPL,
+                previewFile + GcTPConfig.P_SERVICE_IMPL);
         gcConfig.addTemplate(GcMapper.KEY_NAME, baseUrl + GcTPConfig.T_MAPPER, previewFile + GcTPConfig.P_MAPPER);
-        gcConfig.addTemplate(GcMapperXml.KEY_NAME, baseUrl + GcTPConfig.T_MAPPER_XML, previewFile + GcTPConfig.P_MAPPER_XML);
+        gcConfig.addTemplate(GcMapperXml.KEY_NAME, baseUrl + GcTPConfig.T_MAPPER_XML,
+                previewFile + GcTPConfig.P_MAPPER_XML);
         gcConfig.addTemplate(GcVueMain.KEY_NAME, baseUrl + GcTPConfig.T_VUE, previewFile + GcTPConfig.P_VUE);
         gcConfig.addTemplate(GcVueAdd.KEY_NAME, baseUrl + GcTPConfig.T_VUE_ADD, previewFile + GcTPConfig.P_VUE_ADD);
         gcConfig.addTemplate(GcVueUpd.KEY_NAME, baseUrl + GcTPConfig.T_VUE_UPD, previewFile + GcTPConfig.P_VUE_UPD);
         // 生成树结构时使用的模板 (对部分不同的，使用tree专用模板)
         if (generateDto.getIsTree()) {
             gcConfig.addTemplate(GcVO.KEY_NAME, baseUrl + GcTPConfig.T_TREE_VO, previewFile + GcTPConfig.P_VO);
-            gcConfig.addTemplate(GcController.KEY_NAME, baseUrl + GcTPConfig.T_TREE_CONTROLLER, previewFile + GcTPConfig.P_CONTROLLER);
-            gcConfig.addTemplate(GcIService.KEY_NAME, baseUrl + GcTPConfig.T_TREE_SERVICE, previewFile + GcTPConfig.P_SERVICE);
-            gcConfig.addTemplate(GcIServiceImpl.KEY_NAME, baseUrl + GcTPConfig.T_TREE_SERVICEIMPL, previewFile + GcTPConfig.P_SERVICE_IMPL);
+            gcConfig.addTemplate(GcController.KEY_NAME, baseUrl + GcTPConfig.T_TREE_CONTROLLER,
+                    previewFile + GcTPConfig.P_CONTROLLER);
+            gcConfig.addTemplate(GcIService.KEY_NAME, baseUrl + GcTPConfig.T_TREE_SERVICE,
+                    previewFile + GcTPConfig.P_SERVICE);
+            gcConfig.addTemplate(GcIServiceImpl.KEY_NAME, baseUrl + GcTPConfig.T_TREE_SERVICEIMPL,
+                    previewFile + GcTPConfig.P_SERVICE_IMPL);
             gcConfig.addTemplate(GcVueMain.KEY_NAME, baseUrl + GcTPConfig.T_TREE_VUE, previewFile + GcTPConfig.P_VUE);
-            gcConfig.addTemplate(GcVueAdd.KEY_NAME, baseUrl + GcTPConfig.T_TREE_VUE_ADD, previewFile + GcTPConfig.P_VUE_ADD);
-            gcConfig.addTemplate(GcVuePid.KEY_NAME, baseUrl + GcTPConfig.T_TREE_VUE_PID, previewFile + GcTPConfig.P_VUE_PID);
+            gcConfig.addTemplate(GcVueAdd.KEY_NAME, baseUrl + GcTPConfig.T_TREE_VUE_ADD,
+                    previewFile + GcTPConfig.P_VUE_ADD);
+            gcConfig.addTemplate(GcVuePid.KEY_NAME, baseUrl + GcTPConfig.T_TREE_VUE_PID,
+                    previewFile + GcTPConfig.P_VUE_PID);
         }
         // 生成地址 文件路径上的动态参数 和 文件后缀 进行处理
         for (GcFilePath gcFilePath : gcConfig.getTemplatePathMap().values()) {
-            String path = GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(), gcFilePath.getPath());
+            String path = GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(),
+                    gcFilePath.getPath());
             if (isPreviewSuffix) {
                 // 判断是否为生成预览文件, 预览文件替换后缀
                 path = path.substring(0, path.lastIndexOf("."));
@@ -240,13 +250,11 @@ public class XjGenerationSeviceImplI    implements GenerationSevice {
     /**
      * 处理默认参数
      * <p>
-     * * 1、tableName;         // 数据库表的实际名称
-     * * 2、tableComment;      // 数据库表的注释
-     * * 3、packName;          // 生成代码的包名/路径 （从java 目录开始，如当前: io.github.wslxm.baseadmin）
-     * * 4、pathTp;            // 代码模板路径
-     *
+     * * 1、tableName;         // 数据库表的实际名称 * 2、tableComment;      // 数据库表的注释 * 3、packName;          // 生成代码的包名/路径 （从java
+     * 目录开始，如当前: io.github.wslxm.baseadmin） * 4、pathTp;            // 代码模板路径
      */
-    private Map<String, String> getDefaultTemplateParam(GcConfig gcConfig, String dataSourceId, String tableName, String tableComment) {
+    private Map<String, String> getDefaultTemplateParam(GcConfig gcConfig, String dataSourceId, String tableName,
+            String tableComment) {
         // 加载配置信息
         if (org.apache.commons.lang3.StringUtils.isNotBlank(dataSourceId)) {
             DatasourceVO dbConfig = adminDatasourceService.findId(dataSourceId);
@@ -270,7 +278,8 @@ public class XjGenerationSeviceImplI    implements GenerationSevice {
             gcConfig.setDefaultTemplateParam(TpParamConstant.ENTITY_SWAGGER, dbConfig.getEntitySwagger() + "");
             gcConfig.setDefaultTemplateParam(TpParamConstant.FILTER_CRUD, dbConfig.getFilterCrud() + "");
             gcConfig.setDefaultTemplateParam(TpParamConstant.FATHER_PATH, dbConfig.getFatherPath());
-            gcConfig.setDefaultTemplateParam(TpParamConstant.VUE_FIELD_TYPES_ARRAY, JSON.toJSONString(vueFieldTypesArray));
+            gcConfig.setDefaultTemplateParam(TpParamConstant.VUE_FIELD_TYPES_ARRAY,
+                    JSON.toJSONString(vueFieldTypesArray));
             gcConfig.setDefaultTemplateParam(TpParamConstant.BASE_FIELDS, JSON.toJSONString(basefields));
             gcConfig.setDefaultTemplateParam(TpParamConstant.KEYWORD_ARRAY, JSON.toJSONString(keywordArray));
             gcConfig.setDefaultTemplateParam(TpParamConstant.PACK_FILE_PATH, packFilePath);
@@ -289,18 +298,21 @@ public class XjGenerationSeviceImplI    implements GenerationSevice {
             gcConfig.setDefaultTemplateParam(TpParamConstant.PACK_PATH, generateProperties.getPackPath());
             gcConfig.setDefaultTemplateParam(TpParamConstant.ROOT_MODULE, generateProperties.getRootModule());
             gcConfig.setDefaultTemplateParam(TpParamConstant.MODULE_NAME, generateProperties.getModuleName());
-            gcConfig.setDefaultTemplateParam(TpParamConstant.TABLE_PREFIX_DEFAULT, generateProperties.getTablePrefixDefault());
-            gcConfig.setDefaultTemplateParam(TpParamConstant.FIELD_PREFIX_DEFAULT, generateProperties.getFieldPrefixDefault());
-            gcConfig.setDefaultTemplateParam(TpParamConstant.ENTITY_SWAGGER, generateProperties.getEntitySwagger() + "");
+            gcConfig.setDefaultTemplateParam(TpParamConstant.TABLE_PREFIX_DEFAULT,
+                    generateProperties.getTablePrefixDefault());
+            gcConfig.setDefaultTemplateParam(TpParamConstant.FIELD_PREFIX_DEFAULT,
+                    generateProperties.getFieldPrefixDefault());
+            gcConfig.setDefaultTemplateParam(TpParamConstant.ENTITY_SWAGGER,
+                    generateProperties.getEntitySwagger() + "");
             gcConfig.setDefaultTemplateParam(TpParamConstant.FILTER_CRUD, generateProperties.getFilterCrud() + "");
             gcConfig.setDefaultTemplateParam(TpParamConstant.FATHER_PATH, generateProperties.getFatherPath());
-            gcConfig.setDefaultTemplateParam(TpParamConstant.VUE_FIELD_TYPES_ARRAY, JSON.toJSONString(vueFieldTypesArray));
+            gcConfig.setDefaultTemplateParam(TpParamConstant.VUE_FIELD_TYPES_ARRAY,
+                    JSON.toJSONString(vueFieldTypesArray));
             gcConfig.setDefaultTemplateParam(TpParamConstant.BASE_FIELDS, JSON.toJSONString(basefields));
             gcConfig.setDefaultTemplateParam(TpParamConstant.KEYWORD_ARRAY, JSON.toJSONString(keywordArray));
             gcConfig.setDefaultTemplateParam(TpParamConstant.PACK_FILE_PATH, packFilePath);
         }
-        gcConfig.setDefaultTemplateParam(TpParamConstant.DATE,  LocalDateTime.now().toString());
-
+        gcConfig.setDefaultTemplateParam(TpParamConstant.DATE, LocalDateTime.now().toString());
 
         /**
          * 根据数据库表名生成 驼峰格式的命名

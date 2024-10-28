@@ -1,9 +1,12 @@
 package com.wimoor.sys.gc.util;
 
 import cn.hutool.core.codec.Base64;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.*;
 
 /**
  * 图片/文件 待定保留
@@ -54,7 +57,7 @@ public class Base64ImgUtils {
      * @version 1.0.1
      */
     public static File base64ToFile(String base64) {
-        if (base64 == null || "" .equals(base64)) {
+        if (base64 == null || "".equals(base64)) {
             return null;
         }
         byte[] buff = Base64.decode(base64);

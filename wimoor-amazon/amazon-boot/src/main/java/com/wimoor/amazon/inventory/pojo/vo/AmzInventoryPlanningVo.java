@@ -1,18 +1,17 @@
 package com.wimoor.amazon.inventory.pojo.vo;
 
-import java.math.BigDecimal;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -21,34 +20,34 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_inventory_planning")
-@ApiModel(value="AmzInventoryPlanning对象", description="")
+@ApiModel(value = "AmzInventoryPlanning对象", description = "")
 public class AmzInventoryPlanningVo implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private Date snapshotDate;
-    
+
     private String countrycode;
-    
+
     private String amazonauthid;
-    
+
     private String sku;
 
     private String fnsku;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private String image;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private String pname;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private BigDecimal price;
 
-    @TableField(value= "`asin`")
+    @TableField(value = "`asin`")
     private String asin;
-    
-    @TableField(value= "`condition`")
+
+    @TableField(value = "`condition`")
     private String condition;
 
     private Integer available;
@@ -56,33 +55,33 @@ public class AmzInventoryPlanningVo implements Serializable {
     private Integer pendingRemovalQuantity;
 
     private String currency;
-    
+
     private String skuname;
-    
+
     private String owner;
-    
-    @TableField(value= "inv_age_0_to_90_days")
+
+    @TableField(value = "inv_age_0_to_90_days")
     private Integer invAge0To90Days;
 
-    @TableField(value= "inv_age_91_to_180_days")
+    @TableField(value = "inv_age_91_to_180_days")
     private Integer invAge91To180Days;
 
-    @TableField(value= "inv_age_181_to_270_days")
+    @TableField(value = "inv_age_181_to_270_days")
     private Integer invAge181To270Days;
 
-    @TableField(value= "inv_age_271_to_365_days")
+    @TableField(value = "inv_age_271_to_365_days")
     private Integer invAge271To365Days;
 
-    @TableField(value= "inv_age_365_plus_days")
+    @TableField(value = "inv_age_365_plus_days")
     private Integer invAge365PlusDays;
 
-    @TableField(value= "qty_to_be_charged_ltsf_11_mo")
+    @TableField(value = "qty_to_be_charged_ltsf_11_mo")
     private BigDecimal qtyToBeChargedLtsf11Mo;
 
-    @TableField(value= "projected_ltsf_11_mo")
+    @TableField(value = "projected_ltsf_11_mo")
     private BigDecimal projectedLtsf11Mo;
 
-    @TableField(value= "qty_to_be_charged_ltsf_12_mo")
+    @TableField(value = "qty_to_be_charged_ltsf_12_mo")
     private BigDecimal qtyToBeChargedLtsf12Mo;
 
     private BigDecimal estimatedLtsfNextCharge;
@@ -141,41 +140,41 @@ public class AmzInventoryPlanningVo implements Serializable {
 
     private BigDecimal featuredofferPrice;
 
-    
-    @TableField(value= "sales_shipped_last_7_days")
+
+    @TableField(value = "sales_shipped_last_7_days")
     private BigDecimal salesShippedLast7Days;
 
-    @TableField(value= "sales_shipped_last_30_days")
+    @TableField(value = "sales_shipped_last_30_days")
     private BigDecimal salesShippedLast30Days;
 
-    @TableField(value= "sales_shipped_last_60_days")
+    @TableField(value = "sales_shipped_last_60_days")
     private BigDecimal salesShippedLast60Days;
 
-    @TableField(value= "sales_shipped_last_90_days")
+    @TableField(value = "sales_shipped_last_90_days")
     private BigDecimal salesShippedLast90Days;
 
-    @TableField(value= "inv_age_0_to_30_days")
+    @TableField(value = "inv_age_0_to_30_days")
     private Integer invAge0To30Days;
 
-    @TableField(value= "inv_age_31_to_60_days")
+    @TableField(value = "inv_age_31_to_60_days")
     private Integer invAge31To60Days;
 
-    @TableField(value= "inv_age_61_to_90_days")
+    @TableField(value = "inv_age_61_to_90_days")
     private Integer invAge61To90Days;
 
-    @TableField(value= "inv_age_181_to_330_days")
+    @TableField(value = "inv_age_181_to_330_days")
     private Integer invAge181To330Days;
 
-    @TableField(value= "inv_age_331_to_365_days")
+    @TableField(value = "inv_age_331_to_365_days")
     private Integer invAge331To365Days;
-    
-    @TableField(value= "fba_minimum_inventory_level")
+
+    @TableField(value = "fba_minimum_inventory_level")
     private String fbaMinimumInventoryLevel;
-    
-    @TableField(value= "historical_days_of_supply")
+
+    @TableField(value = "historical_days_of_supply")
     private String historicalDaysOfSupply;
-    
-    @TableField(value= "fba_inventory_level_health_status")
+
+    @TableField(value = "fba_inventory_level_health_status")
     private String fbaInventoryLevelHealthStatus;
 
     private BigDecimal estimatedStorageCostNextMonth;
@@ -188,40 +187,40 @@ public class AmzInventoryPlanningVo implements Serializable {
 
     private Integer inboundReceived;
 
-    @TableField(value= "no_sale_last_6_months")
+    @TableField(value = "no_sale_last_6_months")
     private Integer noSaleLast6Months;
 
     private Integer reservedQuantity;
 
     private Integer unfulfillableQuantity;
-    
+
     private Integer afnResearchingQuantity;
-    
+
     private Integer afnReservedFutureSupply;
-    
+
     private Integer afnFutureSupplyBuyable;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private String gname;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private String msku;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private String market;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private BigDecimal purchasecost;
 
-    
+
     private Integer quantityToBeChargedAis181T210Days;
-    private Integer quantityToBeChargedAis211T240Days; 
-    private Integer quantityToBeChargedAis241T270Days; 
+    private Integer quantityToBeChargedAis211T240Days;
+    private Integer quantityToBeChargedAis241T270Days;
     private Integer quantityToBeChargedAis271T300Days;
     private Integer quantityToBeChargedAis301T330Days;
-    private Integer quantityToBeChargedAis331T365Days; 
+    private Integer quantityToBeChargedAis331T365Days;
     private Integer quantityToBeChargedAis365PlusDays;
-	
+
     private BigDecimal estimatedAis181T210Days;
     private BigDecimal estimatedAis211T240Days;
     private BigDecimal estimatedAis241T270Days;

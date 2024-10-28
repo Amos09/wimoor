@@ -1,6 +1,10 @@
 package com.wimoor.sys.gc.model.core;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * 指定请求和响应参数 自动解密or加密注解
@@ -10,7 +14,8 @@ import java.lang.annotation.*;
  * @email 1720696548@qq.com
  * @date 2021/4/10 0010 15:59
  */
-@Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE})
+@Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR,
+        ElementType.PARAMETER, ElementType.TYPE_USE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface XjSecret {
@@ -24,11 +29,7 @@ public @interface XjSecret {
     boolean isNext() default false;
 
     /**
-     * 类型
-     * 1-请求参数使用base64解密，响应参数使用base64加密
-     * 2-只对请求参数使用base64解密
-     * 3-只对响应参数使用base64加密
-     * 4-数据脱敏(需指定, 脱敏索引位置)
+     * 类型 1-请求参数使用base64解密，响应参数使用base64加密 2-只对请求参数使用base64解密 3-只对响应参数使用base64加密 4-数据脱敏(需指定, 脱敏索引位置)
      */
     int type() default 1;
 

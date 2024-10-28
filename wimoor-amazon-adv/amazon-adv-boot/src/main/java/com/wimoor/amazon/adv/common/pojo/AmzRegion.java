@@ -1,37 +1,37 @@
 package com.wimoor.amazon.adv.common.pojo;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_region")
-public class AmzRegion  implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -841458930870691231L;
+@Table(name = "t_amz_region")
+public class AmzRegion implements Serializable {
 
-	@Id
-	@Column(name = "code")
+    /**
+     *
+     */
+    private static final long serialVersionUID = -841458930870691231L;
+
+    @Id
+    @Column(name = "code")
     private String code;
 
-	@Column(name = "name")
+    @Column(name = "name")
     private String name;
 
-	@Column(name = "advname")
+    @Column(name = "advname")
     private String advname;
 
-	@Column(name = "advpoint")
+    @Column(name = "advpoint")
     private String advpoint;
 
-	@Column(name = "client_id")
+    @Column(name = "client_id")
     private String clientId;
 
-	@Column(name = "client_secret")
+    @Column(name = "client_secret")
     private String clientSecret;
 
     public String getCode() {
@@ -81,6 +81,6 @@ public class AmzRegion  implements Serializable{
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret == null ? null : clientSecret.trim();
     }
-    
-    
+
+
 }

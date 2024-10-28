@@ -1,16 +1,6 @@
 package com.wimoor.amazon.report.service.impl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -26,94 +16,102 @@ import com.wimoor.amazon.report.pojo.entity.ProductRecommended;
 import com.wimoor.amazon.report.pojo.entity.ReportType;
 import com.wimoor.amazon.report.service.IReportAmzProductRecommendedListService;
 import com.wimoor.common.GeneralUtil;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
 
-import cn.hutool.core.util.StrUtil;
-
- 
 
 @Service("reportAmzProductRecommendedListService")
-public class ReportAmzProductRecommendedListServiceImpl extends ReportServiceImpl implements IReportAmzProductRecommendedListService {
+public class ReportAmzProductRecommendedListServiceImpl extends ReportServiceImpl implements
+        IReportAmzProductRecommendedListService {
 
-	@Resource
-	private ProductRecommendedMapper productRecommendedMapper;
-	@Resource
-	private ProductRecommendedExtMapper  productRecommendedExtMapper;
-	@Resource
-	private IProductInfoService productInfoService;
-	@Resource
-	public IReferralFeeService referralFeeService;
-	@Resource
-	private IAmazonAuthorityService amazonAuthorityService;
-	@Resource
-	IProfitCfgService profitCfgService;
-	@Resource
-	IProfitService profitService;
-	@Override
-	public String treatResponse(AmazonAuthority amazonAuthority, BufferedReader br)   {
-		StringBuffer log = new StringBuffer();
-		int lineNumber = 0;
-		String line;
-		try {
-			while ((line = br.readLine()) != null) {
-				String[] info = line.split(",");
-				int length = info.length;
-				String asin ="";
-				String name ="";
-				int start=0;
-				Boolean issplitcategory=false;
-				Boolean isEUpoint=false;
-				if(!amazonAuthority.getMarketPlace().getRegion().equals("EU") && !amazonAuthority.getMarketPlace().getRegion().equals("UK")) {
-					//非欧洲站点处理逻辑
-					if(length!=25) {
-						if(line!=null&&line.contains("Sorry")) {
-							return line;
-						}
-						asin=line.split(",\"")[0];
-						name=line.split(",\"")[1];
-						if(StrUtil.isEmpty(line.split(",\"")[2])){
-							line=line.replace(asin+",\""+name+",\""+",", "");
-						}else {
-							line=line.replace(asin+",\""+name+",", "");
-						}
-						name=name.substring(0,name.length()-1);
-						info = line.split(",");
-						if(info.length!=23) {
-							issplitcategory=true;
-						}
-						start=0;
-					}else{
-						asin = GeneralUtil.getIndexString(info, 0);
-						name = GeneralUtil.getIndexString(info, 1); 
-						start=2;
-					}
-				}else {
-					//欧洲站点处理逻辑
-					isEUpoint=true;
-					if(length!=26) {
-						if(line!=null&&line.contains("Sorry")) {
-							return line;
-						}
-						asin=line.split(",\"")[0];
-						name=line.split(",\"")[1];
-						if(StrUtil.isEmpty(line.split(",\"")[2])){
-							line=line.replace(asin+",\""+name+",\""+",", "");
-						}else {
-							line=line.replace(asin+",\""+name+",", "");
-						}
-						name=name.substring(0,name.length()-1);
-						info = line.split(",");
-						if(info.length!=24) {
-							issplitcategory=true;
-						}
-						start=0;
-					}else{
-						asin = GeneralUtil.getIndexString(info, 0);
-						name = GeneralUtil.getIndexString(info, 1); 
-						start=2;
-					}
-				}
-				
-				if (lineNumber > 0) {
+    @Resource
+    private ProductRecommendedMapper productRecommendedMapper;
+    @Resource
+    private ProductRecommendedExtMapper productRecommendedExtMapper;
+    @Resource
+    private IProductInfoService productInfoService;
+    @Resource
+    public IReferralFeeService referralFeeService;
+    @Resource
+    private IAmazonAuthorityService amazonAuthorityService;
+    @Resource
+    IProfitCfgService profitCfgService;
+    @Resource
+    IProfitService profitService;
+
+    @Override
+    public String treatResponse(AmazonAuthority amazonAuthority, BufferedReader br) {
+        StringBuffer log = new StringBuffer();
+        int lineNumber = 0;
+        String line;
+        try {
+            while ((line = br.readLine()) != null) {
+                String[] info = line.split(",");
+                int length = info.length;
+                String asin = "";
+                String name = "";
+                int start = 0;
+                Boolean issplitcategory = false;
+                Boolean isEUpoint = false;
+                if (!amazonAuthority.getMarketPlace().getRegion().equals("EU") && !amazonAuthority.getMarketPlace()
+                        .getRegion().equals("UK")) {
+                    //非欧洲站点处理逻辑
+                    if (length != 25) {
+                        if (line != null && line.contains("Sorry")) {
+                            return line;
+                        }
+                        asin = line.split(",\"")[0];
+                        name = line.split(",\"")[1];
+                        if (StrUtil.isEmpty(line.split(",\"")[2])) {
+                            line = line.replace(asin + ",\"" + name + ",\"" + ",", "");
+                        } else {
+                            line = line.replace(asin + ",\"" + name + ",", "");
+                        }
+                        name = name.substring(0, name.length() - 1);
+                        info = line.split(",");
+                        if (info.length != 23) {
+                            issplitcategory = true;
+                        }
+                        start = 0;
+                    } else {
+                        asin = GeneralUtil.getIndexString(info, 0);
+                        name = GeneralUtil.getIndexString(info, 1);
+                        start = 2;
+                    }
+                } else {
+                    //欧洲站点处理逻辑
+                    isEUpoint = true;
+                    if (length != 26) {
+                        if (line != null && line.contains("Sorry")) {
+                            return line;
+                        }
+                        asin = line.split(",\"")[0];
+                        name = line.split(",\"")[1];
+                        if (StrUtil.isEmpty(line.split(",\"")[2])) {
+                            line = line.replace(asin + ",\"" + name + ",\"" + ",", "");
+                        } else {
+                            line = line.replace(asin + ",\"" + name + ",", "");
+                        }
+                        name = name.substring(0, name.length() - 1);
+                        info = line.split(",");
+                        if (info.length != 24) {
+                            issplitcategory = true;
+                        }
+                        start = 0;
+                    } else {
+                        asin = GeneralUtil.getIndexString(info, 0);
+                        name = GeneralUtil.getIndexString(info, 1);
+                        start = 2;
+                    }
+                }
+
+                if (lineNumber > 0) {
 						/*
 						 *  "ASIN",
 							"Product title",
@@ -141,181 +139,182 @@ public class ReportAmzProductRecommendedListServiceImpl extends ReportServiceImp
 							"Low offer count",
 							"Product not yet on Amazon"
 						 */
-					    String Sub_category=null;
-						String link= GeneralUtil.getIndexString(info,start+ 0);
-						String Brand= GeneralUtil.getIndexString(info,start+ 1);
-						String Category= GeneralUtil.getIndexString(info, start+2);
-						if(issplitcategory) {
-							Sub_category= GeneralUtil.getIndexString(info,start+3)+GeneralUtil.getIndexString(info,start+4);
-							start+=1;
-						}else {
-							Sub_category= GeneralUtil.getIndexString(info,start+3);
-						}
-						BigDecimal Lowestprice = GeneralUtil.getIndexBigDecimal(info,start+ 4);
-						String FBAoffer= GeneralUtil.getIndexString(info, start+5);
-						String Numberofoffers= GeneralUtil.getIndexString(info, start+6);
-						String Amazonoffer= GeneralUtil.getIndexString(info, start+7);
-						if(isEUpoint) {
-							start+=1;
-						}
-						String reviews=GeneralUtil.getIndexString(info, start+8);
-						String rank=GeneralUtil.getIndexString(info, start+9);
-						String rankgrowth= GeneralUtil.getIndexString(info,start+ 10);
-						String Pageviews= GeneralUtil.getIndexString(info, start+11);
-						String Manufacturernumber= GeneralUtil.getIndexString(info, start+12);
-						String EAN= GeneralUtil.getIndexString(info, start+13);
-						String UPC= GeneralUtil.getIndexString(info, start+14);
-						String Modelnumber= GeneralUtil.getIndexString(info, start+15);
-						String ISBN= GeneralUtil.getIndexString(info, start+16);
-						String Brandoffer= GeneralUtil.getIndexString(info,start+17);
-						String Categoryoffer= GeneralUtil.getIndexString(info, start+18);
-						String performance= GeneralUtil.getIndexString(info, start+19);
-						String toprank= GeneralUtil.getIndexString(info, start+20);
-						String lowcount= GeneralUtil.getIndexString(info, start+21);
-						String onamazon= GeneralUtil.getIndexString(info, start+22);
-						
-					if(name!=null && name.length()>=1000){
-						name = name.substring(0, 1000);
-					} 
-					if (StrUtil.isEmpty(asin)) {
-						continue;
-					}
-					ProductRecommended productRecommend = new ProductRecommended();
-					productRecommend.setRefreshtime(new Date());
-					productRecommend.setAmazonauthid(amazonAuthority.getId());
-					productRecommend.setMarketplaceid(amazonAuthority.getMarketPlace().getMarketplaceid());
-					productRecommend.setAsin(replaceStrquot(asin));
-					productRecommend.setName(replaceStrquot(name));
-					productRecommend.setBrand(replaceStrquot(Brand));
-					productRecommend.setEan(replaceStrquot(EAN));
-					productRecommend.setCategory(replaceStrquot(Category));
-					productRecommend.setLink(replaceStrquot(link));
-					productRecommend.setLowestprice(Lowestprice);
-					productRecommend.setManufacturerPartNumber(replaceStrquot(Manufacturernumber));
-					productRecommend.setModelNumber(replaceStrquot(Modelnumber));
-					if(StrUtil.isNotEmpty(Numberofoffers)) {
-						if(Numberofoffers.matches(".*[a-z]+.*")) {
-							productRecommend.setOffers(null);
-						}else {
-							productRecommend.setOffers(Integer.parseInt(Numberofoffers));
-						}
-					}else {
-						productRecommend.setOffers(null);
-					}
-					if(StrUtil.isNotEmpty(rank)) {
-						if(rank.matches(".*[a-z]+.*")) {
-							productRecommend.setRank(null);
-						}else {
-							productRecommend.setRank(Integer.parseInt(rank));
-						}
-					}else {
-						productRecommend.setOffers(null);
-					}
-					if(StrUtil.isNotEmpty(reviews)) {
-						if(reviews.matches(".*[a-z]+.*")) {
-							productRecommend.setReviews(null);
-						}else {
-							productRecommend.setReviews(Integer.parseInt(reviews));
-						}
-					}else {
-						productRecommend.setOffers(null);
-					}
-					productRecommend.setPageViews(replaceStrquot(Pageviews));
-					productRecommend.setPerformance(replaceStrquot(performance));
-					productRecommend.setSalesRankGrowth(replaceStrquot(rankgrowth));
-					productRecommend.setSubcategory(replaceStrquot(Sub_category));
-					productRecommend.setUpc(replaceStrquot(UPC));
-					if("Yes".equals(onamazon)) {
-						productRecommend.setOnamazon(true);
-					}else {
-						productRecommend.setOnamazon(false);
-					}
-					if("Yes".equals(lowcount)) {
-						productRecommend.setIslowprice(true);
-					}else {
-						productRecommend.setIslowprice(false);
-					}
-					if("Yes".equals(toprank)) {
-						productRecommend.setIstoprank(true);
-					}else {
-						productRecommend.setIstoprank(false);
-					}
-					if("Yes".equals(Categoryoffer)) {
-						productRecommend.setCategoryoffer(true);
-					}else {
-						productRecommend.setCategoryoffer(false);
-					}
-					if("Yes".equals(FBAoffer)) {
-						productRecommend.setFbaoffer(true);
-					}else {
-						productRecommend.setFbaoffer(false);
-					}
-					if(StrUtil.isNotEmpty(ISBN)) {
-						productRecommend.setIsbn(ISBN);
-					}else {
-						productRecommend.setIsbn(null);
-					}
-					if("Yes".equals(Brandoffer)) {
-						productRecommend.setBrandoffer(true);
-					}else {
-						productRecommend.setBrandoffer(false);
-					}
-					if("Yes".equals(Amazonoffer)) {
-						productRecommend.setAmzoffer(true);
-					}else {
-						productRecommend.setAmzoffer(false);
-					}
-					try {
-						QueryWrapper<ProductRecommended> query = new QueryWrapper<ProductRecommended>();
-						query.eq("marketplaceid", amazonAuthority.getMarketPlace().getMarketplaceid());
-						query.eq("amazonauthid", amazonAuthority.getId());
-						query.eq("asin", productRecommend.getAsin());
-						ProductRecommended oldone = productRecommendedMapper.selectOne(query);
-						int result = 0;
-						if(oldone==null) {
-							result=productRecommendedMapper.insert(productRecommend);
-						}else {
-							productRecommend.setId(oldone.getId());
-							productRecommend.setIsrefresh(oldone.getIsrefresh());
-							result=productRecommendedMapper.updateById(productRecommend);
-						}
-						if(result>0) {
-							//同时插入ext表
-							//handlerExtData(productRecommend,amazonAuthority);
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.append("productRecCommend 新增失败，" + e.getMessage());
-					}finally {
-						productRecommend=null;
-					}
-					 
-				}
-				lineNumber++;
-			}
+                    String Sub_category = null;
+                    String link = GeneralUtil.getIndexString(info, start + 0);
+                    String Brand = GeneralUtil.getIndexString(info, start + 1);
+                    String Category = GeneralUtil.getIndexString(info, start + 2);
+                    if (issplitcategory) {
+                        Sub_category = GeneralUtil.getIndexString(info, start + 3) + GeneralUtil.getIndexString(info,
+                                start + 4);
+                        start += 1;
+                    } else {
+                        Sub_category = GeneralUtil.getIndexString(info, start + 3);
+                    }
+                    BigDecimal Lowestprice = GeneralUtil.getIndexBigDecimal(info, start + 4);
+                    String FBAoffer = GeneralUtil.getIndexString(info, start + 5);
+                    String Numberofoffers = GeneralUtil.getIndexString(info, start + 6);
+                    String Amazonoffer = GeneralUtil.getIndexString(info, start + 7);
+                    if (isEUpoint) {
+                        start += 1;
+                    }
+                    String reviews = GeneralUtil.getIndexString(info, start + 8);
+                    String rank = GeneralUtil.getIndexString(info, start + 9);
+                    String rankgrowth = GeneralUtil.getIndexString(info, start + 10);
+                    String Pageviews = GeneralUtil.getIndexString(info, start + 11);
+                    String Manufacturernumber = GeneralUtil.getIndexString(info, start + 12);
+                    String EAN = GeneralUtil.getIndexString(info, start + 13);
+                    String UPC = GeneralUtil.getIndexString(info, start + 14);
+                    String Modelnumber = GeneralUtil.getIndexString(info, start + 15);
+                    String ISBN = GeneralUtil.getIndexString(info, start + 16);
+                    String Brandoffer = GeneralUtil.getIndexString(info, start + 17);
+                    String Categoryoffer = GeneralUtil.getIndexString(info, start + 18);
+                    String performance = GeneralUtil.getIndexString(info, start + 19);
+                    String toprank = GeneralUtil.getIndexString(info, start + 20);
+                    String lowcount = GeneralUtil.getIndexString(info, start + 21);
+                    String onamazon = GeneralUtil.getIndexString(info, start + 22);
 
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		 
-			System.gc();
-		}
-		return log.toString();
-	}
-	
-//	public void handlerExtData(String sellerid, Marketplace marketplace, GetMatchingProductForIdResponse resp) {
+                    if (name != null && name.length() >= 1000) {
+                        name = name.substring(0, 1000);
+                    }
+                    if (StrUtil.isEmpty(asin)) {
+                        continue;
+                    }
+                    ProductRecommended productRecommend = new ProductRecommended();
+                    productRecommend.setRefreshtime(new Date());
+                    productRecommend.setAmazonauthid(amazonAuthority.getId());
+                    productRecommend.setMarketplaceid(amazonAuthority.getMarketPlace().getMarketplaceid());
+                    productRecommend.setAsin(replaceStrquot(asin));
+                    productRecommend.setName(replaceStrquot(name));
+                    productRecommend.setBrand(replaceStrquot(Brand));
+                    productRecommend.setEan(replaceStrquot(EAN));
+                    productRecommend.setCategory(replaceStrquot(Category));
+                    productRecommend.setLink(replaceStrquot(link));
+                    productRecommend.setLowestprice(Lowestprice);
+                    productRecommend.setManufacturerPartNumber(replaceStrquot(Manufacturernumber));
+                    productRecommend.setModelNumber(replaceStrquot(Modelnumber));
+                    if (StrUtil.isNotEmpty(Numberofoffers)) {
+                        if (Numberofoffers.matches(".*[a-z]+.*")) {
+                            productRecommend.setOffers(null);
+                        } else {
+                            productRecommend.setOffers(Integer.parseInt(Numberofoffers));
+                        }
+                    } else {
+                        productRecommend.setOffers(null);
+                    }
+                    if (StrUtil.isNotEmpty(rank)) {
+                        if (rank.matches(".*[a-z]+.*")) {
+                            productRecommend.setRank(null);
+                        } else {
+                            productRecommend.setRank(Integer.parseInt(rank));
+                        }
+                    } else {
+                        productRecommend.setOffers(null);
+                    }
+                    if (StrUtil.isNotEmpty(reviews)) {
+                        if (reviews.matches(".*[a-z]+.*")) {
+                            productRecommend.setReviews(null);
+                        } else {
+                            productRecommend.setReviews(Integer.parseInt(reviews));
+                        }
+                    } else {
+                        productRecommend.setOffers(null);
+                    }
+                    productRecommend.setPageViews(replaceStrquot(Pageviews));
+                    productRecommend.setPerformance(replaceStrquot(performance));
+                    productRecommend.setSalesRankGrowth(replaceStrquot(rankgrowth));
+                    productRecommend.setSubcategory(replaceStrquot(Sub_category));
+                    productRecommend.setUpc(replaceStrquot(UPC));
+                    if ("Yes".equals(onamazon)) {
+                        productRecommend.setOnamazon(true);
+                    } else {
+                        productRecommend.setOnamazon(false);
+                    }
+                    if ("Yes".equals(lowcount)) {
+                        productRecommend.setIslowprice(true);
+                    } else {
+                        productRecommend.setIslowprice(false);
+                    }
+                    if ("Yes".equals(toprank)) {
+                        productRecommend.setIstoprank(true);
+                    } else {
+                        productRecommend.setIstoprank(false);
+                    }
+                    if ("Yes".equals(Categoryoffer)) {
+                        productRecommend.setCategoryoffer(true);
+                    } else {
+                        productRecommend.setCategoryoffer(false);
+                    }
+                    if ("Yes".equals(FBAoffer)) {
+                        productRecommend.setFbaoffer(true);
+                    } else {
+                        productRecommend.setFbaoffer(false);
+                    }
+                    if (StrUtil.isNotEmpty(ISBN)) {
+                        productRecommend.setIsbn(ISBN);
+                    } else {
+                        productRecommend.setIsbn(null);
+                    }
+                    if ("Yes".equals(Brandoffer)) {
+                        productRecommend.setBrandoffer(true);
+                    } else {
+                        productRecommend.setBrandoffer(false);
+                    }
+                    if ("Yes".equals(Amazonoffer)) {
+                        productRecommend.setAmzoffer(true);
+                    } else {
+                        productRecommend.setAmzoffer(false);
+                    }
+                    try {
+                        QueryWrapper<ProductRecommended> query = new QueryWrapper<ProductRecommended>();
+                        query.eq("marketplaceid", amazonAuthority.getMarketPlace().getMarketplaceid());
+                        query.eq("amazonauthid", amazonAuthority.getId());
+                        query.eq("asin", productRecommend.getAsin());
+                        ProductRecommended oldone = productRecommendedMapper.selectOne(query);
+                        int result = 0;
+                        if (oldone == null) {
+                            result = productRecommendedMapper.insert(productRecommend);
+                        } else {
+                            productRecommend.setId(oldone.getId());
+                            productRecommend.setIsrefresh(oldone.getIsrefresh());
+                            result = productRecommendedMapper.updateById(productRecommend);
+                        }
+                        if (result > 0) {
+                            //同时插入ext表
+                            //handlerExtData(productRecommend,amazonAuthority);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        log.append("productRecCommend 新增失败，" + e.getMessage());
+                    } finally {
+                        productRecommend = null;
+                    }
+
+                }
+                lineNumber++;
+            }
+
+        } catch (NumberFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+            System.gc();
+        }
+        return log.toString();
+    }
+
+    //	public void handlerExtData(String sellerid, Marketplace marketplace, GetMatchingProductForIdResponse resp) {
 //		if(resp!=null) {
 //			AmazonAuthority amazonauth = amazonAuthorityService.selectBySellerId(sellerid);
 //			List<GetMatchingProductForIdResult> list = resp.getGetMatchingProductForIdResult();
@@ -439,21 +438,22 @@ public class ReportAmzProductRecommendedListServiceImpl extends ReportServiceImp
 //	}
 //
 // 
-	@Override
-	public String myReportType() {
-		return ReportType.ProductRecommendedListings;
-	}
-//	
-	public String replaceStrquot(String str) {
-		if(StrUtil.isNotEmpty(str) && str.length()>=3) {
-			if(str.substring(0,1).equals("\"") && str.substring(str.length()-1,str.length()).equals("\"")) {
-				str=str.substring(1,str.length()-1);
-			}
-			return str;
-		}else {
-			return str;
-		}
-	}
+    @Override
+    public String myReportType() {
+        return ReportType.ProductRecommendedListings;
+    }
+
+    //
+    public String replaceStrquot(String str) {
+        if (StrUtil.isNotEmpty(str) && str.length() >= 3) {
+            if (str.substring(0, 1).equals("\"") && str.substring(str.length() - 1, str.length()).equals("\"")) {
+                str = str.substring(1, str.length() - 1);
+            }
+            return str;
+        } else {
+            return str;
+        }
+    }
 //
 //	@Override
 //	public List<ProductRecommended> findNeedRefreshList(String id, String marketplaceid) {
@@ -539,16 +539,16 @@ public class ReportAmzProductRecommendedListServiceImpl extends ReportServiceImp
 //		return productRecommendedMapper.selectProductRecommendByGrouplist(map,pageBounds);
 //	}
 
-	@Override
-	public List<ProductRecommended> findNeedRefreshList(String id, String marketplaceid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<ProductRecommended> findNeedRefreshList(String id, String marketplaceid) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public Page<Map<String, Object>> getProductRecommendByGrouplist(IPage<?> page, Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Page<Map<String, Object>> getProductRecommendByGrouplist(IPage<?> page, Map<String, Object> map) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

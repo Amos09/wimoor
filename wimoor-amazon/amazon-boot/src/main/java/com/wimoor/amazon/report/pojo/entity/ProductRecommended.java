@@ -1,115 +1,112 @@
 package com.wimoor.amazon.report.pojo.entity;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.amazon.common.pojo.entity.BaseEntity;
-
 import io.swagger.annotations.ApiModel;
+import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
- 
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("t_product_recommended")  
-@ApiModel(value="ProductRecommended对象", description="亚马逊产品推荐报表")
-public class ProductRecommended  extends BaseEntity {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6588147240262976233L;
+@TableName("t_product_recommended")
+@ApiModel(value = "ProductRecommended对象", description = "亚马逊产品推荐报表")
+public class ProductRecommended extends BaseEntity {
 
-	@TableField(value=  "amazonAuthId")
+    /**
+     *
+     */
+    private static final long serialVersionUID = 6588147240262976233L;
+
+    @TableField(value = "amazonAuthId")
     private String amazonauthid;
 
-	@TableField(value=  "marketplaceid")
+    @TableField(value = "marketplaceid")
     private String marketplaceid;
 
-	@TableField(value=  "refreshtime")
+    @TableField(value = "refreshtime")
     private Date refreshtime;
 
-	@TableField(value=  "asin")
+    @TableField(value = "asin")
     private String asin;
 
-	@TableField(value=  "name")
+    @TableField(value = "name")
     private String name;
 
-	@TableField(value=  "link")
+    @TableField(value = "link")
     private String link;
 
-	@TableField(value=  "brand")
+    @TableField(value = "brand")
     private String brand;
 
-	@TableField(value=  "category")
+    @TableField(value = "category")
     private String category;
 
-	@TableField(value=  "subcategory")
+    @TableField(value = "subcategory")
     private String subcategory;
 
-	@TableField(value=  "lowestprice")
+    @TableField(value = "lowestprice")
     private BigDecimal lowestprice;
 
-	@TableField(value=  "fbaoffer")
+    @TableField(value = "fbaoffer")
     private Boolean fbaoffer;
 
-	@TableField(value=  "amzoffer")
+    @TableField(value = "amzoffer")
     private Boolean amzoffer;
 
-	@TableField(value=  "offers")
+    @TableField(value = "offers")
     private Integer offers;
 
-	@TableField(value=  "reviews")
+    @TableField(value = "reviews")
     private Integer reviews;
 
-	@TableField(value=  "rank")
+    @TableField(value = "rank")
     private Integer rank;
 
-	@TableField(value=  "sales_rank_growth")
+    @TableField(value = "sales_rank_growth")
     private String salesRankGrowth;
 
-	@TableField(value=  "page_views")
+    @TableField(value = "page_views")
     private String pageViews;
 
-	@TableField(value=  "manufacturer_part_number")
+    @TableField(value = "manufacturer_part_number")
     private String manufacturerPartNumber;
 
-	@TableField(value=  "EAN")
+    @TableField(value = "EAN")
     private String ean;
 
-	@TableField(value=  "UPC")
+    @TableField(value = "UPC")
     private String upc;
 
-	@TableField(value=  "model_number")
+    @TableField(value = "model_number")
     private String modelNumber;
 
-	@TableField(value=  "ISBN")
+    @TableField(value = "ISBN")
     private String isbn;
 
-	@TableField(value=  "brandoffer")
+    @TableField(value = "brandoffer")
     private Boolean brandoffer;
 
-	@TableField(value=  "categoryoffer")
+    @TableField(value = "categoryoffer")
     private Boolean categoryoffer;
 
-	@TableField(value=  "performance")
+    @TableField(value = "performance")
     private String performance;
 
-	@TableField(value=  "istoprank")
+    @TableField(value = "istoprank")
     private Boolean istoprank;
 
-	@TableField(value=  "islowprice")
+    @TableField(value = "islowprice")
     private Boolean islowprice;
 
-	@TableField(value=  "onAmazon")
+    @TableField(value = "onAmazon")
     private Boolean onamazon;
-	
-	@TableField(value=  "isrefresh")
+
+    @TableField(value = "isrefresh")
     private Boolean isrefresh;
 
- 
-    
+
 }

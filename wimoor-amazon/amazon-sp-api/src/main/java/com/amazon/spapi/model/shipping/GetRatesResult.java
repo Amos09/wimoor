@@ -13,18 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.IneligibleRateList;
-import com.amazon.spapi.model.shipping.RateList;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The payload for the getRates operation.
@@ -32,112 +24,115 @@ import java.io.IOException;
 @ApiModel(description = "The payload for the getRates operation.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class GetRatesResult {
-  @SerializedName("requestToken")
-  private String requestToken = null;
 
-  @SerializedName("rates")
-  private RateList rates = null;
+    @SerializedName("requestToken")
+    private String requestToken = null;
 
-  @SerializedName("ineligibleRates")
-  private IneligibleRateList ineligibleRates = null;
+    @SerializedName("rates")
+    private RateList rates = null;
 
-  public GetRatesResult requestToken(String requestToken) {
-    this.requestToken = requestToken;
-    return this;
-  }
+    @SerializedName("ineligibleRates")
+    private IneligibleRateList ineligibleRates = null;
 
-   /**
-   * Get requestToken
-   * @return requestToken
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getRequestToken() {
-    return requestToken;
-  }
-
-  public void setRequestToken(String requestToken) {
-    this.requestToken = requestToken;
-  }
-
-  public GetRatesResult rates(RateList rates) {
-    this.rates = rates;
-    return this;
-  }
-
-   /**
-   * Get rates
-   * @return rates
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public RateList getRates() {
-    return rates;
-  }
-
-  public void setRates(RateList rates) {
-    this.rates = rates;
-  }
-
-  public GetRatesResult ineligibleRates(IneligibleRateList ineligibleRates) {
-    this.ineligibleRates = ineligibleRates;
-    return this;
-  }
-
-   /**
-   * Get ineligibleRates
-   * @return ineligibleRates
-  **/
-  @ApiModelProperty(value = "")
-  public IneligibleRateList getIneligibleRates() {
-    return ineligibleRates;
-  }
-
-  public void setIneligibleRates(IneligibleRateList ineligibleRates) {
-    this.ineligibleRates = ineligibleRates;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GetRatesResult requestToken(String requestToken) {
+        this.requestToken = requestToken;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get requestToken
+     *
+     * @return requestToken
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getRequestToken() {
+        return requestToken;
     }
-    GetRatesResult getRatesResult = (GetRatesResult) o;
-    return Objects.equals(this.requestToken, getRatesResult.requestToken) &&
-        Objects.equals(this.rates, getRatesResult.rates) &&
-        Objects.equals(this.ineligibleRates, getRatesResult.ineligibleRates);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(requestToken, rates, ineligibleRates);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GetRatesResult {\n");
-    
-    sb.append("    requestToken: ").append(toIndentedString(requestToken)).append("\n");
-    sb.append("    rates: ").append(toIndentedString(rates)).append("\n");
-    sb.append("    ineligibleRates: ").append(toIndentedString(ineligibleRates)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setRequestToken(String requestToken) {
+        this.requestToken = requestToken;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GetRatesResult rates(RateList rates) {
+        this.rates = rates;
+        return this;
+    }
+
+    /**
+     * Get rates
+     *
+     * @return rates
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public RateList getRates() {
+        return rates;
+    }
+
+    public void setRates(RateList rates) {
+        this.rates = rates;
+    }
+
+    public GetRatesResult ineligibleRates(IneligibleRateList ineligibleRates) {
+        this.ineligibleRates = ineligibleRates;
+        return this;
+    }
+
+    /**
+     * Get ineligibleRates
+     *
+     * @return ineligibleRates
+     **/
+    @ApiModelProperty(value = "")
+    public IneligibleRateList getIneligibleRates() {
+        return ineligibleRates;
+    }
+
+    public void setIneligibleRates(IneligibleRateList ineligibleRates) {
+        this.ineligibleRates = ineligibleRates;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetRatesResult getRatesResult = (GetRatesResult) o;
+        return Objects.equals(this.requestToken, getRatesResult.requestToken) &&
+                Objects.equals(this.rates, getRatesResult.rates) &&
+                Objects.equals(this.ineligibleRates, getRatesResult.ineligibleRates);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(requestToken, rates, ineligibleRates);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GetRatesResult {\n");
+
+        sb.append("    requestToken: ").append(toIndentedString(requestToken)).append("\n");
+        sb.append("    rates: ").append(toIndentedString(rates)).append("\n");
+        sb.append("    ineligibleRates: ").append(toIndentedString(ineligibleRates)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

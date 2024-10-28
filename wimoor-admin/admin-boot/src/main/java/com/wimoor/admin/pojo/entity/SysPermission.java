@@ -1,12 +1,12 @@
 package com.wimoor.admin.pojo.entity;
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.math.BigInteger;
+import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-
-import java.math.BigInteger;
-import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -15,9 +15,9 @@ import java.util.List;
 public class SysPermission extends BaseEntity {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 4252918155993747825L;
+     *
+     */
+    private static final long serialVersionUID = 4252918155993747825L;
 
     private String name;
 
@@ -29,7 +29,7 @@ public class SysPermission extends BaseEntity {
     // 有权限的角色编号集合
     @TableField(exist = false)
     private List<String> roles;
-    
+
     @TableField(exist = false)
-    private String  roleids;
+    private String roleids;
 }

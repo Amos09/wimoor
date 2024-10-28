@@ -1,15 +1,13 @@
 package com.wimoor.common.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.HandlerMapping;
-
 import com.baomidou.mybatisplus.extension.service.IService;
-
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.HandlerMapping;
 
 @SuppressWarnings("rawtypes")
 public class BaseController<S extends IService> {
@@ -27,9 +25,8 @@ public class BaseController<S extends IService> {
 
     /**
      * 获取分页对象   === mybatis-plus
-     * <P>
-     *     1、从 Param 参数中获取
-     *     2、从 path 参数中获取
+     * <p>
+     * 1、从 Param 参数中获取 2、从 path 参数中获取
      * </P>
      *
      * @return
@@ -41,7 +38,8 @@ public class BaseController<S extends IService> {
         if (current == null || size == null) {
             // 从 path 获取
             @SuppressWarnings("unchecked")
-			Map<String, String> pathVariables = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
+            Map<String, String> pathVariables = (Map<String, String>) request.getAttribute(
+                    HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
             if (pathVariables != null) {
                 current = pathVariables.get("currentpage");
                 size = pathVariables.get("pagesize");
@@ -56,8 +54,9 @@ public class BaseController<S extends IService> {
 
     /**
      * 获取请求地址
-     * @author wang-song
+     *
      * @param request
+     * @author wang-song
      */
     protected static String getIpAddress(HttpServletRequest request) {
         String unknown = "unknown";
@@ -83,6 +82,7 @@ public class BaseController<S extends IService> {
 
     /**
      * 获取项目的Ip 地址+端口 或者域名
+     *
      * @return
      */
     public static String getBaseUrl(HttpServletRequest request) {

@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class RobotFeiShuProperties {
 
-    private  String url;
-    private  String secret;
+    private String url;
+    private String secret;
 }
 

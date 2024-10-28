@@ -13,18 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.Address;
-import com.amazon.spapi.model.shipping.ClientReferenceDetails;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The request schema Call to generate the collection form.
@@ -32,112 +24,115 @@ import java.io.IOException;
 @ApiModel(description = "The request schema Call to generate the collection form.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class GenerateCollectionFormRequest {
-  @SerializedName("clientReferenceDetails")
-  private ClientReferenceDetails clientReferenceDetails = null;
 
-  @SerializedName("carrierId")
-  private String carrierId = null;
+    @SerializedName("clientReferenceDetails")
+    private ClientReferenceDetails clientReferenceDetails = null;
 
-  @SerializedName("shipFromAddress")
-  private Address shipFromAddress = null;
+    @SerializedName("carrierId")
+    private String carrierId = null;
 
-  public GenerateCollectionFormRequest clientReferenceDetails(ClientReferenceDetails clientReferenceDetails) {
-    this.clientReferenceDetails = clientReferenceDetails;
-    return this;
-  }
+    @SerializedName("shipFromAddress")
+    private Address shipFromAddress = null;
 
-   /**
-   * Get clientReferenceDetails
-   * @return clientReferenceDetails
-  **/
-  @ApiModelProperty(value = "")
-  public ClientReferenceDetails getClientReferenceDetails() {
-    return clientReferenceDetails;
-  }
-
-  public void setClientReferenceDetails(ClientReferenceDetails clientReferenceDetails) {
-    this.clientReferenceDetails = clientReferenceDetails;
-  }
-
-  public GenerateCollectionFormRequest carrierId(String carrierId) {
-    this.carrierId = carrierId;
-    return this;
-  }
-
-   /**
-   * Get carrierId
-   * @return carrierId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getCarrierId() {
-    return carrierId;
-  }
-
-  public void setCarrierId(String carrierId) {
-    this.carrierId = carrierId;
-  }
-
-  public GenerateCollectionFormRequest shipFromAddress(Address shipFromAddress) {
-    this.shipFromAddress = shipFromAddress;
-    return this;
-  }
-
-   /**
-   * Get shipFromAddress
-   * @return shipFromAddress
-  **/
-  @ApiModelProperty(value = "")
-  public Address getShipFromAddress() {
-    return shipFromAddress;
-  }
-
-  public void setShipFromAddress(Address shipFromAddress) {
-    this.shipFromAddress = shipFromAddress;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public GenerateCollectionFormRequest clientReferenceDetails(ClientReferenceDetails clientReferenceDetails) {
+        this.clientReferenceDetails = clientReferenceDetails;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get clientReferenceDetails
+     *
+     * @return clientReferenceDetails
+     **/
+    @ApiModelProperty(value = "")
+    public ClientReferenceDetails getClientReferenceDetails() {
+        return clientReferenceDetails;
     }
-    GenerateCollectionFormRequest generateCollectionFormRequest = (GenerateCollectionFormRequest) o;
-    return Objects.equals(this.clientReferenceDetails, generateCollectionFormRequest.clientReferenceDetails) &&
-        Objects.equals(this.carrierId, generateCollectionFormRequest.carrierId) &&
-        Objects.equals(this.shipFromAddress, generateCollectionFormRequest.shipFromAddress);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(clientReferenceDetails, carrierId, shipFromAddress);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GenerateCollectionFormRequest {\n");
-    
-    sb.append("    clientReferenceDetails: ").append(toIndentedString(clientReferenceDetails)).append("\n");
-    sb.append("    carrierId: ").append(toIndentedString(carrierId)).append("\n");
-    sb.append("    shipFromAddress: ").append(toIndentedString(shipFromAddress)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setClientReferenceDetails(ClientReferenceDetails clientReferenceDetails) {
+        this.clientReferenceDetails = clientReferenceDetails;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public GenerateCollectionFormRequest carrierId(String carrierId) {
+        this.carrierId = carrierId;
+        return this;
+    }
+
+    /**
+     * Get carrierId
+     *
+     * @return carrierId
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getCarrierId() {
+        return carrierId;
+    }
+
+    public void setCarrierId(String carrierId) {
+        this.carrierId = carrierId;
+    }
+
+    public GenerateCollectionFormRequest shipFromAddress(Address shipFromAddress) {
+        this.shipFromAddress = shipFromAddress;
+        return this;
+    }
+
+    /**
+     * Get shipFromAddress
+     *
+     * @return shipFromAddress
+     **/
+    @ApiModelProperty(value = "")
+    public Address getShipFromAddress() {
+        return shipFromAddress;
+    }
+
+    public void setShipFromAddress(Address shipFromAddress) {
+        this.shipFromAddress = shipFromAddress;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GenerateCollectionFormRequest generateCollectionFormRequest = (GenerateCollectionFormRequest) o;
+        return Objects.equals(this.clientReferenceDetails, generateCollectionFormRequest.clientReferenceDetails) &&
+                Objects.equals(this.carrierId, generateCollectionFormRequest.carrierId) &&
+                Objects.equals(this.shipFromAddress, generateCollectionFormRequest.shipFromAddress);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clientReferenceDetails, carrierId, shipFromAddress);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class GenerateCollectionFormRequest {\n");
+
+        sb.append("    clientReferenceDetails: ").append(toIndentedString(clientReferenceDetails)).append("\n");
+        sb.append("    carrierId: ").append(toIndentedString(carrierId)).append("\n");
+        sb.append("    shipFromAddress: ").append(toIndentedString(shipFromAddress)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

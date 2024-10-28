@@ -4,9 +4,10 @@ import lombok.Data;
 
 @Data
 public class MessageDTO {
-	String id;
-	String name;
-	String account;
-	String content;
-	
+
+    String id;
+    String name;
+    String account;
+    String content;
+
 }

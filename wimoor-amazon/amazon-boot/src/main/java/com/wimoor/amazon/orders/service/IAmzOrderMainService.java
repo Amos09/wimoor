@@ -17,11 +17,13 @@ import com.wimoor.amazon.orders.pojo.entity.AmzOrderMain;
  * @author wimoor team
  * @since 2022-05-14
  */
-public interface IAmzOrderMainService extends IService<AmzOrderMain>,IRunAmazonService {
+public interface IAmzOrderMainService extends IService<AmzOrderMain>, IRunAmazonService {
 
-	
-	public int saveAddress(AmzOrderBuyerShipAddress entity);
-	public void handlerOrderResponse(AmazonAuthority auth,AmzAuthApiTimelimit apilimit,GetOrdersResponse response) ;
-	public void removeDataArchive();
- 
+
+    public int saveAddress(AmzOrderBuyerShipAddress entity);
+
+    public void handlerOrderResponse(AmazonAuthority auth, AmzAuthApiTimelimit apilimit, GetOrdersResponse response);
+
+    public void removeDataArchive();
+
 }

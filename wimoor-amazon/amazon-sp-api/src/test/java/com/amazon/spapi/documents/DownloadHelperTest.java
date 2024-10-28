@@ -1,15 +1,12 @@
 package com.amazon.spapi.documents;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.amazon.spapi.documents.exception.MissingCharsetException;
 import com.amazon.spapi.documents.impl.AESCryptoStreamFactory;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,15 +19,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.GZIPOutputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 class DownloadHelperTest {
+
     private static String KEY = "sxx/wImF6BFndqSAz56O6vfiAh8iD9P297DHfFgujec=";
     private static String VECTOR = "7S2tn363v0wfCfo1IX2Q1A==";
 
     private Answer getTransferAnswer(String contentType, CryptoStreamFactory cryptoStreamFactory, String fileContents,
-                                     boolean isGZipped) {
+            boolean isGZipped) {
         return new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {

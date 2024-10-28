@@ -2,11 +2,12 @@ package com.wimoor.admin.pojo.dto;
 
 import java.util.Date;
 import java.util.List;
-
 import lombok.Data;
+
 @Data
 public class UserInsertDTO {
-	String id;
+
+    String id;
     String account;
     String password;
     String name;
@@ -17,5 +18,5 @@ public class UserInsertDTO {
     List<String> roles;
     List<String> groups;
     List<String> datalimits;
-    
+
 }

@@ -1,27 +1,26 @@
 package com.wimoor.admin.pojo.vo;
 
-import java.io.Serializable;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import lombok.Data;
 
- 
+
 @Data
 @ApiModel("权限视图对象")
-public class PermissionVO implements Serializable{
+public class PermissionVO implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 8204968918004411341L;
+     *
+     */
+    private static final long serialVersionUID = 8204968918004411341L;
 
-	@ApiModelProperty("权限ID")
+    @ApiModelProperty("权限ID")
     private Long id;
 
     @ApiModelProperty("菜单ID")
     private Long menu_id;
-    
+
     @ApiModelProperty("权限名称")
     private String name;
 

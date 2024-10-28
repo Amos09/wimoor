@@ -7,25 +7,25 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="PurchaseSaveDTO对象", description="采购单保存")
+@ApiModel(value = "PurchaseSaveDTO对象", description = "采购单保存")
 public class PurchaseSaveDTO {
 
-	String planwarehouseid;
-	
-	String warehouseid;
-	
-	String ftype;
-	
-	String orderitemlist;
-	
-	String remark;
-	
-	String assList;
-	
-	String purchaser;
-	
-	String formid;
-	
-	String groupid;
-	
+    String planwarehouseid;
+
+    String warehouseid;
+
+    String ftype;
+
+    String orderitemlist;
+
+    String remark;
+
+    String assList;
+
+    String purchaser;
+
+    String formid;
+
+    String groupid;
+
 }

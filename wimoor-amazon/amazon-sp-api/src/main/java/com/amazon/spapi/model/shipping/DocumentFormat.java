@@ -13,64 +13,60 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 /**
  * The file format of the document.
  */
 @JsonAdapter(DocumentFormat.Adapter.class)
 public enum DocumentFormat {
-  
-  PDF("PDF"),
-  
-  PNG("PNG"),
-  
-  ZPL("ZPL");
 
-  private String value;
+    PDF("PDF"),
 
-  DocumentFormat(String value) {
-    this.value = value;
-  }
+    PNG("PNG"),
 
-  public String getValue() {
-    return value;
-  }
+    ZPL("ZPL");
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    private String value;
 
-  public static DocumentFormat fromValue(String text) {
-    for (DocumentFormat b : DocumentFormat.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    DocumentFormat(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<DocumentFormat> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final DocumentFormat enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public DocumentFormat read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return DocumentFormat.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static DocumentFormat fromValue(String text) {
+        for (DocumentFormat b : DocumentFormat.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<DocumentFormat> {
+
+        @Override
+        public void write(final JsonWriter jsonWriter, final DocumentFormat enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public DocumentFormat read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return DocumentFormat.fromValue(String.valueOf(value));
+        }
+    }
 }
 

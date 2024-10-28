@@ -5,5 +5,6 @@ import java.util.Map;
 
 
 public interface OSSObjectHandler {
-	public void treatReader(BufferedReader reader, Map<String, Object> param);
+
+    public void treatReader(BufferedReader reader, Map<String, Object> param);
 }

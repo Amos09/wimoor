@@ -1,7 +1,8 @@
 package com.wimoor.gateway.provider;
 
 
-
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.config.GatewayProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -11,21 +12,19 @@ import org.springframework.stereotype.Component;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
- 
-import java.util.ArrayList;
-import java.util.List;
- 
+
 @Component
 @Primary
 public class SwaggerProvider implements SwaggerResourcesProvider {
+
     /**
      * RouteLocator，GatewayProperties这两个类都是springcloud提供的springbean对象直接注入即可
      */
     private final RouteLocator routeLocator;
     //gateway配置文件
     private final GatewayProperties gatewayProperties;
- 
- 
+
+
     @Override
     public List<SwaggerResource> get() {
         List<SwaggerResource> resources = new ArrayList<>();
@@ -45,10 +44,10 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
                                     predicateDefinition.getArgs().get(NameUtils.GENERATED_NAME_PREFIX + "0")
                                             .replace("**", "v2/api-docs?group=" + route.getId()))));
                 });
- 
+
         return resources;
     }
- 
+
     private SwaggerResource swaggerResource(String name, String location) {
         SwaggerResource swaggerResource = new SwaggerResource();
         swaggerResource.setName(name);
@@ -56,12 +55,12 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
         swaggerResource.setSwaggerVersion(DocumentationType.OAS_30.getVersion());
         return swaggerResource;
     }
- 
+
     @Autowired
     public SwaggerProvider(RouteLocator routeLocator, GatewayProperties gatewayProperties) {
         this.routeLocator = routeLocator;
         this.gatewayProperties = gatewayProperties;
     }
- 
+
 }
  

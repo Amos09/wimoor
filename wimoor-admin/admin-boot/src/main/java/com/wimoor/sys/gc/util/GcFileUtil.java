@@ -1,5 +1,9 @@
 package com.wimoor.sys.gc.util;
 
+import com.wimoor.sys.gc.config.GcConfig;
+import com.wimoor.sys.gc.config.model.GcFilePath;
+import com.wimoor.sys.gc.constant.BooleanConst;
+import com.wimoor.sys.gc.constant.TpParamConstant;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,12 +16,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.wimoor.sys.gc.config.GcConfig;
-import com.wimoor.sys.gc.config.model.GcFilePath;
-import com.wimoor.sys.gc.constant.BooleanConst;
-import com.wimoor.sys.gc.constant.TpParamConstant;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -88,7 +86,8 @@ public class GcFileUtil {
                 // 只生成不属于过滤行的模板数据
                 if (!("{" + TpParamConstant.FILTER_CRUD + "}").equals(line) && !filterCrud) {
                     // 内容替换并写入
-                    newLine = GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(), gcConfig.getTemplateParam(), line);
+                    newLine = GcReplacUtil.replaceParams(gcConfig.getDefaultTemplateParam(),
+                            gcConfig.getTemplateParam(), line);
                     bw.write(newLine);
                     bw.newLine();
                 }

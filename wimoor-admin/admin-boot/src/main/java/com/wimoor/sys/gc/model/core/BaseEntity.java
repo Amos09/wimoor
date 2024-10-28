@@ -1,10 +1,14 @@
 package com.wimoor.sys.gc.model.core;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.Version;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.time.LocalDateTime;
 
 /**
  * 通用Entity
@@ -20,12 +24,11 @@ import java.time.LocalDateTime;
 public class BaseEntity extends Convert {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -9223299889026502416L;
-	/**
-     * 数据库id
-     * 雪花算法=IdType.ASSIGN_ID  || 自增=IdType.AUTO
+     *
+     */
+    private static final long serialVersionUID = -9223299889026502416L;
+    /**
+     * 数据库id 雪花算法=IdType.ASSIGN_ID  || 自增=IdType.AUTO
      */
     @TableId(type = IdType.ASSIGN_ID)
     private String id;

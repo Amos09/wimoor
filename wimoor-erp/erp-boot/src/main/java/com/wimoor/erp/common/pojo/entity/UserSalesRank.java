@@ -1,39 +1,37 @@
 package com.wimoor.erp.common.pojo.entity;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 
 @Data
 @TableName("t_erp_usersales_rank")
 public class UserSalesRank {
-    
-	@TableField(value= "userid")
+
+    @TableField(value = "userid")
     private String userid;
 
-    
-	@TableField(value= "shopid")
+
+    @TableField(value = "shopid")
     private String shopid;
-	
-    
-	@TableField(value= "daytype")
+
+
+    @TableField(value = "daytype")
     private Integer daytype;
-    
-	@TableField(value= "quantity")
+
+    @TableField(value = "quantity")
     private Integer quantity;
 
-	@TableField(value= "orderprice")
+    @TableField(value = "orderprice")
     private BigDecimal orderprice;
 
 
-	@TableField(value= "oldorderprice")
+    @TableField(value = "oldorderprice")
     private BigDecimal oldorderprice;
 
-	@TableField(value="createdate")
-	private Date createdate;
-	 
+    @TableField(value = "createdate")
+    private Date createdate;
+
 }

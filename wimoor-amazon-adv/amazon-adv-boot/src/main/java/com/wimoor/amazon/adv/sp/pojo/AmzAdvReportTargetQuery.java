@@ -1,98 +1,97 @@
 package com.wimoor.amazon.adv.sp.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
-
 @Entity
-@Table(name="t_amz_adv_rpt2_sp_product_targets_query")
-public class AmzAdvReportTargetQuery  {
-	@Id
-	@Column(name="targetId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+@Table(name = "t_amz_adv_rpt2_sp_product_targets_query")
+public class AmzAdvReportTargetQuery {
+
+    @Id
+    @Column(name = "targetId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger targetid;
 
-	@Column(name="campaignId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Column(name = "campaignId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger campaignid;
-	
-	@Column(name="adGroupid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Column(name = "adGroupid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adgroupid;
-	
-	@Id
-	@Column(name="bydate")
+
+    @Id
+    @Column(name = "bydate")
     private Date bydate;
 
-	@Column(name="profileid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Column(name = "profileid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger profileid;
-	
-	@Id
-	@Column(name="queryid")
+
+    @Id
+    @Column(name = "queryid")
     private BigInteger queryid;
- 
-	@Column(name="impressions")
+
+    @Column(name = "impressions")
     private Integer impressions;
 
-	@Column(name="clicks")
+    @Column(name = "clicks")
     private Integer clicks;
 
-	@Column(name="cost")
+    @Column(name = "cost")
     private BigDecimal cost;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
 
 
-	public BigInteger getTargetid() {
-		return targetid;
-	}
+    public BigInteger getTargetid() {
+        return targetid;
+    }
 
-	public void setTargetid(BigInteger targetid) {
-		this.targetid = targetid;
-	}
+    public void setTargetid(BigInteger targetid) {
+        this.targetid = targetid;
+    }
 
-	public BigInteger getCampaignid() {
-		return campaignid;
-	}
+    public BigInteger getCampaignid() {
+        return campaignid;
+    }
 
-	public void setCampaignid(BigInteger campaignid) {
-		this.campaignid = campaignid;
-	}
+    public void setCampaignid(BigInteger campaignid) {
+        this.campaignid = campaignid;
+    }
 
-	public BigInteger getAdgroupid() {
-		return adgroupid;
-	}
+    public BigInteger getAdgroupid() {
+        return adgroupid;
+    }
 
-	public void setAdgroupid(BigInteger adgroupid) {
-		this.adgroupid = adgroupid;
-	}
+    public void setAdgroupid(BigInteger adgroupid) {
+        this.adgroupid = adgroupid;
+    }
 
-	public Date getBydate() {
-		return bydate;
-	}
+    public Date getBydate() {
+        return bydate;
+    }
 
-	public void setBydate(Date bydate) {
-		this.bydate = bydate;
-	}
+    public void setBydate(Date bydate) {
+        this.bydate = bydate;
+    }
 
-	public BigInteger getProfileid() {
-		return profileid;
-	}
+    public BigInteger getProfileid() {
+        return profileid;
+    }
 
-	public void setProfileid(BigInteger profileid) {
-		this.profileid = profileid;
-	}
-	
+    public void setProfileid(BigInteger profileid) {
+        this.profileid = profileid;
+    }
+
     public Integer getImpressions() {
         return impressions;
     }
@@ -117,20 +116,20 @@ public class AmzAdvReportTargetQuery  {
         this.cost = cost;
     }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
 
-	public BigInteger getQueryid() {
-		return queryid;
-	}
+    public BigInteger getQueryid() {
+        return queryid;
+    }
 
-	public void setQueryid(BigInteger queryid) {
-		this.queryid = queryid;
-	}
-  
+    public void setQueryid(BigInteger queryid) {
+        this.queryid = queryid;
+    }
+
 }

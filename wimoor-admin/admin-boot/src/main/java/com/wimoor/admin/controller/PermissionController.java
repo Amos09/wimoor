@@ -1,9 +1,20 @@
 package com.wimoor.admin.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wimoor.admin.pojo.entity.SysPermission;
+import com.wimoor.admin.pojo.vo.PermissionVO;
+import com.wimoor.admin.service.ISysPermissionService;
+import com.wimoor.common.result.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,20 +23,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wimoor.admin.pojo.entity.SysPermission;
-import com.wimoor.admin.pojo.vo.PermissionVO;
-import com.wimoor.admin.service.ISysPermissionService;
-import com.wimoor.common.result.Result;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 
 @Api(tags = "权限接口")
 @RestController
@@ -43,14 +40,14 @@ public class PermissionController {
             @ApiImplicitParam(name = "menuId", value = "菜单ID", paramType = "query", dataType = "Long")
     })
     @GetMapping("/page")
-    public Result<?> pageList( Integer page,Integer limit, String name,  Long menuId) {
-    	IPage<PermissionVO> result = null;
-    	try {
-    		
-    		 result = iSysPermissionService.list(new Page<>(page, limit),name,menuId);
-    	}catch(Exception e) {
-    		e.printStackTrace();
-    	}
+    public Result<?> pageList(Integer page, Integer limit, String name, Long menuId) {
+        IPage<PermissionVO> result = null;
+        try {
+
+            result = iSysPermissionService.list(new Page<>(page, limit), name, menuId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return Result.success(result.getRecords(), result.getTotal());
     }
 
@@ -103,14 +100,14 @@ public class PermissionController {
         }
         return Result.judge(status);
     }
-    
+
 
     @ApiOperation(value = "刷新权限")
     @GetMapping("refresh")
     public Result<?> refresh(BigInteger menuId) {
-    	  iSysPermissionService.refreshPermRolesRules();
+        iSysPermissionService.refreshPermRolesRules();
         return Result.success();
     }
-    
- 
+
+
 }

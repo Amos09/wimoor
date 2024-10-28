@@ -7,6 +7,7 @@ import lombok.Data;
  */
 @Data
 public class GcFilePath {
+
     /**
      * 模板名称
      */

@@ -1,94 +1,93 @@
 package com.wimoor.amazon.adv.sd.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
-
 
 @Entity
-@Table(name="t_amz_adv_rpt2_sd_product_targets_attributed")
+@Table(name = "t_amz_adv_rpt2_sd_product_targets_attributed")
 public class AmzAdvReportProductTargetsSDAttributed {
-	@Id
-	@Column(name="bydate")
-	private Date bydate;
 
-	@Id
-	@Column(name="targetId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
-	private BigInteger targetid;
+    @Id
+    @Column(name = "bydate")
+    private Date bydate;
 
-	@Column(name="attributedConversions1d")
+    @Id
+    @Column(name = "targetId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
+    private BigInteger targetid;
+
+    @Column(name = "attributedConversions1d")
     private Integer attributedconversions1d;
 
-	@Column(name="attributedConversions7d")
+    @Column(name = "attributedConversions7d")
     private Integer attributedconversions7d;
 
-	@Column(name="attributedConversions14d")
+    @Column(name = "attributedConversions14d")
     private Integer attributedconversions14d;
 
-	@Column(name="attributedConversions30d")
+    @Column(name = "attributedConversions30d")
     private Integer attributedconversions30d;
- 
 
-	@Column(name="attributedUnitsOrdered1d")
+
+    @Column(name = "attributedUnitsOrdered1d")
     private Integer attributedunitsordered1d;
 
-	@Column(name="attributedUnitsOrdered7d")
+    @Column(name = "attributedUnitsOrdered7d")
     private Integer attributedunitsordered7d;
 
-	@Column(name="attributedUnitsOrdered14d")
+    @Column(name = "attributedUnitsOrdered14d")
     private Integer attributedunitsordered14d;
 
-	@Column(name="attributedUnitsOrdered30d")
+    @Column(name = "attributedUnitsOrdered30d")
     private Integer attributedunitsordered30d;
-	
-	@Column(name="attributedSales1d")
+
+    @Column(name = "attributedSales1d")
     private BigDecimal attributedsales1d;
 
-	@Column(name="attributedSales7d")
+    @Column(name = "attributedSales7d")
     private BigDecimal attributedsales7d;
 
-	@Column(name="attributedSales14d")
+    @Column(name = "attributedSales14d")
     private BigDecimal attributedsales14d;
 
-	@Column(name="attributedSales30d")
+    @Column(name = "attributedSales30d")
     private BigDecimal attributedsales30d;
 
     /**
-	 * @return the bydate
-	 */
-	public Date getBydate() {
-		return bydate;
-	}
+     * @return the bydate
+     */
+    public Date getBydate() {
+        return bydate;
+    }
 
-	/**
-	 * @param bydate the bydate to set
-	 */
-	public void setBydate(Date bydate) {
-		this.bydate = bydate;
-	}
+    /**
+     * @param bydate the bydate to set
+     */
+    public void setBydate(Date bydate) {
+        this.bydate = bydate;
+    }
 
-	/**
-	 * @return the targetid
-	 */
-	public BigInteger getTargetid() {
-		return targetid;
-	}
+    /**
+     * @return the targetid
+     */
+    public BigInteger getTargetid() {
+        return targetid;
+    }
 
-	/**
-	 * @param targetid the targetid to set
-	 */
-	public void setTargetid(BigInteger targetid) {
-		this.targetid = targetid;
-	}
+    /**
+     * @param targetid the targetid to set
+     */
+    public void setTargetid(BigInteger targetid) {
+        this.targetid = targetid;
+    }
 
 
     public Integer getAttributedconversions1d() {
@@ -187,23 +186,47 @@ public class AmzAdvReportProductTargetsSDAttributed {
         this.attributedsales30d = attributedsales30d;
     }
 
-	public boolean isZero() {
-    	  if(attributedconversions1d!=null&&attributedconversions1d!=0)return false; 
-    	  if(attributedconversions7d!=null&&attributedconversions7d!=0)return false; 	
-    	  if(attributedconversions14d!=null&&attributedconversions14d!=0)return false; 	
-    	  if(attributedconversions30d!=null&&attributedconversions30d!=0)return false; 	
-    	  
-    	  if(attributedunitsordered1d!=null&&attributedunitsordered1d!=0)return false; 	
-    	  if(attributedunitsordered7d!=null&&attributedunitsordered7d!=0)return false; 	
-    	  if(attributedunitsordered14d!=null&&attributedunitsordered14d!=0)return false; 	
-    	  if(attributedunitsordered30d!=null&&attributedunitsordered30d!=0)return false; 
-    	  
-    	  if(attributedsales1d!=null&&attributedsales1d.floatValue()>0.001)return false; 	
-    	  if(attributedsales7d!=null&&attributedsales7d.floatValue()>0.001)return false; 	
-    	  if(attributedsales14d!=null&&attributedsales14d.floatValue()>0.001)return false; 	
-    	  if(attributedsales30d!=null&&attributedsales30d.floatValue()>0.001)return false; 
- 
-    	  return true;
-      
-    	  }
+    public boolean isZero() {
+        if (attributedconversions1d != null && attributedconversions1d != 0) {
+            return false;
+        }
+        if (attributedconversions7d != null && attributedconversions7d != 0) {
+            return false;
+        }
+        if (attributedconversions14d != null && attributedconversions14d != 0) {
+            return false;
+        }
+        if (attributedconversions30d != null && attributedconversions30d != 0) {
+            return false;
+        }
+
+        if (attributedunitsordered1d != null && attributedunitsordered1d != 0) {
+            return false;
+        }
+        if (attributedunitsordered7d != null && attributedunitsordered7d != 0) {
+            return false;
+        }
+        if (attributedunitsordered14d != null && attributedunitsordered14d != 0) {
+            return false;
+        }
+        if (attributedunitsordered30d != null && attributedunitsordered30d != 0) {
+            return false;
+        }
+
+        if (attributedsales1d != null && attributedsales1d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales7d != null && attributedsales7d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales14d != null && attributedsales14d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales30d != null && attributedsales30d.floatValue() > 0.001) {
+            return false;
+        }
+
+        return true;
+
+    }
 }

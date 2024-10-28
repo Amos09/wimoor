@@ -1,9 +1,5 @@
 package com.wimoor.sys.gc.service.gc.gcimpl;
 
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.constant.Base;
 import com.wimoor.sys.gc.constant.BracketConstant;
@@ -13,12 +9,14 @@ import com.wimoor.sys.gc.template.VueAddUpdSlotTemplate;
 import com.wimoor.sys.gc.template.VueAddUpdTemplate;
 import com.wimoor.sys.gc.template.VueMainSlotTemplate;
 import com.wimoor.sys.gc.util.GcDataUtil;
+import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 通用信息处理
  */
 
-public class BaseGcImpl  {
+public class BaseGcImpl {
 
     private final static String NO = "NO";
 
@@ -40,7 +38,8 @@ public class BaseGcImpl  {
         fieldName = GcDataUtil.getFieldName(gcConfig, fieldName);
         String field = "";
         // 字段
-        if (type.equals(FieldTypeConstant.MEDIUMINT) || type.equals(FieldTypeConstant.SMALLINT) || type.equals(FieldTypeConstant.INT) || type.equals(FieldTypeConstant.TINYINT)) {
+        if (type.equals(FieldTypeConstant.MEDIUMINT) || type.equals(FieldTypeConstant.SMALLINT) || type.equals(
+                FieldTypeConstant.INT) || type.equals(FieldTypeConstant.TINYINT)) {
             // 整数int
             field = "private Integer " + fieldName + ";";
         } else if (type.equals(FieldTypeConstant.BIGINT)) {
@@ -52,7 +51,8 @@ public class BaseGcImpl  {
         } else if (type.equals(FieldTypeConstant.BINARY) || type.equals(FieldTypeConstant.VARBINARY)) {
             // 字符串
             field = "private String " + fieldName + ";";
-        } else if (type.equals(FieldTypeConstant.TEXT) || type.equals(FieldTypeConstant.LONG_TEXT) || type.equals(FieldTypeConstant.JSON)) {
+        } else if (type.equals(FieldTypeConstant.TEXT) || type.equals(FieldTypeConstant.LONG_TEXT) || type.equals(
+                FieldTypeConstant.JSON)) {
             // 大文本、超大文本、json
             field = "private String " + fieldName + ";";
         } else if (type.equals(FieldTypeConstant.DATETIME) || type.equals(FieldTypeConstant.TIME)
@@ -106,16 +106,23 @@ public class BaseGcImpl  {
             jsr += "\n";
         }
         // 获取数据库注释,去除括号后的内容
-        desc = desc.contains(BracketConstant.LEFT_BRACKET) ? desc.substring(0, desc.indexOf(BracketConstant.LEFT_BRACKET)) : desc;
-        desc = desc.contains(BracketConstant.LEFT_BRACKET_TWO) ? desc.substring(0, desc.indexOf(BracketConstant.LEFT_BRACKET_TWO)) : desc;
-        desc = desc.contains(BracketConstant.LEFT_BRACKET_THREE) ? desc.substring(0, desc.indexOf(BracketConstant.LEFT_BRACKET_THREE)) : desc;
-        desc = desc.contains(BracketConstant.LEFT_BRACKET_FOUR) ? desc.substring(0, desc.indexOf(BracketConstant.LEFT_BRACKET_FOUR)) : desc;
-        desc = desc.contains(BracketConstant.LEFT_BRACKET_FIVE) ? desc.substring(0, desc.indexOf(BracketConstant.LEFT_BRACKET_FIVE)) : desc;
-        desc = desc.contains(BracketConstant.LEFT_BRACKET_SIX) ? desc.substring(0, desc.indexOf(BracketConstant.LEFT_BRACKET_SIX)) : desc;
+        desc = desc.contains(BracketConstant.LEFT_BRACKET) ? desc.substring(0,
+                desc.indexOf(BracketConstant.LEFT_BRACKET)) : desc;
+        desc = desc.contains(BracketConstant.LEFT_BRACKET_TWO) ? desc.substring(0,
+                desc.indexOf(BracketConstant.LEFT_BRACKET_TWO)) : desc;
+        desc = desc.contains(BracketConstant.LEFT_BRACKET_THREE) ? desc.substring(0,
+                desc.indexOf(BracketConstant.LEFT_BRACKET_THREE)) : desc;
+        desc = desc.contains(BracketConstant.LEFT_BRACKET_FOUR) ? desc.substring(0,
+                desc.indexOf(BracketConstant.LEFT_BRACKET_FOUR)) : desc;
+        desc = desc.contains(BracketConstant.LEFT_BRACKET_FIVE) ? desc.substring(0,
+                desc.indexOf(BracketConstant.LEFT_BRACKET_FIVE)) : desc;
+        desc = desc.contains(BracketConstant.LEFT_BRACKET_SIX) ? desc.substring(0,
+                desc.indexOf(BracketConstant.LEFT_BRACKET_SIX)) : desc;
 
         //字段
         String maxlength = "";
-        if (type.equals(FieldTypeConstant.INT) || type.equals(FieldTypeConstant.BIGINT) || type.equals(FieldTypeConstant.TINYINT)
+        if (type.equals(FieldTypeConstant.INT) || type.equals(FieldTypeConstant.BIGINT) || type.equals(
+                FieldTypeConstant.TINYINT)
                 || type.equals(FieldTypeConstant.SMALLINT) || type.equals(FieldTypeConstant.MEDIUMINT)
         ) {
             // 整数
@@ -128,13 +135,16 @@ public class BaseGcImpl  {
             }
             jsr += "    @Range(min=0L, max={MAX}L,message = \"{DESC} 必须>=0 和 <={MAX}\")";
             jsr = jsr.replaceAll("\\{MAX}", maxlength + "").replace("{DESC}", desc);
-        } else if (type.equals(FieldTypeConstant.DOUBLE) || type.equals(FieldTypeConstant.FLOAT) || type.equals(FieldTypeConstant.DECIMAL)) {
+        } else if (type.equals(FieldTypeConstant.DOUBLE) || type.equals(FieldTypeConstant.FLOAT) || type.equals(
+                FieldTypeConstant.DECIMAL)) {
             // 小数 判断是否有长度,存在长度获取指定长度的最大值, 转为long添加到注解中 decimal(10,2)，取10, 2不处理
             if (typeDetail.contains(BracketConstant.LEFT_BRACKET)) {
-                String typeDetailStr = typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1, typeDetail.indexOf(BracketConstant.RIGHT_BRACKET));
+                String typeDetailStr = typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1,
+                        typeDetail.indexOf(BracketConstant.RIGHT_BRACKET));
                 String[] typeDetailStrArray = typeDetailStr.split(",");
                 if (typeDetailStrArray.length > 1) {
-                    maxlength = this.numberGenerator(9, Integer.parseInt(typeDetailStrArray[0]), Integer.parseInt(typeDetailStrArray[1]));
+                    maxlength = this.numberGenerator(9, Integer.parseInt(typeDetailStrArray[0]),
+                            Integer.parseInt(typeDetailStrArray[1]));
                 } else {
                     maxlength = this.numberGenerator(9, Integer.parseInt(typeDetailStrArray[0]), 0);
                 }
@@ -144,16 +154,19 @@ public class BaseGcImpl  {
             jsr += "    @DecimalMin(value=\"0\",message=\"{DESC} 必须 >= 0\")";
             jsr += "\n    @DecimalMax(value=\"{MAX}\",message=\"{DESC} 必须 <= {MAX}\")";
             jsr = jsr.replaceAll("\\{MAX}", maxlength).replace("{DESC}", desc);
-        } else if (type.equals(FieldTypeConstant.VARCHAR) || type.equals(FieldTypeConstant.CHAR) || type.equals(FieldTypeConstant.TEXT) || type.equals(FieldTypeConstant.LONG_TEXT)) {
+        } else if (type.equals(FieldTypeConstant.VARCHAR) || type.equals(FieldTypeConstant.CHAR) || type.equals(
+                FieldTypeConstant.TEXT) || type.equals(FieldTypeConstant.LONG_TEXT)) {
             // 字符串
             if (typeDetail.contains(BracketConstant.LEFT_BRACKET)) {
-                maxlength = typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1, typeDetail.indexOf(BracketConstant.RIGHT_BRACKET));
+                maxlength = typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1,
+                        typeDetail.indexOf(BracketConstant.RIGHT_BRACKET));
             } else {
                 maxlength = this.getDefaultMaxlength(type);
             }
             jsr += "    @Length(min=0, max={MAX},message = \"{DESC} 必须>=0 和 <={MAX}位\")";
             jsr = jsr.replaceAll("\\{MAX}", maxlength).replace("{DESC}", desc);
-        } else if (type.equals(FieldTypeConstant.DATETIME) || type.equals(FieldTypeConstant.TIME) || type.equals(FieldTypeConstant.TIMESTAMP)) {
+        } else if (type.equals(FieldTypeConstant.DATETIME) || type.equals(FieldTypeConstant.TIME) || type.equals(
+                FieldTypeConstant.TIMESTAMP)) {
             // 时间暂无
         }
         return jsr;
@@ -245,29 +258,35 @@ public class BaseGcImpl  {
      * @param isNull       是否必填 NO 代表必填, YES 非必填
      * @return
      */
-    protected String jxVueColumns(GcConfig gcConfig, String name, String type, String typeDetail, String newDesc, Integer vueFieldType, List<String> dictCode, String isNull) {
+    protected String jxVueColumns(GcConfig gcConfig, String name, String type, String typeDetail, String newDesc,
+            Integer vueFieldType, List<String> dictCode, String isNull) {
         boolean required = isNull.equals(NO);
         // 生成表单时获取数据库的字段的长度来控制输入
         String maxlength = "0";
         // 小数位
         int precision = 0;
-        if (type.equals(FieldTypeConstant.INT) || type.equals(FieldTypeConstant.BIGINT) || type.equals(FieldTypeConstant.TINYINT)) {
+        if (type.equals(FieldTypeConstant.INT) || type.equals(FieldTypeConstant.BIGINT) || type.equals(
+                FieldTypeConstant.TINYINT)) {
             // int(11), 判断是否有长度,存在长度获取指定长度的最大值, 转为long添加到注解中
             if (typeDetail.contains(BracketConstant.LEFT_BRACKET)) {
-                int len = Integer.parseInt(typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1, typeDetail.indexOf(BracketConstant.RIGHT_BRACKET)));
+                int len = Integer.parseInt(typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1,
+                        typeDetail.indexOf(BracketConstant.RIGHT_BRACKET)));
                 maxlength = this.numberGenerator(9, len, 0);
             } else {
                 // 默认大小
                 maxlength = this.getDefaultMaxlength(type);
             }
-        } else if (type.equals(FieldTypeConstant.DOUBLE) || type.equals(FieldTypeConstant.FLOAT) || type.equals(FieldTypeConstant.DECIMAL)) {
+        } else if (type.equals(FieldTypeConstant.DOUBLE) || type.equals(FieldTypeConstant.FLOAT) || type.equals(
+                FieldTypeConstant.DECIMAL)) {
             //  小数
             //  判断是否有长度,存在长度获取指定长度的最大值, 转为long添加到注解中 decimal(10,2)，取10, 2不处理
             if (typeDetail.contains(BracketConstant.LEFT_BRACKET)) {
-                String typeDetailStr = typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1, typeDetail.indexOf(BracketConstant.RIGHT_BRACKET));
+                String typeDetailStr = typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1,
+                        typeDetail.indexOf(BracketConstant.RIGHT_BRACKET));
                 String[] typeDetailStrArray = typeDetailStr.split(",");
                 if (typeDetailStrArray.length > 1) {
-                    maxlength = this.numberGenerator(9, Integer.parseInt(typeDetailStrArray[0]), Integer.parseInt(typeDetailStrArray[1]));
+                    maxlength = this.numberGenerator(9, Integer.parseInt(typeDetailStrArray[0]),
+                            Integer.parseInt(typeDetailStrArray[1]));
                 } else {
                     maxlength = this.numberGenerator(9, Integer.parseInt(typeDetailStrArray[0]), 0);
                 }
@@ -276,12 +295,15 @@ public class BaseGcImpl  {
                 maxlength = this.getDefaultMaxlength(type);
             }
 
-        } else if (type.equals(FieldTypeConstant.VARCHAR) || type.equals(FieldTypeConstant.CHAR) || type.equals(FieldTypeConstant.TEXT) || type.equals(FieldTypeConstant.LONG_TEXT)) {
+        } else if (type.equals(FieldTypeConstant.VARCHAR) || type.equals(FieldTypeConstant.CHAR) || type.equals(
+                FieldTypeConstant.TEXT) || type.equals(FieldTypeConstant.LONG_TEXT)) {
             // 字符串
             if (typeDetail.contains(BracketConstant.LEFT_BRACKET)) {
-                maxlength = typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1, typeDetail.indexOf(BracketConstant.RIGHT_BRACKET));
+                maxlength = typeDetail.substring(typeDetail.indexOf(BracketConstant.LEFT_BRACKET) + 1,
+                        typeDetail.indexOf(BracketConstant.RIGHT_BRACKET));
             }
-        } else if (type.equals(FieldTypeConstant.DATETIME) || type.equals(FieldTypeConstant.TIME) || type.equals(FieldTypeConstant.TIMESTAMP)) {
+        } else if (type.equals(FieldTypeConstant.DATETIME) || type.equals(FieldTypeConstant.TIME) || type.equals(
+                FieldTypeConstant.TIMESTAMP)) {
         }
         // 处理字段
         String columnStr = "";
@@ -307,13 +329,20 @@ public class BaseGcImpl  {
         } else if (Base.VueFieldType.V12.getValue().equals(vueFieldType)) {
             columnStr = VueAddUpdTemplate.TIME.replaceAll("\\{label}", newDesc).replace("{prop}", name);
         } else if (Base.VueFieldType.V13.getValue().equals(vueFieldType)) {
-            columnStr = VueAddUpdTemplate.UPLOAD.replace("{listType}", "picture-img").replace("{limit}", "1").replace("{fileType}", "img").replace("{accept}", "'image/png, image/jpeg, image/jpg, image/gif'").replace("{tip}", "只能上传 jpg/png/gif 格式的图片");
+            columnStr = VueAddUpdTemplate.UPLOAD.replace("{listType}", "picture-img").replace("{limit}", "1")
+                    .replace("{fileType}", "img").replace("{accept}", "'image/png, image/jpeg, image/jpg, image/gif'")
+                    .replace("{tip}", "只能上传 jpg/png/gif 格式的图片");
         } else if (Base.VueFieldType.V14.getValue().equals(vueFieldType)) {
-            columnStr = VueAddUpdTemplate.UPLOAD.replace("{listType}", "picture-card").replace("{limit}", "10").replace("{fileType}", "img").replace("{accept}", "'image/png, image/jpeg, image/jpg, image/gif'").replace("{tip}", "只能上传10张 jpg/png/gif 格式的图片");
+            columnStr = VueAddUpdTemplate.UPLOAD.replace("{listType}", "picture-card").replace("{limit}", "10")
+                    .replace("{fileType}", "img").replace("{accept}", "'image/png, image/jpeg, image/jpg, image/gif'")
+                    .replace("{tip}", "只能上传10张 jpg/png/gif 格式的图片");
         } else if (Base.VueFieldType.V15.getValue().equals(vueFieldType)) {
-            columnStr = VueAddUpdTemplate.UPLOAD.replace("{listType}", "picture-img").replace("{limit}", "1").replace("{fileType}", "video").replace("{accept}", "'video/mp4'").replace("{tip}", "只能上传mp4格式的视频");
+            columnStr = VueAddUpdTemplate.UPLOAD.replace("{listType}", "picture-img").replace("{limit}", "1")
+                    .replace("{fileType}", "video").replace("{accept}", "'video/mp4'")
+                    .replace("{tip}", "只能上传mp4格式的视频");
         } else if (Base.VueFieldType.V16.getValue().equals(vueFieldType)) {
-            columnStr = VueAddUpdTemplate.UPLOAD.replace("{listType}", "").replace("{limit}", "10").replace("{fileType}", "all").replace("{accept}", "null").replace("{tip}", "");
+            columnStr = VueAddUpdTemplate.UPLOAD.replace("{listType}", "").replace("{limit}", "10")
+                    .replace("{fileType}", "all").replace("{accept}", "null").replace("{tip}", "");
         } else if (Base.VueFieldType.V17.getValue().equals(vueFieldType)) {
             columnStr = VueAddUpdTemplate.TEXTAREA.replace("{maxlength}", maxlength + "");
         } else if (Base.VueFieldType.V18.getValue().equals(vueFieldType)) {

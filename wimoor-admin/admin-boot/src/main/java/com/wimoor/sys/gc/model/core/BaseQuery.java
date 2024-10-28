@@ -7,21 +7,22 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 通用查询字段
+ *
  * @author wangsong
+ * @version 1.0.1
  * @mail 1720696548@qq.com
  * @date 2021/8/25 0025 11:53
- * @version 1.0.1
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class BaseQuery extends Convert {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 5353401420704266122L;
+     *
+     */
+    private static final long serialVersionUID = 5353401420704266122L;
 
-	/**
+    /**
      * 页数(小于等于0查询所有,不传默认1)
      */
     private Long current = 1L;

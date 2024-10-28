@@ -20,7 +20,7 @@ public class ConsoleColors {
     public static final String PURPLE = "\033[0;35m";
 
     /**
-     *  启动成功-紫色
+     * 启动成功-紫色
      */
     public static void getSuccessPurple() {
         log.info(ConsoleColors.PURPLE + "\r\n" +

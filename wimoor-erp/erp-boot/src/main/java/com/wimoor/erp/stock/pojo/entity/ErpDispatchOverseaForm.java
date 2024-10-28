@@ -1,19 +1,17 @@
 package com.wimoor.erp.stock.pojo.entity;
 
-import java.math.BigInteger;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.erp.common.pojo.entity.ErpBaseForm;
-
 import io.swagger.annotations.ApiModel;
+import java.math.BigInteger;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -22,11 +20,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_erp_dispatch_oversea_form")
-@ApiModel(value="ErpDispatchOverseaForm对象", description="")
-public class ErpDispatchOverseaForm extends  ErpBaseForm {
+@ApiModel(value = "ErpDispatchOverseaForm对象", description = "")
+public class ErpDispatchOverseaForm extends ErpBaseForm {
 
-    private static final long serialVersionUID=1L;
-    
+    private static final long serialVersionUID = 1L;
+
     private BigInteger fromWarehouseid;
 
     private BigInteger toWarehouseid;
@@ -34,7 +32,7 @@ public class ErpDispatchOverseaForm extends  ErpBaseForm {
     private BigInteger groupid;
 
     private String remark;
-    
+
     private String country;
     @TableField("arrivalTime")
     private Date arrivalTime;

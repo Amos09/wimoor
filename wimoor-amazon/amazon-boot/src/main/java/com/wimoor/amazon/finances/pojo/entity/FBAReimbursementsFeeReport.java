@@ -1,18 +1,17 @@
 package com.wimoor.amazon.finances.pojo.entity;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.amazon.common.pojo.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -21,10 +20,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_fba_reimbursements_fee_report")
-@ApiModel(value="FBAReimbursementsFeeReport对象", description="")
-public class FBAReimbursementsFeeReport extends BaseEntity{
+@ApiModel(value = "FBAReimbursementsFeeReport对象", description = "")
+public class FBAReimbursementsFeeReport extends BaseEntity {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private Date approvalDate;
 
@@ -62,7 +61,7 @@ public class FBAReimbursementsFeeReport extends BaseEntity{
     private String originalReimbursementType;
 
     private String amazonauthid;
-    
+
     private String marketplaceid;
 
     private Date lastupdate;

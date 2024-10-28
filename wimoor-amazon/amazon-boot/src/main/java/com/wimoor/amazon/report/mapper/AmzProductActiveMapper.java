@@ -1,10 +1,10 @@
 package com.wimoor.amazon.report.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wimoor.amazon.report.pojo.entity.AmzProductActive;
+import org.apache.ibatis.annotations.Mapper;
+
 @Mapper
-public interface AmzProductActiveMapper  extends BaseMapper<AmzProductActive> {
+public interface AmzProductActiveMapper extends BaseMapper<AmzProductActive> {
 
 }

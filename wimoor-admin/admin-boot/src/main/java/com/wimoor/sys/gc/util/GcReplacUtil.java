@@ -12,11 +12,12 @@ public class GcReplacUtil {
     /**
      * 参数替换
      *
-     * @param defaultTemplateParam  默认模板参数
-     * @param templateParam 动态模板参数
-     * @param path 当前模板路径
+     * @param defaultTemplateParam 默认模板参数
+     * @param templateParam        动态模板参数
+     * @param path                 当前模板路径
      */
-    public static String replaceParams(Map<String, String> defaultTemplateParam, Map<String, String> templateParam, String path) {
+    public static String replaceParams(Map<String, String> defaultTemplateParam, Map<String, String> templateParam,
+            String path) {
         for (String param : defaultTemplateParam.keySet()) {
             path = path.replace(param, defaultTemplateParam.get(param));
         }

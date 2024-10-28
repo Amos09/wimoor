@@ -5,7 +5,7 @@ import com.wimoor.sys.tool.pojo.entity.SysQueryVersionFeild;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team

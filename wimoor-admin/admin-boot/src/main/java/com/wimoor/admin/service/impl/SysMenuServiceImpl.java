@@ -1,22 +1,10 @@
 package com.wimoor.admin.service.impl;
 
- 
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
-
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wimoor.admin.common.constants.GlobalConstants;
@@ -39,12 +27,21 @@ import com.wimoor.common.TreeSelectVO;
 import com.wimoor.common.user.UserInfo;
 import com.wimoor.common.user.UserType;
 import com.wimoor.manager.service.IManagerLimitService;
-
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.StrUtil;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 
 /**
@@ -62,6 +59,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     private final ISysUserRoleService iSysUserRoleService;
     private final IManagerLimitService iManagerLimitService;
     private final ISysRoleMenuService iSysRoleMenuService;
+
     /**
      * 菜单表格（Table）层级列表
      *
@@ -188,39 +186,43 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public List<RouteVO> listRoute(UserInfo user) {
         List<SysUserRole> roleList = iSysUserRoleService.findByUserId(user.getId());
         List<SysMenu> menuList = null;
-        boolean isadmin=user.getUsertype().equals(UserType.admin.getCode());
-        boolean ismanager=user.getUsertype().equals(UserType.manager.getCode());
-        if(isadmin) {
-        	menuList = this.baseMapper.listRouteAll();
-        }else if(ismanager){
-        	menuList = this.baseMapper.listRoute(user.getId());
-        }else {
-        	menuList = this.baseMapper.listRoute(user.getId());
+        boolean isadmin = user.getUsertype().equals(UserType.admin.getCode());
+        boolean ismanager = user.getUsertype().equals(UserType.manager.getCode());
+        if (isadmin) {
+            menuList = this.baseMapper.listRouteAll();
+        } else if (ismanager) {
+            menuList = this.baseMapper.listRoute(user.getId());
+        } else {
+            menuList = this.baseMapper.listRoute(user.getId());
         }
         List<RouteVO> list = recursionRoute(SystemConstants.ROOT_MENU_ID, menuList);
-        if(list!=null&&list.size()>0) {
-        	Set<String> permissionSet=new HashSet<String>();
-        	if(isadmin||ismanager) {
-        		roleList.stream().forEach(role->{
-              		 List<BigInteger> rp = iSysRolePermissionService.listMenuPermissionId(null);
-               		 if(rp.size()>0) {
-               			permissionSet.addAll(rp.stream().map(item ->{ return permissionService.getById(item).getBtnPerm().toString();}).collect(Collectors.toSet()));
-               		 }
-               	   });
-            }else {
-            	roleList.stream().forEach(role->{
-              		 List<BigInteger> rp = iSysRolePermissionService.listPermissionId(null,role.getRoleId());
-               		 if(rp.size()>0) {
-               			permissionSet.addAll(rp.stream().map(item ->{ return permissionService.getById(item).getBtnPerm().toString();}).collect(Collectors.toSet()));
-               		 }
-               	   });
+        if (list != null && list.size() > 0) {
+            Set<String> permissionSet = new HashSet<String>();
+            if (isadmin || ismanager) {
+                roleList.stream().forEach(role -> {
+                    List<BigInteger> rp = iSysRolePermissionService.listMenuPermissionId(null);
+                    if (rp.size() > 0) {
+                        permissionSet.addAll(rp.stream().map(item -> {
+                            return permissionService.getById(item).getBtnPerm().toString();
+                        }).collect(Collectors.toSet()));
+                    }
+                });
+            } else {
+                roleList.stream().forEach(role -> {
+                    List<BigInteger> rp = iSysRolePermissionService.listPermissionId(null, role.getRoleId());
+                    if (rp.size() > 0) {
+                        permissionSet.addAll(rp.stream().map(item -> {
+                            return permissionService.getById(item).getBtnPerm().toString();
+                        }).collect(Collectors.toSet()));
+                    }
+                });
             }
-       	   Meta meta = list.get(0).getMeta();
-       	   if(meta==null) {
-       		   meta=new Meta();
-       	   }
-         	meta.setPermissions(new ArrayList<String>(permissionSet));
-         	list.get(0).setMeta(meta);
+            Meta meta = list.get(0).getMeta();
+            if (meta == null) {
+                meta = new Meta();
+            }
+            meta.setPermissions(new ArrayList<String>(permissionSet));
+            list.get(0).setMeta(meta);
         }
         return list;
     }
@@ -236,32 +238,32 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         List<RouteVO> list = new LinkedList<>();
         Optional.ofNullable(menuList)
                 .ifPresent(menus -> menus.stream().filter(menu -> menu.getParentId().equals(parentId))
-                .forEach(menu -> {
-                    RouteVO routeVO = new RouteVO();
-                    routeVO.setName(menu.getId() + ""); // 根据name路由跳转 this.$router.push({path:xxx})
-                    routeVO.setPath(menu.getPath());    // 根据path路由跳转 this.$router.push({name:xxx})
-                    routeVO.setRedirect(menu.getRedirect());
-                    routeVO.setComponent(menu.getComponent());
-                    routeVO.setRedirect(menu.getRedirect());
-                    routeVO.setSort(menu.getSort());
-                    RouteVO.Meta meta = new RouteVO.Meta(menu.getName(), menu.getIcon(), menu.getPermissions());
-                    routeVO.setMeta(meta);
-                    // 菜单显示隐藏
-                    routeVO.setHidden(!GlobalConstants.STATUS_YES.equals(menu.getVisible()));
-                    List<RouteVO> children = recursionRoute(menu.getId(), menuList);
-                    routeVO.setChildren(children);
-                    if (CollectionUtil.isNotEmpty(children)) {
-                        routeVO.setAlwaysShow(Boolean.TRUE);
-                    }
-                    list.add(routeVO);
-                }));
-        
+                        .forEach(menu -> {
+                            RouteVO routeVO = new RouteVO();
+                            routeVO.setName(menu.getId() + ""); // 根据name路由跳转 this.$router.push({path:xxx})
+                            routeVO.setPath(menu.getPath());    // 根据path路由跳转 this.$router.push({name:xxx})
+                            routeVO.setRedirect(menu.getRedirect());
+                            routeVO.setComponent(menu.getComponent());
+                            routeVO.setRedirect(menu.getRedirect());
+                            routeVO.setSort(menu.getSort());
+                            RouteVO.Meta meta = new RouteVO.Meta(menu.getName(), menu.getIcon(), menu.getPermissions());
+                            routeVO.setMeta(meta);
+                            // 菜单显示隐藏
+                            routeVO.setHidden(!GlobalConstants.STATUS_YES.equals(menu.getVisible()));
+                            List<RouteVO> children = recursionRoute(menu.getId(), menuList);
+                            routeVO.setChildren(children);
+                            if (CollectionUtil.isNotEmpty(children)) {
+                                routeVO.setAlwaysShow(Boolean.TRUE);
+                            }
+                            list.add(routeVO);
+                        }));
+
         list.sort(new Comparator<RouteVO>() {
-			@Override
-			public int compare(RouteVO o1, RouteVO o2) {
-				// TODO Auto-generated method stub
-				return o1.getSort().compareTo(o2.getSort());
-			}
+            @Override
+            public int compare(RouteVO o1, RouteVO o2) {
+                // TODO Auto-generated method stub
+                return o1.getSort().compareTo(o2.getSort());
+            }
         });
         return list;
 
@@ -357,6 +359,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @CacheEvict(cacheNames = "system", key = "#user.id")
     public void cleanCacheByUser(UserInfo user) {
     }
+
     /**
      * 清理路由缓存
      */
@@ -388,90 +391,93 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      */
     private List<NextRouteVO> recursionNextRoute(String parentId, List<SysMenu> menuList) {
         List<NextRouteVO> list = new ArrayList<>();
-        Optional.ofNullable(menuList).ifPresent(menus -> menus.stream().filter(menu -> menu.getParentId().equals(parentId))
-                .forEach(menu -> {
-                    NextRouteVO nextRouteVO = new NextRouteVO();
-                    nextRouteVO.setName(menu.getId() + ""); // 根据name路由跳转 this.$router.push({path:xxx})
-                    nextRouteVO.setPath(menu.getPath()); // 根据path路由跳转 this.$router.push({name:xxx})
-                    nextRouteVO.setRedirect(menu.getRedirect());
-                    nextRouteVO.setComponent(menu.getComponent());
-                    nextRouteVO.setRedirect(menu.getRedirect());
+        Optional.ofNullable(menuList)
+                .ifPresent(menus -> menus.stream().filter(menu -> menu.getParentId().equals(parentId))
+                        .forEach(menu -> {
+                            NextRouteVO nextRouteVO = new NextRouteVO();
+                            nextRouteVO.setName(menu.getId() + ""); // 根据name路由跳转 this.$router.push({path:xxx})
+                            nextRouteVO.setPath(menu.getPath()); // 根据path路由跳转 this.$router.push({name:xxx})
+                            nextRouteVO.setRedirect(menu.getRedirect());
+                            nextRouteVO.setComponent(menu.getComponent());
+                            nextRouteVO.setRedirect(menu.getRedirect());
 
-                    NextRouteVO.Meta meta = new NextRouteVO.Meta();
-                    meta.setTitle(menu.getName());
-                    meta.setIcon(menu.getIcon());
-                    meta.setRoles(menu.getRoles());
-                    meta.setHidden(!GlobalConstants.STATUS_YES.equals(menu.getVisible()));
+                            NextRouteVO.Meta meta = new NextRouteVO.Meta();
+                            meta.setTitle(menu.getName());
+                            meta.setIcon(menu.getIcon());
+                            meta.setRoles(menu.getRoles());
+                            meta.setHidden(!GlobalConstants.STATUS_YES.equals(menu.getVisible()));
 
-                    nextRouteVO.setMeta(meta);
-                    List<NextRouteVO> children = recursionNextRoute(menu.getId(), menuList);
-                    nextRouteVO.setChildren(children);
-                    if (CollectionUtil.isNotEmpty(children)) {
-                        meta.setAlwaysShow(Boolean.TRUE);
-                    }
-                    list.add(nextRouteVO);
-                }));
+                            nextRouteVO.setMeta(meta);
+                            List<NextRouteVO> children = recursionNextRoute(menu.getId(), menuList);
+                            nextRouteVO.setChildren(children);
+                            if (CollectionUtil.isNotEmpty(children)) {
+                                meta.setAlwaysShow(Boolean.TRUE);
+                            }
+                            list.add(nextRouteVO);
+                        }));
         return list;
     }
 
     public void setPermsession(List<SysMenu> menuList) {
-    	List<SysPermission> perms = permissionService.list();
-    	Map<String,List<SysPermission>> hasPermMenu=new HashMap<String,List<SysPermission>>();
-        for(SysPermission item:perms) {
-        	List<SysPermission> list = hasPermMenu.get(item.getMenuId().toString());
-        	if(list==null) {
-        		list=new LinkedList<SysPermission>();
-        	}
-        	list.add((item));
-        	hasPermMenu.put(item.getMenuId().toString(), list);
+        List<SysPermission> perms = permissionService.list();
+        Map<String, List<SysPermission>> hasPermMenu = new HashMap<String, List<SysPermission>>();
+        for (SysPermission item : perms) {
+            List<SysPermission> list = hasPermMenu.get(item.getMenuId().toString());
+            if (list == null) {
+                list = new LinkedList<SysPermission>();
+            }
+            list.add((item));
+            hasPermMenu.put(item.getMenuId().toString(), list);
         }
-    	
-    	for(SysMenu item:menuList) {
-   		 List<SysPermission> list = hasPermMenu.get(item.getId());
-   		 if(list!=null) {
-   			 LinkedList<String> permissions = new LinkedList<String>();
-   			 for(SysPermission itemp:list) {
-   				 permissions.add(itemp.getId());
-   			 }
-   			 item.setPermissions(permissions);
-   		 }
-   	  }
-    }
-	@Override
-	public List<MenuVO> listCompanyTreeSelect(UserInfo user) {
-		// TODO Auto-generated method stub
-        boolean isadmin=user.getUsertype().equals(UserType.admin.getCode());
-        if(isadmin) {
-        	  List<SysMenu> menuList = this.list();
-        	  setPermsession(menuList);
-              return recursion(menuList);
-        }else {
-        	String roleid = iManagerLimitService.getCompanyRole(user.getCompanyid());
-        	List<SysUserRole> uroles = this.iSysUserRoleService.lambdaQuery().eq(SysUserRole::getUserId, user.getId()).list();
-    		List<BigInteger> result = this.iSysRoleMenuService.listMenuIds(new BigInteger(roleid));
-    		for(SysUserRole item:uroles) {
-    			List<BigInteger> itemresult = this.iSysRoleMenuService.listMenuIds(item.getRoleId());
-    			if(itemresult!=null&&itemresult.size()>0) {
-    				result.addAll(itemresult);
-    			}
-    		}
-    		List<SysMenu> allList = this.list();
-    		List<SysMenu> menuList=new ArrayList<SysMenu>();
-    		Set<String> roleMenuIdSet=new HashSet<String>();
-    		for(BigInteger id:result) {
-    			roleMenuIdSet.add(id.toString());
-    		}
-    		for(SysMenu menu:allList) {
-    			if(roleMenuIdSet.contains(menu.getId())) {
-    				menuList.add(menu);
-    			}
-    		}
-    		setPermsession(menuList);
-    		List<MenuVO> menuSelectList = recursion(menuList);
-    		return menuSelectList;
-        }
-		
-	}
 
- 
+        for (SysMenu item : menuList) {
+            List<SysPermission> list = hasPermMenu.get(item.getId());
+            if (list != null) {
+                LinkedList<String> permissions = new LinkedList<String>();
+                for (SysPermission itemp : list) {
+                    permissions.add(itemp.getId());
+                }
+                item.setPermissions(permissions);
+            }
+        }
+    }
+
+    @Override
+    public List<MenuVO> listCompanyTreeSelect(UserInfo user) {
+        // TODO Auto-generated method stub
+        boolean isadmin = user.getUsertype().equals(UserType.admin.getCode());
+        if (isadmin) {
+            List<SysMenu> menuList = this.list();
+            setPermsession(menuList);
+            return recursion(menuList);
+        } else {
+            String roleid = iManagerLimitService.getCompanyRole(user.getCompanyid());
+            List<SysUserRole> uroles = this.iSysUserRoleService.lambdaQuery().eq(SysUserRole::getUserId, user.getId())
+                    .list();
+            List<BigInteger> result = this.iSysRoleMenuService.listMenuIds(new BigInteger(roleid));
+            for (SysUserRole item : uroles) {
+                List<BigInteger> itemresult = this.iSysRoleMenuService.listMenuIds(item.getRoleId());
+                if (itemresult != null && itemresult.size() > 0) {
+                    result.addAll(itemresult);
+                }
+            }
+            List<SysMenu> allList = this.list();
+            List<SysMenu> menuList = new ArrayList<SysMenu>();
+            Set<String> roleMenuIdSet = new HashSet<String>();
+            for (BigInteger id : result) {
+                roleMenuIdSet.add(id.toString());
+            }
+            for (SysMenu menu : allList) {
+                if (roleMenuIdSet.contains(menu.getId())) {
+                    menuList.add(menu);
+                }
+            }
+            setPermsession(menuList);
+            List<MenuVO> menuSelectList = recursion(menuList);
+            return menuSelectList;
+        }
+
+    }
+
+
 }

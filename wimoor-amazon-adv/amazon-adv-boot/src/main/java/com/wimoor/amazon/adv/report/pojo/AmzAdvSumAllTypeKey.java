@@ -2,29 +2,29 @@ package com.wimoor.amazon.adv.report.pojo;
 
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 
 public class AmzAdvSumAllTypeKey {
-	@Id
-	@Column(name="profileid")
+
+    @Id
+    @Column(name = "profileid")
     private BigInteger profileid;
 
-	@Id
-	@Column(name="state")
+    @Id
+    @Column(name = "state")
     private String state;
 
-	@Id
-	@Column(name="campaignType")
+    @Id
+    @Column(name = "campaignType")
     private String campaigntype;
 
-	@Id
-	@Column(name="recordType")
+    @Id
+    @Column(name = "recordType")
     private String recordtype;
 
-	@Id
-	@Column(name="byday")
+    @Id
+    @Column(name = "byday")
     private Date byday;
 
     public BigInteger getProfileid() {

@@ -1,18 +1,16 @@
 package com.wimoor.amazon.inventory.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.amazon.common.pojo.entity.BaseEntity;
-
-import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -21,10 +19,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_rpt_inventory_summary")
-@ApiModel(value="InventorySummaryReport对象", description="")
+@ApiModel(value = "InventorySummaryReport对象", description = "")
 public class InventorySummaryReport extends BaseEntity {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private Date byday;
 
@@ -74,7 +72,7 @@ public class InventorySummaryReport extends BaseEntity {
     private String unknownEvents;
 
     private String location;
-    
+
     @TableField("authid")
     private String authid;
 

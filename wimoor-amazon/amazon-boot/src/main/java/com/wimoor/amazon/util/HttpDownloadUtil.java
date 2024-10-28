@@ -1,5 +1,6 @@
 package com.wimoor.amazon.util;
 
+import cn.hutool.core.util.StrUtil;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -8,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpEntity;
@@ -18,8 +18,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 
-import cn.hutool.core.util.StrUtil;
-
 public class HttpDownloadUtil {
 
     public static final int cache = 10 * 1024;
@@ -27,11 +25,11 @@ public class HttpDownloadUtil {
     /**
      * 根据url下载文件，保存到filepath中
      *
-     * @param url 文件的url
+     * @param url     文件的url
      * @param diskUrl 本地存储路径
      * @return
      */
-    public static void download(String url, OutputStream os ) {
+    public static void download(String url, OutputStream os) {
         try {
             HttpClient client = HttpClients.createDefault();
             HttpGet httpget = new HttpGet(url);
@@ -43,7 +41,7 @@ public class HttpDownloadUtil {
             byte[] buffer = new byte[cache];
             int ch = 0;
             while ((ch = is.read(buffer)) != -1) {
-            	os.write(buffer, 0, ch);
+                os.write(buffer, 0, ch);
             }
             is.close();
             os.flush();
@@ -53,11 +51,11 @@ public class HttpDownloadUtil {
         }
     }
 
-    
+
     /**
      * 根据url下载文件，保存到filepath中
      *
-     * @param url 文件的url
+     * @param url     文件的url
      * @param diskUrl 本地存储路径
      * @return
      */
@@ -72,8 +70,8 @@ public class HttpDownloadUtil {
             HttpResponse response = client.execute(httpget);
             HttpEntity entity = response.getEntity();
             InputStream is = entity.getContent();
-            if (StrUtil.isBlank(filepath)){
-                Map<String,String> map = getFilePath(response,url,diskUrl);
+            if (StrUtil.isBlank(filepath)) {
+                Map<String, String> map = getFilePath(response, url, diskUrl);
                 filepath = map.get("filepath");
                 filename = map.get("filename");
             }
@@ -101,14 +99,14 @@ public class HttpDownloadUtil {
      * @param contentType
      * @return
      */
-    static String getContentType(String contentType){
+    static String getContentType(String contentType) {
         HashMap<String, String> map = new HashMap<String, String>() {
             /**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
+             *
+             */
+            private static final long serialVersionUID = 1L;
 
-			{
+            {
                 put("application/msword", ".doc");
                 put("image/jpeg", ".jpeg");
                 put("application/x-jpg", ".jpg");
@@ -136,12 +134,12 @@ public class HttpDownloadUtil {
      * @param response
      * @return
      */
-    public static Map<String,String> getFilePath(HttpResponse response, String url, String diskUrl) {
-        Map<String,String> map = new HashMap<>();
+    public static Map<String, String> getFilePath(HttpResponse response, String url, String diskUrl) {
+        Map<String, String> map = new HashMap<>();
         String filepath = diskUrl;
         String filename = getFileName(response, url);
         String contentType = response.getEntity().getContentType().getValue();
-        if(StrUtil.isNotEmpty(contentType)){
+        if (StrUtil.isNotEmpty(contentType)) {
             // 获取后缀
             String suffix = getContentType(contentType);
             String regEx = ".+(.+)$";
@@ -149,11 +147,11 @@ public class HttpDownloadUtil {
             Matcher m = p.matcher(filename);
             if (!m.find()) {
                 // 如果正则匹配后没有后缀，则需要通过response中的ContentType的值进行匹配
-                if(StrUtil.isNotBlank(suffix)){
+                if (StrUtil.isNotBlank(suffix)) {
                     filename = filename + suffix;
                 }
-            }else{
-                if(filename.length()>20){
+            } else {
+                if (filename.length() > 20) {
                     filename = getRandomFileName() + suffix;
                 }
             }
@@ -170,11 +168,12 @@ public class HttpDownloadUtil {
 
     /**
      * 获取response header中Content-Disposition中的filename值
+     *
      * @param response
      * @param url
      * @return
      */
-    public static String getFileName(HttpResponse response,String url) {
+    public static String getFileName(HttpResponse response, String url) {
         Header contentHeader = response.getFirstHeader("Content-Disposition");
         String filename = null;
         if (contentHeader != null) {
@@ -190,7 +189,7 @@ public class HttpDownloadUtil {
                     }
                 }
             }
-        }else{
+        } else {
             // 正则匹配后缀
             filename = getSuffix(url);
         }
@@ -209,6 +208,7 @@ public class HttpDownloadUtil {
 
     /**
      * 获取文件名后缀
+     *
      * @param url
      * @return
      */

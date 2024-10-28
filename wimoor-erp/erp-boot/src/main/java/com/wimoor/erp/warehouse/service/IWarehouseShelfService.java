@@ -1,15 +1,13 @@
 package com.wimoor.erp.warehouse.service;
 
- 
+
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.wimoor.common.user.UserInfo;
 import com.wimoor.erp.warehouse.pojo.entity.ErpWarehouseAddress;
 import com.wimoor.erp.warehouse.pojo.entity.WarehouseShelf;
 import com.wimoor.erp.warehouse.pojo.vo.WarehouseShelfTreeVo;
 import com.wimoor.erp.warehouse.pojo.vo.WarehouseShelfVo;
-
 import java.util.List;
-
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -21,22 +19,22 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IWarehouseShelfService extends IService<WarehouseShelf> {
 
-	List<WarehouseShelfTreeVo> getAllTree(UserInfo user, String warehouseid);
+    List<WarehouseShelfTreeVo> getAllTree(UserInfo user, String warehouseid);
 
-	boolean save(List<WarehouseShelf> shelflist);
+    boolean save(List<WarehouseShelf> shelflist);
 
-	boolean logicDeleteById(String ids);
-	
-	public String getAllParentName(String shelfid) ;
-	
-	List<WarehouseShelfVo>  detail(UserInfo user,String id);
+    boolean logicDeleteById(String ids);
 
-	List<WarehouseShelfVo>  detailWarehouse(UserInfo user,String warehouseid);
-	
-	public WarehouseShelfVo getShelfInfo(UserInfo user,String shelfid);
+    public String getAllParentName(String shelfid);
 
-	WarehouseShelfVo getShelfInfo(UserInfo user, ErpWarehouseAddress address, String shelftreepath);
+    List<WarehouseShelfVo> detail(UserInfo user, String id);
 
-	WarehouseShelfVo detailWarehouseSum(UserInfo user, String warehouseid); 
+    List<WarehouseShelfVo> detailWarehouse(UserInfo user, String warehouseid);
+
+    public WarehouseShelfVo getShelfInfo(UserInfo user, String shelfid);
+
+    WarehouseShelfVo getShelfInfo(UserInfo user, ErpWarehouseAddress address, String shelftreepath);
+
+    WarehouseShelfVo detailWarehouseSum(UserInfo user, String warehouseid);
 
 }

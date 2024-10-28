@@ -13,74 +13,70 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 /**
  * The type of access point, like counter (HELIX), lockers, etc.
  */
 @JsonAdapter(AccessPointType.Adapter.class)
 public enum AccessPointType {
-  
-  HELIX("HELIX"),
-  
-  CAMPUS_LOCKER("CAMPUS_LOCKER"),
-  
-  OMNI_LOCKER("OMNI_LOCKER"),
-  
-  ODIN_LOCKER("ODIN_LOCKER"),
-  
-  DOBBY_LOCKER("DOBBY_LOCKER"),
-  
-  CORE_LOCKER("CORE_LOCKER"),
-  
-  _3P("3P"),
-  
-  CAMPUS_ROOM("CAMPUS_ROOM");
 
-  private String value;
+    HELIX("HELIX"),
 
-  AccessPointType(String value) {
-    this.value = value;
-  }
+    CAMPUS_LOCKER("CAMPUS_LOCKER"),
 
-  public String getValue() {
-    return value;
-  }
+    OMNI_LOCKER("OMNI_LOCKER"),
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    ODIN_LOCKER("ODIN_LOCKER"),
 
-  public static AccessPointType fromValue(String text) {
-    for (AccessPointType b : AccessPointType.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    DOBBY_LOCKER("DOBBY_LOCKER"),
+
+    CORE_LOCKER("CORE_LOCKER"),
+
+    _3P("3P"),
+
+    CAMPUS_ROOM("CAMPUS_ROOM");
+
+    private String value;
+
+    AccessPointType(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<AccessPointType> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final AccessPointType enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public AccessPointType read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return AccessPointType.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static AccessPointType fromValue(String text) {
+        for (AccessPointType b : AccessPointType.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<AccessPointType> {
+
+        @Override
+        public void write(final JsonWriter jsonWriter, final AccessPointType enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public AccessPointType read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return AccessPointType.fromValue(String.valueOf(value));
+        }
+    }
 }
 

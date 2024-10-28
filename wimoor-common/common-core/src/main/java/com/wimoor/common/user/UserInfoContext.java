@@ -1,7 +1,6 @@
 package com.wimoor.common.user;
 
 
- 
 public class UserInfoContext {
 
     public static final String HEADER_USER_INFO = "X-USERINFO";

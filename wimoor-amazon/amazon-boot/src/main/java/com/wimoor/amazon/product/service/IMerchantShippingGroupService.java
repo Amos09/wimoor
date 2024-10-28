@@ -1,14 +1,12 @@
 package com.wimoor.amazon.product.service;
 
-import com.wimoor.amazon.product.pojo.entity.MerchantShippingGroup;
-
-import java.util.List;
-
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.product.pojo.entity.MerchantShippingGroup;
+import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
@@ -16,7 +14,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IMerchantShippingGroupService extends IService<MerchantShippingGroup> {
 
-	List<MerchantShippingGroup> listGroups(String amazonauthid, String marketplaceid);
-	
-	public List<MerchantShippingGroup> refreshListGroups(String amazonauthid, String marketplaceid);
+    List<MerchantShippingGroup> listGroups(String amazonauthid, String marketplaceid);
+
+    public List<MerchantShippingGroup> refreshListGroups(String amazonauthid, String marketplaceid);
 }

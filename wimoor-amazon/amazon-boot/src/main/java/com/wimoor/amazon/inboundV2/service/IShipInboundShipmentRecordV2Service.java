@@ -5,7 +5,9 @@ import com.wimoor.amazon.inboundV2.pojo.entity.ShipInboundPlan;
 import com.wimoor.amazon.inboundV2.pojo.entity.ShipInboundShipment;
 import com.wimoor.amazon.inboundV2.pojo.entity.ShipInboundShipmentRecord;
 
-public interface IShipInboundShipmentRecordV2Service  extends IService<ShipInboundShipmentRecord> {
-	void saveRecord(ShipInboundShipment shipInboundShipment);
-	void saveRecord(ShipInboundPlan plan);
+public interface IShipInboundShipmentRecordV2Service extends IService<ShipInboundShipmentRecord> {
+
+    void saveRecord(ShipInboundShipment shipInboundShipment);
+
+    void saveRecord(ShipInboundPlan plan);
 }

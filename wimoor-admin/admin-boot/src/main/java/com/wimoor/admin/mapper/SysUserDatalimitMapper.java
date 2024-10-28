@@ -1,10 +1,8 @@
 package com.wimoor.admin.mapper;
 
-import com.wimoor.admin.pojo.entity.SysUserDatalimit;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wimoor.admin.pojo.entity.SysUserDatalimit;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>

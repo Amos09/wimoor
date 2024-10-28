@@ -1,163 +1,162 @@
 package com.wimoor.amazon.adv.sp.pojo;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 @Entity
-@Table(name="t_amz_adv_campaigns")
+@Table(name = "t_amz_adv_campaigns")
 public class AmzAdvCampaigns {
-	@Id
-	@Column(name="campaignId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "campaignId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger campaignid;
 
-	@Column(name="profileid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Column(name = "profileid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger profileid;
-	
-	@Column(name = "portfolioid")
-	private BigInteger portfolioid;
-	
-	@Column(name="name")
+
+    @Column(name = "portfolioid")
+    private BigInteger portfolioid;
+
+    @Column(name = "name")
     private String name;
 
-	@Column(name="campaignType")
+    @Column(name = "campaignType")
     private String campaignType;
 
-	@Column(name="dailyBudget")
+    @Column(name = "dailyBudget")
     private BigDecimal dailybudget;
 
-	@Column(name="targetingType")
+    @Column(name = "targetingType")
     private String targetingType;
-	
-	@Column(name="premiumBidAdjustment")
+
+    @Column(name = "premiumBidAdjustment")
     private String premiumbidadjustment;
-	
-	@Column(name="bidding")
+
+    @Column(name = "bidding")
     private String bidding;
 
-	@Column(name="state")
+    @Column(name = "state")
     private String state;
 
-	@Column(name="startDate")
+    @Column(name = "startDate")
     private Date startDate;
-	
-	@Column(name="endDate")
+
+    @Column(name = "endDate")
     private Date endDate;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
-	
-	@Transient
-    private String budget;
-	
-    @Transient
-	private String servingStatus;
-    
-    @Transient
-	private String placement;
 
-	@Transient
-	private Date creationDate;
-    
     @Transient
-	private Date lastUpdatedDate;
-	
+    private String budget;
+
+    @Transient
+    private String servingStatus;
+
+    @Transient
+    private String placement;
+
+    @Transient
+    private Date creationDate;
+
+    @Transient
+    private Date lastUpdatedDate;
+
     @Transient
     public String getServingStatus() {
-		return servingStatus;
-	}
+        return servingStatus;
+    }
 
     @Transient
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
     @Transient
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
     @Transient
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
     @Transient
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
 
     @Transient
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
 
     @Transient
     public String getPlacement() {
-		return placement;
-	}
+        return placement;
+    }
 
     @Transient
-	public void setPlacement(String placement) {
-		this.placement = placement;
-	}
-    
-	public BigInteger getPortfolioid() {
-		return portfolioid;
-	}
+    public void setPlacement(String placement) {
+        this.placement = placement;
+    }
 
-	public void setPortfolioid(BigInteger portfolioid) {
-		this.portfolioid = portfolioid;
-	}
-	
-	public String getBudget() {
-		return budget;
-	}
+    public BigInteger getPortfolioid() {
+        return portfolioid;
+    }
 
-	public void setBudget(String budget,JSONObject budgetjson) {
-		this.budget = budget;
-		if(budgetjson!=null) {
-			this.dailybudget=budgetjson.getBigDecimal("budget");
-		}
-	}
-	
-	public String getBidding() {
-		return bidding;
-	}
+    public void setPortfolioid(BigInteger portfolioid) {
+        this.portfolioid = portfolioid;
+    }
 
-	public void setBidding(String bidding) {
-		this.bidding = bidding;
-	}
+    public String getBudget() {
+        return budget;
+    }
 
-	public Date getEndDate() {
-		return endDate;
-	}
+    public void setBudget(String budget, JSONObject budgetjson) {
+        this.budget = budget;
+        if (budgetjson != null) {
+            this.dailybudget = budgetjson.getBigDecimal("budget");
+        }
+    }
 
-	public void setEndDate(Date enddate) {
-		this.endDate = enddate;
-	}
+    public String getBidding() {
+        return bidding;
+    }
 
-	public BigInteger getCampaignid() {
-		return campaignid;
-	}
+    public void setBidding(String bidding) {
+        this.bidding = bidding;
+    }
 
-	public void setCampaignid(BigInteger campaignid) {
-		this.campaignid = campaignid;
-	}
+    public Date getEndDate() {
+        return endDate;
+    }
 
-	public String getName() {
+    public void setEndDate(Date enddate) {
+        this.endDate = enddate;
+    }
+
+    public BigInteger getCampaignid() {
+        return campaignid;
+    }
+
+    public void setCampaignid(BigInteger campaignid) {
+        this.campaignid = campaignid;
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -198,14 +197,14 @@ public class AmzAdvCampaigns {
     }
 
     public String getPremiumbidadjustment() {
-		return premiumbidadjustment;
-	}
+        return premiumbidadjustment;
+    }
 
-	public void setPremiumbidadjustment(String premiumbidadjustment) {
-		this.premiumbidadjustment = premiumbidadjustment;
-	}
+    public void setPremiumbidadjustment(String premiumbidadjustment) {
+        this.premiumbidadjustment = premiumbidadjustment;
+    }
 
-	public Date getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
@@ -213,38 +212,38 @@ public class AmzAdvCampaigns {
         this.startDate = startdate;
     }
 
-	public BigInteger getProfileid() {
-		return profileid;
-	}
+    public BigInteger getProfileid() {
+        return profileid;
+    }
 
-	public void setProfileid(BigInteger profileid) {
-		this.profileid = profileid;
-	}
+    public void setProfileid(BigInteger profileid) {
+        this.profileid = profileid;
+    }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
 
     @Transient
     public String getCompaignTypePrefix() {
-		if("sponsoredBrands".equals(campaignType)) {
-			return "hsa";
-		}else {
-			return "sp";
-		}
+        if ("sponsoredBrands".equals(campaignType)) {
+            return "hsa";
+        } else {
+            return "sp";
+        }
     }
 
-	@Override
-	public String toString() {
-		return "AmzAdvCampaigns [campaignid=" + campaignid + ", name=" + name + ", campaigntype=" + campaignType
-				+ ", dailybudget=" + dailybudget + ", targetingtype=" + targetingType + ", state=" + state
-				+ ", startdate=" + startDate + ", enddate=" + endDate
-				+ ", profileid=" + profileid + ", opttime=" + opttime + "]";
-	}
+    @Override
+    public String toString() {
+        return "AmzAdvCampaigns [campaignid=" + campaignid + ", name=" + name + ", campaigntype=" + campaignType
+                + ", dailybudget=" + dailybudget + ", targetingtype=" + targetingType + ", state=" + state
+                + ", startdate=" + startDate + ", enddate=" + endDate
+                + ", profileid=" + profileid + ", opttime=" + opttime + "]";
+    }
 
 
 }

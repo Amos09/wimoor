@@ -1,17 +1,14 @@
 package com.wimoor.amazon.finances.service;
 
-import com.wimoor.amazon.finances.pojo.entity.FBAReimbursementsFeeReport;
-
-import java.util.Map;
-
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.finances.pojo.entity.FBAReimbursementsFeeReport;
+import java.util.Map;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
@@ -19,8 +16,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IFBAReimbursementsFeeReportService extends IService<FBAReimbursementsFeeReport> {
 
-	Page<Map<String, Object>> findByCondition(Page<Object> page, Map<String, Object> parameter);
+    Page<Map<String, Object>> findByCondition(Page<Object> page, Map<String, Object> parameter);
 
-	void getDownloadList(SXSSFWorkbook workbook, Map<String, Object> parameter);
+    void getDownloadList(SXSSFWorkbook workbook, Map<String, Object> parameter);
 
 }

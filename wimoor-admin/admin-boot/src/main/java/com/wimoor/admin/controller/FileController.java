@@ -1,23 +1,21 @@
 package com.wimoor.admin.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
+import cn.hutool.core.util.IdUtil;
 import com.wimoor.admin.common.exception.BizException;
 import com.wimoor.common.result.Result;
 import com.wimoor.common.service.impl.StorageService;
-
-import cn.hutool.core.util.IdUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @Api(tags = "文件接口")
 @RestController
@@ -26,6 +24,7 @@ import lombok.SneakyThrows;
 public class FileController {
 
     private final StorageService storageService;
+
     @PostMapping
     @ApiOperation(value = "文件上传")
     @ApiImplicitParams({
@@ -38,12 +37,12 @@ public class FileController {
     ) {
         try {
             int lastIndex = path.lastIndexOf("/");
-        	String bucketName = path.substring(path.lastIndexOf("/", lastIndex - 1) + 1, lastIndex);
+            String bucketName = path.substring(path.lastIndexOf("/", lastIndex - 1) + 1, lastIndex);
             String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
             String name = IdUtil.simpleUUID() + "." + suffix;
-            String fullName = path.substring(lastIndex + 1)+"/"+name;
+            String fullName = path.substring(lastIndex + 1) + "/" + name;
             storageService.putObject(bucketName, fullName, file.getInputStream());
-            String resultPath ="https://"+bucketName+".oss-cn-shenzhen.aliyuncs.com/"+fullName;
+            String resultPath = "https://" + bucketName + ".oss-cn-shenzhen.aliyuncs.com/" + fullName;
             return Result.success(resultPath);
         } catch (Exception e) {
             throw new BizException(e.getMessage());

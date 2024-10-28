@@ -1,24 +1,22 @@
 package com.wimoor.amazon.finances.pojo.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -27,20 +25,20 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_orders_financial")
-@ApiModel(value="OrdersFinancial对象", description="")
+@ApiModel(value = "OrdersFinancial对象", description = "")
 public class OrdersFinancial implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "自增长ID")
-      @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private BigInteger id;
 
     @ApiModelProperty(value = "订单ID")
-    @TableField(value="amazon_order_id")
+    @TableField(value = "amazon_order_id")
     private String amazonOrderId;
 
-    @TableField(value="order_item_id")
+    @TableField(value = "order_item_id")
     @ApiModelProperty(value = "订单Item id")
     private String orderItemId;
 
@@ -64,7 +62,7 @@ public class OrdersFinancial implements Serializable {
     private String marketplaceId;
 
     @ApiModelProperty(value = "出账时间")
-    @TableField(value="posted_date")
+    @TableField(value = "posted_date")
     private Date postedDate;
 
 

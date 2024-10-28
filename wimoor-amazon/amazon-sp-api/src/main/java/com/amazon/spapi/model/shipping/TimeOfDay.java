@@ -13,16 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Denotes time of the day, used for defining opening or closing time of access points
@@ -30,112 +24,115 @@ import java.io.IOException;
 @ApiModel(description = "Denotes time of the day, used for defining opening or closing time of access points")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class TimeOfDay {
-  @SerializedName("hourOfDay")
-  private Integer hourOfDay = null;
 
-  @SerializedName("minuteOfHour")
-  private Integer minuteOfHour = null;
+    @SerializedName("hourOfDay")
+    private Integer hourOfDay = null;
 
-  @SerializedName("secondOfMinute")
-  private Integer secondOfMinute = null;
+    @SerializedName("minuteOfHour")
+    private Integer minuteOfHour = null;
 
-  public TimeOfDay hourOfDay(Integer hourOfDay) {
-    this.hourOfDay = hourOfDay;
-    return this;
-  }
+    @SerializedName("secondOfMinute")
+    private Integer secondOfMinute = null;
 
-   /**
-   * Get hourOfDay
-   * @return hourOfDay
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getHourOfDay() {
-    return hourOfDay;
-  }
-
-  public void setHourOfDay(Integer hourOfDay) {
-    this.hourOfDay = hourOfDay;
-  }
-
-  public TimeOfDay minuteOfHour(Integer minuteOfHour) {
-    this.minuteOfHour = minuteOfHour;
-    return this;
-  }
-
-   /**
-   * Get minuteOfHour
-   * @return minuteOfHour
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getMinuteOfHour() {
-    return minuteOfHour;
-  }
-
-  public void setMinuteOfHour(Integer minuteOfHour) {
-    this.minuteOfHour = minuteOfHour;
-  }
-
-  public TimeOfDay secondOfMinute(Integer secondOfMinute) {
-    this.secondOfMinute = secondOfMinute;
-    return this;
-  }
-
-   /**
-   * Get secondOfMinute
-   * @return secondOfMinute
-  **/
-  @ApiModelProperty(value = "")
-  public Integer getSecondOfMinute() {
-    return secondOfMinute;
-  }
-
-  public void setSecondOfMinute(Integer secondOfMinute) {
-    this.secondOfMinute = secondOfMinute;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public TimeOfDay hourOfDay(Integer hourOfDay) {
+        this.hourOfDay = hourOfDay;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get hourOfDay
+     *
+     * @return hourOfDay
+     **/
+    @ApiModelProperty(value = "")
+    public Integer getHourOfDay() {
+        return hourOfDay;
     }
-    TimeOfDay timeOfDay = (TimeOfDay) o;
-    return Objects.equals(this.hourOfDay, timeOfDay.hourOfDay) &&
-        Objects.equals(this.minuteOfHour, timeOfDay.minuteOfHour) &&
-        Objects.equals(this.secondOfMinute, timeOfDay.secondOfMinute);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(hourOfDay, minuteOfHour, secondOfMinute);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class TimeOfDay {\n");
-    
-    sb.append("    hourOfDay: ").append(toIndentedString(hourOfDay)).append("\n");
-    sb.append("    minuteOfHour: ").append(toIndentedString(minuteOfHour)).append("\n");
-    sb.append("    secondOfMinute: ").append(toIndentedString(secondOfMinute)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setHourOfDay(Integer hourOfDay) {
+        this.hourOfDay = hourOfDay;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public TimeOfDay minuteOfHour(Integer minuteOfHour) {
+        this.minuteOfHour = minuteOfHour;
+        return this;
+    }
+
+    /**
+     * Get minuteOfHour
+     *
+     * @return minuteOfHour
+     **/
+    @ApiModelProperty(value = "")
+    public Integer getMinuteOfHour() {
+        return minuteOfHour;
+    }
+
+    public void setMinuteOfHour(Integer minuteOfHour) {
+        this.minuteOfHour = minuteOfHour;
+    }
+
+    public TimeOfDay secondOfMinute(Integer secondOfMinute) {
+        this.secondOfMinute = secondOfMinute;
+        return this;
+    }
+
+    /**
+     * Get secondOfMinute
+     *
+     * @return secondOfMinute
+     **/
+    @ApiModelProperty(value = "")
+    public Integer getSecondOfMinute() {
+        return secondOfMinute;
+    }
+
+    public void setSecondOfMinute(Integer secondOfMinute) {
+        this.secondOfMinute = secondOfMinute;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TimeOfDay timeOfDay = (TimeOfDay) o;
+        return Objects.equals(this.hourOfDay, timeOfDay.hourOfDay) &&
+                Objects.equals(this.minuteOfHour, timeOfDay.minuteOfHour) &&
+                Objects.equals(this.secondOfMinute, timeOfDay.secondOfMinute);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hourOfDay, minuteOfHour, secondOfMinute);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class TimeOfDay {\n");
+
+        sb.append("    hourOfDay: ").append(toIndentedString(hourOfDay)).append("\n");
+        sb.append("    minuteOfHour: ").append(toIndentedString(minuteOfHour)).append("\n");
+        sb.append("    secondOfMinute: ").append(toIndentedString(secondOfMinute)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

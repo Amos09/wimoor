@@ -1,26 +1,27 @@
 package com.wimoor.amazon.adv.common.pojo;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="t_exchangerate")
-public class ExchangeRate  implements Serializable{
+@Table(name = "t_exchangerate")
+public class ExchangeRate implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8607931287118935365L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 8607931287118935365L;
 
-	@Id
+    @Id
     @Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name")
@@ -34,7 +35,7 @@ public class ExchangeRate  implements Serializable{
 
     @Column(name = "type")
     private String type;
-    
+
     @Column(name = "utctime")
     private Date utctime;
 

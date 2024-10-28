@@ -1,6 +1,6 @@
 package com.wimoor.admin.pojo.entity;
 
- 
+
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,9 +11,9 @@ import lombok.EqualsAndHashCode;
 public class SysDict extends BaseEntity {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 487346522891840745L;
+     *
+     */
+    private static final long serialVersionUID = 487346522891840745L;
 
     private String code;
 
@@ -21,6 +21,6 @@ public class SysDict extends BaseEntity {
 
     private Integer status;
 
-    private  String  remark;
+    private String remark;
 
 }

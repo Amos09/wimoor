@@ -1,11 +1,10 @@
 package com.amazon.spapi.SellingPartnerAPIAA;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 /**
  * LWAAuthorizationCredentials
@@ -13,6 +12,7 @@ import java.util.HashSet;
 @Data
 @Builder
 public class LWAAuthorizationCredentials {
+
     /**
      * LWA Client Id
      */

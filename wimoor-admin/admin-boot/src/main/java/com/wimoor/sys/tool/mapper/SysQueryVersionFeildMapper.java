@@ -1,13 +1,12 @@
 package com.wimoor.sys.tool.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wimoor.sys.tool.pojo.entity.SysQueryVersionFeild;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author wimoor team

@@ -1,6 +1,7 @@
 package com.wimoor.amazon.finances.service;
 
 public interface IAmzSettlementSKUShareService {
-	  void  shareFee(String settlementid);
- 
+
+    void shareFee(String settlementid);
+
 }

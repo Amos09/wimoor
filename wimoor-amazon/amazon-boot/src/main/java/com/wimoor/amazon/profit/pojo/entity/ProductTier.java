@@ -1,53 +1,52 @@
 package com.wimoor.amazon.profit.pojo.entity;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import lombok.Data;
- 
+
 
 @Data
-@TableName("t_producttier")  
-@ApiModel(value="ProductTier对象", description="产品尺寸")
-public class ProductTier implements Serializable{
-	/**
-	 * 
-	 */
-	@TableField(exist=false)
-	private static final long serialVersionUID = -2427268901117385097L;
+@TableName("t_producttier")
+@ApiModel(value = "ProductTier对象", description = "产品尺寸")
+public class ProductTier implements Serializable {
 
-    @TableId(value= "id")
+    /**
+     *
+     */
+    @TableField(exist = false)
+    private static final long serialVersionUID = -2427268901117385097L;
+
+    @TableId(value = "id")
     private String id;
 
-	@TableField(value= "name")
+    @TableField(value = "name")
     private String name;
 
-	@TableField(value= "isStandard")
+    @TableField(value = "isStandard")
     private Boolean isstandard;
 
-	@TableField(value= "country")
+    @TableField(value = "country")
     private String country;
-    
-	@TableField(value= "box_weight")
+
+    @TableField(value = "box_weight")
     private BigDecimal boxWeight;
-	
-	@TableField(value= "amz_name")
+
+    @TableField(value = "amz_name")
     private String amzName;
 
     public String getAmzName() {
-		return amzName;
-	}
+        return amzName;
+    }
 
-	public void setAmzName(String amzName) {
-		this.amzName = amzName;
-	}
+    public void setAmzName(String amzName) {
+        this.amzName = amzName;
+    }
 
-	public String getId() {
+    public String getId() {
         return id;
     }
 
@@ -79,12 +78,12 @@ public class ProductTier implements Serializable{
         this.country = country == null ? null : country.trim();
     }
 
-	public BigDecimal getBoxWeight() {
-		return boxWeight;
-	}
+    public BigDecimal getBoxWeight() {
+        return boxWeight;
+    }
 
-	public void setBoxWeight(BigDecimal boxWeight) {
-		this.boxWeight = boxWeight;
-	}
-    
+    public void setBoxWeight(BigDecimal boxWeight) {
+        this.boxWeight = boxWeight;
+    }
+
 }

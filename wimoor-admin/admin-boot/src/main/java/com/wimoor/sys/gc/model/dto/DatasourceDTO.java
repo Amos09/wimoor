@@ -1,13 +1,12 @@
 package com.wimoor.sys.gc.model.dto;
 
+import com.wimoor.sys.gc.model.core.BaseDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
-
-import com.wimoor.sys.gc.model.core.BaseDto;
 
 
 /**
@@ -24,19 +23,19 @@ public class DatasourceDTO extends BaseDto {
     private String dbTitle;
 
     @ApiModelProperty(value = "db 库名", position = 1)
-    @Length(min=0, max=64,message = "db 库名 必须>=0 和 <=64位")
+    @Length(min = 0, max = 64, message = "db 库名 必须>=0 和 <=64位")
     private String dbName;
 
     @ApiModelProperty(value = "db 连接地址", position = 2)
-    @Length(min=0, max=128,message = "db 连接地址 必须>=0 和 <=128位")
+    @Length(min = 0, max = 128, message = "db 连接地址 必须>=0 和 <=128位")
     private String dbUrl;
 
     @ApiModelProperty(value = "db 账号", position = 3)
-    @Length(min=0, max=32,message = "db 账号 必须>=0 和 <=32位")
+    @Length(min = 0, max = 32, message = "db 账号 必须>=0 和 <=32位")
     private String dbUsername;
 
     @ApiModelProperty(value = "db 密码", position = 4)
-    @Length(min=0, max=32,message = "db 密码 必须>=0 和 <=32位")
+    @Length(min = 0, max = 32, message = "db 密码 必须>=0 和 <=32位")
     private String dbPassword;
 
     @ApiModelProperty(value = "作者", position = 5)

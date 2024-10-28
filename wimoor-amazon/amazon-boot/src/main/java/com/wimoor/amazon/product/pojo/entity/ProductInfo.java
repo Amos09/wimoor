@@ -1,15 +1,14 @@
 package com.wimoor.amazon.product.pojo.entity;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.amazon.common.pojo.entity.BaseEntity;
-import java.time.LocalDateTime;
-import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -24,10 +23,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_product_info")
-@ApiModel(value="ProductInfo对象", description="产品信息")
+@ApiModel(value = "ProductInfo对象", description = "产品信息")
 public class ProductInfo extends BaseEntity {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "唯一码asin")
     @TableField("asin")
@@ -102,7 +101,7 @@ public class ProductInfo extends BaseEntity {
 
     @ApiModelProperty(value = "amz创建时间")
     private Date createdate;
-    
+
     @ApiModelProperty(value = "授权ID")
     @TableField("amazonAuthId")
     private BigInteger amazonAuthId;
@@ -113,11 +112,11 @@ public class ProductInfo extends BaseEntity {
     @ApiModelProperty(value = "是否轻小")
     @TableField("inSnl")
     private Boolean inSnl;
- 
+
     @ApiModelProperty(value = "隐藏")
     @TableField("disable")
     private Boolean disable;
-    
+
     @ApiModelProperty(value = "FNSKU")
     @TableField("fnsku")
     private String fnsku;
@@ -125,18 +124,17 @@ public class ProductInfo extends BaseEntity {
     @ApiModelProperty(value = "Condition【new,old]等")
     @TableField("pcondition")
     private String pcondition;
-    
-    
+
+
     @ApiModelProperty(value = "更新时间")
     @TableField("refreshtime")
     private LocalDateTime refreshtime;
-    
+
     /**
-     * BUYABLE	清单项目可以由购物者购买。此状态不适用于供应商列表。
-     * DISCOVERABLE	商品信息对购物者可见。
+     * BUYABLE	清单项目可以由购物者购买。此状态不适用于供应商列表。 DISCOVERABLE	商品信息对购物者可见。
      */
     @ApiModelProperty(value = "更新时间")
     @TableField("status")
     private String status;
-    
+
 }

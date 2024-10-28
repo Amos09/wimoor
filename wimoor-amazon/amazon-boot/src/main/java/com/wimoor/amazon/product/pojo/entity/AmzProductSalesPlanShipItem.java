@@ -1,19 +1,17 @@
 package com.wimoor.amazon.product.pojo.entity;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.amazon.common.pojo.entity.BaseEntity;
-
 import io.swagger.annotations.ApiModel;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -22,10 +20,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_product_sales_plan_ship_item")
-@ApiModel(value="AmzProductSalesPlanShipItem对象", description="")
-public class AmzProductSalesPlanShipItem extends  BaseEntity {
+@ApiModel(value = "AmzProductSalesPlanShipItem对象", description = "")
+public class AmzProductSalesPlanShipItem extends BaseEntity {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String sku;
 
@@ -46,7 +44,7 @@ public class AmzProductSalesPlanShipItem extends  BaseEntity {
     private BigInteger transtype;
 
     private String batchnumber;
-    
+
     private Integer amount;
 
     private Integer aftersalesday;
@@ -54,7 +52,7 @@ public class AmzProductSalesPlanShipItem extends  BaseEntity {
     private LocalDateTime opttime;
 
     private BigInteger operator;
-    
-    @TableField(exist=false)
+
+    @TableField(exist = false)
     private Integer subnum;
 }

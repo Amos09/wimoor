@@ -7,23 +7,23 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value="ShipInboundShipmenSummaryDTO对象", description="批次成本")
-public class ShipInboundItemQueryDTO extends BasePageQuery{
+@ApiModel(value = "ShipInboundShipmenSummaryDTO对象", description = "批次成本")
+public class ShipInboundItemQueryDTO extends BasePageQuery {
 
-	private String fromDate;
-	
-	private String toDate;
-	
-	private String search;
-	
-	private String searchType;
-	
-	private String status;
-	
-	private String groupid;
-	
-	private String marketplaceid;
-	
-	private String owner;
-	
+    private String fromDate;
+
+    private String toDate;
+
+    private String search;
+
+    private String searchType;
+
+    private String status;
+
+    private String groupid;
+
+    private String marketplaceid;
+
+    private String owner;
+
 }

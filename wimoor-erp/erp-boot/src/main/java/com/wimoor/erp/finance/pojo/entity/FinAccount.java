@@ -1,53 +1,51 @@
 package com.wimoor.erp.finance.pojo.entity;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Map;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.wimoor.erp.common.pojo.entity.BaseEntity;
-
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Map;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("t_erp_fin_account")
-public class FinAccount extends BaseEntity{
+public class FinAccount extends BaseEntity {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 124664298510526918L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 124664298510526918L;
 
-	@TableField(value="shopid")
+    @TableField(value = "shopid")
     private String shopid;
 
-	@TableField(value="createdate")
+    @TableField(value = "createdate")
     private Date createdate;
-	
-	@TableField(value="balance")
+
+    @TableField(value = "balance")
     private BigDecimal balance;
-	
-	@TableField(value="paymeth")
+
+    @TableField(value = "paymeth")
     private Integer paymeth;
-	
-	@TableField(exist=false)
+
+    @TableField(exist = false)
     private String paymethName;
-	
-	@TableField(value="isdefault")
+
+    @TableField(value = "isdefault")
     private Boolean isdefault;
-	
-	@TableField(value="isdelete")
+
+    @TableField(value = "isdelete")
     private Boolean isdelete;
-	
-	@TableField(value="name")
+
+    @TableField(value = "name")
     private String name;
-	
-	@TableField(exist=false)
+
+    @TableField(exist = false)
     private Boolean isautopay;
-     
-	@TableField(exist=false)
-    private Map<String,BigDecimal> projectMap;
+
+    @TableField(exist = false)
+    private Map<String, BigDecimal> projectMap;
 }

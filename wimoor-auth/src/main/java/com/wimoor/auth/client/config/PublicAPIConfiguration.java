@@ -8,10 +8,11 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class PublicAPIConfiguration {
+
     @LoadBalanced
-    @Bean(value="restTemplateApi")
+    @Bean(value = "restTemplateApi")
     RestTemplate restTemplateApi() {
-    	HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
+        HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
         httpRequestFactory.setConnectionRequestTimeout(6000);
         httpRequestFactory.setConnectTimeout(60000);
         httpRequestFactory.setReadTimeout(60000);

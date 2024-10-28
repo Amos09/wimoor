@@ -13,16 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The Response  for the UnlinkCarrierAccountResponse operation.
@@ -30,66 +24,67 @@ import java.io.IOException;
 @ApiModel(description = "The Response  for the UnlinkCarrierAccountResponse operation.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class UnlinkCarrierAccountResponse {
-  @SerializedName("isUnlinked")
-  private Boolean isUnlinked = null;
 
-  public UnlinkCarrierAccountResponse isUnlinked(Boolean isUnlinked) {
-    this.isUnlinked = isUnlinked;
-    return this;
-  }
+    @SerializedName("isUnlinked")
+    private Boolean isUnlinked = null;
 
-   /**
-   * Is Carrier unlinked from Merchant
-   * @return isUnlinked
-  **/
-  @ApiModelProperty(value = "Is Carrier unlinked from Merchant")
-  public Boolean isIsUnlinked() {
-    return isUnlinked;
-  }
-
-  public void setIsUnlinked(Boolean isUnlinked) {
-    this.isUnlinked = isUnlinked;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public UnlinkCarrierAccountResponse isUnlinked(Boolean isUnlinked) {
+        this.isUnlinked = isUnlinked;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Is Carrier unlinked from Merchant
+     *
+     * @return isUnlinked
+     **/
+    @ApiModelProperty(value = "Is Carrier unlinked from Merchant")
+    public Boolean isIsUnlinked() {
+        return isUnlinked;
     }
-    UnlinkCarrierAccountResponse unlinkCarrierAccountResponse = (UnlinkCarrierAccountResponse) o;
-    return Objects.equals(this.isUnlinked, unlinkCarrierAccountResponse.isUnlinked);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(isUnlinked);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class UnlinkCarrierAccountResponse {\n");
-    
-    sb.append("    isUnlinked: ").append(toIndentedString(isUnlinked)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setIsUnlinked(Boolean isUnlinked) {
+        this.isUnlinked = isUnlinked;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UnlinkCarrierAccountResponse unlinkCarrierAccountResponse = (UnlinkCarrierAccountResponse) o;
+        return Objects.equals(this.isUnlinked, unlinkCarrierAccountResponse.isUnlinked);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isUnlinked);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class UnlinkCarrierAccountResponse {\n");
+
+        sb.append("    isUnlinked: ").append(toIndentedString(isUnlinked)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

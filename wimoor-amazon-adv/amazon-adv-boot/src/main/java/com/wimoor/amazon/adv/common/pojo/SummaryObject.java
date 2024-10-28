@@ -2,10 +2,11 @@ package com.wimoor.amazon.adv.common.pojo;
 
 import java.math.BigDecimal;
 
-public class SummaryObject{
-	private String asin;
-	
-	private Integer clicks;
+public class SummaryObject {
+
+    private String asin;
+
+    private Integer clicks;
 
     private Integer impressions;
 
@@ -16,143 +17,165 @@ public class SummaryObject{
     private BigDecimal spend;
 
     private BigDecimal cpc;
-	
+
     private BigDecimal totalsales;
-	
-	private Integer orders;
- 
+
+    private Integer orders;
+
     private Double acos;
-	
+
     private Double roas;
-	
+
     private Double spc;
-	
-	private Integer units;
-	
-	private Integer count;
-	
-	public Integer getCount() {
-		return count;
-	}
 
-	public void setCount(Integer count) {
-		this.count = count;
-	}
+    private Integer units;
 
-	public String getAsin() {
-			return asin;
-		}
+    private Integer count;
 
-		public void setAsin(String asin) {
-			this.asin = asin;
-		}
-		
-	public Integer getClicks() {
-		if(clicks==null)return 0;
-		return clicks;
-	}
+    public Integer getCount() {
+        return count;
+    }
 
-	public void setClicks(Integer clicks) {
-		this.clicks = clicks;
-	}
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
-	public Integer getImpressions() {
-		if(impressions==null)return 0;
-		return impressions;
-	}
+    public String getAsin() {
+        return asin;
+    }
 
-	public void setImpressions(Integer impressions) {
-		this.impressions = impressions;
-	}
+    public void setAsin(String asin) {
+        this.asin = asin;
+    }
 
-	public Double getCtr() {
-		if(ctr==null)return 0.0;
-		return ctr;
-	}
+    public Integer getClicks() {
+        if (clicks == null) {
+            return 0;
+        }
+        return clicks;
+    }
 
-	public void setCtr(Double ctr) {
-		this.ctr = ctr;
-	}
+    public void setClicks(Integer clicks) {
+        this.clicks = clicks;
+    }
 
-	public String getCurrency() {
-		return currency;
-	}
+    public Integer getImpressions() {
+        if (impressions == null) {
+            return 0;
+        }
+        return impressions;
+    }
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
+    public void setImpressions(Integer impressions) {
+        this.impressions = impressions;
+    }
 
-	public BigDecimal getSpend() {
-		if(spend==null)return new BigDecimal("0");
-		return spend;
-	}
+    public Double getCtr() {
+        if (ctr == null) {
+            return 0.0;
+        }
+        return ctr;
+    }
 
-	public void setSpend(BigDecimal spend) {
-		this.spend = spend;
-	}
+    public void setCtr(Double ctr) {
+        this.ctr = ctr;
+    }
 
-	public BigDecimal getCpc() {
-		if(cpc==null)return new BigDecimal("0");
-		return cpc;
-	}
+    public String getCurrency() {
+        return currency;
+    }
 
-	public void setCpc(BigDecimal cpc) {
-		this.cpc = cpc;
-	}
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
-	public BigDecimal getTotalsales() {
-		if(totalsales==null)return new BigDecimal("0");
-		return totalsales;
-	}
+    public BigDecimal getSpend() {
+        if (spend == null) {
+            return new BigDecimal("0");
+        }
+        return spend;
+    }
 
-	public void setTotalsales(BigDecimal totalsales) {
-		this.totalsales = totalsales;
-	}
+    public void setSpend(BigDecimal spend) {
+        this.spend = spend;
+    }
 
-	public Integer getOrders() {
-		if(orders==null)return 0;
-		return orders;
-	}
+    public BigDecimal getCpc() {
+        if (cpc == null) {
+            return new BigDecimal("0");
+        }
+        return cpc;
+    }
 
-	public void setOrders(Integer orders) {
-		this.orders = orders;
-	}
+    public void setCpc(BigDecimal cpc) {
+        this.cpc = cpc;
+    }
 
-	public Double getAcos() {
-		if(acos==null)return 0.0;
-		return acos;
-	}
+    public BigDecimal getTotalsales() {
+        if (totalsales == null) {
+            return new BigDecimal("0");
+        }
+        return totalsales;
+    }
 
-	public void setAcos(Double acos) {
-		this.acos = acos;
-	}
+    public void setTotalsales(BigDecimal totalsales) {
+        this.totalsales = totalsales;
+    }
 
-	public Double getRoas() {
-		if(roas==null)return 0.0;
-		return roas;
-	}
+    public Integer getOrders() {
+        if (orders == null) {
+            return 0;
+        }
+        return orders;
+    }
 
-	public void setRoas(Double roas) {
-		this.roas = roas;
-	}
+    public void setOrders(Integer orders) {
+        this.orders = orders;
+    }
 
-	public Double getSpc() {
-		if(spc==null)return 0.0;
-		return spc;
-	}
+    public Double getAcos() {
+        if (acos == null) {
+            return 0.0;
+        }
+        return acos;
+    }
 
-	public void setSpc(Double spc) {
-		this.spc = spc;
-	}
+    public void setAcos(Double acos) {
+        this.acos = acos;
+    }
 
-	public Integer getUnits() {
-		if(units==null)return 0;
-		return units;
-	}
+    public Double getRoas() {
+        if (roas == null) {
+            return 0.0;
+        }
+        return roas;
+    }
 
-	public void setUnits(Integer units) {
-		this.units = units;
-	}
-	
-	
+    public void setRoas(Double roas) {
+        this.roas = roas;
+    }
+
+    public Double getSpc() {
+        if (spc == null) {
+            return 0.0;
+        }
+        return spc;
+    }
+
+    public void setSpc(Double spc) {
+        this.spc = spc;
+    }
+
+    public Integer getUnits() {
+        if (units == null) {
+            return 0;
+        }
+        return units;
+    }
+
+    public void setUnits(Integer units) {
+        this.units = units;
+    }
+
+
 }

@@ -1,14 +1,16 @@
 package com.amazon.spapi.documents;
 
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 class UploadSpecificationTest {
+
     @Test
     public void testBuilderConstructorMissingContentType() throws Exception {
         String contentType = null;

@@ -15,13 +15,17 @@ import com.wimoor.amazon.orders.pojo.entity.AmzOrderMain;
  * @author wimoor team
  * @since 2022-05-14
  */
-public interface IAmzOrderItemService extends IService<AmzOrderItem>,IRunAmazonService {
+public interface IAmzOrderItemService extends IService<AmzOrderItem>, IRunAmazonService {
 
- 
-	public void ordersItem(AmzOrderMain order,String token);
-	public void handlerOrderItemListResponse( AmazonAuthority auth,
-			AmzOrderMain order, OrderItemsList items);
-	public void removeDataArchive();
-	public void runTask() ;
-	public void stopTask() ;
+
+    public void ordersItem(AmzOrderMain order, String token);
+
+    public void handlerOrderItemListResponse(AmazonAuthority auth,
+            AmzOrderMain order, OrderItemsList items);
+
+    public void removeDataArchive();
+
+    public void runTask();
+
+    public void stopTask();
 }

@@ -6,22 +6,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_adv_warning_indicator")
+@Table(name = "t_amz_adv_warning_indicator")
 public class AmzAdvWarningIndicator {
-	@Id
-	@Column(name="shopid")
+
+    @Id
+    @Column(name = "shopid")
     private String shopid;
 
-	@Column(name="impressions")
+    @Column(name = "impressions")
     private Float impressions;
 
-	@Column(name="clicks")
+    @Column(name = "clicks")
     private Float clicks;
 
-	@Column(name="cr")
+    @Column(name = "cr")
     private Float cr;
 
-	@Column(name="acos")
+    @Column(name = "acos")
     private Float acos;
 
     public String getShopid() {

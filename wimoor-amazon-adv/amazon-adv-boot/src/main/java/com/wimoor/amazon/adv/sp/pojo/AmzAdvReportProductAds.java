@@ -1,53 +1,52 @@
 package com.wimoor.amazon.adv.sp.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 
 @Entity
-@Table(name="t_amz_adv_rpt2_sp_productads")
-public class AmzAdvReportProductAds  {
-	@Id
-	@Column(name="adId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+@Table(name = "t_amz_adv_rpt2_sp_productads")
+public class AmzAdvReportProductAds {
+
+    @Id
+    @Column(name = "adId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adid;
 
-	@Column(name="profileid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Column(name = "profileid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger profileid;
-	
-	@Id
-	@Column(name="bydate")
+
+    @Id
+    @Column(name = "bydate")
     private Date bydate;
-	
-	@Column(name="campaignId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Column(name = "campaignId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger campaignid;
 
-	@Column(name="adGroupId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
-	private BigInteger adgroupid;
+    @Column(name = "adGroupId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
+    private BigInteger adgroupid;
 
-	@Column(name="impressions")
+    @Column(name = "impressions")
     private Integer impressions;
 
-	@Column(name="clicks")
+    @Column(name = "clicks")
     private Integer clicks;
 
-	@Column(name="cost")
+    @Column(name = "cost")
     private BigDecimal cost;
 
-	@Column(name="opttime")
-    private Date opttime; 
+    @Column(name = "opttime")
+    private Date opttime;
 
 
     public BigInteger getAdid() {
@@ -65,7 +64,7 @@ public class AmzAdvReportProductAds  {
     public void setProfileid(BigInteger profileid) {
         this.profileid = profileid;
     }
-    
+
     public Date getBydate() {
         return bydate;
     }
@@ -73,7 +72,7 @@ public class AmzAdvReportProductAds  {
     public void setBydate(Date bydate) {
         this.bydate = bydate;
     }
-	
+
     public BigInteger getCampaignid() {
         return campaignid;
     }
@@ -82,7 +81,7 @@ public class AmzAdvReportProductAds  {
         this.campaignid = campaignid;
     }
 
- 
+
     public BigInteger getAdgroupid() {
         return adgroupid;
     }
@@ -91,7 +90,7 @@ public class AmzAdvReportProductAds  {
         this.adgroupid = adgroupid;
     }
 
-  
+
     public Integer getImpressions() {
         return impressions;
     }
@@ -116,15 +115,13 @@ public class AmzAdvReportProductAds  {
         this.cost = cost;
     }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
 
- 
- 
- 
+
 }

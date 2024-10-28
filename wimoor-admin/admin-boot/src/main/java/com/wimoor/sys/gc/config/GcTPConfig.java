@@ -46,12 +46,8 @@ public class GcTPConfig {
     /**
      * 代码生成 路径
      * <p>
-     * {projectName}   项目名称
-     * {packFilePath}  对应包的文件路径
-     * {rootModule}    模快名（区分管理端/用户端）
-     * {moduleName}    模板名 (当前模块- 用户模块/ 商品模块 / 会员模块)
-     * {tableNameUp}     对应数据库表名的 大写开头的驼峰模式
-     * {tableNameLower}  对应数据库表名的 小写开头的驼峰模式
+     * {projectName}   项目名称 {packFilePath}  对应包的文件路径 {rootModule}    模快名（区分管理端/用户端） {moduleName}    模板名 (当前模块- 用户模块/
+     * 商品模块 / 会员模块) {tableNameUp}     对应数据库表名的 大写开头的驼峰模式 {tableNameLower}  对应数据库表名的 小写开头的驼峰模式
      * </P>
      */
     // java 文件默认生成到 指定包录 + 模块路径 + 下方指定的路径下
@@ -70,10 +66,14 @@ public class GcTPConfig {
     // 以下默认生成到 resources 目录
     public final static String P_MAPPER_XML = BASE_PATH_XML + "/mapper/{moduleName}/{tableNameUp}Mapper.xml";
     // vue
-    public final static String P_VUE = BASE_PATH_VUE + "/templates/vue/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}.vue";
-    public final static String P_VUE_ADD = BASE_PATH_VUE + "/templates/vue/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}Add.vue";
-    public final static String P_VUE_UPD = BASE_PATH_VUE + "/templates/vue/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}Upd.vue";
-    public final static String P_VUE_PID = BASE_PATH_VUE + "/templates/vue/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}Pid.vue";
+    public final static String P_VUE =
+            BASE_PATH_VUE + "/templates/vue/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}.vue";
+    public final static String P_VUE_ADD =
+            BASE_PATH_VUE + "/templates/vue/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}Add.vue";
+    public final static String P_VUE_UPD =
+            BASE_PATH_VUE + "/templates/vue/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}Upd.vue";
+    public final static String P_VUE_PID =
+            BASE_PATH_VUE + "/templates/vue/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}Pid.vue";
     // 预览菜单路径(参考)
     public final static String P_VUE_MEUN = "/views/{rootModule}/{moduleName}/{tableNameLower}/{tableNameLower}.vue";
     // 代码生成下载的文件夹名
@@ -81,9 +81,7 @@ public class GcTPConfig {
 
 
     /**
-     * 预览文件配置
-     * - 预览文件生成路径
-     * - 预览文件生成后缀格式
+     * 预览文件配置 - 预览文件生成路径 - 预览文件生成后缀格式
      */
     public final static String PREVIEW_FILE_PATH = "File/";
     public final static String PREVIEW_SUFFIX = ".txt";

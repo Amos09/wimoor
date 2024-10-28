@@ -1,9 +1,9 @@
 package com.wimoor.admin.service.impl;
 
-import com.wimoor.admin.pojo.entity.SysMenuFavorite;
-import com.wimoor.admin.mapper.SysMenuFavoriteMapper;
-import com.wimoor.admin.service.ISysMenuFavoriteService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wimoor.admin.mapper.SysMenuFavoriteMapper;
+import com.wimoor.admin.pojo.entity.SysMenuFavorite;
+import com.wimoor.admin.service.ISysMenuFavoriteService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @since 2022-09-26
  */
 @Service
-public class SysMenuFavoriteServiceImpl extends ServiceImpl<SysMenuFavoriteMapper, SysMenuFavorite> implements ISysMenuFavoriteService {
+public class SysMenuFavoriteServiceImpl extends ServiceImpl<SysMenuFavoriteMapper, SysMenuFavorite> implements
+        ISysMenuFavoriteService {
 
 }

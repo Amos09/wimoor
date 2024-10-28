@@ -1,21 +1,20 @@
 package com.wimoor.amazon.finances.pojo.entity;
 
-import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -24,10 +23,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_settlement_summary_sku_month")
-@ApiModel(value="SettlementSummarySkuMonth对象", description="")
+@ApiModel(value = "SettlementSummarySkuMonth对象", description = "")
 public class AmzSettlementSummarySkuMonth implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String id;
 
@@ -37,11 +36,11 @@ public class AmzSettlementSummarySkuMonth implements Serializable {
     private String sku;
 
     private String asin;
-    
+
     private String groupid;
-    
+
     private String parentasin;
-    
+
     private String categoryid;
 
     private String msku;
@@ -98,57 +97,57 @@ public class AmzSettlementSummarySkuMonth implements Serializable {
     private BigDecimal shareCouponRedemptionFee;
 
     private BigDecimal shareReserveFee;
-    
-	@TableField(value="share_disposal_fee")
-	private BigDecimal shareDisposalFee;
+
+    @TableField(value = "share_disposal_fee")
+    private BigDecimal shareDisposalFee;
 
     private BigDecimal shareShopOtherFee;
 
-	@TableField(value="share_reimbursement_fee")
-	private BigDecimal shareReimbursementFee;
-	
-	@TableField(value="local_price")
+    @TableField(value = "share_reimbursement_fee")
+    private BigDecimal shareReimbursementFee;
+
+    @TableField(value = "local_price")
     private BigDecimal localPrice;
 
-	@TableField(value="local_unit_price")
+    @TableField(value = "local_unit_price")
     private BigDecimal localUnitPrice;
-	
-	@TableField(value="local_other_cost")
+
+    @TableField(value = "local_other_cost")
     private BigDecimal localOtherCost;
-    
-	@TableField(value="local_return_tax")
+
+    @TableField(value = "local_return_tax")
     private BigDecimal localReturnTax;
 
-	@TableField(value="local_fifo_shipment_fee")
+    @TableField(value = "local_fifo_shipment_fee")
     private BigDecimal localFifoShipmentFee;
-	
-	@TableField(value="local_fifo_cost")
+
+    @TableField(value = "local_fifo_cost")
     private BigDecimal localFifoCost;
-	
-	
-	@TableField(value="profit_local_shipmentfee")
-	private BigDecimal profitLocalShipmentfee;
-	
-	@TableField(value="profit_vat")
-	private BigDecimal profitVat;
-	
-	@TableField(value="profit_companytax")
-	private BigDecimal profitCompanytax;
-	
-	@TableField(value="profit_customstax")
-	private BigDecimal profitCustomstax;
-	
-	@TableField(value="profit_exchangelost")
-	private BigDecimal profitExchangelost;
-	
-	@TableField(value="profit_marketfee")
-	private BigDecimal profitMarketfee;
-	
-	@TableField(value="profit_lostrate")
-	private BigDecimal profitLostrate;
- 
-	@TableField(value="profit_otherfee")
-	private BigDecimal profitOtherfee;
+
+
+    @TableField(value = "profit_local_shipmentfee")
+    private BigDecimal profitLocalShipmentfee;
+
+    @TableField(value = "profit_vat")
+    private BigDecimal profitVat;
+
+    @TableField(value = "profit_companytax")
+    private BigDecimal profitCompanytax;
+
+    @TableField(value = "profit_customstax")
+    private BigDecimal profitCustomstax;
+
+    @TableField(value = "profit_exchangelost")
+    private BigDecimal profitExchangelost;
+
+    @TableField(value = "profit_marketfee")
+    private BigDecimal profitMarketfee;
+
+    @TableField(value = "profit_lostrate")
+    private BigDecimal profitLostrate;
+
+    @TableField(value = "profit_otherfee")
+    private BigDecimal profitOtherfee;
 
     private BigDecimal localShipmentItemFee;
 
@@ -157,20 +156,20 @@ public class AmzSettlementSummarySkuMonth implements Serializable {
     private BigDecimal rptLongStorageFee;
 
     private BigDecimal rptAdvSpendFee;
-    
+
     private BigDecimal rptAdvSales;
-    
+
     private Integer rptAdvUnits;
-    
+
     private BigDecimal rptDisposalFee;
 
     private Integer rptDisposalUnits;
-    
+
     private BigDecimal rptReimbursementsFee;
-    
+
     private BigDecimal finSumFee;
-    
-    private BigDecimal profit ;
-    @TableField(exist=false)
-    private List<Map<String,Object>> finDataList;
+
+    private BigDecimal profit;
+    @TableField(exist = false)
+    private List<Map<String, Object>> finDataList;
 }

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @SuppressWarnings("all")
-public interface Base{
+public interface Base {
 
     // 【固定值】用于代码生成默认使用的code值
     @Getter

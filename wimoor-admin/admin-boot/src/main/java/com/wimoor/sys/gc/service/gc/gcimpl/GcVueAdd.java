@@ -1,17 +1,14 @@
 package com.wimoor.sys.gc.service.gc.gcimpl;
 
- 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
 
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.model.po.DbFieldPO;
 import com.wimoor.sys.gc.service.gc.GcSevice;
 import com.wimoor.sys.gc.util.GcDataUtil;
 import com.wimoor.sys.gc.util.GcFileUtil;
-
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("all")
 @Component
@@ -27,15 +24,15 @@ public class GcVueAdd extends BaseGcImpl implements GcSevice {
     /**
      * 生成Html-Add 添加页
      *
-     * @param data    数据
+     * @param data           数据
      * @param GenerateConfig 数据
-     * @param path    生成代码路径
+     * @param path           生成代码路径
      * @return void
      * @date 2019/11/20 19:18
      */
     @Override
     public void run(GcConfig gcConfig) {
-          log.info("开始生成: {}", KEY_NAME);
+        log.info("开始生成: {}", KEY_NAME);
         StringBuffer vueAddColumnsDefault = new StringBuffer("");
         StringBuffer vueAddColumns = new StringBuffer("");
         StringBuffer vueAddColumnSlots = new StringBuffer("");

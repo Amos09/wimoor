@@ -1,12 +1,10 @@
 package com.wimoor.sys.gc.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import com.wimoor.sys.gc.model.vo.TableFieldVO;
 import com.wimoor.sys.gc.model.vo.TableVO;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * hql操作@Repository组解放置实现类，引用也使用 DataBaseDaoImpl

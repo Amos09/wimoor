@@ -1,16 +1,16 @@
 package com.wimoor.amazon.orders.pojo.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -19,19 +19,19 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_amz_rpt_orders_fulfilled_shipments_fee")
-@ApiModel(value="AmzRptOrdersFulfilledShipmentsFee对象", description="")
+@ApiModel(value = "AmzRptOrdersFulfilledShipmentsFee对象", description = "")
 public class OrdersFulfilledShipmentsFee implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String amazonauthid;
 
     private String marketplaceid;
 
-      private String amazonOrderId;
+    private String amazonOrderId;
 
     private String shipmentid;
-    
+
     private String itemid;
 
     private String sku;

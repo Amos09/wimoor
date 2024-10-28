@@ -13,60 +13,56 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 /**
  * Indicates the type of tax.
  */
 @JsonAdapter(TaxType.Adapter.class)
 public enum TaxType {
-  
-  GST("GST");
 
-  private String value;
+    GST("GST");
 
-  TaxType(String value) {
-    this.value = value;
-  }
+    private String value;
 
-  public String getValue() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
-
-  public static TaxType fromValue(String text) {
-    for (TaxType b : TaxType.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    TaxType(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<TaxType> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final TaxType enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public TaxType read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return TaxType.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static TaxType fromValue(String text) {
+        for (TaxType b : TaxType.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TaxType> {
+
+        @Override
+        public void write(final JsonWriter jsonWriter, final TaxType enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public TaxType read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return TaxType.fromValue(String.valueOf(value));
+        }
+    }
 }
 

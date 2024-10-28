@@ -7,19 +7,20 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+
 /**
  * 用mybatis-plus根据数据库的表构建项目文件
- * @author admin
  *
+ * @author admin
  */
 public class MysqlGenerator {
- 
- 
-	 public static void autoGenerator(String table,String pkg) {
-		 MysqlGenerator.autoGenerator(table, pkg, "t_");
-	    }
-	 
-    public static void autoGenerator(String table,String pkg,String tablePrefix) {
+
+
+    public static void autoGenerator(String table, String pkg) {
+        MysqlGenerator.autoGenerator(table, pkg, "t_");
+    }
+
+    public static void autoGenerator(String table, String pkg, String tablePrefix) {
 
         AutoGenerator autoGenerator = new AutoGenerator();
 
@@ -68,7 +69,7 @@ public class MysqlGenerator {
 
         //设置数据库类型
         dsc.setDbType(DbType.MYSQL);
-        
+
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
 
         //用户名
@@ -78,8 +79,9 @@ public class MysqlGenerator {
         dsc.setPassword("123456");
 
         //指定数据库
-        dsc.setUrl("jdbc:mysql://192.168.0.252:3306/db_plum?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true");
-        
+        dsc.setUrl(
+                "jdbc:mysql://192.168.0.252:3306/db_plum?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true");
+
         autoGenerator.setDataSource(dsc);
 
         // 策略配置
@@ -115,5 +117,5 @@ public class MysqlGenerator {
         // 执行生成
         autoGenerator.execute();
     }
- 
+
 }

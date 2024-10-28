@@ -1,6 +1,10 @@
 package com.wimoor.amazon.adv.config;
 
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
@@ -8,11 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author xinyi
@@ -55,7 +54,8 @@ public class AsyncPoolConfig implements AsyncConfigurer {
             // 1、打印异常堆栈
             throwable.printStackTrace();
             // 2、日志记录错误信息
-            log.error("AsyncError:{}, Method:{}, Param:{}", throwable.getMessage(), method.getName(), Arrays.asList(objects));
+            log.error("AsyncError:{}, Method:{}, Param:{}", throwable.getMessage(), method.getName(),
+                    Arrays.asList(objects));
             // 3、TODO 发生异常后通知管理人员（邮件，短信）进一步处理
         }
     }

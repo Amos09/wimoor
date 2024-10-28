@@ -2,7 +2,6 @@ package com.wimoor.admin.config;
 
 
 import javax.sql.DataSource;
-
 import org.springframework.boot.autoconfigure.quartz.QuartzDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -33,7 +32,7 @@ public class DataSourceConfig {
     @Bean("quartzDataSource")
     @QuartzDataSource
     @ConfigurationProperties(prefix = QUARTZ_DATASOURCE_PREFIX)
-    public DataSource quartzDataSource(){
-    	  return DataSourceBuilder.create().build();
-     }
+    public DataSource quartzDataSource() {
+        return DataSourceBuilder.create().build();
+    }
 }

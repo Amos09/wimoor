@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -17,15 +17,14 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_erp_material_consumable_safety_stock")
-@ApiModel(value="ErpMaterialConsumableSafetyStock对象", description="")
+@ApiModel(value = "ErpMaterialConsumableSafetyStock对象", description = "")
 public class MaterialConsumableSafetyStock extends ErpBaseEntity {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String shopid;
 
     private Integer amount;
-
 
 
 }

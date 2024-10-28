@@ -1,5 +1,5 @@
 package com.wimoor.sys.gc.constant;
- 
+
 public class BracketConstant {
 
     public final static String LEFT_BRACKET = "(";

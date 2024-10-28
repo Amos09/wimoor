@@ -2,10 +2,11 @@ package com.wimoor.sys.gc.constant;
 
 /**
  * 数字常亮类
+ *
  * @author wangsong
+ * @version 1.0.0
  * @mail 1720696548@qq.com
  * @date 2022/8/22 0022 20:32
- * @version 1.0.0
  */
 public interface NumberConst {
 

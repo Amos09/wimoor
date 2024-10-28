@@ -6,14 +6,14 @@ import com.wimoor.amazon.orders.pojo.vo.AmazonOrdersVo;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
  * @since 2022-08-20
  */
-public interface IReportAmzOrderInvoiceService  {
+public interface IReportAmzOrderInvoiceService {
 
-	IPage<AmazonOrdersVo> selectOrderList(AmazonOrdersDTO condition);
+    IPage<AmazonOrdersVo> selectOrderList(AmazonOrdersDTO condition);
 
 }

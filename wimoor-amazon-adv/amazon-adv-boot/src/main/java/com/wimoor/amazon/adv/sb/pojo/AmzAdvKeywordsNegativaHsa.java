@@ -1,79 +1,78 @@
 package com.wimoor.amazon.adv.sb.pojo;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="t_amz_adv_keywords_negativa_hsa")
+@Table(name = "t_amz_adv_keywords_negativa_hsa")
 public class AmzAdvKeywordsNegativaHsa extends AmzAdvKeywordsNegativaHsaKey {
-	
-	@Column(name="campaignType")
+
+    @Column(name = "campaignType")
     private String campaigntype;
-	
-	@Column(name="keywordText")
+
+    @Column(name = "keywordText")
     private String keywordtext;
 
-	@Column(name="matchType")
+    @Column(name = "matchType")
     private String matchtype;
 
-	@Column(name="state")
+    @Column(name = "state")
     private String state;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
-	
-	@Transient
-	private Date creationDate;
-	
-	@Transient
-	private Date lastUpdatedDate;
-	
-	@Transient
-	private String servingStatus;
 
-	@Transient
+    @Transient
+    private Date creationDate;
+
+    @Transient
+    private Date lastUpdatedDate;
+
+    @Transient
+    private String servingStatus;
+
+    @Transient
     public Date getCreationDate() {
-		return creationDate;
-	}
+        return creationDate;
+    }
 
-	@Transient
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    @Transient
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	@Transient
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    @Transient
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
 
-	@Transient
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
+    @Transient
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
 
-	@Transient
-	public String getServingStatus() {
-		return servingStatus;
-	}
+    @Transient
+    public String getServingStatus() {
+        return servingStatus;
+    }
 
-	@Transient
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    @Transient
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
     public String getCampaigntype() {
-		return campaigntype;
-	}
+        return campaigntype;
+    }
 
-	public void setCampaigntype(String campaigntype) {
-		this.campaigntype = campaigntype;
-	}
+    public void setCampaigntype(String campaigntype) {
+        this.campaigntype = campaigntype;
+    }
 
-	public String getKeywordtext() {
+    public String getKeywordtext() {
         return keywordtext;
     }
 

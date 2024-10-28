@@ -5,7 +5,6 @@ import com.wimoor.admin.pojo.entity.SysDept;
 import com.wimoor.admin.pojo.vo.DeptVO;
 import com.wimoor.common.SelectVO;
 import com.wimoor.common.TreeSelectVO;
-
 import java.util.List;
 
 /**
@@ -15,6 +14,7 @@ import java.util.List;
  * @date 2021-08-22
  */
 public interface ISysDeptService extends IService<SysDept> {
+
     /**
      * 部门表格（Table）层级列表
      *
@@ -47,5 +47,5 @@ public interface ISysDeptService extends IService<SysDept> {
      */
     boolean deleteByIds(String ids);
 
-	List<SelectVO> listSelect();
+    List<SelectVO> listSelect();
 }

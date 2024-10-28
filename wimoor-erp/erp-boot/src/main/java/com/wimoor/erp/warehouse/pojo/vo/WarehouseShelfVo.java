@@ -1,17 +1,15 @@
 package com.wimoor.erp.warehouse.pojo.vo;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wimoor.erp.common.pojo.entity.BaseEntity;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -28,14 +26,14 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_erp_warehouse_shelf")
-@ApiModel(value="WarehouseShelfVo对象", description="仓库货柜")
-public class WarehouseShelfVo  extends BaseEntity{
+@ApiModel(value = "WarehouseShelfVo对象", description = "仓库货柜")
+public class WarehouseShelfVo extends BaseEntity {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "仓库ID")
     private BigInteger addressid;
-    
+
     @ApiModelProperty(value = "仓库名称")
     private String warehousename;
 
@@ -50,7 +48,7 @@ public class WarehouseShelfVo  extends BaseEntity{
 
     @ApiModelProperty(value = "容量使用比例")
     private Float usesize;
-    
+
     @ApiModelProperty(value = "长度(cm)")
     private Float length;
 
@@ -65,7 +63,7 @@ public class WarehouseShelfVo  extends BaseEntity{
 
     @ApiModelProperty(value = "排序即（柜子所在位置）")
     private Integer sort;
-    
+
     @ApiModelProperty(value = "SKU异常数量")
     private Integer expnumber;
 
@@ -86,16 +84,16 @@ public class WarehouseShelfVo  extends BaseEntity{
 
     @ApiModelProperty(value = "操作人ID")
     private BigInteger operator;
-    
+
     @ApiModelProperty(value = "操作人名称")
     private String operatorname;
 
     @ApiModelProperty(value = "创建人ID")
     private BigInteger creator;
-    
+
     @ApiModelProperty(value = "创建人名称")
     private String creatorname;
-    
+
     @ApiModelProperty(value = "操作时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonInclude(value = JsonInclude.Include.NON_NULL)

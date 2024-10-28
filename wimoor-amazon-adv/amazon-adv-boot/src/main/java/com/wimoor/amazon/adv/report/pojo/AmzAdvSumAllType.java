@@ -1,17 +1,18 @@
 package com.wimoor.amazon.adv.report.pojo;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="t_amz_adv_sumalltype")
+@Table(name = "t_amz_adv_sumalltype")
 public class AmzAdvSumAllType extends AmzAdvSumAllTypeKey {
-	@Column(name="quantity")
+
+    @Column(name = "quantity")
     private Integer quantity;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
 
     public Integer getQuantity() {

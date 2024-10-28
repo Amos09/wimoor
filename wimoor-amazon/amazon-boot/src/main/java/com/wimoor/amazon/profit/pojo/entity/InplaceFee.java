@@ -2,24 +2,24 @@ package com.wimoor.amazon.profit.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 @Data
-@TableName("t_inplacefee")  
-@ApiModel(value="t_inplacefee对象", description="")
+@TableName("t_inplacefee")
+@ApiModel(value = "t_inplacefee对象", description = "")
 public class InplaceFee {
-	@TableField(value= "id")
+
+    @TableField(value = "id")
     private String id;
 
-	@TableField(value= "name")
+    @TableField(value = "name")
     private String name;
 
-	@TableField(value= "description")
+    @TableField(value = "description")
     private String description;
-	
-	@TableField(value= "country")
+
+    @TableField(value = "country")
     private String country;
- 
+
 }

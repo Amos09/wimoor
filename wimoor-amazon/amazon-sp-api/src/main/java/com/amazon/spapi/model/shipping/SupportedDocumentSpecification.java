@@ -13,19 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.DocumentFormat;
-import com.amazon.spapi.model.shipping.DocumentSize;
-import com.amazon.spapi.model.shipping.PrintOptionList;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Document specification that is supported for a service offering.
@@ -33,112 +24,115 @@ import java.io.IOException;
 @ApiModel(description = "Document specification that is supported for a service offering.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class SupportedDocumentSpecification {
-  @SerializedName("format")
-  private DocumentFormat format = null;
 
-  @SerializedName("size")
-  private DocumentSize size = null;
+    @SerializedName("format")
+    private DocumentFormat format = null;
 
-  @SerializedName("printOptions")
-  private PrintOptionList printOptions = null;
+    @SerializedName("size")
+    private DocumentSize size = null;
 
-  public SupportedDocumentSpecification format(DocumentFormat format) {
-    this.format = format;
-    return this;
-  }
+    @SerializedName("printOptions")
+    private PrintOptionList printOptions = null;
 
-   /**
-   * Get format
-   * @return format
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public DocumentFormat getFormat() {
-    return format;
-  }
-
-  public void setFormat(DocumentFormat format) {
-    this.format = format;
-  }
-
-  public SupportedDocumentSpecification size(DocumentSize size) {
-    this.size = size;
-    return this;
-  }
-
-   /**
-   * Get size
-   * @return size
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public DocumentSize getSize() {
-    return size;
-  }
-
-  public void setSize(DocumentSize size) {
-    this.size = size;
-  }
-
-  public SupportedDocumentSpecification printOptions(PrintOptionList printOptions) {
-    this.printOptions = printOptions;
-    return this;
-  }
-
-   /**
-   * Get printOptions
-   * @return printOptions
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public PrintOptionList getPrintOptions() {
-    return printOptions;
-  }
-
-  public void setPrintOptions(PrintOptionList printOptions) {
-    this.printOptions = printOptions;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public SupportedDocumentSpecification format(DocumentFormat format) {
+        this.format = format;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get format
+     *
+     * @return format
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public DocumentFormat getFormat() {
+        return format;
     }
-    SupportedDocumentSpecification supportedDocumentSpecification = (SupportedDocumentSpecification) o;
-    return Objects.equals(this.format, supportedDocumentSpecification.format) &&
-        Objects.equals(this.size, supportedDocumentSpecification.size) &&
-        Objects.equals(this.printOptions, supportedDocumentSpecification.printOptions);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(format, size, printOptions);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SupportedDocumentSpecification {\n");
-    
-    sb.append("    format: ").append(toIndentedString(format)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    printOptions: ").append(toIndentedString(printOptions)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setFormat(DocumentFormat format) {
+        this.format = format;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public SupportedDocumentSpecification size(DocumentSize size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return size
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public DocumentSize getSize() {
+        return size;
+    }
+
+    public void setSize(DocumentSize size) {
+        this.size = size;
+    }
+
+    public SupportedDocumentSpecification printOptions(PrintOptionList printOptions) {
+        this.printOptions = printOptions;
+        return this;
+    }
+
+    /**
+     * Get printOptions
+     *
+     * @return printOptions
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public PrintOptionList getPrintOptions() {
+        return printOptions;
+    }
+
+    public void setPrintOptions(PrintOptionList printOptions) {
+        this.printOptions = printOptions;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SupportedDocumentSpecification supportedDocumentSpecification = (SupportedDocumentSpecification) o;
+        return Objects.equals(this.format, supportedDocumentSpecification.format) &&
+                Objects.equals(this.size, supportedDocumentSpecification.size) &&
+                Objects.equals(this.printOptions, supportedDocumentSpecification.printOptions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(format, size, printOptions);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class SupportedDocumentSpecification {\n");
+
+        sb.append("    format: ").append(toIndentedString(format)).append("\n");
+        sb.append("    size: ").append(toIndentedString(size)).append("\n");
+        sb.append("    printOptions: ").append(toIndentedString(printOptions)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

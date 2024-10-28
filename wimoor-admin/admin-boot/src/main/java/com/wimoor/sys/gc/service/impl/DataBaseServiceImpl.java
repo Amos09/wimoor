@@ -1,13 +1,5 @@
 package com.wimoor.sys.gc.service.impl;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.wimoor.sys.gc.config.GenerateProperties;
 import com.wimoor.sys.gc.model.entity.Datasource;
@@ -19,14 +11,22 @@ import com.wimoor.sys.gc.util.Base64Util;
 import com.wimoor.sys.gc.util.JdbcPool;
 import com.wimoor.sys.gc.util.PropUtil;
 import com.wimoor.sys.gc.util.ValidUtil;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * DataBase数据库操作，这里继承 BaseAdminServiceImpl 只是为了使用 mapper.dataBaseDao
  */
 @Service
 @Slf4j
-public class DataBaseServiceImpl   implements DataBaseService {
+public class DataBaseServiceImpl implements DataBaseService {
 
     @Autowired
     private DatasourceService adminDatasourceService;
@@ -57,12 +57,11 @@ public class DataBaseServiceImpl   implements DataBaseService {
                 dbPassWord = password.toString();
                 log.info("代码生成: 当前数据源: {}", dbUrl);
             } else {
-                log.warn("代码生成: 没有配置 gc 数据源[gc.db.url], 并且没有找到默认数据源[spring.datasource.url] 相关配置");
+                log.warn(
+                        "代码生成: 没有配置 gc 数据源[gc.db.url], 并且没有找到默认数据源[spring.datasource.url] 相关配置");
             }
         }
     }
-
-
 
 
     @Override
@@ -73,7 +72,6 @@ public class DataBaseServiceImpl   implements DataBaseService {
 
     /**
      * 查询数据库下指定表的数据-字段名/类型/备注
-     *
      */
     @Override
     public List<TableFieldVO> findTableField(String table, String dataSourceId) {
@@ -94,7 +92,8 @@ public class DataBaseServiceImpl   implements DataBaseService {
         // 1、判断使用默认数据源还是动态数据源来获取数据库名称
         String dbName = getDbName(dataSourceId, datasource);
         // 2、拼接 sql
-        String sql = "SELECT TABLE_NAME ,TABLE_COMMENT FROM information_schema.TABLES WHERE table_schema='" + dbName + "'";
+        String sql =
+                "SELECT TABLE_NAME ,TABLE_COMMENT FROM information_schema.TABLES WHERE table_schema='" + dbName + "'";
         // 3、判断使用默认数据源还是动态数据源来执行sql
         PreparedStatement pstmt = getPreparedStatement(dataSourceId, datasource, sql);
         // 4、处理返回sql
@@ -238,5 +237,5 @@ public class DataBaseServiceImpl   implements DataBaseService {
         }
         return pstmt;
     }
- 
+
 }

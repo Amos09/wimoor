@@ -1,13 +1,13 @@
 package com.amazon.spapi.documents;
 
 import com.amazon.spapi.documents.exception.CryptoException;
-
 import java.io.InputStream;
 
 /**
  * Crypto stream factory interface.
  */
 public interface CryptoStreamFactory {
+
     /**
      * Create a new {@link InputStream} that decrypts a stream of encrypted data.
      *

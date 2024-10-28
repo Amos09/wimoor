@@ -1,12 +1,10 @@
 package com.wimoor.amazon.orders.mapper;
 
 
- 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wimoor.amazon.orders.pojo.entity.AmzOrderMain;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -19,5 +17,5 @@ import com.wimoor.amazon.orders.pojo.entity.AmzOrderMain;
 @Mapper
 public interface AmzOrderMainMapper extends BaseMapper<AmzOrderMain> {
 
-	void removeDataArchive(@Param("amazonAuthId") String amazonAuthId);
+    void removeDataArchive(@Param("amazonAuthId") String amazonAuthId);
 }

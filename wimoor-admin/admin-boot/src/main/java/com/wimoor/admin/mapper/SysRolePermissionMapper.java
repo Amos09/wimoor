@@ -2,11 +2,10 @@ package com.wimoor.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wimoor.admin.pojo.entity.SysRolePermission;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Mapper;
-
 import java.math.BigInteger;
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface SysRolePermissionMapper extends BaseMapper<SysRolePermission> {
@@ -29,15 +28,15 @@ public interface SysRolePermissionMapper extends BaseMapper<SysRolePermission> {
     List<BigInteger> listPermissionId(BigInteger menuId, BigInteger roleId);
 
     @Select({"<script>",
-        " SELECT",
-        " 	t2.id ",
-        " FROM",
-        "   t_sys_permission t2",
-        " WHERE 1=1 ",
-        " <if test='menuId !=null '>",
-        "    AND t2.menu_id = #{menuId} ",
-        " </if>",
-        "</script>"})
+            " SELECT",
+            " 	t2.id ",
+            " FROM",
+            "   t_sys_permission t2",
+            " WHERE 1=1 ",
+            " <if test='menuId !=null '>",
+            "    AND t2.menu_id = #{menuId} ",
+            " </if>",
+            "</script>"})
     List<BigInteger> listMenuPermissionId(BigInteger menuId);
 
 }

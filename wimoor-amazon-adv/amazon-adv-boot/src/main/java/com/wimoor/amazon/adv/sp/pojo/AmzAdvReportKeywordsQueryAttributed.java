@@ -1,83 +1,80 @@
 package com.wimoor.amazon.adv.sp.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 
 @Entity
-@Table(name="t_amz_adv_rpt2_sp_keywords_query_attributed")
+@Table(name = "t_amz_adv_rpt2_sp_keywords_query_attributed")
 public class AmzAdvReportKeywordsQueryAttributed {
 
-	@Id
-	@Column(name="keywordId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "keywordId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger keywordid;
-	
-	@Id
-	@Column(name="bydate")
+
+    @Id
+    @Column(name = "bydate")
     private Date bydate;
-	
-	@Id
-	@Column(name="queryid")
+
+    @Id
+    @Column(name = "queryid")
     private BigInteger queryid;
 
-	@Column(name="attributedConversions1d")
+    @Column(name = "attributedConversions1d")
     private Integer attributedconversions1d;
 
-	@Column(name="attributedConversions7d")
+    @Column(name = "attributedConversions7d")
     private Integer attributedconversions7d;
 
-	@Column(name="attributedConversions14d")
+    @Column(name = "attributedConversions14d")
     private Integer attributedconversions14d;
 
-	@Column(name="attributedConversions30d")
+    @Column(name = "attributedConversions30d")
     private Integer attributedconversions30d;
 
- 
 
-	@Column(name="attributedUnitsOrdered1d")
+    @Column(name = "attributedUnitsOrdered1d")
     private Integer attributedunitsordered1d;
 
-	@Column(name="attributedUnitsOrdered7d")
+    @Column(name = "attributedUnitsOrdered7d")
     private Integer attributedunitsordered7d;
 
-	@Column(name="attributedUnitsOrdered14d")
+    @Column(name = "attributedUnitsOrdered14d")
     private Integer attributedunitsordered14d;
 
-	@Column(name="attributedUnitsOrdered30d")
+    @Column(name = "attributedUnitsOrdered30d")
     private Integer attributedunitsordered30d;
 
-	@Column(name="attributedSales1d")
+    @Column(name = "attributedSales1d")
     private BigDecimal attributedsales1d;
 
-	@Column(name="attributedSales7d")
+    @Column(name = "attributedSales7d")
     private BigDecimal attributedsales7d;
 
-	@Column(name="attributedSales14d")
+    @Column(name = "attributedSales14d")
     private BigDecimal attributedsales14d;
 
-	@Column(name="attributedSales30d")
+    @Column(name = "attributedSales30d")
     private BigDecimal attributedsales30d;
 
-	
-	public BigInteger getKeywordid() {
-		return keywordid;
-	}
 
-	public void setKeywordid(BigInteger keywordid) {
-		this.keywordid = keywordid;
-	}
+    public BigInteger getKeywordid() {
+        return keywordid;
+    }
 
-	public Date getBydate() {
+    public void setKeywordid(BigInteger keywordid) {
+        this.keywordid = keywordid;
+    }
+
+    public Date getBydate() {
         return bydate;
     }
 
@@ -86,12 +83,12 @@ public class AmzAdvReportKeywordsQueryAttributed {
     }
 
     public BigInteger getQueryid() {
-		return queryid;
-	}
+        return queryid;
+    }
 
-	public void setQueryid(BigInteger queryid) {
-		this.queryid = queryid;
-	}
+    public void setQueryid(BigInteger queryid) {
+        this.queryid = queryid;
+    }
 
     public Integer getAttributedconversions1d() {
         return attributedconversions1d;
@@ -125,7 +122,6 @@ public class AmzAdvReportKeywordsQueryAttributed {
         this.attributedconversions30d = attributedconversions30d;
     }
 
- 
 
     public Integer getAttributedunitsordered1d() {
         return attributedunitsordered1d;
@@ -191,28 +187,48 @@ public class AmzAdvReportKeywordsQueryAttributed {
         this.attributedsales30d = attributedsales30d;
     }
 
- 
-    
+
     public boolean isZero() {
-  	  if(attributedconversions1d!=null&&attributedconversions1d!=0)return false; 
-  	  if(attributedconversions7d!=null&&attributedconversions7d!=0)return false; 	
-  	  if(attributedconversions14d!=null&&attributedconversions14d!=0)return false; 	
-  	  if(attributedconversions30d!=null&&attributedconversions30d!=0)return false; 	
-  	  
- 
-  	  
-  	  if(attributedunitsordered1d!=null&&attributedunitsordered1d!=0)return false; 	
-  	  if(attributedunitsordered7d!=null&&attributedunitsordered7d!=0)return false; 	
-  	  if(attributedunitsordered14d!=null&&attributedunitsordered14d!=0)return false; 	
-  	  if(attributedunitsordered30d!=null&&attributedunitsordered30d!=0)return false; 
-  	  
-  	  if(attributedsales1d!=null&&attributedsales1d.floatValue()>0.001)return false; 	
-  	  if(attributedsales7d!=null&&attributedsales7d.floatValue()>0.001)return false; 	
-  	  if(attributedsales14d!=null&&attributedsales14d.floatValue()>0.001)return false; 	
-  	  if(attributedsales30d!=null&&attributedsales30d.floatValue()>0.001)return false; 
-  
-  	  
-  	  return true;
-    
-  	  }
+        if (attributedconversions1d != null && attributedconversions1d != 0) {
+            return false;
+        }
+        if (attributedconversions7d != null && attributedconversions7d != 0) {
+            return false;
+        }
+        if (attributedconversions14d != null && attributedconversions14d != 0) {
+            return false;
+        }
+        if (attributedconversions30d != null && attributedconversions30d != 0) {
+            return false;
+        }
+
+        if (attributedunitsordered1d != null && attributedunitsordered1d != 0) {
+            return false;
+        }
+        if (attributedunitsordered7d != null && attributedunitsordered7d != 0) {
+            return false;
+        }
+        if (attributedunitsordered14d != null && attributedunitsordered14d != 0) {
+            return false;
+        }
+        if (attributedunitsordered30d != null && attributedunitsordered30d != 0) {
+            return false;
+        }
+
+        if (attributedsales1d != null && attributedsales1d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales7d != null && attributedsales7d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales14d != null && attributedsales14d.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales30d != null && attributedsales30d.floatValue() > 0.001) {
+            return false;
+        }
+
+        return true;
+
+    }
 }

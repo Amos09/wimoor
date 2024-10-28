@@ -1,53 +1,52 @@
 package com.wimoor.amazon.adv.common.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.math.BigInteger;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
- 
 
 public class AmzAdvRemarkKey {
-	@Id
-	@Column(name="profileid")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "profileid")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger profileid;
 
-	@Id
-	@Column(name="campaignId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "campaignId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger campaignid;
 
-	@Id
-	@Column(name="adgroupId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "adgroupId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adgroupid;
 
-	@Id
-	@Column(name="keywordId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "keywordId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger keywordid;
 
-	@Id
-	@Column(name="adId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "adId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adid;
-	
-	@Id
-	@Column(name="targetId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "targetId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger targetid;
 
     public BigInteger getTargetid() {
-		return targetid;
-	}
+        return targetid;
+    }
 
-	public void setTargetid(BigInteger targetid) {
-		this.targetid = targetid;
-	}
+    public void setTargetid(BigInteger targetid) {
+        this.targetid = targetid;
+    }
 
-	public BigInteger getProfileid() {
+    public BigInteger getProfileid() {
         return profileid;
     }
 

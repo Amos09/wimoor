@@ -1,18 +1,16 @@
 package com.wimoor.erp.change.pojo.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -21,15 +19,15 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_erp_purchase_form_entry_change")
-@ApiModel(value="PurchaseFormEntryChange对象", description="")
+@ApiModel(value = "PurchaseFormEntryChange对象", description = "")
 public class PurchaseFormEntryChange implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String id;
-    
+
     private String shopid;
-    
+
     private String number;
 
     private String entryid;

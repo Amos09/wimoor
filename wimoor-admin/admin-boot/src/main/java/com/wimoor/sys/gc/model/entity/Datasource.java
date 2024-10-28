@@ -1,8 +1,5 @@
 package com.wimoor.sys.gc.model.entity;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -10,27 +7,28 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
-
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
  * 代码生成数据源维护表
  * <p>
- *  ::本代码由[兮家小二]提供的代码生成器生成,如有问题,请手动修改 ::作者CSDN:https://blog.csdn.net/qq_41463655 
+ * ::本代码由[兮家小二]提供的代码生成器生成,如有问题,请手动修改 ::作者CSDN:https://blog.csdn.net/qq_41463655
  * </p>
- * @author  wangsong
+ *
+ * @author wangsong
  */
 @Data
 @TableName("t_gc_datasource")
 @ApiModel(value = "Datasource 对象", description = "代码生成数据源维护表")
-public class Datasource  implements Serializable{
+public class Datasource implements Serializable {
 
     private static final long serialVersionUID = 0L;
 
     /**
-     * 数据库id
-     * 雪花算法=IdType.ASSIGN_ID  || 自增=IdType.AUTO
+     * 数据库id 雪花算法=IdType.ASSIGN_ID  || 自增=IdType.AUTO
      */
     @TableId(type = IdType.ASSIGN_ID)
     private String id;

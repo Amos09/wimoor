@@ -1,10 +1,8 @@
 package com.wimoor.amazon.auth.mapper;
 
-import com.wimoor.amazon.auth.pojo.entity.AmzAuthApiTimelimit;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wimoor.amazon.auth.pojo.entity.AmzAuthApiTimelimit;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>

@@ -1,78 +1,77 @@
 package com.wimoor.amazon.adv.sd.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 @Entity
-@Table(name="t_amz_adv_product_targe_negativa_sd")
+@Table(name = "t_amz_adv_product_targe_negativa_sd")
 public class AmzAdvProductTargeNegativaSD {
-	@Id
-	@Column(name="targetId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+
+    @Id
+    @Column(name = "targetId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger targetid;
 
-	@Column(name="adGroupId")
+    @Column(name = "adGroupId")
     private BigInteger adgroupid;
 
-	@Column(name="profileid")
+    @Column(name = "profileid")
     private BigInteger profileid;
 
-	@Column(name="expressionType")
+    @Column(name = "expressionType")
     private String expressiontype;
 
-	@Column(name="expression")
+    @Column(name = "expression")
     private String expression;
 
-	@Column(name="state")
+    @Column(name = "state")
     private String state;
 
-	@Column(name="opttime")
+    @Column(name = "opttime")
     private Date opttime;
 
-	@Transient
-	private String servingStatus;
-	    
     @Transient
-	private Date creationDate;
-    
+    private String servingStatus;
+
     @Transient
-	private Date lastUpdatedDate;
-    
-    
+    private Date creationDate;
+
+    @Transient
+    private Date lastUpdatedDate;
+
+
     public String getServingStatus() {
-		return servingStatus;
-	}
+        return servingStatus;
+    }
 
-	public void setServingStatus(String servingStatus) {
-		this.servingStatus = servingStatus;
-	}
+    public void setServingStatus(String servingStatus) {
+        this.servingStatus = servingStatus;
+    }
 
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	public Date getLastUpdatedDate() {
-		return lastUpdatedDate;
-	}
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
 
-	public void setLastUpdatedDate(Date lastUpdatedDate) {
-		this.lastUpdatedDate = lastUpdatedDate;
-	}
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
 
-	public BigInteger getTargetid() {
+    public BigInteger getTargetid() {
         return targetid;
     }
 

@@ -1,13 +1,10 @@
 package com.wimoor.amazon.auth.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wimoor.amazon.auth.pojo.entity.AmazonSellerMarket;
-
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
-
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
@@ -19,9 +16,14 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 @Mapper
 public interface AmazonSellerMarketMapper extends BaseMapper<AmazonSellerMarket> {
-	int deleteByLogic(AmazonSellerMarket amazonSellerMarketPlace);
-	int selectBySellerIdLogic(String sellerid);
-	int getCurrentMarketCountByShopId(String shopId);
-	List<Map<String,Object>> selectByGroup(String groupid);
-	List<AmazonSellerMarket> selectAllBySellerId(String sellerid);
+
+    int deleteByLogic(AmazonSellerMarket amazonSellerMarketPlace);
+
+    int selectBySellerIdLogic(String sellerid);
+
+    int getCurrentMarketCountByShopId(String shopId);
+
+    List<Map<String, Object>> selectByGroup(String groupid);
+
+    List<AmazonSellerMarket> selectAllBySellerId(String sellerid);
 }

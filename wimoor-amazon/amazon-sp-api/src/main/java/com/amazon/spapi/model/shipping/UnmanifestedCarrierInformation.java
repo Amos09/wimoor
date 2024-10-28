@@ -13,17 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.UnmanifestedShipmentLocationList;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * UnmanifestedCarrierInformation like carrierId CarrierName and Location
@@ -31,112 +24,118 @@ import java.io.IOException;
 @ApiModel(description = "UnmanifestedCarrierInformation like carrierId CarrierName and Location")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class UnmanifestedCarrierInformation {
-  @SerializedName("carrierId")
-  private String carrierId = null;
 
-  @SerializedName("carrierName")
-  private String carrierName = null;
+    @SerializedName("carrierId")
+    private String carrierId = null;
 
-  @SerializedName("unmanifestedShipmentLocationList")
-  private UnmanifestedShipmentLocationList unmanifestedShipmentLocationList = null;
+    @SerializedName("carrierName")
+    private String carrierName = null;
 
-  public UnmanifestedCarrierInformation carrierId(String carrierId) {
-    this.carrierId = carrierId;
-    return this;
-  }
+    @SerializedName("unmanifestedShipmentLocationList")
+    private UnmanifestedShipmentLocationList unmanifestedShipmentLocationList = null;
 
-   /**
-   * Get carrierId
-   * @return carrierId
-  **/
-  @ApiModelProperty(value = "")
-  public String getCarrierId() {
-    return carrierId;
-  }
-
-  public void setCarrierId(String carrierId) {
-    this.carrierId = carrierId;
-  }
-
-  public UnmanifestedCarrierInformation carrierName(String carrierName) {
-    this.carrierName = carrierName;
-    return this;
-  }
-
-   /**
-   * Get carrierName
-   * @return carrierName
-  **/
-  @ApiModelProperty(value = "")
-  public String getCarrierName() {
-    return carrierName;
-  }
-
-  public void setCarrierName(String carrierName) {
-    this.carrierName = carrierName;
-  }
-
-  public UnmanifestedCarrierInformation unmanifestedShipmentLocationList(UnmanifestedShipmentLocationList unmanifestedShipmentLocationList) {
-    this.unmanifestedShipmentLocationList = unmanifestedShipmentLocationList;
-    return this;
-  }
-
-   /**
-   * Get unmanifestedShipmentLocationList
-   * @return unmanifestedShipmentLocationList
-  **/
-  @ApiModelProperty(value = "")
-  public UnmanifestedShipmentLocationList getUnmanifestedShipmentLocationList() {
-    return unmanifestedShipmentLocationList;
-  }
-
-  public void setUnmanifestedShipmentLocationList(UnmanifestedShipmentLocationList unmanifestedShipmentLocationList) {
-    this.unmanifestedShipmentLocationList = unmanifestedShipmentLocationList;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public UnmanifestedCarrierInformation carrierId(String carrierId) {
+        this.carrierId = carrierId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get carrierId
+     *
+     * @return carrierId
+     **/
+    @ApiModelProperty(value = "")
+    public String getCarrierId() {
+        return carrierId;
     }
-    UnmanifestedCarrierInformation unmanifestedCarrierInformation = (UnmanifestedCarrierInformation) o;
-    return Objects.equals(this.carrierId, unmanifestedCarrierInformation.carrierId) &&
-        Objects.equals(this.carrierName, unmanifestedCarrierInformation.carrierName) &&
-        Objects.equals(this.unmanifestedShipmentLocationList, unmanifestedCarrierInformation.unmanifestedShipmentLocationList);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(carrierId, carrierName, unmanifestedShipmentLocationList);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class UnmanifestedCarrierInformation {\n");
-    
-    sb.append("    carrierId: ").append(toIndentedString(carrierId)).append("\n");
-    sb.append("    carrierName: ").append(toIndentedString(carrierName)).append("\n");
-    sb.append("    unmanifestedShipmentLocationList: ").append(toIndentedString(unmanifestedShipmentLocationList)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setCarrierId(String carrierId) {
+        this.carrierId = carrierId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public UnmanifestedCarrierInformation carrierName(String carrierName) {
+        this.carrierName = carrierName;
+        return this;
+    }
+
+    /**
+     * Get carrierName
+     *
+     * @return carrierName
+     **/
+    @ApiModelProperty(value = "")
+    public String getCarrierName() {
+        return carrierName;
+    }
+
+    public void setCarrierName(String carrierName) {
+        this.carrierName = carrierName;
+    }
+
+    public UnmanifestedCarrierInformation unmanifestedShipmentLocationList(
+            UnmanifestedShipmentLocationList unmanifestedShipmentLocationList) {
+        this.unmanifestedShipmentLocationList = unmanifestedShipmentLocationList;
+        return this;
+    }
+
+    /**
+     * Get unmanifestedShipmentLocationList
+     *
+     * @return unmanifestedShipmentLocationList
+     **/
+    @ApiModelProperty(value = "")
+    public UnmanifestedShipmentLocationList getUnmanifestedShipmentLocationList() {
+        return unmanifestedShipmentLocationList;
+    }
+
+    public void setUnmanifestedShipmentLocationList(UnmanifestedShipmentLocationList unmanifestedShipmentLocationList) {
+        this.unmanifestedShipmentLocationList = unmanifestedShipmentLocationList;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UnmanifestedCarrierInformation unmanifestedCarrierInformation = (UnmanifestedCarrierInformation) o;
+        return Objects.equals(this.carrierId, unmanifestedCarrierInformation.carrierId) &&
+                Objects.equals(this.carrierName, unmanifestedCarrierInformation.carrierName) &&
+                Objects.equals(this.unmanifestedShipmentLocationList,
+                        unmanifestedCarrierInformation.unmanifestedShipmentLocationList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(carrierId, carrierName, unmanifestedShipmentLocationList);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class UnmanifestedCarrierInformation {\n");
+
+        sb.append("    carrierId: ").append(toIndentedString(carrierId)).append("\n");
+        sb.append("    carrierName: ").append(toIndentedString(carrierName)).append("\n");
+        sb.append("    unmanifestedShipmentLocationList: ").append(toIndentedString(unmanifestedShipmentLocationList))
+                .append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

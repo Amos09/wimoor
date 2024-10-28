@@ -1,16 +1,5 @@
-
-
 package com.wimoor.erp.material.service;
 
-
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -25,114 +14,128 @@ import com.wimoor.erp.material.pojo.entity.MaterialCustoms;
 import com.wimoor.erp.material.pojo.vo.MaterialConsumableVO;
 import com.wimoor.erp.material.pojo.vo.MaterialInfoVO;
 import com.wimoor.erp.material.pojo.vo.MaterialVO;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface IMaterialService extends IService<Material> {
-	MaterialVO findMaterialById(String id);
 
-	boolean saveMark(String materialid, String type, String content, String userid) throws ERPBizException;
+    MaterialVO findMaterialById(String id);
 
-	IPage<Map<String, Object>> findByCondition(Page<?> page,Map<String, Object> map);
-	IPage<Map<String, Object>> findConsumableByCondition(Page<?> page,Map<String, Object> map);
-	IPage<Map<String, Object>> findPackageByCondition(Page<?> page,Map<String, Object> map);
-	List<Map<String, Object>> findPackageByCondition(Map<String, Object> map);
-	public boolean delete(String id) ;
-	String getNotice(String id);
+    boolean saveMark(String materialid, String type, String content, String userid) throws ERPBizException;
 
-	public List<String> getmskuListWithout(String shopid,List<String> list);
-	
-	public List<String> getmskuList(String shopid,List<String> list);
-	
-	List<Material> selectAllSKUForSelect(String sku, String shopid);
+    IPage<Map<String, Object>> findByCondition(Page<?> page, Map<String, Object> map);
 
-	public List<MaterialCategory> selectAllCateByShopid(String shopid);
+    IPage<Map<String, Object>> findConsumableByCondition(Page<?> page, Map<String, Object> map);
 
-	String saveAllInfo(MaterialInfoVO vo, MultipartFile file, UserInfo userinfo) throws  ERPBizException;
+    IPage<Map<String, Object>> findPackageByCondition(Page<?> page, Map<String, Object> map);
 
-	Map<String, Object> findDimAndAsinBymid(String sku, String shopid, String marketplaceid, String groupid);
+    List<Map<String, Object>> findPackageByCondition(Map<String, Object> map);
 
-	public List<Map<String, Object>> getForSum(String shopid,String groupid);
+    public boolean delete(String id);
 
-	String getImage(Material material);
+    String getNotice(String id);
 
-	List<Map<String, Object>> selectAllSKUForLabel(String sku, String shopid);
+    public List<String> getmskuListWithout(String shopid, List<String> list);
 
-	public Material findBySKU(String sku, String shopid);
+    public List<String> getmskuList(String shopid, List<String> list);
 
-	Map<String, BigDecimal> findDimensionsInfoBySKU(String value, String shopid);
+    List<Material> selectAllSKUForSelect(String sku, String shopid);
 
-	List<Map<String,Object>> getOwnerList(String shopid);
-	
-	Map<String,Object>  findMaterialMapBySku(Map<String,Object> param);
-	
-	List<String> findMarterialForColorOwner(String key, Map<String,Object> param);
-	
-	void logicalDeleteMaterial(UserInfo user, Material material);
-	
-	boolean updateReductionSKUMaterial(UserInfo user, String id, String sku);
-	
-	boolean updateCycle(UserInfo user, String id, int amount);
+    public List<MaterialCategory> selectAllCateByShopid(String shopid);
 
-	int updateItemMaterialByType(String[] ids, String ftype, String value, UserInfo user);
+    String saveAllInfo(MaterialInfoVO vo, MultipartFile file, UserInfo userinfo) throws ERPBizException;
 
-	int updateItemMaterialByPrice(String[] ids, String priceMapList,UserInfo user);
+    Map<String, Object> findDimAndAsinBymid(String sku, String shopid, String marketplaceid, String groupid);
 
-	String getImageByMaterialid(String materialid);
+    public List<Map<String, Object>> getForSum(String shopid, String groupid);
 
-	List<Map<String, Object>> selectAllMaterialByShop(Map<String, Object> map);
+    String getImage(Material material);
 
-	void getExcelMaterialAllInfoReport(SXSSFWorkbook workbook, List<Map<String, Object>> list);
-	
-	public List<Map<String, Object>> copyImageForProduct(List<Map<String, Object>> list, UserInfo user);
+    List<Map<String, Object>> selectAllSKUForLabel(String sku, String shopid);
 
-	/**
-	 * /查询t_erp_material中共用图片ID的图片列表
-	 * @return
-	 */
-	List<Map<String, Object>> selectCommonImage();
+    public Material findBySKU(String sku, String shopid);
 
-	List<Material> selectByImage(String image);
+    Map<String, BigDecimal> findDimensionsInfoBySKU(String value, String shopid);
 
-	Material selectBySKU(String shopid, String sku);
+    List<Map<String, Object>> getOwnerList(String shopid);
 
-	List<Map<String, Object>> findAllByCondition(Map<String, Object> map);
+    Map<String, Object> findMaterialMapBySku(Map<String, Object> param);
 
-	List<Map<String, Object>> selectProPriceHisById(String id);
+    List<String> findMarterialForColorOwner(String key, Map<String, Object> param);
 
-	List<Map<String, Object>> copyDimsForProduct(List<Map<String, Object>> list, UserInfo user);
+    void logicalDeleteMaterial(UserInfo user, Material material);
 
-	List<MaterialCustoms> selectCustomsByMaterialId(String id);
+    boolean updateReductionSKUMaterial(UserInfo user, String id, String sku);
 
-	public Map<String, Object> getRealityPrice(String materialid);
+    boolean updateCycle(UserInfo user, String id, int amount);
 
-	List<Material> getMaterialByInfo(String shopid, String sku, String name);
+    int updateItemMaterialByType(String[] ids, String ftype, String value, UserInfo user);
 
-	public List<String> getTagsIdsListByMsku(String msku, String shopid);
+    int updateItemMaterialByPrice(String[] ids, String priceMapList, UserInfo user);
 
-	List<Map<String, Object>> saveTagsByMid(String mid, String ids, String userid);
+    String getImageByMaterialid(String materialid);
 
-	String findMaterialTagsByMid(String mid);
+    List<Map<String, Object>> selectAllMaterialByShop(Map<String, Object> map);
 
-	public List<Map<String, Object>> findInventoryByMsku(PlanDTO dto,String key);
+    void getExcelMaterialAllInfoReport(SXSSFWorkbook workbook, List<Map<String, Object>> list);
 
-	Material getBySku(String shopid, String sku);
+    public List<Map<String, Object>> copyImageForProduct(List<Map<String, Object>> list, UserInfo user);
 
-	Map<String,String> getTagsIdsListByMsku(String shopid, List<String> mskulist);
+    /**
+     * /查询t_erp_material中共用图片ID的图片列表
+     *
+     * @return
+     */
+    List<Map<String, Object>> selectCommonImage();
 
-	Workbook setMaterialExcelBook(Workbook workbook, MaterialDTO dto, UserInfo userinfo);
+    List<Material> selectByImage(String image);
 
-	Map<String,Object> getMaterialInfoBySkuList(PlanDTO dto);
+    Material selectBySKU(String shopid, String sku);
 
-	String uploadMaterialImg(UserInfo userinfo, String materialid, InputStream inputStream, String filename,
-			String oldpictureid);
-	
-	public void saveMaterialConsumable(List<MaterialConsumableVO> list,UserInfo user,String id);
+    List<Map<String, Object>> findAllByCondition(Map<String, Object> map);
 
-	void updateMaterialType(UserInfo user, String ftype, List<MaterialVO> volist);
+    List<Map<String, Object>> selectProPriceHisById(String id);
 
-	List<Map<String, Object>> getDimensions(String shopid, List<String> skulist);
+    List<Map<String, Object>> copyDimsForProduct(List<Map<String, Object>> list, UserInfo user);
 
-	MaterialCustoms getCustoms(String shopid, String msku,String country);
+    List<MaterialCustoms> selectCustomsByMaterialId(String id);
 
-	void saveCustoms(UserInfo user, List<MaterialCustoms> list);
+    public Map<String, Object> getRealityPrice(String materialid);
+
+    List<Material> getMaterialByInfo(String shopid, String sku, String name);
+
+    public List<String> getTagsIdsListByMsku(String msku, String shopid);
+
+    List<Map<String, Object>> saveTagsByMid(String mid, String ids, String userid);
+
+    String findMaterialTagsByMid(String mid);
+
+    public List<Map<String, Object>> findInventoryByMsku(PlanDTO dto, String key);
+
+    Material getBySku(String shopid, String sku);
+
+    Map<String, String> getTagsIdsListByMsku(String shopid, List<String> mskulist);
+
+    Workbook setMaterialExcelBook(Workbook workbook, MaterialDTO dto, UserInfo userinfo);
+
+    Map<String, Object> getMaterialInfoBySkuList(PlanDTO dto);
+
+    String uploadMaterialImg(UserInfo userinfo, String materialid, InputStream inputStream, String filename,
+            String oldpictureid);
+
+    public void saveMaterialConsumable(List<MaterialConsumableVO> list, UserInfo user, String id);
+
+    void updateMaterialType(UserInfo user, String ftype, List<MaterialVO> volist);
+
+    List<Map<String, Object>> getDimensions(String shopid, List<String> skulist);
+
+    MaterialCustoms getCustoms(String shopid, String msku, String country);
+
+    void saveCustoms(UserInfo user, List<MaterialCustoms> list);
 
 }

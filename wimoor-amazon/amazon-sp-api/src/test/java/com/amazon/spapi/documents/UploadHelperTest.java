@@ -1,25 +1,29 @@
 package com.amazon.spapi.documents;
 
-import com.amazon.spapi.documents.impl.AESCryptoStreamFactory;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.amazon.spapi.documents.impl.AESCryptoStreamFactory;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 class UploadHelperTest {
+
     private static String KEY = "sxx/wImF6BFndqSAz56O6vfiAh8iD9P297DHfFgujec=";
     private static String VECTOR = "7S2tn363v0wfCfo1IX2Q1A==";
 
     class FileCapture {
+
         volatile boolean existed = false;
         volatile File file = null;
     }
@@ -28,7 +32,7 @@ class UploadHelperTest {
         return new Answer() {
             @Override
             public Object answer(InvocationOnMock invocation) throws Throwable {
-                File tmpFile = (File)invocation.getArgument(2);
+                File tmpFile = (File) invocation.getArgument(2);
                 fileCapture.existed = tmpFile.exists();
                 fileCapture.file = tmpFile;
 

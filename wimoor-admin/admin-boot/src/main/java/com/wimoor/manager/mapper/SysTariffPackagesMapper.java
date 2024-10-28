@@ -1,10 +1,8 @@
 package com.wimoor.manager.mapper;
 
-import com.wimoor.manager.pojo.entity.SysTariffPackages;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wimoor.manager.pojo.entity.SysTariffPackages;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>

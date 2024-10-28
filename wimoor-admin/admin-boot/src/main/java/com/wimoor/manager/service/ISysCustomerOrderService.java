@@ -1,11 +1,11 @@
 package com.wimoor.manager.service;
 
-import com.wimoor.manager.pojo.entity.SysCustomerOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.manager.pojo.entity.SysCustomerOrder;
 
 /**
  * <p>
- *   服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team

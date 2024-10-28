@@ -1,58 +1,56 @@
 package com.wimoor.amazon.adv.sd.pojo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wimoor.amazon.adv.common.pojo.JsonBigIntergeSerializer;
- 
 
 @Entity
-@Table(name="t_amz_adv_rpt2_adgroups_sd_attributed_same")
-public class AmzAdvReportAdGroupsSDAttributedSame   {
-	
-	@Id
-	@Column(name="bydate")
+@Table(name = "t_amz_adv_rpt2_adgroups_sd_attributed_same")
+public class AmzAdvReportAdGroupsSDAttributedSame {
+
+    @Id
+    @Column(name = "bydate")
     private Date bydate;
 
-	@Id
-	@Column(name="adGroupId")
-	@JsonSerialize(using = JsonBigIntergeSerializer.class)
+    @Id
+    @Column(name = "adGroupId")
+    @JsonSerialize(using = JsonBigIntergeSerializer.class)
     private BigInteger adgroupid;
 
 
-	@Column(name="attributedConversions1dSameSKU")
+    @Column(name = "attributedConversions1dSameSKU")
     private Integer attributedconversions1dsamesku;
 
-	@Column(name="attributedConversions7dSameSKU")
+    @Column(name = "attributedConversions7dSameSKU")
     private Integer attributedconversions7dsamesku;
 
-	@Column(name="attributedConversions14dSameSKU")
+    @Column(name = "attributedConversions14dSameSKU")
     private Integer attributedconversions14dsamesku;
 
-	@Column(name="attributedConversions30dSameSKU")
+    @Column(name = "attributedConversions30dSameSKU")
     private Integer attributedconversions30dsamesku;
 
 
-	@Column(name="attributedSales1dSameSKU")
+    @Column(name = "attributedSales1dSameSKU")
     private BigDecimal attributedsales1dsamesku;
 
-	@Column(name="attributedSales7dSameSKU")
+    @Column(name = "attributedSales7dSameSKU")
     private BigDecimal attributedsales7dsamesku;
 
-	@Column(name="attributedSales14dSameSKU")
+    @Column(name = "attributedSales14dSameSKU")
     private BigDecimal attributedsales14dsamesku;
 
-	@Column(name="attributedSales30dSameSKU")
+    @Column(name = "attributedSales30dSameSKU")
     private BigDecimal attributedsales30dsamesku;
-	
-	
+
+
     public Date getBydate() {
         return bydate;
     }
@@ -62,17 +60,14 @@ public class AmzAdvReportAdGroupsSDAttributedSame   {
     }
 
 
-
     public BigInteger getAdgroupid() {
-		return adgroupid;
-	}
+        return adgroupid;
+    }
 
-	public void setAdgroupid(BigInteger adgroupid) {
-		this.adgroupid = adgroupid;
-	}
+    public void setAdgroupid(BigInteger adgroupid) {
+        this.adgroupid = adgroupid;
+    }
 
- 
- 
 
     public Integer getAttributedconversions1dsamesku() {
         return attributedconversions1dsamesku;
@@ -137,22 +132,37 @@ public class AmzAdvReportAdGroupsSDAttributedSame   {
     public void setAttributedsales30dsamesku(BigDecimal attributedsales30dsamesku) {
         this.attributedsales30dsamesku = attributedsales30dsamesku;
     }
-    
- 
 
-	public boolean isZero() {
- 
-	  if(attributedconversions1dsamesku!=null&&attributedconversions1dsamesku!=0)return false; 	
-	  if(attributedconversions7dsamesku!=null&&attributedconversions7dsamesku!=0)return false; 	
-	  if(attributedconversions14dsamesku!=null&&attributedconversions14dsamesku!=0)return false; 	
-	  if(attributedconversions30dsamesku!=null&&attributedconversions30dsamesku!=0)return false; 	
-	  
-	  if(attributedsales1dsamesku!=null&&attributedsales1dsamesku.floatValue()>0.001)return false; 	
-	  if(attributedsales7dsamesku!=null&&attributedsales7dsamesku.floatValue()>0.001)return false; 	
-	  if(attributedsales14dsamesku!=null&&attributedsales14dsamesku.floatValue()>0.001)return false; 	
-	  if(attributedsales30dsamesku!=null&&attributedsales30dsamesku.floatValue()>0.001)return false; 	
- 
-	  return true;
-  
-	  }
+
+    public boolean isZero() {
+
+        if (attributedconversions1dsamesku != null && attributedconversions1dsamesku != 0) {
+            return false;
+        }
+        if (attributedconversions7dsamesku != null && attributedconversions7dsamesku != 0) {
+            return false;
+        }
+        if (attributedconversions14dsamesku != null && attributedconversions14dsamesku != 0) {
+            return false;
+        }
+        if (attributedconversions30dsamesku != null && attributedconversions30dsamesku != 0) {
+            return false;
+        }
+
+        if (attributedsales1dsamesku != null && attributedsales1dsamesku.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales7dsamesku != null && attributedsales7dsamesku.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales14dsamesku != null && attributedsales14dsamesku.floatValue() > 0.001) {
+            return false;
+        }
+        if (attributedsales30dsamesku != null && attributedsales30dsamesku.floatValue() > 0.001) {
+            return false;
+        }
+
+        return true;
+
+    }
 }

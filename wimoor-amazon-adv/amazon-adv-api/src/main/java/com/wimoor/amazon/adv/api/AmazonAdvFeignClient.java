@@ -9,4 +9,5 @@ import org.springframework.cloud.openfeign.FeignClient;
  */
 @FeignClient("wimoor-amazon-adv")
 public interface AmazonAdvFeignClient {
+
 }

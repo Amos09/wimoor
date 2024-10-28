@@ -1,17 +1,14 @@
 package com.wimoor.admin.service.impl;
 
-import java.util.Set;
-
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
-
+import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wimoor.admin.mapper.SysOauthClientMapper;
 import com.wimoor.admin.pojo.entity.SysOauthClient;
 import com.wimoor.admin.service.ISysOauthClientService;
-
-import cn.hutool.core.collection.CollectionUtil;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
 
 /**
  * OAuth2 客户端业务类
@@ -21,7 +18,8 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class SysOauthClientServiceImpl extends ServiceImpl<SysOauthClientMapper, SysOauthClient> implements ISysOauthClientService {
+public class SysOauthClientServiceImpl extends ServiceImpl<SysOauthClientMapper, SysOauthClient> implements
+        ISysOauthClientService {
 
     private final StringRedisTemplate stringRedisTemplate;
 

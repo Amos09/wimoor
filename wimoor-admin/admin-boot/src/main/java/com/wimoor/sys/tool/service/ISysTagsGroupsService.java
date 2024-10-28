@@ -5,7 +5,7 @@ import com.wimoor.sys.tool.pojo.entity.SysTagsGroups;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team
@@ -13,6 +13,6 @@ import com.wimoor.sys.tool.pojo.entity.SysTagsGroups;
  */
 public interface ISysTagsGroupsService extends IService<SysTagsGroups> {
 
-	void disableList(String groupid);
+    void disableList(String groupid);
 
 }

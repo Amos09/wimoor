@@ -1,32 +1,29 @@
 package com.wimoor.sys.gc.service.gc.gcimpl;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
+import cn.hutool.core.collection.CollUtil;
 import com.alibaba.fastjson.JSON;
-import com.wimoor.common.service.impl.BaseServiceImpl;
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.constant.FieldTypeConstant;
 import com.wimoor.sys.gc.model.po.DbFieldPO;
 import com.wimoor.sys.gc.service.gc.GcSevice;
 import com.wimoor.sys.gc.util.GcDataUtil;
 import com.wimoor.sys.gc.util.GcFileUtil;
-
-import cn.hutool.core.collection.CollUtil;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * mapperXml 生成
+ *
  * @author wangsong
+ * @version 1.0.1
  * @mail 1720696548@qq.com
  * @date 2021/7/13 0013 11:52
- * @version 1.0.1
  */
 @SuppressWarnings("all")
 @Component
 @Slf4j
-public class GcMapperXml  implements GcSevice {
+public class GcMapperXml implements GcSevice {
 
     /**
      * 模板key
@@ -41,15 +38,15 @@ public class GcMapperXml  implements GcSevice {
     /**
      * 生成Dao 对应的xml
      *
-     * @param data    数据
+     * @param data           数据
      * @param GenerateConfig 数据
-     * @param path    生成代码路径
+     * @param path           生成代码路径
      * @return void
      * @date 2019/11/20 19:18
      */
     @Override
     public void run(GcConfig gcConfig) {
-          log.info("开始生成: {}", KEY_NAME);
+        log.info("开始生成: {}", KEY_NAME);
         List<DbFieldPO> dbFields = gcConfig.getDbFields();
         gcConfig.setTemplateParam("resultMap", resultXml(gcConfig, dbFields));
         gcConfig.setTemplateParam("columnList", columnXml(dbFields));
@@ -96,20 +93,28 @@ public class GcMapperXml  implements GcSevice {
                     || type.equals(FieldTypeConstant.CHAR) || type.equals(FieldTypeConstant.LONG_TEXT
             )) {
                 // 字符串默认右模糊
-                selectSearcListSb.append("\r\n        <if test=\"query." + fieldNameHump + " != null and query." + fieldNameHump + "  != ''\">");
+                selectSearcListSb.append(
+                        "\r\n        <if test=\"query." + fieldNameHump + " != null and query." + fieldNameHump
+                                + "  != ''\">");
                 if (EQ_FIELD.contains(fieldMap.getName())) {
-                    selectSearcListSb.append("\r\n            and t." + fieldName + " = #{query." + fieldNameHump + "}");
-                }else{
-                    selectSearcListSb.append("\r\n            and t." + fieldName + " like concat(#{query." + fieldNameHump + "},'%')");
+                    selectSearcListSb.append(
+                            "\r\n            and t." + fieldName + " = #{query." + fieldNameHump + "}");
+                } else {
+                    selectSearcListSb.append(
+                            "\r\n            and t." + fieldName + " like concat(#{query." + fieldNameHump + "},'%')");
                 }
                 selectSearcListSb.append("\r\n        </if>");
             } else if (type.equals(FieldTypeConstant.DATETIME)) {
                 // 时间默认时间范围搜索(传入字符串分割的开始时间+结束时间)
-                selectSearcListSb.append("\r\n        <if test=\"query." + fieldNameHump + " != null and query." + fieldNameHump + " != ''\">" +
-                        "\r\n            <foreach item=\"" + fieldNameHump + "\" collection=\"query." + fieldNameHump + ".split(',')\" open=\"and t." + fieldName + " >= \" separator=\" and \" close=\" >= t." + fieldName + "\">" +
-                        "\r\n                #{" + fieldNameHump + "}" +
-                        "\r\n            </foreach>" +
-                        "\r\n        </if>");
+                selectSearcListSb.append(
+                        "\r\n        <if test=\"query." + fieldNameHump + " != null and query." + fieldNameHump
+                                + " != ''\">" +
+                                "\r\n            <foreach item=\"" + fieldNameHump + "\" collection=\"query."
+                                + fieldNameHump + ".split(',')\" open=\"and t." + fieldName
+                                + " >= \" separator=\" and \" close=\" >= t." + fieldName + "\">" +
+                                "\r\n                #{" + fieldNameHump + "}" +
+                                "\r\n            </foreach>" +
+                                "\r\n        </if>");
             } else {
                 // 其他默认eq
                 selectSearcListSb.append("\r\n        <if test=\"query." + fieldNameHump + " != null\">");
@@ -123,9 +128,10 @@ public class GcMapperXml  implements GcSevice {
 
     /**
      * 生成动态添加sql
+     *
+     * @return java.lang.String
      * @author wangsong
      * @date 2021/7/13 0013 11:26
-     * @return java.lang.String
      * @version 1.0.1
      */
     private String insertXml(GcConfig gcConfig, List<DbFieldPO> data) {
@@ -141,7 +147,8 @@ public class GcMapperXml  implements GcSevice {
             String fieldNameHump = GcDataUtil.getFieldName(gcConfig, fieldMap.getName());  // 字段名驼峰
             // 拼接--动态添加sql
             if (type.equals("varchar") || type.equals("text")) {
-                insertList.append("\r\n                <if test=\"" + fieldNameHump + " != null and " + fieldNameHump + "  != ''\">");
+                insertList.append("\r\n                <if test=\"" + fieldNameHump + " != null and " + fieldNameHump
+                        + "  != ''\">");
             } else {
                 insertList.append("\r\n                <if test=\"" + fieldNameHump + " != null\">");
             }
@@ -161,7 +168,8 @@ public class GcMapperXml  implements GcSevice {
             String fieldNameHump = GcDataUtil.getFieldName(gcConfig, fieldMap.getName());
             // 拼接--动态添加sql
             if (type.equals("varchar") || type.equals("text")) {
-                insertList.append("\r\n                <if test=\"" + fieldNameHump + " != null and " + fieldNameHump + " != ''\">");
+                insertList.append("\r\n                <if test=\"" + fieldNameHump + " != null and " + fieldNameHump
+                        + " != ''\">");
             } else {
                 insertList.append("\r\n                <if test=\"" + fieldNameHump + " != null\">");
             }
@@ -178,9 +186,10 @@ public class GcMapperXml  implements GcSevice {
 
     /**
      * 生成编辑sql
+     *
+     * @return java.lang.String
      * @author wangsong
      * @date 2021/7/13 0013 11:26
-     * @return java.lang.String
      * @version 1.0.1
      */
     private String updateXml(GcConfig gcConfig, List<DbFieldPO> data) {
@@ -198,7 +207,9 @@ public class GcMapperXml  implements GcSevice {
             if (!fieldName.toLowerCase().equals("id")) {
                 // 拼接--动态编辑sql
                 if (type.equals("varchar") || type.equals("text")) {
-                    updateList.append("\r\n                <if test=\"" + fieldNameHump + " != null and " + fieldNameHump + " != ''\">");
+                    updateList.append(
+                            "\r\n                <if test=\"" + fieldNameHump + " != null and " + fieldNameHump
+                                    + " != ''\">");
                 } else {
                     updateList.append("\r\n                <if test=\"" + fieldNameHump + " != null\">");
                 }
@@ -215,9 +226,10 @@ public class GcMapperXml  implements GcSevice {
 
     /**
      * 生成 xml和实体类 映射关系数据
+     *
+     * @return java.lang.String
      * @author wangsong
      * @date 2021/7/13 0013 11:26
-     * @return java.lang.String
      * @version 1.0.1
      */
     private String resultXml(GcConfig gcConfig, List<DbFieldPO> data) {
@@ -232,7 +244,8 @@ public class GcMapperXml  implements GcSevice {
             if ("id".equals(fieldName)) {
                 resultMap.append("\r\n        <id column=\"" + fieldName + "\" property=\"" + fieldNameHump + "\"/>");
             } else {
-                resultMap.append("\r\n        <result column=\"" + fieldName + "\" property=\"" + fieldNameHump + "\"/>");
+                resultMap.append(
+                        "\r\n        <result column=\"" + fieldName + "\" property=\"" + fieldNameHump + "\"/>");
             }
         }
         return resultMap.toString();
@@ -241,9 +254,10 @@ public class GcMapperXml  implements GcSevice {
 
     /**
      * 生成通用返回数据
+     *
+     * @return java.lang.String
      * @author wangsong
      * @date 2021/7/13 0013 11:26
-     * @return java.lang.String
      * @version 1.0.1
      */
     private String columnXml(List<DbFieldPO> data) {

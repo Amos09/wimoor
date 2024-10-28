@@ -2,57 +2,57 @@ package com.wimoor.amazon.adv.common.pojo;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_adv_remind")
+@Table(name = "t_amz_adv_remind")
 public class AmzAdvRemind extends AmzAdvRemindKey {
-	@Column(name="cycle")
+
+    @Column(name = "cycle")
     private Integer cycle;
 
-	@Column(name="quota")
+    @Column(name = "quota")
     private String quota;
 
-	@Column(name="fcondition")
+    @Column(name = "fcondition")
     private String condition;
 
-	@Column(name="subtrahend")
+    @Column(name = "subtrahend")
     private String subtrahend;
 
-	@Column(name="amount")
+    @Column(name = "amount")
     private BigDecimal amount;
 
-	@Column(name="iswarn")
+    @Column(name = "iswarn")
     private Boolean iswarn;
-	
-	@Column(name="createdate")
-	private Date createdate;
-	
-	@Column(name="opttime")
-	private Date opttime;
 
-	@Column(name="creator")
-	private String creator;
-	
-	@Column(name="operator")
-	private String operator;
-	
-	@Column(name="recordtype")
-	private String recordtype;
-	
-	
+    @Column(name = "createdate")
+    private Date createdate;
+
+    @Column(name = "opttime")
+    private Date opttime;
+
+    @Column(name = "creator")
+    private String creator;
+
+    @Column(name = "operator")
+    private String operator;
+
+    @Column(name = "recordtype")
+    private String recordtype;
+
+
     public String getRecordtype() {
-		return recordtype;
-	}
+        return recordtype;
+    }
 
-	public void setRecordtype(String recordtype) {
-		this.recordtype = recordtype;
-	}
+    public void setRecordtype(String recordtype) {
+        this.recordtype = recordtype;
+    }
 
-	public Integer getCycle() {
+    public Integer getCycle() {
         return cycle;
     }
 
@@ -100,36 +100,36 @@ public class AmzAdvRemind extends AmzAdvRemindKey {
         this.iswarn = iswarn;
     }
 
-	public Date getCreatedate() {
-		return createdate;
-	}
+    public Date getCreatedate() {
+        return createdate;
+    }
 
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
-	}
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
 
-	public Date getOpttime() {
-		return opttime;
-	}
+    public Date getOpttime() {
+        return opttime;
+    }
 
-	public void setOpttime(Date opttime) {
-		this.opttime = opttime;
-	}
+    public void setOpttime(Date opttime) {
+        this.opttime = opttime;
+    }
 
-	public String getCreator() {
-		return creator;
-	}
+    public String getCreator() {
+        return creator;
+    }
 
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
 
-	public String getOperator() {
-		return operator;
-	}
+    public String getOperator() {
+        return operator;
+    }
 
-	public void setOperator(String operator) {
-		this.operator = operator;
-	}
-    
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
 }

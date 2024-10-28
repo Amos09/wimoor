@@ -5,7 +5,7 @@ import com.wimoor.amazon.profit.pojo.entity.OutboundWeightFormat;
 
 public interface IOutBoundWeightFormatService extends IService<OutboundWeightFormat> {
 
-	OutboundWeightFormat findByProductTierId(String productTierId);
+    OutboundWeightFormat findByProductTierId(String productTierId);
 
 
 }

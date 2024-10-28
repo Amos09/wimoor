@@ -13,17 +13,10 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.DocumentType;
-import java.io.IOException;
+import java.util.Objects;
 
 /**
  * The supported document types for a service offering.
@@ -31,89 +24,91 @@ import java.io.IOException;
 @ApiModel(description = "The supported document types for a service offering.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class SupportedDocumentDetail {
-  @SerializedName("name")
-  private DocumentType name = null;
 
-  @SerializedName("isMandatory")
-  private Boolean isMandatory = null;
+    @SerializedName("name")
+    private DocumentType name = null;
 
-  public SupportedDocumentDetail name(DocumentType name) {
-    this.name = name;
-    return this;
-  }
+    @SerializedName("isMandatory")
+    private Boolean isMandatory = null;
 
-   /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public DocumentType getName() {
-    return name;
-  }
-
-  public void setName(DocumentType name) {
-    this.name = name;
-  }
-
-  public SupportedDocumentDetail isMandatory(Boolean isMandatory) {
-    this.isMandatory = isMandatory;
-    return this;
-  }
-
-   /**
-   * When true, the supported document type is required.
-   * @return isMandatory
-  **/
-  @ApiModelProperty(required = true, value = "When true, the supported document type is required.")
-  public Boolean isIsMandatory() {
-    return isMandatory;
-  }
-
-  public void setIsMandatory(Boolean isMandatory) {
-    this.isMandatory = isMandatory;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public SupportedDocumentDetail name(DocumentType name) {
+        this.name = name;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get name
+     *
+     * @return name
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public DocumentType getName() {
+        return name;
     }
-    SupportedDocumentDetail supportedDocumentDetail = (SupportedDocumentDetail) o;
-    return Objects.equals(this.name, supportedDocumentDetail.name) &&
-        Objects.equals(this.isMandatory, supportedDocumentDetail.isMandatory);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, isMandatory);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SupportedDocumentDetail {\n");
-    
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    isMandatory: ").append(toIndentedString(isMandatory)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setName(DocumentType name) {
+        this.name = name;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public SupportedDocumentDetail isMandatory(Boolean isMandatory) {
+        this.isMandatory = isMandatory;
+        return this;
+    }
+
+    /**
+     * When true, the supported document type is required.
+     *
+     * @return isMandatory
+     **/
+    @ApiModelProperty(required = true, value = "When true, the supported document type is required.")
+    public Boolean isIsMandatory() {
+        return isMandatory;
+    }
+
+    public void setIsMandatory(Boolean isMandatory) {
+        this.isMandatory = isMandatory;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SupportedDocumentDetail supportedDocumentDetail = (SupportedDocumentDetail) o;
+        return Objects.equals(this.name, supportedDocumentDetail.name) &&
+                Objects.equals(this.isMandatory, supportedDocumentDetail.isMandatory);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, isMandatory);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class SupportedDocumentDetail {\n");
+
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    isMandatory: ").append(toIndentedString(isMandatory)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

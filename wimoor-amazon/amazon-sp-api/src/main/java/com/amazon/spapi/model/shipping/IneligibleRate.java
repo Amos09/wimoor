@@ -13,19 +13,12 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.amazon.spapi.model.shipping.IneligibilityReason;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Detailed information for an ineligible shipping service offering.
@@ -33,163 +26,168 @@ import java.util.List;
 @ApiModel(description = "Detailed information for an ineligible shipping service offering.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2024-01-30T16:10:03.349+08:00")
 public class IneligibleRate {
-  @SerializedName("serviceId")
-  private String serviceId = null;
 
-  @SerializedName("serviceName")
-  private String serviceName = null;
+    @SerializedName("serviceId")
+    private String serviceId = null;
 
-  @SerializedName("carrierName")
-  private String carrierName = null;
+    @SerializedName("serviceName")
+    private String serviceName = null;
 
-  @SerializedName("carrierId")
-  private String carrierId = null;
+    @SerializedName("carrierName")
+    private String carrierName = null;
 
-  @SerializedName("ineligibilityReasons")
-  private List<IneligibilityReason> ineligibilityReasons = new ArrayList<IneligibilityReason>();
+    @SerializedName("carrierId")
+    private String carrierId = null;
 
-  public IneligibleRate serviceId(String serviceId) {
-    this.serviceId = serviceId;
-    return this;
-  }
+    @SerializedName("ineligibilityReasons")
+    private List<IneligibilityReason> ineligibilityReasons = new ArrayList<IneligibilityReason>();
 
-   /**
-   * Get serviceId
-   * @return serviceId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getServiceId() {
-    return serviceId;
-  }
-
-  public void setServiceId(String serviceId) {
-    this.serviceId = serviceId;
-  }
-
-  public IneligibleRate serviceName(String serviceName) {
-    this.serviceName = serviceName;
-    return this;
-  }
-
-   /**
-   * Get serviceName
-   * @return serviceName
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getServiceName() {
-    return serviceName;
-  }
-
-  public void setServiceName(String serviceName) {
-    this.serviceName = serviceName;
-  }
-
-  public IneligibleRate carrierName(String carrierName) {
-    this.carrierName = carrierName;
-    return this;
-  }
-
-   /**
-   * Get carrierName
-   * @return carrierName
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getCarrierName() {
-    return carrierName;
-  }
-
-  public void setCarrierName(String carrierName) {
-    this.carrierName = carrierName;
-  }
-
-  public IneligibleRate carrierId(String carrierId) {
-    this.carrierId = carrierId;
-    return this;
-  }
-
-   /**
-   * Get carrierId
-   * @return carrierId
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getCarrierId() {
-    return carrierId;
-  }
-
-  public void setCarrierId(String carrierId) {
-    this.carrierId = carrierId;
-  }
-
-  public IneligibleRate ineligibilityReasons(List<IneligibilityReason> ineligibilityReasons) {
-    this.ineligibilityReasons = ineligibilityReasons;
-    return this;
-  }
-
-  public IneligibleRate addIneligibilityReasonsItem(IneligibilityReason ineligibilityReasonsItem) {
-    this.ineligibilityReasons.add(ineligibilityReasonsItem);
-    return this;
-  }
-
-   /**
-   * A list of reasons why a shipping service offering is ineligible.
-   * @return ineligibilityReasons
-  **/
-  @ApiModelProperty(required = true, value = "A list of reasons why a shipping service offering is ineligible.")
-  public List<IneligibilityReason> getIneligibilityReasons() {
-    return ineligibilityReasons;
-  }
-
-  public void setIneligibilityReasons(List<IneligibilityReason> ineligibilityReasons) {
-    this.ineligibilityReasons = ineligibilityReasons;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public IneligibleRate serviceId(String serviceId) {
+        this.serviceId = serviceId;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get serviceId
+     *
+     * @return serviceId
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getServiceId() {
+        return serviceId;
     }
-    IneligibleRate ineligibleRate = (IneligibleRate) o;
-    return Objects.equals(this.serviceId, ineligibleRate.serviceId) &&
-        Objects.equals(this.serviceName, ineligibleRate.serviceName) &&
-        Objects.equals(this.carrierName, ineligibleRate.carrierName) &&
-        Objects.equals(this.carrierId, ineligibleRate.carrierId) &&
-        Objects.equals(this.ineligibilityReasons, ineligibleRate.ineligibilityReasons);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(serviceId, serviceName, carrierName, carrierId, ineligibilityReasons);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class IneligibleRate {\n");
-    
-    sb.append("    serviceId: ").append(toIndentedString(serviceId)).append("\n");
-    sb.append("    serviceName: ").append(toIndentedString(serviceName)).append("\n");
-    sb.append("    carrierName: ").append(toIndentedString(carrierName)).append("\n");
-    sb.append("    carrierId: ").append(toIndentedString(carrierId)).append("\n");
-    sb.append("    ineligibilityReasons: ").append(toIndentedString(ineligibilityReasons)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public IneligibleRate serviceName(String serviceName) {
+        this.serviceName = serviceName;
+        return this;
+    }
+
+    /**
+     * Get serviceName
+     *
+     * @return serviceName
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public IneligibleRate carrierName(String carrierName) {
+        this.carrierName = carrierName;
+        return this;
+    }
+
+    /**
+     * Get carrierName
+     *
+     * @return carrierName
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getCarrierName() {
+        return carrierName;
+    }
+
+    public void setCarrierName(String carrierName) {
+        this.carrierName = carrierName;
+    }
+
+    public IneligibleRate carrierId(String carrierId) {
+        this.carrierId = carrierId;
+        return this;
+    }
+
+    /**
+     * Get carrierId
+     *
+     * @return carrierId
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public String getCarrierId() {
+        return carrierId;
+    }
+
+    public void setCarrierId(String carrierId) {
+        this.carrierId = carrierId;
+    }
+
+    public IneligibleRate ineligibilityReasons(List<IneligibilityReason> ineligibilityReasons) {
+        this.ineligibilityReasons = ineligibilityReasons;
+        return this;
+    }
+
+    public IneligibleRate addIneligibilityReasonsItem(IneligibilityReason ineligibilityReasonsItem) {
+        this.ineligibilityReasons.add(ineligibilityReasonsItem);
+        return this;
+    }
+
+    /**
+     * A list of reasons why a shipping service offering is ineligible.
+     *
+     * @return ineligibilityReasons
+     **/
+    @ApiModelProperty(required = true, value = "A list of reasons why a shipping service offering is ineligible.")
+    public List<IneligibilityReason> getIneligibilityReasons() {
+        return ineligibilityReasons;
+    }
+
+    public void setIneligibilityReasons(List<IneligibilityReason> ineligibilityReasons) {
+        this.ineligibilityReasons = ineligibilityReasons;
+    }
+
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        IneligibleRate ineligibleRate = (IneligibleRate) o;
+        return Objects.equals(this.serviceId, ineligibleRate.serviceId) &&
+                Objects.equals(this.serviceName, ineligibleRate.serviceName) &&
+                Objects.equals(this.carrierName, ineligibleRate.carrierName) &&
+                Objects.equals(this.carrierId, ineligibleRate.carrierId) &&
+                Objects.equals(this.ineligibilityReasons, ineligibleRate.ineligibilityReasons);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(serviceId, serviceName, carrierName, carrierId, ineligibilityReasons);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class IneligibleRate {\n");
+
+        sb.append("    serviceId: ").append(toIndentedString(serviceId)).append("\n");
+        sb.append("    serviceName: ").append(toIndentedString(serviceName)).append("\n");
+        sb.append("    carrierName: ").append(toIndentedString(carrierName)).append("\n");
+        sb.append("    carrierId: ").append(toIndentedString(carrierId)).append("\n");
+        sb.append("    ineligibilityReasons: ").append(toIndentedString(ineligibilityReasons)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 
 }
 

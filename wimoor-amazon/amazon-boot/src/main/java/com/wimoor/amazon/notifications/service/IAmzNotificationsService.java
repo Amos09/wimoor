@@ -1,11 +1,11 @@
 package com.wimoor.amazon.notifications.service;
 
-import com.wimoor.amazon.notifications.pojo.entity.AmzNotifications;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.notifications.pojo.entity.AmzNotifications;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wimoor team

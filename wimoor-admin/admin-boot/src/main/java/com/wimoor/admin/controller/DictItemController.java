@@ -1,8 +1,20 @@
 package com.wimoor.admin.controller;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.wimoor.admin.pojo.entity.SysDictItem;
+import com.wimoor.admin.service.ISysDictItemService;
+import com.wimoor.common.result.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import java.util.Arrays;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -12,21 +24,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wimoor.admin.pojo.entity.SysDictItem;
-import com.wimoor.admin.service.ISysDictItemService;
-import com.wimoor.common.result.Result;
-
-import cn.hutool.core.util.StrUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 
 @Api(tags = "字典项接口")
 @RestController
@@ -70,7 +67,7 @@ public class DictItemController {
 
     @ApiOperation(value = "字典项")
     @GetMapping("/item")
-    public Result<?> item( String dictCode,String value) {
+    public Result<?> item(String dictCode, String value) {
         SysDictItem item = iSysDictItemService.getOne(
                 new LambdaQueryWrapper<SysDictItem>()
                         .eq(SysDictItem::getDictCode, dictCode)
@@ -78,7 +75,7 @@ public class DictItemController {
         );
         return Result.success(item);
     }
-    
+
     @ApiOperation(value = "字典项详情")
     @ApiImplicitParam(name = "id", value = "字典id", required = true, paramType = "path", dataType = "Long")
     @GetMapping("/{id}")
@@ -122,13 +119,14 @@ public class DictItemController {
     })
     @GetMapping(value = "/select_list/{typeCode}")
     public Result<List<SysDictItem>> listType(@PathVariable String typeCode) {
-    	  List<SysDictItem> list =null;
-            if (!StrUtil.isEmpty(typeCode)) {
-             list = iSysDictItemService.list(new LambdaUpdateWrapper<SysDictItem>().eq(SysDictItem::getDictCode, typeCode));
-            }
+        List<SysDictItem> list = null;
+        if (!StrUtil.isEmpty(typeCode)) {
+            list = iSysDictItemService.list(
+                    new LambdaUpdateWrapper<SysDictItem>().eq(SysDictItem::getDictCode, typeCode));
+        }
         return Result.success(list);
     }
-    
+
     @ApiOperation(value = "选择性更新字典数据")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户ID", required = true, paramType = "path", dataType = "Long"),
@@ -136,7 +134,8 @@ public class DictItemController {
     })
     @PatchMapping(value = "/{id}")
     public Result<?> patch(@PathVariable Integer id, @RequestBody SysDictItem dictItem) {
-        LambdaUpdateWrapper<SysDictItem> updateWrapper = new LambdaUpdateWrapper<SysDictItem>().eq(SysDictItem::getId, id);
+        LambdaUpdateWrapper<SysDictItem> updateWrapper = new LambdaUpdateWrapper<SysDictItem>().eq(SysDictItem::getId,
+                id);
         updateWrapper.set(dictItem.getStatus() != null, SysDictItem::getStatus, dictItem.getStatus());
         boolean status = iSysDictItemService.update(updateWrapper);
         return Result.judge(status);

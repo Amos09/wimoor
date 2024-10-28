@@ -1,11 +1,11 @@
 package com.wimoor.erp.util;
 
 import java.io.File;
-
 import net.lingala.zip4j.core.ZipFile;
 
 public class ZipRarUploader {
-	/**
+
+    /**
      * zip文件解压
      *
      * @param destPath 解压文件路径
@@ -17,20 +17,20 @@ public class ZipRarUploader {
             ZipFile zip = new ZipFile(zipFile);
             /*zip4j默认用GBK编码去解压,这里设置编码为GBK的*/
             zip.setFileNameCharset("GBK");
-    		File pathfile = new File(destPath);
-    		if(!pathfile.exists()) {
-    			pathfile.mkdirs();
-    		}
+            File pathfile = new File(destPath);
+            if (!pathfile.exists()) {
+                pathfile.mkdirs();
+            }
             zip.extractAll(destPath);
             // 如果解压需要密码
             if (zip.isEncrypted()) {
                 zip.setPassword(password);
             }
         } catch (Exception e) {
-             e.printStackTrace();
+            e.printStackTrace();
         }
     }
- 
+
     /**
      * rar文件解压(不支持有密码的压缩包)
      *

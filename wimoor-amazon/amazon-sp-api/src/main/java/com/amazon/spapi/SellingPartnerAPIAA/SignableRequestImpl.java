@@ -6,10 +6,6 @@ import com.amazonaws.http.HttpMethodName;
 import com.squareup.okhttp.HttpUrl;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.Request;
-import okio.Buffer;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,8 +16,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import okio.Buffer;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
 
 class SignableRequestImpl implements SignableRequest<Request> {
+
     private static final String CONTENT_TYPE_HEADER_NAME = "Content-Type";
     private Request originalRequest;
     private Request.Builder signableRequestBuilder;

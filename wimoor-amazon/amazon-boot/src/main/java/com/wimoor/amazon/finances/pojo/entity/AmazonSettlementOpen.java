@@ -1,20 +1,19 @@
 package com.wimoor.amazon.finances.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 @Data
 @TableName("t_amz_settlement_open")
-@ApiModel(value="AmazonSettlementOpen对象", description="")
+@ApiModel(value = "AmazonSettlementOpen对象", description = "")
 public class AmazonSettlementOpen implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @TableId
     private BigInteger id;
@@ -33,5 +32,5 @@ public class AmazonSettlementOpen implements Serializable {
     private String currency;
     private BigDecimal amount;
     private Integer quantity;
-    private Date createTime; 
+    private Date createTime;
 }

@@ -13,114 +13,110 @@
 
 package com.amazon.spapi.model.shipping;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
-import com.google.gson.annotations.SerializedName;
-
-import java.io.IOException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
 
 /**
  * Unique ID for the rateItem.
  */
 @JsonAdapter(RateItemID.Adapter.class)
 public enum RateItemID {
-  
-  BASE_RATE("BASE_RATE"),
-  
-  TRANSACTION_FEE("TRANSACTION_FEE"),
-  
-  ADULT_SIGNATURE_CONFIRMATION("ADULT_SIGNATURE_CONFIRMATION"),
-  
-  SIGNATURE_CONFIRMATION("SIGNATURE_CONFIRMATION"),
-  
-  NO_CONFIRMATION("NO_CONFIRMATION"),
-  
-  WAIVE_SIGNATURE("WAIVE_SIGNATURE"),
-  
-  IMPLIED_LIABILITY("IMPLIED_LIABILITY"),
-  
-  HIDDEN_POSTAGE("HIDDEN_POSTAGE"),
-  
-  DECLARED_VALUE("DECLARED_VALUE"),
-  
-  SUNDAY_HOLIDAY_DELIVERY("SUNDAY_HOLIDAY_DELIVERY"),
-  
-  DELIVERY_CONFIRMATION("DELIVERY_CONFIRMATION"),
-  
-  IMPORT_DUTY_CHARGE("IMPORT_DUTY_CHARGE"),
-  
-  VAT("VAT"),
-  
-  NO_SATURDAY_DELIVERY("NO_SATURDAY_DELIVERY"),
-  
-  INSURANCE("INSURANCE"),
-  
-  COD("COD"),
-  
-  FUEL_SURCHARGE("FUEL_SURCHARGE"),
-  
-  INSPECTION_CHARGE("INSPECTION_CHARGE"),
-  
-  DELIVERY_AREA_SURCHARGE("DELIVERY_AREA_SURCHARGE"),
-  
-  WAYBILL_CHARGE("WAYBILL_CHARGE"),
-  
-  AMAZON_SPONSORED_DISCOUNT("AMAZON_SPONSORED_DISCOUNT"),
-  
-  INTEGRATOR_SPONSORED_DISCOUNT("INTEGRATOR_SPONSORED_DISCOUNT"),
-  
-  OVERSIZE_SURCHARGE("OVERSIZE_SURCHARGE"),
-  
-  CONGESTION_CHARGE("CONGESTION_CHARGE"),
-  
-  RESIDENTIAL_SURCHARGE("RESIDENTIAL_SURCHARGE"),
-  
-  ADDITIONAL_SURCHARGE("ADDITIONAL_SURCHARGE"),
-  
-  SURCHARGE("SURCHARGE"),
-  
-  REBATE("REBATE");
 
-  private String value;
+    BASE_RATE("BASE_RATE"),
 
-  RateItemID(String value) {
-    this.value = value;
-  }
+    TRANSACTION_FEE("TRANSACTION_FEE"),
 
-  public String getValue() {
-    return value;
-  }
+    ADULT_SIGNATURE_CONFIRMATION("ADULT_SIGNATURE_CONFIRMATION"),
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+    SIGNATURE_CONFIRMATION("SIGNATURE_CONFIRMATION"),
 
-  public static RateItemID fromValue(String text) {
-    for (RateItemID b : RateItemID.values()) {
-      if (String.valueOf(b.value).equals(text)) {
-        return b;
-      }
+    NO_CONFIRMATION("NO_CONFIRMATION"),
+
+    WAIVE_SIGNATURE("WAIVE_SIGNATURE"),
+
+    IMPLIED_LIABILITY("IMPLIED_LIABILITY"),
+
+    HIDDEN_POSTAGE("HIDDEN_POSTAGE"),
+
+    DECLARED_VALUE("DECLARED_VALUE"),
+
+    SUNDAY_HOLIDAY_DELIVERY("SUNDAY_HOLIDAY_DELIVERY"),
+
+    DELIVERY_CONFIRMATION("DELIVERY_CONFIRMATION"),
+
+    IMPORT_DUTY_CHARGE("IMPORT_DUTY_CHARGE"),
+
+    VAT("VAT"),
+
+    NO_SATURDAY_DELIVERY("NO_SATURDAY_DELIVERY"),
+
+    INSURANCE("INSURANCE"),
+
+    COD("COD"),
+
+    FUEL_SURCHARGE("FUEL_SURCHARGE"),
+
+    INSPECTION_CHARGE("INSPECTION_CHARGE"),
+
+    DELIVERY_AREA_SURCHARGE("DELIVERY_AREA_SURCHARGE"),
+
+    WAYBILL_CHARGE("WAYBILL_CHARGE"),
+
+    AMAZON_SPONSORED_DISCOUNT("AMAZON_SPONSORED_DISCOUNT"),
+
+    INTEGRATOR_SPONSORED_DISCOUNT("INTEGRATOR_SPONSORED_DISCOUNT"),
+
+    OVERSIZE_SURCHARGE("OVERSIZE_SURCHARGE"),
+
+    CONGESTION_CHARGE("CONGESTION_CHARGE"),
+
+    RESIDENTIAL_SURCHARGE("RESIDENTIAL_SURCHARGE"),
+
+    ADDITIONAL_SURCHARGE("ADDITIONAL_SURCHARGE"),
+
+    SURCHARGE("SURCHARGE"),
+
+    REBATE("REBATE");
+
+    private String value;
+
+    RateItemID(String value) {
+        this.value = value;
     }
-    return null;
-  }
 
-  public static class Adapter extends TypeAdapter<RateItemID> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final RateItemID enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
+    public String getValue() {
+        return value;
     }
 
     @Override
-    public RateItemID read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return RateItemID.fromValue(String.valueOf(value));
+    public String toString() {
+        return String.valueOf(value);
     }
-  }
+
+    public static RateItemID fromValue(String text) {
+        for (RateItemID b : RateItemID.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    public static class Adapter extends TypeAdapter<RateItemID> {
+
+        @Override
+        public void write(final JsonWriter jsonWriter, final RateItemID enumeration) throws IOException {
+            jsonWriter.value(enumeration.getValue());
+        }
+
+        @Override
+        public RateItemID read(final JsonReader jsonReader) throws IOException {
+            String value = jsonReader.nextString();
+            return RateItemID.fromValue(String.valueOf(value));
+        }
+    }
 }
 

@@ -2,10 +2,9 @@ package com.wimoor.common;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * 树形下拉视图对象

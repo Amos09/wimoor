@@ -1,33 +1,33 @@
 package com.wimoor.amazon.adv.report.pojo;
 
 import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="t_amz_adv_sumpdtads")
+@Table(name = "t_amz_adv_sumpdtads")
 public class AmzAdvSumProductAds extends AmzAdvSumProductAdsKey {
-	@Column(name="impressions")
+
+    @Column(name = "impressions")
     private Integer impressions;
 
-	@Column(name="clicks")
+    @Column(name = "clicks")
     private Integer clicks;
 
-	@Column(name="cost")
+    @Column(name = "cost")
     private BigDecimal cost;
 
-	@Column(name="currency")
+    @Column(name = "currency")
     private String currency;
 
-	@Column(name="attributedUnitsOrdered")
+    @Column(name = "attributedUnitsOrdered")
     private Integer attributedunitsordered;
 
-	@Column(name="attributedConversions")
+    @Column(name = "attributedConversions")
     private Integer attributedConversions;
-	
-	@Column(name="attributedSales")
+
+    @Column(name = "attributedSales")
     private BigDecimal attributedsales;
 
     public Integer getImpressions() {
@@ -78,12 +78,12 @@ public class AmzAdvSumProductAds extends AmzAdvSumProductAdsKey {
         this.attributedsales = attributedsales;
     }
 
-	public Integer getAttributedConversions() {
-		return attributedConversions;
-	}
+    public Integer getAttributedConversions() {
+        return attributedConversions;
+    }
 
-	public void setAttributedConversions(Integer attributedConversions) {
-		this.attributedConversions = attributedConversions;
-	}
-    
+    public void setAttributedConversions(Integer attributedConversions) {
+        this.attributedConversions = attributedConversions;
+    }
+
 }

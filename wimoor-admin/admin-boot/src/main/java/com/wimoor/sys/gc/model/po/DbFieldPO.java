@@ -2,10 +2,9 @@ package com.wimoor.sys.gc.model.po;
 
 
 import io.swagger.annotations.ApiModel;
+import java.util.List;
 import lombok.Data;
 import lombok.ToString;
-
-import java.util.List;
 
 /**
  * @author wangsong
@@ -14,6 +13,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @ApiModel(value = "DbFieldPO 对象", description = "字段数据")
 public class DbFieldPO {
+
     /**
      * 字段名
      */

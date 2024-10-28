@@ -1,17 +1,15 @@
 package com.wimoor.erp.purchase.alibaba.pojo.entity;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import io.swagger.annotations.ApiModel;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author wimoor team
@@ -20,10 +18,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_erp_purchase_alibaba_contact")
-@ApiModel(value="ErpPurchaseAlibabaContact对象", description="")
+@ApiModel(value = "ErpPurchaseAlibabaContact对象", description = "")
 public class ErpPurchaseAlibabaContact implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     private String id;
 
@@ -31,9 +29,9 @@ public class ErpPurchaseAlibabaContact implements Serializable {
     private String companyName;
 
     private String email;
-    
+
     private String customer;
-    
+
     @TableField("imInPlatform")
     private String imInPlatform;
 

@@ -1,7 +1,7 @@
 package com.wimoor.amazon.auth.service;
 
-import com.wimoor.amazon.auth.pojo.entity.AmzAuthApiTimelimit;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wimoor.amazon.auth.pojo.entity.AmzAuthApiTimelimit;
 
 /**
  * <p>
@@ -12,7 +12,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-06-24
  */
 public interface IAmzAuthApiTimelimitService extends IService<AmzAuthApiTimelimit> {
-	public boolean update(AmzAuthApiTimelimit entity);
-	AmzAuthApiTimelimit getApiLimit(String amazonauthid, String string);
+
+    public boolean update(AmzAuthApiTimelimit entity);
+
+    AmzAuthApiTimelimit getApiLimit(String amazonauthid, String string);
 
 }

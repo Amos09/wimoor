@@ -1,4 +1,5 @@
 package com.amazon.spapi.SellingPartnerAPIAA;
+
 public enum LWAExceptionErrorCode {
     access_denied,
     invalid_grant,

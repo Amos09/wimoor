@@ -6,15 +6,10 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.google.common.base.CaseFormat;
 import com.wimoor.sys.gc.config.GcConfig;
 import com.wimoor.sys.gc.model.po.DbFieldPO;
-
-import lombok.extern.slf4j.Slf4j;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 代码生成工具类( 处理前端菜单的表字段相关数据使用)
