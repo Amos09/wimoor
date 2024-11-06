@@ -3,10 +3,10 @@ spring:
     nacos:
       discovery:
         username: nacos
-        password: Zz2825311647
-        namespace: saltyfish-dev
-        group: DEV_GROUP
-        server-addr: 101.200.195.31:8848
+        password: nacos
+        namespace: wimoor-prod
+        group: prod
+        server-addr: localhost:8848
         watch:
           enabled: false
         metadata:
@@ -14,20 +14,17 @@ spring:
       # 配置中心
       config:
         username: nacos
-        password: Zz2825311647
-        namespace: saltyfish-dev
-        server-addr: 101.200.195.31:8848
-        group: DEV_GROUP
-        file-extension: yaml
+        password: nacos
+        namespace: wimoor-prod
+        server-addr: localhost:8848
+        group: prod
+        file-extension: yml
         timeout: 60000
         enabled: true
         refresh-enabled: true
         shared-configs[0]:
           data-id: wimoor-common.yml
-          group: DEV_GROUP
-          refresh: true
-        shared-configs[1]:
-          data-id: wimoor-commom-ext.yml
+          group: prod
           refresh: true
   sentinel:
     # 是否开启sentinel
@@ -38,4 +35,4 @@ spring:
     eager: true
     transport:
       #port: @sentinel.port@
-      dashboard: 101.34.28.222:8858
+      dashboard: localhost:8858
