@@ -4,21 +4,23 @@ auth:
   clientId: amzn1.application-oa2-client.a123bcd456789ef1g23hi4567jko8pq9
   clientSecret: amzn1.oa2-cs.v1.1234a567bc890d123efghi456789jk123456opq7r8912345678b89stp129b3a0
   appid: amzn1.sellerapps.app.1234a12b-12a3-1234-1a234-a123abcd1d12
-  sandbox: false 
+  sandbox: false
   needproxy: false
   redirecturl: https://mywebsit.com/authresult
+
 aws:
   sqsStandArn: arn:aws:sqs:us-west-2:123456789:mysqs
   sqsStandPath: https://sqs.us-west-2.amazonaws.com/123456789/mysqs
   sqsFifoArn: arn:aws:sqs:us-west-2:123456789:mysqs.fifo
   accessKeyId: ABCDEFGHIJKOPQRSTUVWXYZ
   secretKey: 1a2b3d4c5d6e7f1234564fdsafdsa1fd2fdsaf12ds3a4f5ew6
+
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    jdbc-url: jdbc:mysql://${mysql.host}:${mysql.port}/db_amazon?&connectTimeout=30000&socketTimeout=60000&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnectForPools=true&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
-    username: ${mysql.username}
-    password: ${mysql.password}
+    jdbc-url: jdbc:mysql://localhost:3306/db_amazon?&connectTimeout=30000&socketTimeout=60000&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnectForPools=true&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: amos0917
     primary:
       driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
@@ -27,16 +29,19 @@ spring:
         enabled: false
       nacos:
         enabled: true
+
 mybatis-plus:
   global-config:
-      db-config:
-         update-strategy: IGNORED
+    db-config:
+      update-strategy: IGNORED
+
 feign:
   client:
     config:
       default:
         connectTimeout: 10000
         readTimeout: 600000
+        
 db:
   otherTables:
     - db_amazon_adv.t_amz_advert_report_summary

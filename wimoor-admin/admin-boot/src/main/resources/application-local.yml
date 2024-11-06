@@ -1,0 +1,85 @@
+spring:
+  view:
+    suffix: .jsp
+    prefix: /WEB-INF/
+  throw-exception-if-no-handler-found: true
+  static-path-pattern: /**
+  cache:
+    cache-names: system
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    jdbc-url: jdbc:mysql://127.0.0.1:3306/db_admin?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: amos0917
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    quartz:
+      type: com.alibaba.druid.pool.DruidDataSource
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/db_quartz?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
+      username: root
+      password: amos0917
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  redis:
+    database: 0
+    host: 127.0.0.1:976
+    password: Zz2825311647
+
+  quartz:
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 80000
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+
+  mail:
+    host: smtp.feishu.cn
+    port: 465
+    username: name@myemail.com
+    password: FJDKSJ2165446
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+        debug: true
+
+aliyun:
+  sms:
+    access_key_id: ABCdd1efa1eFFD2s
+    access_key_secret: a1b2c3d4e5f6g8h9j1
+    sign: wimoor
+    code:
+      register: SMS_123456789
+      losepassword: SMS_234567891
+      invalid: SMS_345678912
+      changephone: SMS_456789123
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      field-strategy: ignored
+
+minio:
+  minio_endpoint: http://127.0.0.1:9000
+  accessKeyId: admin
+  accessKeySecret: password
+  bucketName: wimoor-file
+  bucketPath: http://127.0.0.1:9000/wimoor-file
+
+ftp:
+  ftpUserName: root
+  ftpPassword: root
+  ftpHost: http://127.0.0.1:9000
+
+sys:
+  admin:
+    id: 26138972975759242

@@ -1,0 +1,30 @@
+alibaba:
+  appKey: 123456789
+  appSecret: ABcdDEFSDADS
+  open1688:
+    
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    jdbc-url: jdbc:mysql://localhost:3306/db_erp?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: amos0917
+    primary:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  global-config:
+    db-config:
+      update-strategy: IGNORED
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 600000
+
+db:
+  otherTables:
+    - db_admin.t_userinfo
+    - db_amazon.t_marketplace

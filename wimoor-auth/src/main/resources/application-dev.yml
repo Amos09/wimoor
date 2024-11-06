@@ -1,18 +1,18 @@
-feign: 
-  client: 
-    config: 
-      default: 
+feign:
+  client:
+    config:
+      default:
         connectTimeout: 10000
         readTimeout: 600000
 
-config: 
+config:
   websit: http://localhost:8084
   ui-server: http://localhost:8084
   authority-server: http://localhost:8087/auth
   cas-server: http://localhost:8080
   cas-filter-url-pattern: /shiro-cas
 
- 
+
 wechat:
   small-app-id: wx5f4h2db789123f45
   small-app-secret: 1a23b4c5defgh6778ijkl91mn23fabf4

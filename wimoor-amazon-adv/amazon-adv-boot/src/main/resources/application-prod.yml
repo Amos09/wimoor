@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    jdbc-url: jdbc:mysql://localhost:3306/db_test_amazon_adv?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: amos09
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+auth:
+  redirecturl: https://app.wimoor.com/advresult
+
+db:
+  otherTables:
+    - db_amazon.t_amazon_auth
+    - db_amazon.t_product_info
+    - db_amazon.t_product_in_order
+    - db_erp.t_erp_material
+    - db_erp.t_erp_material_category
+    - db_amazon.t_picture
+
+ 

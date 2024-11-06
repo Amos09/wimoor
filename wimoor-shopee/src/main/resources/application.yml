@@ -1,0 +1,32 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  redis:
+    database: 0
+    host: 127.0.0.1:976
+    password: Zz2825311647
+
+config:
+  photo-server: 127.0.0.1
+  photo-server-url: https://mywebsit.com
+
+aliyun:
+  oss_endpoint: oss-cn-shenzhen.aliyuncs.com
+  accessKeyId: ABCD2eFg460hIJKGXpcVySDzk
+  accessKeySecret: AB4C5efIGRSDzeeGeGVrGJuWmRHQbE
+  bucketName: myBucketName-file
+  bucketPath: https://myBucketPath-file.oss-cn-diqu.aliyuncs.com
+
+seata:
+  application-id: ${spring.application.name}
+  enabled: false
+  tx-service-group: default_tx_group
+  data-source-proxy-mode: AT
+  enable-auto-data-source-proxy: false
+  service.vgroup-mapping.default_tx_group: default
+  service.default.grouplist: 127.0.0.1:8091

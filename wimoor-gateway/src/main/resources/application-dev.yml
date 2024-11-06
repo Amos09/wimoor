@@ -42,18 +42,18 @@ spring:
 # 配置白名单路径(无需登录)
 security:
   ignoreUrls:
-      - /amazon/api/v1/report/product/amzProductPageviews/auth/uploadSessionFile
-      - /amazon/api/v1/amzauthority/authSeller
-      - /amazonadv/api/v1/advert/bindAdvAuthData
-      - /ssoclient/**
-      - /auth/**
-      - /admin/api/v1/users/register
-      - /admin/api/v1/users/updatePassword
-      - /admin/api/v1/sms/**
-      - /erp/api/v1/purchase1688/message
-      - /admin/api/v1/users/getSmsCode 
-      - /admin/api/v1/users/getEmailCode
-      - /admin/api/v1/users/register
-      - /admin/api/v1/users/updatePasswordForget 
-      - /admin/webhook/event/**
-      - /admin/webhoot/card/**
+    - /amazon/api/v1/report/product/amzProductPageviews/auth/uploadSessionFile
+    - /amazon/api/v1/amzauthority/authSeller
+    - /amazonadv/api/v1/advert/bindAdvAuthData
+    - /ssoclient/**
+    - /auth/**
+    - /admin/api/v1/users/register
+    - /admin/api/v1/users/updatePassword
+    - /admin/api/v1/sms/**
+    - /erp/api/v1/purchase1688/message
+    - /admin/api/v1/users/getSmsCode
+    - /admin/api/v1/users/getEmailCode
+    - /admin/api/v1/users/register
+    - /admin/api/v1/users/updatePasswordForget
+    - /admin/webhook/event/**
+    - /admin/webhoot/card/**
